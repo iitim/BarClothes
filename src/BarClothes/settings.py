@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -79,18 +80,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-# DATABASES = {
-#     'default': {
-#         'NAME': 'BarCloth',
-#         'ENGINE': 'django.db.backends.mysql',
-#         'USER': 'DjangoServer',
-#         'PASSWORD': '1q2w3e4r5t6y7u8i9o0p',
-#         'HOST' : '35.194.233.26',
-#         'OPTIONS': {
-#           'autocommit': True,
-#         },
-#     }
-# }
 
 
 # Password validation
