@@ -1,9 +1,9 @@
-{% extends 'Signin_Signup.html' %}
+{% extends 'base.html' %}
 
 {% block title %}See you!{% endblock %}
 
 {% block content %}
-  <h2>Logged out</h2>
-  <p>You have been successfully logged out.</p>
-  <p><a href="{% url 'login' %}">Log in</a> again.</p>
+  <h2 style="color: White">Logged out</h2>
+  <p style="color: White">You have been successfully logged out.</p>
+  <p style="color: White"><a href="{% url 'login' %}">Log in</a> again.</p>
 {% endblock %}
