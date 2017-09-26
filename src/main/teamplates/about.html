@@ -1,17 +1,12 @@
-<!DOCTYPE HTML>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-      <title>About Us</title>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet">
+{% extends 'base.html' %}
+{% load staticfiles %}
 
-  </head>
-      <body class="policies">
+{% block content %}
+
           <div class="content">
-              <h1 class="pageHead"> TERMS &amp; CONDITIONS </h1>
+              <h1 class="pageHead"> ABOUT US </h1>
 
-              <p class="note"> Welcome to lechal.com (the "site"). The following terms and conditions (the "terms and conditions") apply to your use of the s ite. By using the site, you accept these conditions. You will also be subject to these guidelines and conditions when you use any current or future lechal.com service (for e.g. your accoun t/profile etc.)</p>
+              <p class="note"> Welcome to barclothes.com . The following terms and conditions (the "terms and conditions") apply to your use of the s ite. By using the site, you accept these conditions. You will also be subject to these guidelines and conditions when you use any current or future lechal.com service (for e.g. your accoun t/profile etc.)</p>
 
               <p class="para_head">Eligibility of Use</p>
               <p class="para_content"> Use of the site is available only to persons, who can form lega lly binding contracts under applicable law. Persons who are "incompetent to contract" within the meaning of the Indian Contract Act, 1872, such as undischarged insolvents etc. are not eligible to use the site. If you are a minor i. e. under the age of 18, but at least 13 years of age, you may use this site only under the supervision of a pare nt or legal guardian, who agrees to be bound by these terms of use. If you are below 18 years of age, your parents or legal guardians can transact on your behalf if they are registered users. lechal.com reserves the right to terminate your membership and refuse to
@@ -92,6 +87,4 @@
               <p class="para_content"> If any part of this agreement is determined to be invalid or unenforceable pursuant to applicable law including, but not limited to, the warranty disclaimers and liability limitations set forth above, then the invalid or unenforceable provision will be deemed to be superseded by a valid, enforceable provision that most closely matches the intent of the original provision and the remainder of the agreement shall continue in effect. Unless otherwise specified herein, this agreement constitutes the entire agreement between you and lechal.com with respect to the lechal.com and it supersedes all prior or contemporaneous communications and proposals, whether electronic, oral or written, between you and lechal.com with respect to this site and its services. lechal.com's failure to act with respect to a breach by you or others does not waive its right to act with respect to subsequent or similar breaches. </p>
           </div>
   </div>
-
-  </body>
-</html>
+  {% endblock %}
