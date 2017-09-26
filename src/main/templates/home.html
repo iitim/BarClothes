@@ -58,35 +58,42 @@
 
 {% block content2 %}
     <div class="row-VIPItems">
-        <div class="col-md-7 col-md-push-5">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <div class="col-md-5">
+            <img src="{% static 'img/home/VIP/Head.png' %}" width="400">
         </div>
-        <div class="col-md-5 col-md-pull-7">
-            <img src="{% static 'img/home/VIP/Head.png' %}">
+        <div class="col-md-7">
+            <img src="{% static 'img/home/VIP/V001.jpg' %}" height="260">
+            <img src="{% static 'img/home/VIP/V002.jpg' %}" height="260">
+            <img src="{% static 'img/home/VIP/V003.jpg' %}" height="260">
+            <img src="{% static 'img/home/VIP/V004.jpg' %}" height="260"> 
+            <img src="{% static 'img/home/VIP/V005.jpg' %}" height="260">
+            <img src="{% static 'img/home/VIP/V006.jpg' %}" height="260">
         </div>
     </div>
-    
     <div class="row-BestSell">
-        <div class="col-md-7">
-            <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <div class="col-md-5 col-md-push-7">
+            <img src="{% static 'img/home/BestSell/Head.png' %}" width="400">
         </div>
-        <div class="col-md-5">
-            <img src="{% static 'img/home/BestSell/Head.png' %}">
+        <div class="col-md-7 col-md-pull-5">
+            <img src="{% static 'img/home/BestSell/B001.jpg' %}" height="260">
+            <img src="{% static 'img/home/BestSell/B002.jpg' %}" height="260">
+            <img src="{% static 'img/home/BestSell/B003.jpg' %}" height="260">
+            <img src="{% static 'img/home/BestSell/B004.jpg' %}" height="260">
+            <img src="{% static 'img/home/BestSell/B005.jpg' %}" height="260">
+            <img src="{% static 'img/home/BestSell/B006.jpg' %}" height="260">
         </div>
     </div>
     <style>
         .row-VIPItems{
             margin-top: 80px;
         }
-        .row-BestSell .col-md-5{
-            margin-top: 100px;
+        .row-VIPItems .col-md-7{
+            margin-top: 10px;
             margin-bottom: 100px;
         }
         .row-BestSell .col-md-7{
-            margin-top: 100px;
-            margin-bottom: 100px;
+            margin-top: 10px;
+            margin-bottom: 150px;
         }
     </style>
 {% endblock %}
