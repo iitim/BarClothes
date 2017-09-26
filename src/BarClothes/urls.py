@@ -16,18 +16,24 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from main import views
+from django.contrib.auth import views as auth_views
+from django.views.generic.base import TemplateView
+
 # from profile import views as profiles_views
 # from about import views as about_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^$', views.home, name='home'),
-    # url(r'^login/$', views.login, name='login'),
-    # url(r'^logout/$', views.logout, name='logout'),
+    url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
+    url(r'^accounts/profile', TemplateView.as_view(template_name='home.html'), name='home'),
     # url(r'^about/$', about_views.about, name='about'),
     # url(r'^about/$', about_views.about, name='about'),
     # url(r'^profile/$', profiles_views.userProfile, name='profile'),
     # url(r'^accounts/$', include('allauth.urls')),   
+    url(r'^signup/$', views.signup, name='signup'),
 
 
 
