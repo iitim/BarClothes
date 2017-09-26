@@ -13,13 +13,13 @@
             <!-- Wrapper for carousel items -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <a href="#"><img src="{% static 'img/first.jpg' %}"  alt="First Slide"/></a>
+                    <a href="#"><img src="{% static 'img/home/carousel/first.jpg' %}"  alt="First Slide"/></a>
                 </div>
                 <div class="item">
-                    <a href="#"><img src="{% static 'img/second.jpg' %}"  alt="First Slide"/></a>
+                    <a href="#"><img src="{% static 'img/home/carousel/second.jpg' %}"  alt="First Slide"/></a>
                 </div>
                 <div class="item">
-                    <a href="#"><img src="{% static 'img/third.jpg' %}"  alt="First Slide"/></a>
+                    <a href="#"><img src="{% static 'img/home/carousel/third.jpg' %}"  alt="First Slide"/></a>
                 </div>
             </div>
             <!-- Carousel controls -->
@@ -34,14 +34,15 @@
 
     <style>
         .carousel{
-            background: #718497;
-            margin-top: 150px;
+            background: #cf952d;
+            margin-top: 250px;
         }
         .carousel .item{
-            min-height: 200px; /* Prevent carousel from being distorted if for some reason image doesn't load */
+            min-height: 100px; 
+            max-height: 450px;
         }
         .carousel .item img{
-            margin: 0 auto; /* Align slide image horizontally center */
+            margin: 0 auto;
         }
         .bs-example{
             margin: 20px;
@@ -62,7 +63,7 @@
             <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
         <div class="col-md-5 col-md-pull-7">
-            <img src="{% static 'img/Homepage-VIPItems.png' %}">
+            <img src="{% static 'img/home/VIP/Head.png' %}">
         </div>
     </div>
     
@@ -72,7 +73,7 @@
             <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
         <div class="col-md-5">
-            <img src="{% static 'img/Homepage-BestSell.png' %}">
+            <img src="{% static 'img/home/BestSell/Head.png' %}">
         </div>
     </div>
     <style>
