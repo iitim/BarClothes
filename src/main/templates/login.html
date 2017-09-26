@@ -1,15 +1,17 @@
-{% extends 'base2.html' %}
+{% extends 'Signin_Signup.html' %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
+  <p class="Customer">Login</p>
+   <form method="post">
+  	<a id=Customer style="color: black;" >
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	</a>
+    <button type="submit" ip=b_change >Login</button>
   </form>
   
-  <a href="{% url 'signup' %}">Signup</a>
+  <a id=Customer href="{% url 'signup' %}">Signup</a>
 
 {% endblock %}
