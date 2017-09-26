@@ -31,12 +31,60 @@
 }
 
 html,
-body {
-    font-family: 'Glacial Indifference';
-    height: 100%;
+body{
+	font-family: 'Glacial Indifference';
+	color: #ffffff;
+	height: 100%;
     background-color: #282626;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
-    -o-background-size: cover;
+	-o-background-size: cover;
+	text-align: center;
+}
+
+@media screen and (min-width: 768px){
+	.navbar-nav{
+		float: none;
+		text-align: center;
+	}
+	.navbar-nav li{
+		display: inline-block;
+		float: none;
+		width: 18%;
+	}
+}
+
+@media (min-width:1024px) {
+	nav.navbar.navbar-default{
+	  width:1024px;
+	}
+}
+nav{
+	font-family: 'Glacial Indifference';
+	color: #282626;
+	margin: auto;
+}
+
+.header-logo{
+    position: absolute;
+    top: -40%;
+}
+
+ul.nav.navbar-nav{
+	margin-left:100px;
+  }
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #ffbc49;
+}
+
+.nav-login{
+	background-color: #ffbc49;
+}
+
+footer{
+	background-color: #ffbc49;
+	padding: 50px 0;
+	margin: 50px 0 0 0;
 }

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <div class="show"><img src="assets/img/icon.png" class="profile-pic"><a class="text-lowercase" href="profile/edit">edit </a></div>
+    <div>
+        <div>
+            <p class="fix-text">User name<span class="right-text">xxxxx</span></p>
+        </div>
+    </div>
+    <div></div>
+    <div>
+        <p class="fix-text">Birthday <span class="right-text">dd/mm/yyyy </span></p>
+    </div>
+    <div>
+        <p class="fix-text">mobile phone<span class="right-text">0xx-xxxxxxxx</span></p>
+    </div>
+    <div>
+        <p class="fix-text">E-mail <span class="right-text">example@gmail.comt</span></p>
+    </div>
+    <div>
+        <p class="fix-text">Identification no.<span class="right-text">1-2345-67891-23-4</span></p>
+    </div>
+    <button class="btn btn-link" type="button">change password</button>
+    <script src="{% static 'javascript/jquery2.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap.min.js' %}"></script>
+</html>
+{% endblock %}

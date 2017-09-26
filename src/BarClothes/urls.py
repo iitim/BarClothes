@@ -25,7 +25,7 @@ urlpatterns = [
     # url(r'^about/', views.about, name='about'),
     # url(r'^about/', views.about, name='about'),
     # url(r'^about/', views.about, name='about'),
-    # url(r'^profile/$', profiles_views.userProfile, name='profile'),
+    url(r'^profile/$', views.profile, name='profile'),
     # url(r'^accounts/', include('allauth.urls')),   
 
 
