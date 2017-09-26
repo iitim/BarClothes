@@ -17,6 +17,14 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/main.css' %}" rel="stylesheet">
+   <script type="text/javascript">
+     function Redirect() {
+        setTimeout(function() {
+            window.location.href = "{% url 'home' %}";
+        }, 2000);
+    }
+    </script>
+
   </head>
 
   <body>
