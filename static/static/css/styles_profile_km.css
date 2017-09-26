@@ -2,6 +2,7 @@ a.text-lowercase{
   display:block;
   text-align:center;
   color:white;
+  text-align:center;
 }
 
 .profile-pic{
@@ -10,12 +11,13 @@ a.text-lowercase{
   background:transparent;
 }
 
-p.fix-text{
+p.fix-left-text{
   display:block;
-  border:2px solid #ffcc00;
+  border-left:6px solid #ffcc00;
   background:transparent;
   color:white;
   text-align:left;
+  border-bottom:1px solid #ffcc00;
 }
 
 span.right-text{
@@ -50,5 +52,38 @@ div.show{
 
 body{
   background:transparent;
+}
+
+p.fix-right-text{
+  display:block;
+  border-bottom:1px solid #ffcc06;
+  border-right:6px solid #ffcc06;
+  color:white;
+  background:transparent;
+  text-align:left;
+}
+
+body{
+  background:transparent;
+}
+
+div{
+  margin:auto;
+  width:1024px;
+}
+
+a.change_password:link, a.change_password:visited{
+  background-color:transparent;
+  color:#555555;
+  padding:14px 25px;
+  text-align:center;
+  text-decoration:none;
+  display:inline-block;
+}
+
+a.change_password:hover, a.change_password:active{
+  background-color:#555555;
+  color:white;
+  text-decoration:underline;
 }
 

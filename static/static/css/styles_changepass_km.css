@@ -1,0 +1,75 @@
+
+body{
+  background:transparent;
+  height:initial;
+}
+
+small.current-pass{
+  display:block;
+  border-left:20px solid transparent;
+  border-top:15px solid transparent;
+}
+
+input.cur-pass{
+  display:block;
+  border-left:20px solid transparent;
+}
+
+div{
+  width:350px;
+  background:transparent;
+}
+
+strong.cur-pas{
+  display:block;
+  border-left:50px solid transparent;
+  border-top:10px solid transparent;
+}
+
+input.input-cur-pass{
+  margin-left:50px;
+  display:block;
+  width:300px;
+  margin-bottom:20px;
+}
+
+strong.new-pass{
+  margin-left:50px;
+  border-top:20px;
+  border-bottom:20px solid transparent;
+}
+
+input.new-pass-input{
+  display:block;
+  margin-left:50px;
+  width:300px;
+  margin-bottom:20px;
+}
+
+strong.confirm-pass{
+  border-left:50px solid transparent;
+}
+
+button#change-pass.btn.btn-default{
+  display:inline-block;
+  margin-left:50px;
+  background-color:#dee6de;
+  border:none;
+  padding:16px 10px;
+  text-align:center;
+  text-decoration:none;
+  transition-duration:0.4s;
+  cursor:pointer;
+}
+
+button#cancel.btn.btn-default{
+  display:block;
+  margin-left:25px;
+}
+
+button#change-pass.btn.btn-default:hover{
+  background-color:#e7e7e7;
+  border:0px solid #e7e7e7;
+  margin-bottom:20px;
+}
+
