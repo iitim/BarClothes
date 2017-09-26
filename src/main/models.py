@@ -28,9 +28,9 @@ class Product(models.Model):
     amount = models.IntegerField()
     seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
 
-class ProductToTag(models.Model):
-    product =  models.ForeignKey(Product, on_delete=models.CASCADE)
-    tag =  models.ForeignKey(Product, on_delete=models.CASCADE)
+# class ProductToTag(models.Model):
+#     product =  models.ForeignKey(Product, on_delete=models.CASCADE)
+#     tag =  models.ForeignKey(Product, on_delete=models.CASCADE)
 
 class Tag(models.Model):
     name = models.CharField(max_length=45)
