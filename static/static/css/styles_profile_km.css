@@ -3,6 +3,7 @@ a.text-lowercase{
   text-align:center;
   color:white;
   text-align:center;
+  font-size:16px;
 }
 
 .profile-pic{
@@ -25,6 +26,7 @@ span.right-text{
   text-align:right;
   color:white;
   background:transparent;
+  margin-right:20px;
 }
 
 button.btn.btn-default{
@@ -50,40 +52,72 @@ div.show{
   background:transparent;
 }
 
-body{
-  background:transparent;
-}
-
 p.fix-right-text{
   display:block;
-  border-bottom:1px solid #ffcc06;
-  border-right:6px solid #ffcc06;
   color:white;
   background:transparent;
   text-align:left;
 }
 
-body{
-  background:transparent;
-}
-
-div{
-  margin:auto;
-  width:1024px;
-}
-
 a.change_password:link, a.change_password:visited{
   background-color:transparent;
-  color:#555555;
-  padding:14px 25px;
+  color:white;
+  padding:14px 20px;
   text-align:center;
   text-decoration:none;
   display:inline-block;
+  margin-right:0px;
+  margin-left:855px;
 }
 
 a.change_password:hover, a.change_password:active{
-  background-color:#555555;
-  color:white;
+  background-color:transparent;
+  color:#e7e7e7;
   text-decoration:underline;
+}
+
+div.profile{
+  width:1024px;
+  margin:auto;
+  background:transparent;
+}
+
+body.profile{
+  background:transparent;
+}
+
+span.fix-left-text{
+  color:white;
+  margin-left:10px;
+}
+
+div.block{
+  border-left:6px solid #ffcc00;
+  border-bottom:1px solid #ffcc00;
+  margin-bottom:6px;
+}
+
+div.fix-right-text{
+  border-right:6px solid #ffcc00;
+  border-bottom:1px solid #ffcc00;
+  margin-bottom:6px;
+  margin-left:0px;
+}
+
+span.fix-right-text{
+  color:white;
+  margin-left:16px;
+}
+
+div.block-left{
+  border-left:6px solid #ffcc00;
+  border-bottom:1px solid #ffcc00;
+  margin-bottom:6px;
+  margin-left:0px;
+}
+
+div.left-text-fix{
+  margin-left:0px;
+  text-align:left;
 }
 

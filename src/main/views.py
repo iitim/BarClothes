@@ -14,3 +14,13 @@ def change_password(request):
 	context = locals()
 	template = 'changepass.html'
 	return render(request, template, context)
+
+def profile_edit(request):
+	context = locals()
+	template = 'edit_profile.html'
+	return render(request, template, context)
+
+def success(request):
+	context = locals()
+	template = 'profile.html'
+	return render(request, template, context)

@@ -25,8 +25,13 @@ urlpatterns = [
     # url(r'^about/', views.about, name='about'),
     # url(r'^about/', views.about, name='about'),
     # url(r'^about/', views.about, name='about'),
+    url(r'^profile/change-password/success$', views.success, name='profile'),
+    url(r'^profile/profile$', views.profile, name='profile'),
     url(r'^profile/$', views.profile, name='profile'),
+    url(r'^profile/success$', views.profile, name='profile'),
+    url(r'^profile/edit$', views.profile_edit, name='profile_edit'),
     url(r'^profile/change-password/$', views.change_password, name='change_password'),
+    url(r'^profile/change-password/profile$', views.profile, name='profile'),
     # url(r'^accounts/', include('allauth.urls')),   
 
 

@@ -3,29 +3,24 @@
 {% block content %}
 <!DOCTYPE html>
 <html>
-   <div>
-        <div class="show"><img src="{% static 'img/icon.png' %}" class="profile-pic"><a class="text-lowercase" href="profile/edit">edit </a></div>
-        <div>
-            <div>
-                <p class="fix-left-text">User name<span class="right-text">xxxxx</span></p>
-            </div>
-        </div>
-        <div>
-            <p class="fix-right-text">Full name<span class="right-text">miss Abc Def</span></p>
-        </div>
-        <div>
-            <p class="fix-left-text">Birthday <span class="right-text">dd/mm/yyyy </span></p>
-        </div>
-        <div>
-            <p class="fix-right-text">mobile phone<span class="right-text">0xx-xxxxxxxx</span></p>
-        </div>
-        <div>
-            <p class="fix-left-text">E-mail <span class="right-text">example@gmail.com</span></p>
-        </div>
-        <div>
-            <p class="fix-right-text">Identification no.<span class="right-text">1-2345-67891-23-4</span></p>
-        </div><a href="change-password" class="change_password">Change password</a></div>
+<body class="profile">
+    <div class="profile">
+        <div class="show profile"><img src="{% static 'img/icon.png' %}" class="profile-pic"><a class="text-lowercase" href="edit">edit </a></div>
+        <div class="block-left">
+            <div class="left-text-fix"><span class="fix-left-text">User ID</span></div><span class="right-text">xxxxx</span></div>
+        <div class="fix-right-text">
+            <div class="left-text-fix"><span class="fix-right-text">Fullname </span></div><span class="right-text">miss Abc Def</span></div>
+        <div class="block-left">
+            <div class="left-text-fix"><span class="fix-left-text">Birthday </span></div><span class="right-text">dd/mm/yyyy </span></div>
+        <div class="fix-right-text">
+            <div class="left-text-fix"><span class="fix-right-text">Phone no.</span></div><span class="right-text">xxx-xxxxxxx </span></div>
+        <div class="block-left">
+            <div class="left-text-fix"><span class="fix-left-text">E-mail </span></div><span class="right-text">abc@xyz.com </span></div>
+        <div class="fix-right-text">
+            <div class="left-text-fix"><span class="fix-right-text">Identification no.</span></div><span class="right-text">1234567890123 </span></div><a href="change-password" class="change_password">Change password</a></div>
     <script src="{% static 'javascript/jquery.min.js' %}"></script>
     <script src="{% static 'javascript/bootstrap.min.js' %}"></script>
+</body>
+
 </html>
 {% endblock %}
