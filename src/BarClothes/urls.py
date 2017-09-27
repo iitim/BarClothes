@@ -20,6 +20,7 @@ from main import views
 # from about import views as about_views
 
 urlpatterns = [
+    url(r'^shop/', views.catalog, name='catalog'),
     url(r'^admin/', admin.site.urls),
     # url(r'^$', views.home, name='home'),
     # url(r'^login/$', views.login, name='login'),
@@ -27,8 +28,6 @@ urlpatterns = [
     # url(r'^about/$', about_views.about, name='about'),
     # url(r'^about/$', about_views.about, name='about'),
     # url(r'^profile/$', profiles_views.userProfile, name='profile'),
-    # url(r'^accounts/$', include('allauth.urls')),   
-
-
+    # url(r'^accounts/$', include('allauth.urls')),
 
 ]
