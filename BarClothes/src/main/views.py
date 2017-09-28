@@ -20,27 +20,27 @@ def logout(request):
     template = 'logged_out.html'
     return render(request, template, context)
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            new_user =  form.save()
-            idnum = form.cleaned_data.get('id_num')
-            phone = form.cleaned_data.get('phone_num')
-            # dob = form.cleaned_data.get('dob_num')
-            type_user = form.cleaned_data.get('type_user')
-            us = UserExtendData(user=new_user, type=type_user, id_num=idnum, tel_no=phone)
-            us.save()
-            if type_user == 'S' :
-                seller_extend_data = SellerExtendData(user=new_user)
-                seller_extend_data.save()
-            # username = form.cleaned_data.get('username')
-            # raw_password = form.cleaned_data.get('password1')
-            # user = authenticate(username=username, password=raw_password)
-            # login(request, user)
-            return redirect('home')
-        else:
-            return render(request, 'signup.html', {'form': form})
-    else:
-        form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+# def signup(request):
+#     if request.method == 'POST':
+#         form = SignUpForm(request.POST)
+#         if form.is_valid():
+#             new_user =  form.save()
+#             idnum = form.cleaned_data.get('id_num')
+#             phone = form.cleaned_data.get('phone_num')
+#             # dob = form.cleaned_data.get('dob_num')
+#             type_user = form.cleaned_data.get('type_user')
+#             us = UserExtendData(user=new_user, type=type_user, id_num=idnum, tel_no=phone)
+#             us.save()
+#             if type_user == 'S' :
+#                 seller_extend_data = SellerExtendData(user=new_user)
+#                 seller_extend_data.save()
+#             # username = form.cleaned_data.get('username')
+#             # raw_password = form.cleaned_data.get('password1')
+#             # user = authenticate(username=username, password=raw_password)
+#             # login(request, user)
+#             return redirect('home')
+#         else:
+#             return render(request, 'signup.html', {'form': form})
+#     else:
+#         form = SignUpForm()
+#     return render(request, 'signup.html', {'form': form})

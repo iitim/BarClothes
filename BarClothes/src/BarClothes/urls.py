@@ -29,12 +29,6 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^accounts/profile', TemplateView.as_view(template_name='home.html'), name='home'),
-    # url(r'^about/$', about_views.about, name='about'),
-    # url(r'^about/$', about_views.about, name='about'),
-    # url(r'^profile/$', profiles_views.userProfile, name='profile'),
-    # url(r'^accounts/$', include('allauth.urls')),
-    url(r'^signup/$', views.signup, name='signup'),
-
-
+    url(r'^signup/', include('signup.urls')),
 
 ]

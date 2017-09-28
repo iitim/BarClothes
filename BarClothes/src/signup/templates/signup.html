@@ -16,7 +16,7 @@
   <!-- {{ form.as_p }} -->
   <div class="row register-form">
       <div class="col-md-8 col-md-offset-2">
-          <form class="form-horizontal custom-form" action="{% url 'signup' %}" method="post">
+          <form class="form-horizontal custom-form" action="{% url 'signup' as signup %}" method="post">
             {% csrf_token %}
               <h1>Sign Up Form</h1>
               <!-- add -->
