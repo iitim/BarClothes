@@ -7,17 +7,17 @@
     <div class="profile">
         <div class="show profile"><img src="{% static 'img/icon.png' %}" class="profile-pic"><a class="text-lowercase" href="edit">edit </a></div>
         <div class="block-left">
-            <div class="left-text-fix"><span class="fix-left-text">User ID</span></div><span class="right-text">xxxxx</span></div>
+            <div class="left-text-fix"><span class="fix-left-text">Username</span></div><span class="right-text">{{ user.username }}</span></div>
         <div class="fix-right-text">
-            <div class="left-text-fix"><span class="fix-right-text">Fullname </span></div><span class="right-text">miss Abc Def</span></div>
+            <div class="left-text-fix"><span class="fix-right-text">Fullname </span></div><span class="right-text">{{ user.first_name }}  {{user.last_name}}</span></div>
         <div class="block-left">
-            <div class="left-text-fix"><span class="fix-left-text">Birthday </span></div><span class="right-text">dd/mm/yyyy </span></div>
+            <div class="left-text-fix"><span class="fix-left-text">Identification number </span></div><span class="right-text">{{ id_num }}</span></div>
         <div class="fix-right-text">
-            <div class="left-text-fix"><span class="fix-right-text">Phone no.</span></div><span class="right-text">xxx-xxxxxxx </span></div>
+            <div class="left-text-fix"><span class="fix-right-text">Phone no.</span></div><span class="right-text">{{ tel_no }} </span></div>
         <div class="block-left">
-            <div class="left-text-fix"><span class="fix-left-text">E-mail </span></div><span class="right-text">abc@xyz.com </span></div>
+            <div class="left-text-fix"><span class="fix-left-text">E-mail </span></div><span class="right-text">{{ user.email }} </span></div>
         <div class="fix-right-text">
-            <div class="left-text-fix"><span class="fix-right-text">Identification no.</span></div><span class="right-text">1234567890123 </span></div><a href="change-password" class="change_password">Change password</a></div>
+            <div class="left-text-fix"><span class="fix-right-text">Address</span></div><span class="right-text">{{ address }} </span></div><a href="change-password" class="change_password"></a></div>
     <script src="{% static 'javascript/jquery.min.js' %}"></script>
     <script src="{% static 'javascript/bootstrap.min.js' %}"></script>
 </body>
