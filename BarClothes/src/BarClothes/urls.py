@@ -32,7 +32,7 @@ urlpatterns = [
     # url(r'^about/$', about_views.about, name='about'),
     # url(r'^about/$', about_views.about, name='about'),
     # url(r'^profile/$', profiles_views.userProfile, name='profile'),
-    # url(r'^accounts/$', include('allauth.urls')),   
+    # url(r'^accounts/$', include('allauth.urls')),
     url(r'^signup/$', views.signup, name='signup'),
 
 
