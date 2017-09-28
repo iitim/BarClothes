@@ -86,6 +86,12 @@ input.text-input-edit{
   display:inline-block;
 }
 
+input.form-control{
+  margin-left:704px;
+  width:300px;
+  display:inline-block;
+}
+
 div.space{
   border-bottom:20px solid transparent;
 }
@@ -191,3 +197,10 @@ div.edit-text-left{
   text-align:left;
 }
 
+input[type=text]{
+  color:#000000;
+}
+
+input[type=email]{
+  color:#000000;
+}

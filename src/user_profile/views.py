@@ -37,7 +37,6 @@ def change_password(request):
     return render(request, template, context)
 
 def profile_edit(request):
-    context = locals()
     template = 'edit_profile.html'
     return render(request, template, context)
 
