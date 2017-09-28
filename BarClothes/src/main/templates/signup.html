@@ -22,10 +22,10 @@
               <!-- add -->
               <div class="form-group">
                   <div class="col-sm-4 label-column">
-                      <label class="control-label" for="user-name-input-field">Username </label>
+                      <label name="username" class="control-label" for="username">Username </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input class="form-control" type="text" required />
+                      <input name="username" id="username" class="form-control" type="text" required />
                   </div>
                   <div>
                     <span class="help_text">Required. 30characters or fewer.</span>
@@ -34,39 +34,39 @@
               <!-- end -->
               <div class="form-group">
                   <div class="col-sm-4 label-column">
-                      <label class="control-label" for="first-name-input-field">First Name </label>
+                      <label class="control-label" for="first_name">First Name </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input class="form-control" type="text" required />
+                      <input name="first_name" id="first_name" class="form-control" type="text" required />
                   </div>
               </div>
               <!-- add -->
               <div class="form-group">
                   <div class="col-sm-4 label-column">
-                      <label class="control-label" for="last-name-input-field">Last Name </label>
+                      <label class="control-label" for="last_name">Last Name </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input class="form-control" type="text" required />
-                  </div>
-              </div>
-              <!-- end -->
-              <!-- add -->
-              <div class="form-group">
-                  <div class="col-sm-4 label-column">
-                      <label class="control-label" for="id-input-field">Identification Number </label>
-                  </div>
-                  <div class="col-sm-6 input-column">
-                      <input class="form-control" type="text" required />
+                      <input name="last_name" id="last_name" class="form-control" type="text" required />
                   </div>
               </div>
               <!-- end -->
               <!-- add -->
               <div class="form-group">
                   <div class="col-sm-4 label-column">
-                      <label class="control-label" for="phone-input-field">Phone Number </label>
+                      <label class="control-label" for="id_num">Identification Number </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input class="form-control" type="text" required />
+                      <input name="id_num" id="id_num" class="form-control" type="text" required />
+                  </div>
+              </div>
+              <!-- end -->
+              <!-- add -->
+              <div class="form-group">
+                  <div class="col-sm-4 label-column">
+                      <label class="control-label" for="phone_num">Phone Number </label>
+                  </div>
+                  <div class="col-sm-6 input-column">
+                      <input name="phone_num" id="phone_num" class="form-control" type="text" required />
                   </div>
                   <div>
                     <span class="help_text">Ex.0801234567</span>
@@ -75,34 +75,34 @@
               <!-- end -->
               <div class="form-group">
                   <div class="col-sm-4 label-column">
-                      <label class="control-label" for="email-input-field">Email </label>
+                      <label class="control-label" for="email">Email </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input class="form-control" type="email" required />
+                      <input name="email" id="email" class="form-control" type="email" required />
                   </div>
               </div>
               <div class="form-group">
                   <div class="col-sm-4 label-column">
-                      <label class="control-label" for="password-input-field">Password </label>
+                      <label class="control-label" for="password1">Password </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input class="form-control" type="password" required />
+                      <input name="password1" id="password1" class="form-control" type="password" required />
                   </div>
               </div>
               <div class="form-group">
                   <div class="col-sm-4 label-column">
-                      <label class="control-label" for="repeat-pawssword-input-field">Repeat Password </label>
+                      <label class="control-label" for="password2">Repeat Password </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input class="form-control" type="password" required />
+                      <input name="password2" id="password2" class="form-control" type="password" required />
                   </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-4 label-column">
-                    <label class="control-label" for="dob-input-field">Date Of Birth </label>
+                    <label class="control-label" for="dob_num">Date Of Birth </label>
                 </div>
                 <div class="col-sm-4 input-column">
-                    <input class="form-control" type="date" required />
+                    <input name="dob_num" id="dob_num" class="form-control" type="date" required />
                 </div>
               </div>
               <div class="form-group">
@@ -123,8 +123,8 @@
                       <div class="dropdown">
                           <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">Choose <span class="caret"></span></button>
                           <ul class="dropdown-menu" role="menu">
-                              <li role="presentation"><a href="#">Customer</a></li>
-                              <li role="presentation"><a href="#">Seller</a></li>
+                              <li name="us_type" id="us_type" role="presentation"><a href="#">Customer</a></li>
+                              <li name="us_type" id="us_type" role="presentation"><a href="#">Seller</a></li>
                           </ul>
                       </div>
                   </div>

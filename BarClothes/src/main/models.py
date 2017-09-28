@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 USER_TYPE_CHOICES = (
     ('C', 'Customer'),
-    ('P', 'Product'),
+    ('S', 'Seller'),
 )
 
 PRODUCT_TYPE_CHOICES = (
