@@ -5,7 +5,7 @@ app_name = 'user_profile'
 
 urlpatterns = [
     url(r'^change-password/success$', views.success, name='profile'),
-    url(r'^profile$', views.profile, name='profile'),
+    # url(r'^profile$', views.profile, name='profile'),
     url(r'^$', views.profile, name='profile'),
     url(r'^success$', views.profile, name='profile'),
     url(r'^edit$', views.profile_edit, name='profile_edit'),

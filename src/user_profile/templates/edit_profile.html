@@ -6,25 +6,31 @@
 <body class="edit_profile">
     <div class="edit_profile"><img src="{% static 'img/icon.png' %}" width="100" height="100" class="edit_profile">
         <div class="edit-profile-user">
-            <div class="edit-text-left"><span class="edit-profile-km">User ID</span></div><span class="right-text-edit">xxxxx</span></div>
+            <div class="edit-text-left"><span class="edit-profile-km">Username</span></div>
+            <input type="text" class="text-input-edit" value="4444444"></span></div>
+            <!-- <input type="text" class="form-control" value="4444444"></span></div> -->
         <div class="edit-profile">
-            <div class="edit-text-left"><span class="edit-profile-km">FullName </span></div>
+            <div class="edit-text-left"><span class="edit-profile-km">Firstname </span></div>
             <input type="text" class="text-input-edit">
         </div>
         <div class="edit-profile">
-            <div class="edit-text-left"><span class="edit-profile-km">Birthday </span></div>
-            <input type="date" class="birthday-edit">
+                <div class="edit-text-left"><span class="edit-profile-km">Lastname </span></div>
+                <input type="text" class="text-input-edit">
         </div>
         <div class="edit-profile">
-            <div class="edit-text-left">
-                <div class="edit-text-left"><span class="edit-profile-km">Phone no.</span></div><span class="right-text-edit">xxx-xxxxxxxxxx </span></div>
+                <div class="edit-text-left"><span class="edit-profile-km">Phone no. </span></div>
+                <input type="text" class="text-input-edit">
         </div>
         <div class="edit-profile">
             <div class="edit-text-left"><span class="edit-profile-km">E-mail </span></div>
             <input type="email" class="e-mail-edit">
         </div>
         <div class="edit-profile-user">
-            <div class="edit-text-left"><span class="edit-profile-km">Identification no. </span></div><span class="right-text-edit">1234567890123 </span></div>
+            <div class="edit-text-left">
+                <span class="edit-profile-km">Address</span>
+            </div>
+            <input type="text" class="text-input-edit">
+        </div>
         <div class="svae-edit"><a class="btn btn-default save-profile" role="button" href="success">SAVE </a><a class="btn btn-default cancel-profile" role="button" href="profile">CANCEL </a></div>
     </div>
     <script src="{% static 'javascript/jquery.min.js' %}"></script>
