@@ -13,9 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from main import views
+# from user_profile import views as user_profile_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -25,14 +26,19 @@ urlpatterns = [
     # url(r'^about/', views.about, name='about'),
     # url(r'^about/', views.about, name='about'),
     # url(r'^about/', views.about, name='about'),
-    url(r'^profile/change-password/success$', views.success, name='profile'),
-    url(r'^profile/profile$', views.profile, name='profile'),
-    url(r'^profile/$', views.profile, name='profile'),
-    url(r'^profile/success$', views.profile, name='profile'),
-    url(r'^profile/edit$', views.profile_edit, name='profile_edit'),
-    url(r'^profile/change-password/$', views.change_password, name='change_password'),
-    url(r'^profile/change-password/profile$', views.profile, name='profile'),
+
+
+    # url(r'^profile/change-password/success$', views.success, name='profile'),
+    # url(r'^profile/profile$', views.profile, name='profile'),
+    # url(r'^profile/$', views.profile, name='profile'),
+    # url(r'^profile/success$', views.profile, name='profile'),
+    # url(r'^profile/edit$', views.profile_edit, name='profile_edit'),
+    # url(r'^profile/change-password/$', views.change_password, name='change_password'),
+    # url(r'^profile/change-password/profile$', views.profile, name='profile'),
+    
+    
     # url(r'^accounts/', include('allauth.urls')),   
+    url(r'^profile/', include('user_profile.urls')),
 
 
 
