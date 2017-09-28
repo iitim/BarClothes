@@ -2,9 +2,6 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
-from main.forms import SignUpForm
-from main.models import UserExtendData
-
 def home(request):
     context = locals()
     template = 'home.html'
