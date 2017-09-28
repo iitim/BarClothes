@@ -107,7 +107,7 @@
               </div> -->
               <div class="form-group">
                   <div class="col-sm-4 label-column">
-                      <label class="control-label" for="checkbox-input-field">Role </label>
+                      <label class="control-label" for="type_user">Role </label>
                   </div>
                   <!-- <div class="col-sm-2 checkbox">
                     <label>
@@ -121,18 +121,25 @@
                   </div> -->
                   <div class="col-sm-4 input-column">
                       <div class="dropdown">
-                          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">Choose <span class="caret"></span></button>
-                          <ul class="dropdown-menu" role="menu">
-                              <li role="presentation"><a href="#">Customer</a></li>
-                              <li role="presentation"><a href="#">Seller</a></li>
-                          </ul>
+                          <select name="type_user" id="type_user">
+                          <!-- <button for="type_user" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button">Choose <span class="caret"></span></button> -->
+                          <!-- <ul name="type_user" id="type_user" class="dropdown-menu" role="menu"> -->
+                              "\n "
+                              <option value="C">Customer</option>
+                              "\n\n "
+                              <option value="S">Seller</option>
+                              "\n\n "
+                              <!-- <li value="C" role="presentation"><a href="#">Customer</a></li>
+                              <li value="S" role="presentation"><a href="#">Seller</a></li> -->
+                          <!-- </ul> -->
+                        </select>
                       </div>
                   </div>
               </div>
-              <div class="col-sm-4 checkbox">
+              <!-- <div class="col-sm-4 checkbox">
                 <label>
                     <input type="checkbox">I've read and accept the terms and conditions</label>
-              </div>
+              </div> -->
               <!-- <button class="btn btn-default submit-button" type="button">Submit Form</button> -->
               <input type="submit" class="btn btn-lg btn-primary" value="Submit"/>
           </form>

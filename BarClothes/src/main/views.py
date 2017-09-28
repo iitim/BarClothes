@@ -40,7 +40,7 @@ def signup(request):
             login(request, user)
             return redirect('home')
         else:
-            return render(request, 'signup.html', {'form': form})
+            return render(request, 'login.html', {'form': form})
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
