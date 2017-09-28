@@ -34,13 +34,13 @@ def signup(request):
             if type_user == 'S' :
                 seller_extend_data = SellerExtendData(user=new_user)
                 seller_extend_data.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
+            # username = form.cleaned_data.get('username')
+            # raw_password = form.cleaned_data.get('password1')
+            # user = authenticate(username=username, password=raw_password)
+            # login(request, user)
             return redirect('home')
         else:
-            return render(request, 'login.html', {'form': form})
+            return render(request, 'signup.html', {'form': form})
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
