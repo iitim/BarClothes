@@ -9,8 +9,8 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     id_num = forms.CharField(max_length=30)
     phone_num = forms.CharField(max_length=30)
-    dob_num = forms.DateTimeField(required=True)
-    type_user = forms.Select(choices=USER_TYPE_CHOICES)
+    # dob_num = forms.DateTimeField(required=True)
+    type_user = forms.CharField(widget=forms.Select(choices=USER_TYPE_CHOICES))
 
     class Meta:
         model = User
