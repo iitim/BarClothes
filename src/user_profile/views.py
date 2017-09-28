@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -41,6 +41,7 @@ def profile_edit(request):
     return render(request, template, context)
 
 def success(request):
-    context = locals()
-    template = 'profile.html'
-    return render(request, template, context)
+    return redirect('/profile')
+
+def cancel(request):
+    return redirect('/profile')
