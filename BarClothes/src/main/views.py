@@ -28,10 +28,10 @@ def signup(request):
             idnum = form.cleaned_data.get('id_num')
             phone = form.cleaned_data.get('phone_num')
             dob = form.cleaned_data.get('dob_num')
-            if request.POST["is_seller"]:
-                usertype = "S"
-            else:
-                usertype = "C"
+            # if request.POST["is_seller"]:
+            #     usertype = "S"
+            # else:
+            #     usertype = "C"
             us = UserExtendData(user=new_user, type=usertype, id_num=idnum, tel_no=phone)
             us.save()
             username = form.cleaned_data.get('username')

@@ -1,11 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
-USER_TYPE = (
-        ('Customer', 'Customer'),
-        ('Seller', 'Seller'),
-)
+from .models import USER_TYPE_CHOICES
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
@@ -14,8 +10,7 @@ class SignUpForm(UserCreationForm):
     id_num = forms.CharField(max_length=30)
     phone_num = forms.CharField(max_length=30)
     dob_num = forms.DateTimeField(required=True)
-    us_type = forms.Select(choices=USER_TYPE)
-    is_seller = forms.BooleanField(required=True)
+    type_user = forms.Select(choices=USER_TYPE_CHOICES)
 
     class Meta:
         model = User
