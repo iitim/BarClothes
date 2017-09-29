@@ -83,24 +83,6 @@ ul.nav.navbar-nav{
 	background-color: #ffbc49;
 }
 
-.img-with-text {
-	width: 1100px;
-  padding: 30px;
-}
-
-.img-with-text > div{
-	text-align: center;
-	float: right;
-}
-
-.img-with-text p {
-    margin: 200;
-}
-
-.img-with-text h5 {
-    color: #FFD700;
-}
-
 footer{
 	background-color: #ffbc49;
 	padding: 50px 0;
