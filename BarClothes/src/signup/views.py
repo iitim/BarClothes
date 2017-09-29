@@ -40,7 +40,23 @@ def signup(request):
             # login(request, user)
             return redirect('home')
         else:
-            return render(request, 'signup.html', {'form': form})
+            print(form.error_messages)
+            print(form.data)
+            context = setcontext(form)
+            return render(request, 'signup.html', context)
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    context = setcontext(SignUpForm())
+    return render(request, 'signup.html', context)
+
+
+def setcontext(lastform) :
+    context = { 'last_username':lastform.data.get('username'),
+                'last_first_name': lastform.data.get('first_name'),
+                'last_last_name': lastform.data.get('last_name'),
+                'last_email': lastform.data.get('email'),
+                'last_id_num': lastform.data.get('id_num'),
+                'last_phone_num': lastform.data.get('phone_num'),
+                'form': lastform,
+                }
+    return  context

@@ -39,6 +39,7 @@ class Product(models.Model):
     detail = models.CharField(max_length=500)
     amount = models.IntegerField()
     seller = models.ForeignKey(SellerExtendData, on_delete=models.CASCADE)
+    picture_path = models.CharField(max_length=100, blank=True)
 
 class Tag(models.Model):
     name = models.CharField(max_length=45)
