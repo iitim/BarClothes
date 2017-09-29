@@ -6,6 +6,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from main.models import UserExtendData 
+
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
+from forms import EditProfileForm
 # Create your views here.
 
 context = {
@@ -36,9 +43,33 @@ def change_password(request):
     template = 'changepass.html'
     return render(request, template, context)
 
+
+# @login_required
+# def change_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, request.POST)
+#         if form.is_valid():
+#             user = form.save()
+#             update_session_auth_hash(request, user)  # Important!
+#             messages.success(request, 'Your password was successfully updated!')
+#             return redirect('change_password')
+#         else:
+#             messages.error(request, 'Please correct the error below.')
+#     else:
+#         form = form.PasswordChangeForm(request.user)
+#     return render(request, 'change_password.html', {
+#         'form': form
+#     })
+
 def profile_edit(request):
     template = 'edit_profile.html'
     return render(request, template, context)
+
+# def profile_edit(request):
+    # if request.method == 'POST':
+    #     form = EditProfileForm(request.POST)
+    #     new_user = form.save()
+    # return redirect('/Profile')
 
 def success(request):
     return redirect('/profile')
