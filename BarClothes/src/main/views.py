@@ -2,12 +2,21 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
+<<<<<<< HEAD
 # <<<<<<< HEAD
 # # from main.forms import SignUpForm
 # # from main.models import UserExtendData
 #
 # =======
 # >>>>>>> 9e911d7ed4ade2456e6a4afceb9b006322230f57
+=======
+<<<<<<< HEAD
+# from main.forms import SignUpForm
+# from main.models import UserExtendData
+
+=======
+>>>>>>> 9e911d7ed4ade2456e6a4afceb9b006322230f57
+>>>>>>> e93a5bfbdd3da7158d83c65f56a2267bb9c9cb07
 def home(request):
     context = locals()
     template = 'home.html'
