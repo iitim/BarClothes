@@ -16,16 +16,17 @@
   <!-- {{ form.as_p }} -->
   <div class="row register-form">
       <div class="col-md-8 col-md-offset-2">
-          <form class="form-horizontal custom-form" action="{% url 'signup' %}" method="post">
+          <form class="form-horizontal custom-form" action="{% url 'signup' as signup %}" method="post">
             {% csrf_token %}
               <h1>Sign Up Form</h1>
+              {{ form.errors}}
               <!-- add -->
               <div class="form-group">
                   <div class="col-sm-4 label-column">
                       <label name="username" class="control-label" for="username">Username </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input name="username" id="username" class="form-control" type="text" required />
+                      <input name="username" id="username" class="form-control" type="text" value={{last_username}} required />
                   </div>
                   <div>
                     <span class="help_text">Required. 30characters or fewer.</span>
@@ -37,7 +38,7 @@
                       <label class="control-label" for="first_name">First Name </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input name="first_name" id="first_name" class="form-control" type="text" required />
+                      <input name="first_name" id="first_name" class="form-control" type="text" value={{last_first_name}} required />
                   </div>
               </div>
               <!-- add -->
@@ -46,7 +47,7 @@
                       <label class="control-label" for="last_name">Last Name </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input name="last_name" id="last_name" class="form-control" type="text" required />
+                      <input name="last_name" id="last_name" class="form-control" type="text" value={{last_last_name}} required />
                   </div>
               </div>
               <!-- end -->
@@ -56,7 +57,7 @@
                       <label class="control-label" for="id_num">Identification Number </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input name="id_num" id="id_num" class="form-control" type="text" required />
+                      <input name="id_num" id="id_num" class="form-control" type="text" value={{last_id_num}} required />
                   </div>
               </div>
               <!-- end -->
@@ -66,7 +67,7 @@
                       <label class="control-label" for="phone_num">Phone Number </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input name="phone_num" id="phone_num" class="form-control" type="text" required />
+                      <input name="phone_num" id="phone_num" class="form-control" type="text" value={{last_phone_num}} required />
                   </div>
                   <div>
                     <span class="help_text">Ex.0801234567</span>
@@ -78,7 +79,7 @@
                       <label class="control-label" for="email">Email </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input name="email" id="email" class="form-control" type="email" required />
+                      <input name="email" id="email" class="form-control" type="email" value={{last_email}} required />
                   </div>
               </div>
               <div class="form-group">
@@ -86,7 +87,7 @@
                       <label class="control-label" for="password1">Password </label>
                   </div>
                   <div class="col-sm-6 input-column">
-                      <input name="password1" id="password1" class="form-control" type="password" required />
+                      <input name="password1" id="password1" class="form-control" type="password"  required />
                   </div>
               </div>
               <div class="form-group">
