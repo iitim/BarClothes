@@ -28,21 +28,9 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^about/', views.about, name='about'),
     url(r'^contact/', views.contact, name='contact'),
-    # url(r'^login/$', views.login, name='login'),
-    # url(r'^logout/$', views.logout, name='logout'),
-    # url(r'^about/$', about_views.about, name='about'),
-    # url(r'^about/$', about_views.about, name='about'),
-    # url(r'^profile/$', profiles_views.userProfile, name='profile'),
-    # url(r'^accounts/$', include('allauth.urls')),   
-
-
-    # url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
-    # url(r'^signup/', include('signup.urls')),
     url(r'^signup/$', signup_views.signup, name='signup'),
-    # url(r'^profile/$', profiles_views.userProfile, name='profile'),
-    # url(r'^accounts/$', include('allauth.urls')),   
-    # url(r'^about/$', about_views.about, name='about'),
+    url(r'^accounts/profile/', include('user_profile.urls'), name='profile'),
 
 ]

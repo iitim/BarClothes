@@ -33,7 +33,7 @@
     </div><!-- /.container -->
 
 
-    <!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript 
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -41,9 +41,11 @@
     <script src="{% static 'javascript/jquery.min.js' %}"></script>
     <script src="{% static 'javascript/bootstrap.min.js' %}"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Bootstrap core JavaScript 
+    <script src="../../../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
     {% block script %}
     {% endblock %}
+    {% include 'footer.html' %}
     <script>
       $(document).ready(function(){
         {% block jquery %}

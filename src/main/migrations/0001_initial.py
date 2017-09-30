@@ -17,6 +17,18 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Customer',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('username', models.CharField(max_length=45)),
+                ('password', models.CharField(max_length=45)),
+                ('regisDate', models.DateTimeField(blank=True, default=datetime.datetime.now)),
+                ('email', models.CharField(max_length=45)),
+                ('address', models.CharField(max_length=45)),
+                ('telNo', models.CharField(max_length=45)),
+            ],
+        ),
+        migrations.CreateModel(
             name='Product',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -36,10 +48,15 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='SellerExtendData',
+            name='Seller',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('username', models.CharField(max_length=45)),
+                ('password', models.CharField(max_length=45)),
+                ('regisDate', models.DateTimeField(blank=True, default=datetime.datetime.now)),
+                ('email', models.CharField(max_length=45)),
+                ('address', models.CharField(max_length=100)),
+                ('telNo', models.CharField(max_length=45)),
             ],
         ),
         migrations.CreateModel(
@@ -81,6 +98,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='seller',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.SellerExtendData'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='main.Seller'),
+
         ),
     ]

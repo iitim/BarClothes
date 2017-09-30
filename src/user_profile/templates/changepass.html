@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<body class="changepwd">
+    <div class="changepwd">
+        <div class="changepwd">
+            <div class="left-text-fix"><strong class="cur-pas">Current Password</strong></div>
+            <input type="password" class="input-cur-pass">
+        </div>
+        <div class="changepwd">
+            <div class="left-text-fix"><strong class="new-pass">New Password</strong></div>
+            <input type="password" class="new-pass-input">
+        </div>
+        <div class="changepwd">
+            <div class="left-text-fix"><strong class="confirm-pass">Confirm Password</strong></div>
+            <input type="password" class="new-pass-input">
+        </div>
+        <div class="changepwd">
+            <div class="btn-toolbar">
+                <div class="btn-group" role="group">
+                    <a class="btn btn-default" role="button" href="success" id="change-pass">change password</a>
+                    <a class="btn btn-default cancel" role="button" href="profile" id="change-pass">cancel </a></div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'javascript/jquery.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
+{% endblock %}
