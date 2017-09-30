@@ -2,6 +2,8 @@
 
 {% load staticfiles %}
 
+{% load static %}
+
 {% block stylesheet %}
   <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
   <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
@@ -27,22 +29,34 @@
       </div>
     </aside>
   </div>
-  <div class="col-md-9">
+  <div class="product-page col-md-9">
     {% for row in all_full_row %}
-    <div class="img-with-text" >
+    <div class="row imgage" >
+      {% for product in row %}
+      <div class="col-md-4">
+        <img class="product-image" src="/media/{{product.picture}}">
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row text" >
       {% for product in row %}
       <div class="product col-md-4">
-        <img class="product-image" src="{% static 'img/Catalog-minimize.jpg' %}">
         <p>{{product.name}}</p>
         <h5>{{product.price}} ฿</h5>
       </div>
       {% endfor %}
     </div>
     {% endfor %}
-    <div class="img-with-text" >
+    <div class="row imgage" >
+      {% for product in remain_row %}
+      <div class="col-md-4">
+        <img class="product-image" src="/media/{{product.picture}}">
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row text" >
       {% for product in remain_row %}
       <div class="product col-md-4">
-        <img class="product-image" src="{% static 'img/Catalog-minimize.jpg' %}">
         <p>{{product.name}}</p>
         <h5>{{product.price}} ฿</h5>
       </div>

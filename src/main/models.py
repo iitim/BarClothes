@@ -19,7 +19,7 @@ class Product(models.Model):
     price = models.FloatField()
     detail = models.CharField(max_length=500)
     amount = models.IntegerField()
-    picture = models.ImageField(upload_to='product_pic/', default = 'static/img/catalog-minimize.jpg')
+    picture = models.ImageField(upload_to='product_pic/', default = 'product_pic/catalog-minimize.jpg')
     #seller = models.ForeignKey(SellerExtendData, on_delete=models.CASCADE)
 
 class Tag(models.Model):
