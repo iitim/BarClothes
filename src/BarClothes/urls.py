@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from signup import views as signup_views
 from main import views
+from django.contrib.auth import views as auth_views
+from django.views.generic.base import TemplateView
+
 # from profile import views as profiles_views
 # from about import views as about_views
 
@@ -30,5 +34,13 @@ urlpatterns = [
     # url(r'^accounts/$', include('allauth.urls')),   
 
 
+    # url(r'^$', TemplateView.as_view(template_name='home.html'), name='home'),
+    url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
+    # url(r'^signup/', include('signup.urls')),
+    url(r'^signup/$', signup_views.signup, name='signup'),
+    # url(r'^profile/$', profiles_views.userProfile, name='profile'),
+    # url(r'^accounts/$', include('allauth.urls')),   
+    # url(r'^about/$', about_views.about, name='about'),
 
 ]

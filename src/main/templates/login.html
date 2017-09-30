@@ -1,0 +1,18 @@
+{% extends 'Signin_Signup.html' %}
+
+{% block title %}Login{% endblock %}
+
+<form method="post" action="{% url 'login' %}">  
+{% block content %}
+  <p class="Customer">Login</p>
+   <form method="post">
+  	<a id=Customer style="color: black;" >
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	</a>
+    <button type="submit" ip=b_change >Login</button>
+  </form>
+</form>  
+  <a id=Customer href="{% url 'signup' %}">Signup</a>
+
+{% endblock %}

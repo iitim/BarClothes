@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'signup'
 ]
 
 MIDDLEWARE = [
@@ -76,11 +77,16 @@ WSGI_APPLICATION = 'BarClothes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'TestDB',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'DjangoServer',
+        'PASSWORD': '1q2w3e4r5t6y7u8i9o0p',
+        'HOST' : '35.194.233.26',
+        'OPTIONS': {
+          'autocommit': True,
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
