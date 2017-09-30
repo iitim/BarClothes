@@ -22,13 +22,12 @@ from main import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
+    url(r'^about/', views.about, name='about'),
+    url(r'^contact/', views.contact, name='contact'),
     # url(r'^login/$', views.login, name='login'),
     # url(r'^logout/$', views.logout, name='logout'),
     # url(r'^about/$', about_views.about, name='about'),
     # url(r'^about/$', about_views.about, name='about'),
     # url(r'^profile/$', profiles_views.userProfile, name='profile'),
-    # url(r'^accounts/$', include('allauth.urls')),   
-
-
-
+    # url(r'^accounts/$', include('allauth.urls')),      
 ]
