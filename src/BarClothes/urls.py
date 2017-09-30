@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 # from profile import views as profiles_views
 # from about import views as about_views
 
@@ -30,3 +32,6 @@ urlpatterns = [
     # url(r'^accounts/$', include('allauth.urls')),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

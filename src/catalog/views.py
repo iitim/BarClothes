@@ -7,6 +7,7 @@ def home(request):
     return render(request, template, context)
 
 def filter(product_type, num):
+    print("parameter num in filter = ", num)
     page = int(num)
     first_product = 18*(page-1)
     if first_product < 0 :
@@ -54,6 +55,8 @@ def catalog(request, num="1"):
     return render(request, template, context)
 
 def top(request, num="1"):
+    print(request)
+    print("parameter num in top = ", num)
     context = filter('top', num)
     template = 'catalog.html'
     return render(request, template, context)
