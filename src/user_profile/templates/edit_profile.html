@@ -1,63 +1,10 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
-<!DOCTYPE html>
-<html>
-<body class="edit_profile">
-	<div class="edit_profile"><img src="{% static 'img/icon.png' %}" width="100" height="100" 
-		class="edit_profile">
+	<form action="{% url 'user_profile:profile_edit' %}" method="POST">
+		{% csrf_token %}
+		{{form.as_p}}
+		<input type="submit" class="btn btn-lg bt" value="save" >
 
-		<div class="edit-profile-user">
-			<div class="edit-text-left">
-				<span class="edit-profile-km" name ="username" for="username">Username</span>
-			</div>
-			<input type="text" name ="username" id="username" class="text-input-edit" value="{{ user.username }}">
-		</span>
-		</div>
-		<div class="edit-profile">
-			<div class="edit-text-left">
-				<span class="edit-profile-km" name="first_name" for="first_name">Firstname </span>
-			</div>
-			<input type="text" name="first_name" id="first_name" class="text-input-edit" value="{{ user.first_name }}">
-		</div>
-
-		<div class="edit-profile">
-			<div class="edit-text-left">
-				<span class="edit-profile-km" name="last_name" for="last_name">Lastname </span>
-			</div>
-			<input type="text" class="text-input-edit" name="last_name" id="last_name" value="{{ user.last_name }}">
-		</div>
-
-		<div class="edit-profile">
-				<div class="edit-text-left">
-					<span class="edit-profile-km" name="tel_no" for="tel_no">Phone no.</span>
-				</div>
-				<input type="text" class="text-input-edit" name="tel-no" id="phoneno." value="{{ tel_no }}">
-		</div>
-
-		<div class="edit-profile">
-			<div class="edit-text-left">
-				<span class="edit-profile-km" name="email" for="email">E-mail </span>
-			</div>
-			<input type="email" class="email text-input-edit" name="email" id="email" value="{{ user.email }}">
-		</div>
-
-		<div class="edit-profile-user">
-			<div class="edit-text-left">
-				<span class="edit-profile-km">Address</span>
-			</div>
-			<input type="text" class="text-input-edit" value="{{ address }}">
-		</div>
-		
-		<div class="save-edit">
-			<a class="btn btn-default save-profile" role="button" href="success">SAVE </a>
-			<a class="btn btn-default cancel-profile" role="button" href="cancel">CANCEL </a>
-			<a class="btn btn-default cancel-profile" role="button" href="">RESET </a>
-		</div>
-	</div>
-	<script src="{% static 'javascript/jquery.min.js' %}"></script>
-	<script src="{% static 'javascript/bootstrap.min.js' %}"></script>
-</body>
-
-</html>
+	</form>
 {% endblock %}

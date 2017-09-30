@@ -38,7 +38,7 @@ urlpatterns = [
     
     
     # url(r'^accounts/', include('allauth.urls')),   
-    url(r'^profile/', include('user_profile.urls')),
+    url(r'^profile/', include('user_profile.urls'), name='profile'),
 
 
 

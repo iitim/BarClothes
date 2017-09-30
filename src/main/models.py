@@ -24,7 +24,7 @@ class UserExtendData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     type =  models.CharField(max_length=1, choices=USER_TYPE_CHOICES)
     id_num = models.CharField(max_length=13)
-    address = models.CharField(max_length=100)
+    address = models.CharField(max_length=1000)
     tel_no = models.CharField(max_length=45)
 
 # currently hasn't data to be extended

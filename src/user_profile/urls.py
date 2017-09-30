@@ -12,5 +12,5 @@ urlpatterns = [
     url(r'^change-password/$', views.change_password, name='change_password'),
     url(r'^change-password/profile$', views.profile, name='profile'),
     url(r'^cancel$', views.cancel, name='cancel'),
-
+     url(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk')
 ]
