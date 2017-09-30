@@ -1,6 +1,8 @@
 {% load staticfiles %}
 
 {% url 'home' as home %}
+{% url 'about' as about %}
+{% url 'contact' as contact %}
 
 <img src="{% static 'img/mo-s-banner-1024x200.jpg' %}" width="1024px" height="220px">
 <nav class="navbar navbar-default">
@@ -11,10 +13,10 @@
         </div>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav">
-                <li class="active" role="presentation"><a href="#">Shop</a></li>
+                <li role="presentation"><a href="#">Shop</a></li>
                 <li role="presentation"><a href="#">Store</a></li>
-                <li role="presentation"><a href="#">About</a></li>
-                <li role="presentation"><a href="#">Contact</a></li>
+                <li {% if request.path == about %} class="active" {% endif %} role="presentation"><a href="{% url 'about' %}">About</a></li>
+                <li {% if request.path == contact %} class="active" {% endif %} role="presentation"><a href="{% url 'contact' %}">Contact</a></li>
                 <li role="presentation"><a class="nav-login" href="{% url 'login' %}">Log in/Sign up</a></li>
             </ul>
         </div>

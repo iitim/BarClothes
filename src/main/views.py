@@ -35,3 +35,12 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
+def about(request):
+    context = locals()
+    template = 'about.html'
+    return render(request, template, context)
+
+def contact(request):
+    context = locals()
+    template = 'contact.html'
+    return render(request, template, context)
