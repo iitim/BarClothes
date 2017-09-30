@@ -1,9 +1,14 @@
 .sidebar{
+  color: #ffffff;
   padding-left:20%;
   margin-bottom:0;
   font-size:12px;
   height:30px;
   padding-top:9px;
+}
+
+#sidebar a{
+  text-decoration: none;
 }
 
 div.row{
@@ -37,7 +42,7 @@ div#sidebar{
 
 p.sidebar:hover{
   background:#ffffff;
-  color:black;
+  color:#282626;
   font-size:12px;
   height:30px;
 }
