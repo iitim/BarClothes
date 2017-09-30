@@ -1,0 +1,21 @@
+.img-with-text {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.img-with-text h5 {
+    color: #ffbc49;
+}
+
+.product-image {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.product {
+    margin-bottom: 25px;
+}
+
+.paging {
+    width: 100%;
+}

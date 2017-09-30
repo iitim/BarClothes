@@ -13,6 +13,7 @@ PRODUCT_TYPE_CHOICES = (
     ('Dre', 'Dress'),
     ('Ski', 'Skirt'),
     ('Pan', 'Pants'),
+    ('Sht', 'Shorts'),
     ('T-s', 'T-shirt'),
     ('Sui', 'Suits'),
     ('Bag', 'Bag'),

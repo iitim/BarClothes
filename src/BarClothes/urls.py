@@ -24,6 +24,7 @@ from django.views.generic.base import TemplateView
 # from about import views as about_views
 
 urlpatterns = [
+    url(r'^shop/', include('catalog.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
     url(r'^about/', views.about, name='about'),
@@ -32,5 +33,4 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^signup/$', signup_views.signup, name='signup'),
     url(r'^accounts/profile/', include('user_profile.urls'), name='profile'),
-
 ]
