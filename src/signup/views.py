@@ -8,20 +8,20 @@ from main.models import UserExtendData, SellerExtendData
 
 from main.models import UserExtendData,SellerExtendData
 
-def home(request):
-    context = locals()
-    template = 'home.html'
-    return render(request, template, context)
+# def home(request):
+#     context = locals()
+#     template = 'home.html'
+#     return render(request, template, context)
 
-def login(request):
-    context = locals()
-    template = 'login.html'
-    return render(request, template, context)
+# def login(request):
+#     context = locals()
+#     template = 'login.html'
+#     return render(request, template, context)
 
-def logout(request):
-    context = locals()
-    template = 'logged_out.html'
-    return render(request, template, context)
+# def logout(request):
+#     context = locals()
+#     template = 'logged_out.html'
+#     return render(request, template, context)
 
 def signup(request):
     if request.method == 'POST':

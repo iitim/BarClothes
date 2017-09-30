@@ -1,7 +1,14 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h1>Hello BarClothes!</h1>
+<h1 style="color: White">Hello BarClothes!</h1>
+		<a style="color: White">{% if user.is_authenticated %}
+         Hi {{ user.username }}!</a>
+        <a href="{% url 'logout' %}" style="color: White">logout</a>
+        {% else %}
+          <a href="{% url 'login' %}" style="color: White">Login | </a>
+          <a href="{% url 'signup' %}" style="color: White">Signup</a>
+        {% endif %}
 {% endblock %}

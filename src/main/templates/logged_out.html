@@ -1,9 +1,37 @@
-{% extends 'base2.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Login{% endblock %}</title>
+  <link href="{% static 'css/logout.css' %}" rel="stylesheet">
+  <script> 
+    
+    function redirect(){
+       window.location.href = "{% url 'home' %}";
+    }
 
-{% block title %}See you!{% endblock %}
+    setTimeout(redirect, 4000); //2000 is equivalent to 2 seconds
+  </script>
 
-{% block content %}
-  <h2>Logged out</h2>
-  <p>You have been successfully logged out.</p>
-  <p><a href="{% url 'login' %}">Log in</a> again.</p>
-{% endblock %}
+
+
+  </script>
+</head>
+
+<body>
+
+<div style="text-align: center;}">
+  <h2 style="color: White">Logged out</h2>
+  <p style="color: White">You have been successfully logged out.</p>
+</div>
+<div class="spinner">
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+</body>
+</html>

@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+=======
+html,
+body {
+    font-family: 'Glacial Indifference';
+    height: 100%;
+    background-color: #282626;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+>>>>>>> Signup
 .register-form form.custom-form{
   padding:55px;
   box-sizing:border-box;
