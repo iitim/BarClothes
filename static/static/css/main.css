@@ -83,6 +83,10 @@ ul.nav.navbar-nav{
 	background-color: #ffbc49;
 }
 
+.nav-dropdown li{
+	display: block;
+}
+
 footer{
 	background-color: #ffbc49;
 	padding: 50px 0;
