@@ -1,9 +1,15 @@
-{% extends 'base_km.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/styles_profile_km.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles_changepass_km.css' %}">
+<link rel="stylesheet" href="{% static  'css/styles_edit_profile_km.css' %}">
+{% endblock %}
+
 {% block content %}
-<!DOCTYPE html>
-<html>
-<body class="profile">
+
     <div class="profile">
         <div class="show profile"><img src="{% static 'img/icon.png' %}" class="profile-pic"><a class="text-lowercase" href="edit">edit </a></div>
         <div class="block-left">
@@ -18,9 +24,6 @@
             <div class="left-text-fix"><span class="fix-left-text">E-mail </span></div><span class="right-text">{{ user.email }} </span></div>
         <div class="fix-right-text">
             <div class="left-text-fix"><span class="fix-right-text">Address</span></div><span class="right-text">{{ address }} </span></div><a href="change-password" class="change_password"></a></div>
-    <script src="{% static 'javascript/jquery.min.js' %}"></script>
-    <script src="{% static 'javascript/bootstrap.min.js' %}"></script>
-</body>
 
 </html>
 {% endblock %}
