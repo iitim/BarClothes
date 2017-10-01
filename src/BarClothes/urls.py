@@ -26,11 +26,12 @@ from django.views.generic.base import TemplateView
 # from about import views as about_views
 
 urlpatterns = [
-    url(r'^shop/', include('catalog.urls')),
-    url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
+    url(r'^store/', views.store, name='store'),
     url(r'^about/', views.about, name='about'),
     url(r'^contact/', views.contact, name='contact'),
+    url(r'^shop/', include('catalog.urls')),
+    url(r'^admin/', admin.site.urls),
     url(r'^login/$', auth_views.login, {'template_name': 'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^signup/$', signup_views.signup, name='signup'),

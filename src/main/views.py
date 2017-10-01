@@ -10,6 +10,11 @@ def home(request):
     template = 'home.html'
     return render(request, template, context)
 
+def store(request):
+    context = locals()
+    template = 'store.html'
+    return render(request, template, context)
+
 def login(request):
     context = locals()
     template = 'login.html'
