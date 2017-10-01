@@ -40,7 +40,7 @@ class Product(models.Model):
     detail = models.CharField(max_length=500)
     amount = models.IntegerField()
     seller = models.ForeignKey(SellerExtendData, on_delete=models.CASCADE)
-    picture_path = models.CharField(max_length=100, blank=True)
+    picture_path = models.ImageField(upload_to='product_pic/', default = 'product_pic/catalog-minimize.jpg')
 
 class Tag(models.Model):
     name = models.CharField(max_length=45)

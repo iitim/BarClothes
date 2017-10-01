@@ -54,56 +54,56 @@ def catalog(request, num="1"):
     return render(request, template, context)
 
 def top(request, num="1"):
-    context = filter('top', num)
+    context = filter('Top', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def jacket(request, num="1"):
-    context = filter('jacket', num)
+    context = filter('Jac', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def dress(request, num="1"):
-    context = filter('dress', num)
+    context = filter('Dre', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def skirt(request, num="1"):
-    context = filter('skirt', num)
+    context = filter('Ski', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def pants(request, num="1"):
-    context = filter('pants', num)
+    context = filter('Pan', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def shorts(request, num="1"):
-    context = filter('shorts', num)
+    context = filter('Sht', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def tshirt(request, num="1"):
-    context = filter('t-shirt', num)
+    context = filter('T-s', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def suits(request, num="1"):
-    context = filter('suits', num)
+    context = filter('Sui', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def bag(request, num="1"):
-    context = filter('bag', num)
+    context = filter('Bag', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def shoes(request, num="1"):
-    context = filter('shoes', num)
+    context = filter('Sho', num)
     template = 'catalog.html'
     return render(request, template, context)
 
 def accessory(request, num="1"):
-    context = filter('accessory', num)
+    context = filter('Acc', num)
     template = 'catalog.html'
     return render(request, template, context)
