@@ -3,6 +3,13 @@
 
 {% block title %}Login{% endblock %}
 
+{% block stylesheet %}
+    <link href="{% static 'css/home_main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/home_carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/home_VIP.css' %}" rel="stylesheet">
+    <link href="{% static 'css/home_bestsell.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
     <div class="bs-example">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -33,30 +40,8 @@
             </a>
         </div>
     </div>
-
-    <style>
-        .carousel{
-            background: #cf952d;
-            margin-top: 80px; /* after navbar */
-        }
-        .carousel .item{
-            min-height: 100px; 
-            max-height: 450px;
-        }
-        .carousel .item img{
-            margin: 0 auto;
-        }
-        .bs-example{
-            margin: 20px;
-        }
-        .carousel-inner{
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-    </style>
     
-<!-- end carousel -->
+    <!-- end carousel -->
 
     <div class="row-VIPItems">
         <div class="col-md-6">
@@ -80,21 +65,4 @@
             <img class="preview-item" src="{% static 'img/home/BestSell/B004.jpg' %}" height="267">
         </div>
     </div>
-    <style>
-        .preview-item{
-            margin: 0 20px 20px 0;
-        }
-        .row-VIPItems{
-            margin-top: 80px;
-        }
-        .row-VIPItems .col-md-6{
-            margin-top: 10px;
-            margin-bottom: 100px;
-        }
-        .row-BestSell .col-md-6{
-            margin-top: 10px;
-            margin-bottom: 150px;
-            margin-left: auto;
-        }
-    </style>
 {% endblock %}
