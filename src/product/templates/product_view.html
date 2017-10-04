@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="product_view">
+        <div class="picture">
+            <img class="picture-preview" src="/media/{{product.picture_path}}">
+        </div>
+        <div class="information">
+            <h1>{{product.name}}</h1>
+            <h2>{{product.type}}</h2>
+            <h3>{{product.create_date}}</h3>
+            <h4>{{product.price}}</h4>
+            <h5>{{product.amount}}</h5>
+            <h6>{{product.detail}}</h6>
+            <h6>{{product.seller}}</h6>
+        </div>
+    </div>
+{% endblock %}
