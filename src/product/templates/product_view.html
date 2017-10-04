@@ -7,6 +7,9 @@
 
 {% block content %}
     <div class="product_view">
+        {% if product.amount == 0 %}
+            <h1>ไม่สามารถซื้อสินค้าได้</h1>
+        {% endif %}
         <div class="picture">
             <img class="picture-preview" src="/media/{{product.picture_path}}">
         </div>
@@ -19,7 +22,7 @@
             <h6>รายละเอียด : {{product.detail}}</h6>
             <h6>Seller : {{product.seller}}</h6>
             {% if product.amount > 0 %}
-            <a href="{% url 'product:buy' product.id %}">buy</a>
+                <a href="{% url 'product:buy' product.id %}">buy</a>
             {% endif %}
         </div>
     </div>

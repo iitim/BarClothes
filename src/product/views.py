@@ -12,7 +12,10 @@ def product_buy(request, num):
     else:
         product = get_object_or_404(Product, pk=num)
         user = request.user
-        product.amount -= 1
-        product.save()
-        # add Transection buy and Transection sell
-        return render(request, 'product_buy.html', {'product': product , 'user' : user})
+        if product.amount > 0:
+            product.amount -= 1
+            product.save()
+            # add Transection buy and Transection sell
+            return render(request, 'product_buy.html', {'product': product , 'user' : user})
+        else:
+            return render(request, 'product_view.html', {'product': product})
