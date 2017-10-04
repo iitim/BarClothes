@@ -18,7 +18,9 @@
             <h5>คงเหลือ {{product.amount}} ชิ้น</h5>
             <h6>รายละเอียด : {{product.detail}}</h6>
             <h6>Seller : {{product.seller}}</h6>
+            {% if product.amount > 0 %}
             <a href="{% url 'product:buy' product.id %}">buy</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
