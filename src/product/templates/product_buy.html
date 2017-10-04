@@ -18,7 +18,8 @@
             <h5>คงเหลือ {{product.amount}} ชิ้น</h5>
             <h6>รายละเอียด : {{product.detail}}</h6>
             <h6>Seller : {{product.seller}}</h6>
-            <a href="{% url 'product:buy' product.id %}">buy</a>
+            <!-- ยืนยัน แล้วไปหน้า Transection/buy -->
+            <a href="{% url 'product:view' product.id %}">ยืนยัน</a>
         </div>
     </div>
 {% endblock %}
