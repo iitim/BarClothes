@@ -9,6 +9,10 @@ def product_view(request, num):
 def product_buy(request, num):
     if not request.user.is_authenticated:
         return redirect('%s' % ('login'))
-    product = get_object_or_404(Product, pk=num)
-    user = request.user
-    return render(request, 'product_buy.html', {'product': product , 'user' : user})
+    else:
+        product = get_object_or_404(Product, pk=num)
+        user = request.user
+        product.amount -= 1
+        product.save()
+        # add Transection buy and Transection sell
+        return render(request, 'product_buy.html', {'product': product , 'user' : user})
