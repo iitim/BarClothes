@@ -25,7 +25,7 @@ SECRET_KEY = '*#)p0z@4*2!ino07-zq1xdf-tb8wk#mxax94tc9$b3&yz4=$5e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [u'barclothes.pythonanywhere.com']
 
 
 # Application definition
@@ -77,16 +77,26 @@ WSGI_APPLICATION = 'BarClothes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'NAME': 'TestDB',
+#         'ENGINE': 'django.db.backends.mysql',
+#         'USER': 'DjangoServer',
+#         'PASSWORD': '1q2w3e4r5t6y7u8i9o0p',
+#         'HOST' : '35.194.233.26',
+#         'OPTIONS': {
+#           'autocommit': True,
+#         },
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'NAME': 'TestDB',
         'ENGINE': 'django.db.backends.mysql',
-        'USER': 'DjangoServer',
-        'PASSWORD': '1q2w3e4r5t6y7u8i9o0p',
-        'HOST' : '35.194.233.26',
-        'OPTIONS': {
-          'autocommit': True,
-        },
+        'NAME': 'barclothes$barclothes',
+        'USER': 'barclothes',
+        'PASSWORD': 'gintama1234',
+        'HOST': 'barclothes.mysql.pythonanywhere-services.com',
     }
 }
 
