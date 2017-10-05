@@ -17,8 +17,8 @@
       <div class="col-md-8 col-md-offset-2">
           <form class="form-horizontal custom-form" action="{% url 'signup' as signup %}" method="post">
             {% csrf_token %}
-              <!-- <input background-color="#282626" color="white" class="btn btn-lg btn-default" value="Create account"/> -->
-              <h1><span>Create Account</span></h1></br>
+              <h1><div class="boxed">Create Account</div></h1></br>
+              <!-- <h1><span>Create Account</span></h1></br> -->
               {{ form.errors}}
               <!-- add -->
               <font color="white">Please fill all field</font>

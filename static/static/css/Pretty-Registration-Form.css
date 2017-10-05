@@ -1,5 +1,4 @@
-/*<<<<<<< HEAD
-=======*/
+
 html,
 body {
     font-family: 'Glacial Indifference';
@@ -11,7 +10,6 @@ body {
     -o-background-size: cover;
 }
 
-/*>>>>>>> Signup*/
 .register-form form.custom-form{
   padding:55px;
   box-sizing:border-box;
@@ -34,9 +32,10 @@ body {
   color:#FFBC49;
   font-size:24px;
   font-weight:bold;
-  padding:0 10px 15px;
-  margin-bottom:60px;
-  border-bottom:2px solid rgb(252,49,232);
+  padding:15px 10px 15px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  border:2px solid rgb(255,192,203);
 }
 
 .register-form .custom-form .form-group{
@@ -74,22 +73,6 @@ body {
 .errorlist{
   color: white
 }
-
-/*add*/
-h1
-  margin-bottom: 20px
-  font-size: 20px
-  font-weight: 300
-  text-align: center
-  text-transform: uppercase
-  letter-spacing: 5px
-  color: $grey
-  span
-    border: 2px solid $light-grey
-    padding: 3px 2px 3px 7px
-    border-radius: 6px
-    font-weight: 400
-/*end*/
 
 .register-form .custom-form .dropdown .dropdown-toggle{
   background:#fff;
