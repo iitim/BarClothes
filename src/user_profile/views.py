@@ -78,15 +78,15 @@ def change_password(request):
 
 @login_required
 def profile_edit(request):
+    user = request.user
     if request.method == 'POST':
         if 'edit_profile' in request.POST:
             # form = EditProfileForm(request.POST, instance=request.user)
-            edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=request.user)
+            edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
             if edit_profile_form.is_valid():
                 edit_profile_form.save()
                 tel_no = edit_profile_form.cleaned_data.get('tel_no')
                 address = edit_profile_form.cleaned_data.get('address')
-                user = request.user
                 user_extend = UserExtendData.objects.get(user_id=user.pk)
                 user_extend.address = address
                 user_extend.tel_no = tel_no
@@ -96,8 +96,13 @@ def profile_edit(request):
                 print(edit_profile_form.errors)
                 render(request, 'edit_profile.html', {'edit_profile_form': edit_profile_form})
     else:
-        edit_profile_form = EditProfileForm(instance=request.user)
-        return render(request, 'edit_profile.html',{'edit_profile_form': edit_profile_form})
+        edit_profile_form = EditProfileForm(instance=user)
+        password_change_form = PasswordChangeForm(request.user, data=request.POST)
+        context = {
+            'edit_profile_form': edit_profile_form,
+            'password_change_form' : password_change_form
+        }
+        return render(request, 'edit_profile.html', context)
 
 def success(request):
     return redirect('/accounts/profile')
