@@ -68,7 +68,8 @@ nav{
 
 .header-logo{
     position: absolute;
-    top: -40%;
+	top: -15%;
+	z-index: 5;
 }
 
 ul.nav.navbar-nav{
@@ -91,4 +92,40 @@ footer{
 	background-color: #ffbc49;
 	padding: 50px 0;
 	margin: 50px 0 0 0;
+}
+
+.footer-logo{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.bg-head{
+	padding-right: 0px;
+    padding-left: 0px;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.text-head1{
+	z-index: 5;
+    position: relative;
+    bottom: 75px;
+    float: right;
+	margin-right: 650px;
+	color: #333;
+}
+
+.text-head2{
+	z-index: 5;
+    position: relative;
+    bottom: 75px;
+    float: left;
+	margin-left: 650px;
+	color: #333;
+}
+
+.container .content{
+	margin-top: 70px;
+	margin-bottom: 50px;
 }
