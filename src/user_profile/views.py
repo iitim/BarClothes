@@ -1,32 +1,20 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.urls import reverse
-from .forms import EditProfileForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from main.models import UserExtendData 
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm,UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 
+
+from main.models import UserExtendData 
+from .forms import EditProfileForm
+
 # Create your views here.
 
-# context = {
-#     'id_num': 'id',
-#     'tel_no': '098765',
-#     'address': 'UserExtendData.address',
-# }
-
-# uncomment for database testing
-# context = {
-#     'id_num': UserExtendData.id_num,
-#     'tel_no': UserExtendData.tel_no,
-#     'address': UserExtendData.address,
-# # }
-
-# uncomment 1 line below for user profile login test
 @login_required
 def profile(request):
     # context คือค่าที่ใช้ในการแสดงผลของ template
@@ -41,10 +29,10 @@ def profile(request):
     template = 'profile.html'
     return render(request, template, context)
 
-def change_password(request):
-    context = locals()
-    template = 'changepass.html'
-    return render(request, template, context)
+# def change_password(request):
+#     context = locals()
+#     template = 'changepass.html'
+#     return render(request, template, context)
 
 def view_profile(request, pk=None):
     if pk:
@@ -56,13 +44,14 @@ def view_profile(request, pk=None):
 
 # @login_required
 # def change_password(request):
+#     # user = request.user
 #     if request.method == 'POST':
 #         form = PasswordChangeForm(request.user, request.POST)
 #         if form.is_valid():
 #             user = form.save()
 #             update_session_auth_hash(request, user)  # Important!
 #             messages.success(request, 'Your password was successfully updated!')
-#             return redirect('change_password')
+#             return redirect('change-password')
 #         else:
 #             messages.error(request, 'Please correct the error below.')
 #     else:
@@ -70,6 +59,22 @@ def view_profile(request, pk=None):
 #     return render(request, 'change_password.html', {
 #         'form': form
 #     })
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user) # dont logout the user.
+            messages.success(request, "Password changed.")
+            return redirect("/")
+    else:
+        form = PasswordChangeForm(request.user)
+    data = {
+        'form': form
+    }
+    return render(request, "change_password.html", data)
+
 @login_required
 def profile_edit(request):
     if request.method == 'POST':

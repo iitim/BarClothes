@@ -135,3 +135,4 @@ if DEBUG:
     )
 
 MEDIA_ROOT = os.path.join(os.path.join(os.path.dirname(BASE_DIR),"static"), 'media')
+LOGIN_REDIRECT_URL = '/profiles/'
