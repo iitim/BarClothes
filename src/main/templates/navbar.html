@@ -26,8 +26,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'user_profile:profile' %}">Profile</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{% url 'user_profile:change_password' %}">Change Password</a></li>
-                        <li role="separator" class="divider"></li>                        
+                        {% comment %} <li><a href="{% url 'user_profile:change_password' %}">Change Password</a></li>
+                        <li role="separator" class="divider"></li>                         {% endcomment %}
                         <li><a href="{% url 'logout' %}">Log out</a></li>
                     </ul>
                   </li>
