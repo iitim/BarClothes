@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from main.models import UserExtendData 
+from main.models import UserExtendData
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm,UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
@@ -39,6 +39,11 @@ def profile(request):
         'address': user_extend.address,
     }
     template = 'profile.html'
+    return render(request, template, context)
+
+def top_up(request):
+    context = locals()
+    template = 'top_up.html'
     return render(request, template, context)
 
 def change_password(request):
