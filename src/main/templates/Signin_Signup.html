@@ -6,56 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Login{% endblock %}</title>
   <link href="{% static 'css/Signin-Signup.css' %}" rel="stylesheet">
-  <script> 
-    function changeImage_seller()
-    {
-      var img = document.getElementById("test");
-      img.src="{% static 'img/LoginSeller.png' %}"
-      return false;
-    }
 
-    function changeImage_customer()
-    {
-      var img = document.getElementById("test");
-      img.src="{% static 'img/LoginCustomer.png' %}"
-      return false;
-    }
-
-    function changeButton()
-    {
-        document.getElementById('b_change').setAttribute("type", "style1");
-    }
-    
-    $('#seller').click(function() {
-      $('button[type="submit"]').css({ 
-          'border-color': 'while',
-          'color': '#FFBC49'
-      });
-    });
-
-  </script>
 </head>
 <body>
   <div class="image">
 
-    <img id=test src="{% static 'img/LoginCustomer.png' %}" alt="" />
+    <img id=test style="margin-top: -350px" src="{% static 'img/BarC_Login.png' %}" alt="" />
 
     <div class="onimage">
       <header>
-        <h1 class="basic-font" style="color: White">Login Page</h1>
+ <!--        <h1 class="basic-font" style="color: White">Login Page</h1> -->
         <a style="color: White">{% if user.is_authenticated %}
           Hi {{ user.username }}!</a>
           <a href="{% url 'logout' %}" style="color: White">logout</a>
         {% else %}
-          <a href="{% url 'login' %}" style="color: White">Login | </a>
-          <a href="{% url 'signup' %}" style="color: White">Signup</a>
+         <!--  <a href="{% url 'login' %}" style="color: White">Login | </a>
+          <a href="{% url 'signup' %}" style="color: White">Signup</a> -->
         {% endif %}
       </header>
 
       <div class="center">
-        <button class="invisible-button" ip=seller onclick="changeImage_seller()"></button>
-        <button class="invisible-button_right" ip=customer onclick="changeImage_customer()"></button>
-
+       
         <main style="color: White">
           {% block content %}
           {% endblock %}
@@ -72,5 +43,4 @@
 </body>
 </html>
 
-method="post" action="{% url 'login' %}"
 <form method="post" action="{% url 'login' %}">

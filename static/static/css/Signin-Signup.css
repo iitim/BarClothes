@@ -9,6 +9,19 @@ body {
     -o-background-size: cover;
 }
 
+.errorlist,
+.nonfield{
+
+  margin-top: -100px;
+  font-size: smaller;
+  word-wrap:break-word;
+  width: 30em; 
+  margin-left: 480px;
+  color: red;
+  margin-bottom: 10px;
+
+}
+
 a:link{
 	text-decoration: none;
     color: white; 
@@ -25,6 +38,7 @@ p.Customer{
 	font-size: 28px;
 	font-family: 'GlacialIndifference-Bold';
 	src: url('GlacialIndifference-Bold.eot');
+
 }
 
 button[type="submit"] {
@@ -119,6 +133,7 @@ h1.basic-font{
     right: 205px; 
     border: -10px solid green;
 }
+
 
 body {
   margin-top: 400px;
