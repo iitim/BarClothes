@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+	<form action="{% url 'user_profile:profile_edit' %}" method="POST">
+		{% csrf_token %}
+		{{ edit_profile_form.as_p }}
+		<input type="submit" class="btn btn-lg bt" value="save" name="edit_profile">
+	</form>
+	
+	<br>
+	<br>
+	<br>	
+	<br>
+
+	<form action="{% url 'user_profile:profile_edit' %}" method="post">
+		{% csrf_token %}
+		{{ password_change_form }}
+		<button type="submit" name="password_change_form">Save changes</button>
+	  </form>
+{% endblock %}
