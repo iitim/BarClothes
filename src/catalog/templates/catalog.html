@@ -10,53 +10,30 @@
 {% endblock %}
 
 {% block content %}
-  <div class="col-md-3">
-    <aside class="visible-sm-block visible-md-block visible-lg-block visible-xs-inline">
-      <p id="sidebarhead">Shop by Category</p>
-      <div id="sidebar">
-        <a href="/shop"><p class="sidebar">all</p></a>
-        <a href="/shop/top"><p class="sidebar">Top</p></a>
-        <a href="/shop/jacket"><p class="sidebar">Jacket </p></a>
-        <a href="/shop/dress"><p class="sidebar">Dress </p></a>
-        <a href="/shop/skirt"><p class="sidebar">Skirt </p></a>
-        <a href="/shop/pants"><p class="sidebar">Pants </p></a>
-        <a href="/shop/shorts"><p class="sidebar">Shorts </p></a>
-        <a href="/shop/t-shirt"><p class="sidebar">T-shirt </p></a>
-        <a href="/shop/suits"><p class="sidebar">Suits </p></a>
-        <a href="/shop/bag"><p class="sidebar">Bag </p></a>
-        <a href="/shop/shoes"><p class="sidebar">Shoes </p></a>
-        <a href="/shop/accessory"><p class="sidebar">Accessory </p></a>
-      </div>
-    </aside>
+  <div class="sidebar-page col-md-3">
+    <p class="sidebar-title">Shop by Category</p>
+    <div class="sidebar-list">
+      <a href="/shop"><p class="sidebar">all</p></a>
+      <a href="/shop/top"><p class="sidebar">Top</p></a>
+      <a href="/shop/jacket"><p class="sidebar">Jacket </p></a>
+      <a href="/shop/dress"><p class="sidebar">Dress </p></a>
+      <a href="/shop/skirt"><p class="sidebar">Skirt </p></a>
+      <a href="/shop/pants"><p class="sidebar">Pants </p></a>
+      <a href="/shop/shorts"><p class="sidebar">Shorts </p></a>
+      <a href="/shop/t-shirt"><p class="sidebar">T-shirt </p></a>
+      <a href="/shop/suits"><p class="sidebar">Suits </p></a>
+      <a href="/shop/bag"><p class="sidebar">Bag </p></a>
+      <a href="/shop/shoes"><p class="sidebar">Shoes </p></a>
+      <a href="/shop/accessory"><p class="sidebar">Accessory </p></a>
+    </div>
   </div>
   <div class="product-page col-md-9">
-    {% for row in all_full_row %}
-    <div class="row imgage" >
-      {% for product in row %}
-      <div class="col-md-4">
-        <img class="product-image" src="/media/{{product.picture}}">
-      </div>
-      {% endfor %}
-    </div>
-    <div class="row text" >
-      {% for product in row %}
+    <div class="product-row row">
+      {% for product in all_product %}
       <div class="product col-md-4">
-        <p>{{product.name}}</p>
-        <h5>{{product.price}} ฿</h5>
-      </div>
-      {% endfor %}
-    </div>
-    {% endfor %}
-    <div class="row imgage" >
-      {% for product in remain_row %}
-      <div class="col-md-4">
-        <img class="product-image" src="/media/{{product.picture}}">
-      </div>
-      {% endfor %}
-    </div>
-    <div class="row text" >
-      {% for product in remain_row %}
-      <div class="product col-md-4">
+        <div class="product-image">
+          <span class="helper"></span><img src="/media/{{product.picture}}">
+        </div>
         <p>{{product.name}}</p>
         <h5>{{product.price}} ฿</h5>
       </div>

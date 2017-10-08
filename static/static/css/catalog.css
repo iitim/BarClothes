@@ -1,27 +1,36 @@
-.product-page{
+.product-page {
     padding-top: 30px;
     padding-bottom: 30px;
 }
 
-.imgage {
-    width: 100%
+.product-row {
+    width: 100%;
 }
 
-.text {
-    width: 100%
+.product {
+    margin-bottom: 25px;
 }
 
-.text h5 {
+.product h5 {
     color: #ffbc49;
 }
 
 .product-image {
     width: 100%;
+    height: 265px;
     margin-bottom: 10px;
 }
 
-.product {
-    margin-bottom: 25px;
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.product-image img {
+    vertical-align: middle;
+    max-height: 265px;
+    max-width: 100%;
 }
 
 .paging {
