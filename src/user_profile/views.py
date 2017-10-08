@@ -15,18 +15,18 @@ from .forms import EditProfileForm
 
 # Create your views here.
 
-@login_required
-def profile(request):
-    # uncomment 2 lines below for user profile login test
-    user = request.user
-    user_extend = UserExtendData.objects.get(user_id=user.pk)
-    context = {
-        'id_num': user_extend.id_num,
-        'tel_no': user_extend.tel_no,
-        'address': user_extend.address,
-    }
-    template = 'profile.html'
-    return render(request, template, context)
+# @login_required
+# def profile(request):
+#     # uncomment 2 lines below for user profile login test
+#     user = request.user
+#     user_extend = UserExtendData.objects.get(user_id=user.pk)
+#     context = {
+#         'id_num': user_extend.id_num,
+#         'tel_no': user_extend.tel_no,
+#         'address': user_extend.address,
+#     }
+#     template = 'profile.html'
+#     return render(request, template, context)
 
 # def change_password(request):
 #     context = locals()
@@ -41,40 +41,43 @@ def view_profile(request, pk=None):
     args = {'user': user}
     return render(request, 'profile.html', args)
 
-def change_password(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, data=request.POST)
-        if form.is_valid():
-            form.save()
-            update_session_auth_hash(request, form.user) # dont logout the user.
-            messages.success(request, "Password changed.")
-            return redirect("/")
-        else:
-            messages.error(request, 'Please correct the error below.')
-    else:
-        form = PasswordChangeForm(request.user)
-    data = {
-        'form': form
-    }
-    return render(request, "change_password.html", data)
+# def change_password(request):
+#     if request.method == 'POST':
+#         form = PasswordChangeForm(request.user, data=request.POST)
+#         if form.is_valid():
+#             form.save()
+#             update_session_auth_hash(request, form.user) # dont logout the user.
+#             messages.success(request, "Password changed.")
+#             return redirect("/")
+#         else:
+#             messages.error(request, 'Please correct the error below.')
+#     else:
+#         form = PasswordChangeForm(request.user)
+#     data = {
+#         'form': form
+#     }
+#     return render(request, "change_password.html", data)
 
 @login_required
-def profile_edit(request):
+def profile(request):
     user = request.user
     edit_profile_form = EditProfileForm(instance=user)
     password_change_form = PasswordChangeForm(request.user)
    
-    if request.method == 'POST' and 'edit_profile' in request.POST:
+    if request.method == 'POST' and 'profile' in request.POST:
         # form = EditProfileForm(request.POST, instance=request.user)
         edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
-        # password_change_form = PasswordChangeForm(request.user, data=request.POST)
+        password_change_form = PasswordChangeForm(request.user, data=request.POST)
         if edit_profile_form.is_valid():
             edit_profile_form.save()
             tel_no = edit_profile_form.cleaned_data.get('tel_no')
             address = edit_profile_form.cleaned_data.get('address')
+            id_num = edit_profile_form.cleaned_data.get('id_num')
+
             user_extend = UserExtendData.objects.get(user_id=user.pk)
             user_extend.address = address
             user_extend.tel_no = tel_no
+            user_extend.id_num = id_num
             user_extend.save()
             return redirect(reverse('user_profile:profile'))
         else:
@@ -94,10 +97,11 @@ def profile_edit(request):
         
     # else:
     context = {
+        'user': user,
         'edit_profile_form': edit_profile_form,
         'password_change_form' : password_change_form
     }
-    return render(request, 'edit_profile.html', context)
+    return render(request, 'profile.html', context)
 
 def success(request):
     return redirect('/accounts/profile')
