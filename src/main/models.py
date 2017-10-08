@@ -86,3 +86,8 @@ class Transaction(models.Model):
 
     def __str__(self):
         return self.title_string
+
+class TopUp(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    slip_pic = models.ImageField(upload_to='slip_pic/', blank=True)
+    top_up_date = models.DateTimeField(default=datetime.now)
