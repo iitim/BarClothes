@@ -3,6 +3,10 @@
     padding-bottom: 30px;
 }
 
+.searchbar {
+    width: 100%;
+}
+
 .product-row {
     width: 100%;
 }

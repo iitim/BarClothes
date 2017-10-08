@@ -43,6 +43,9 @@ class UserExtendData(models.Model):
     tel_no = models.CharField(max_length=45)
     picture = models.ImageField(upload_to='user_pic/', default = 'product_pic/catalog-minimize.jpg')
     selling_expire_date = models.DateTimeField(default=datetime.now)
+
+    def __str__(self):
+        return self.user.username
 # currently hasn't data to be extended
 # class SellerExtendData(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)

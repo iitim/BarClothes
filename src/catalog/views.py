@@ -26,6 +26,9 @@ def filter(product_type, num):
     return context
 
 def catalog(request, num="1"):
+    print(request.POST)
+    if request.method == 'POST' :
+        pass
     page = int(num)
     if page < 1 :
         return redirect('/shop')

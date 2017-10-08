@@ -28,13 +28,41 @@
     </div>
   </div>
   <div class="product-page col-md-9">
+    <form class="searchbar row" method="post">
+      <h3>Search by</h3>
+      <label for="product_name">Product name : </label>
+      <input type="text" name="product_name">
+      <label for="seller_name">Seller name : </label>
+      <input type="text" name="seller_name">
+      <br>
+      <label for="price_sort">Sort by price : </label>
+      <select name="price_sort">
+        <option value="none">none</option>
+        <option value="low">lowest first</option>
+        <option value="high">highest first</option>
+      </select>
+      <label for="date_sort">Sort by create date : </label>
+      <select name="date_sort">
+        <option value="none">none</option>
+        <option value="late">latest first</option>
+        <option value="old">oldest first</option>
+      </select>
+      <br>
+      {% csrf_token %}
+      <input type="submit" value="Submit">
+    </form>
     <div class="product-row row">
       {% for product in all_product %}
         <div class="product col-md-4">
           <div class="product-image">
             <span class="helper"></span><img src="/media/{{product.picture_path}}">
           </div>
-          <p>{{product.name}}</p>
+          <b>{{product.name}}</b>
+          <p>{{product.type}}</p>
+          <p>create on {{product.create_date}}</p>
+          <p>{{product.detail}}</p>
+          <p>{{product.reserved|add:product.sold}} / {{product.amount}}</p>
+          <p>sell by {{product.seller}}</p>
           <h5>{{product.price}} ฿</h5>
         </div>
       {% endfor %}
