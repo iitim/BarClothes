@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'signup',
     'user_profile',
     'catalog',
+    'product',
 ]
 
 MIDDLEWARE = [
