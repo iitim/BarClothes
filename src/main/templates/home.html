@@ -1,5 +1,68 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Login{% endblock %}
+
+{% block stylesheet %}
+    <link href="{% static 'css/home_main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/home_carousel.css' %}" rel="stylesheet">
+    <link href="{% static 'css/home_VIP.css' %}" rel="stylesheet">
+    <link href="{% static 'css/home_bestsell.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block content %}
-<h1>Hello BarClothes!</h1>
+    <div class="bs-example">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Carousel indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>   
+            <!-- Wrapper for carousel items -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href="#"><img src="{% static 'img/home/carousel/first.jpg' %}"  alt="First Slide"/></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="{% static 'img/home/carousel/second.jpg' %}"  alt="First Slide"/></a>
+                </div>
+                <div class="item">
+                    <a href="#"><img src="{% static 'img/home/carousel/third.jpg' %}"  alt="First Slide"/></a>
+                </div>
+            </div>
+            <!-- Carousel controls -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+    
+    <!-- end carousel -->
+
+    <div class="row-VIPItems">
+        <div class="col-md-6">
+            <img src="{% static 'img/home/VIP/Head.png' %}">
+        </div>
+        <div class="col-md-6">
+            <img class="preview-item" src="{% static 'img/home/VIP/V001.jpg' %}" height="267">
+            <img class="preview-item" src="{% static 'img/home/VIP/V002.jpg' %}" height="267">
+            <img class="preview-item" src="{% static 'img/home/VIP/V003.jpg' %}" height="267">
+            <img class="preview-item" src="{% static 'img/home/VIP/V004.jpg' %}" height="267">
+        </div>
+    </div>
+    <div class="row-BestSell">
+        <div class="col-md-6 col-md-push-6">
+            <img src="{% static 'img/home/BestSell/Head.png' %}">
+        </div>
+        <div class="col-md-6 col-md-pull-6">
+            <img class="preview-item" src="{% static 'img/home/BestSell/B001.jpg' %}" height="267">
+            <img class="preview-item" src="{% static 'img/home/BestSell/B002.jpg' %}" height="267">
+            <img class="preview-item" src="{% static 'img/home/BestSell/B003.jpg' %}" height="267">
+            <img class="preview-item" src="{% static 'img/home/BestSell/B004.jpg' %}" height="267">
+        </div>
+    </div>
 {% endblock %}
