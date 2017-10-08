@@ -9,29 +9,52 @@
     <meta name="author" content="">
     <!-- <link rel="icon" href="../../../../favicon.ico"> -->
 
-    <title>Barclothes.com</title>
+    <title>Barclothes{% block title %}.com{% endblock %}</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{% static '/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static '/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+    <link href="{% static '/css/base_bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/css/base_bootstrap-theme.min.css' %}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="{% static 'css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base_main.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base_carousel.css' %}" rel="stylesheet">
     {% block stylesheet %}
     {% endblock %}
   </head>
 
   <body>
+    
+    {% include 'base_navbar.html' %}
+    {% include 'base_carousel.html' %}
 
-    {% include 'navbar.html' %}
+
+    {% block no_title_content %}
+    <img class="bg-head" src="{% static 'img/Content1-head.png' %}">
 
     <div class="container">
+      <h1 class="text-head1">{% block title_content1 %}{% endblock %}</h1>
+      <div class="content">
+        {% block content1 %}
+        {% endblock %}
+      </div>
+    </div>
 
+    {% block no_title_content2 %}
+    <img class="bg-head" src="{% static 'img/Content2-head.png' %}">
+    <div class="container">
+      <h1 class="text-head2">{% block title_content2 %}{% endblock %}</h1>
+      <div class="content">
+          {% block content2 %}
+          {% endblock %}
+        </div>
+    </div>
+    {% endblock %}
+    {% endblock %}
+
+    <div class="container">
         {% block content %}
         {% endblock %}
-
-    </div><!-- /.container -->
-
+    </div>
 
     <!-- Bootstrap core JavaScript 
     ================================================== -->
@@ -45,7 +68,7 @@
     <script src="../../../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
     {% block script %}
     {% endblock %}
-    {% include 'footer.html' %}
+    {% include 'base_footer.html' %}
     <script>
       $(document).ready(function(){
         {% block jquery %}
