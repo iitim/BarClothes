@@ -1,8 +1,9 @@
 from django import forms
 from django.forms import ModelForm
-from main.models import UserExtendData
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
+from main.models import UserExtendData
 
 # Create the form class.
 class EditProfileForm(forms.ModelForm):
@@ -12,6 +13,11 @@ class EditProfileForm(forms.ModelForm):
 		model = User
 		fields = ['first_name','last_name','email']
 
+class top_up_form(forms.ModelForm):
+    bill_pic = forms.ImageField()
+	class Meta:
+		model = User
+		fields = ['bill_pic']
 
 # Creating a form to add an article.
 # form = EditProfileForm()

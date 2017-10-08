@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.urls import reverse
-from .forms import EditProfileForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from main.models import UserExtendData
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm,UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 
+from main.models import UserExtendData
+from .forms import EditProfileForm,
 # Create your views here.
 
 # context = {
@@ -39,11 +39,6 @@ def profile(request):
         'address': user_extend.address,
     }
     template = 'profile.html'
-    return render(request, template, context)
-
-def top_up(request):
-    context = locals()
-    template = 'top_up.html'
     return render(request, template, context)
 
 def change_password(request):
@@ -96,6 +91,19 @@ def profile_edit(request):
     else:
         form = EditProfileForm(instance=request.user)
         return render(request, 'edit_profile.html',{'form': form})
+
+def top_up(request):
+    if request.method == 'POST':
+        form = top_up_form(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            bill_pic = form.cleaned_data.get('bill_pic')
+            user = request.user
+            user_extend = UserExtendData.objects.get(user_id=user.pk)
+            user_extend.bill_pic = bill_pic
+            user_extend.save()
+            return redirect(reverse('user_profile:profile'))
+    return render(request, 'top_up.html', {'form': form})
 
 def success(request):
     return redirect('/accounts/profile')

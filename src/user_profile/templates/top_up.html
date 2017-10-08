@@ -2,28 +2,17 @@
 {% load staticfiles %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="{% static 'css/styles_profile_km.css' %}">
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
-<link rel="stylesheet" href="{% static 'css/styles_changepass_km.css' %}">
-<link rel="stylesheet" href="{% static  'css/styles_edit_profile_km.css' %}">
+<!-- CSS paste here-->
 {% endblock %}
 
 {% block content %}
+<div align="center">
+  <form action= "/top_up/" method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form }}
+    <br>
+    <input type="submit" value="Submit Image">
+  </form>
+</div>
+{% csrf_token %}
 
-    <div class="profile">
-        <div class="show profile"><img src="{% static 'img/icon.png' %}" class="profile-pic"><a class="text-lowercase" href="edit">edit </a></div>
-        <div class="block-left">
-            <div class="left-text-fix"><span class="fix-left-text">Username</span></div><span class="right-text">{{ user.username }}</span></div>
-        <div class="fix-right-text">
-            <div class="left-text-fix"><span class="fix-right-text">Fullname </span></div><span class="right-text">{{ user.first_name }}  {{user.last_name}}</span></div>
-        <div class="block-left">
-            <div class="left-text-fix"><span class="fix-left-text">Identification number </span></div><span class="right-text">{{ id_num }}</span></div>
-        <div class="fix-right-text">
-            <div class="left-text-fix"><span class="fix-right-text">Phone no.</span></div><span class="right-text">{{ tel_no }} </span></div>
-        <div class="block-left">
-            <div class="left-text-fix"><span class="fix-left-text">E-mail </span></div><span class="right-text">{{ user.email }} </span></div>
-        <div class="fix-right-text">
-            <div class="left-text-fix"><span class="fix-right-text">Address</span></div><span class="right-text">{{ address }} </span></div><a href="change-password" class="change_password"></a></div>
-
-</html>
 {% endblock %}
