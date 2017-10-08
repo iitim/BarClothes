@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import USER_TYPE_CHOICES
+from .models import USER_STATUS_CHOICES
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
@@ -10,7 +10,7 @@ class SignUpForm(UserCreationForm):
     id_num = forms.CharField(max_length=30)
     phone_num = forms.CharField(max_length=30)
     # dob_num = forms.DateTimeField(required=True)
-    type_user = forms.CharField(widget=forms.Select(choices=USER_TYPE_CHOICES))
+    type_user = forms.CharField(widget=forms.Select(choices=USER_STATUS_CHOICES))
 
     @staticmethod
     def is_valid_nat_id(id_num):

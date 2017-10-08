@@ -4,9 +4,7 @@ from django.shortcuts import render, redirect
 
 from main.forms import SignUpForm
 
-from main.models import UserExtendData, SellerExtendData
-
-from main.models import UserExtendData,SellerExtendData
+from main.models import UserExtendData
 
 def signup(request):
     if request.method == 'POST':
@@ -19,7 +17,7 @@ def signup(request):
             us = UserExtendData(user=new_user, type=type_user, id_num=idnum, tel_no=phone)
             us.save()
             if type_user == 'S' :
-                seller_extend_data = SellerExtendData(user=new_user)
+                seller_extend_data = UserExtendData(user=new_user)
                 seller_extend_data.save()
             return redirect('home')
         else:

@@ -30,13 +30,13 @@
   <div class="product-page col-md-9">
     <div class="product-row row">
       {% for product in all_product %}
-      <div class="product col-md-4">
-        <div class="product-image">
-          <span class="helper"></span><img src="/media/{{product.picture}}">
+        <div class="product col-md-4">
+          <div class="product-image">
+            <span class="helper"></span><img src="/media/{{product.picture_path}}">
+          </div>
+          <p>{{product.name}}</p>
+          <h5>{{product.price}} ฿</h5>
         </div>
-        <p>{{product.name}}</p>
-        <h5>{{product.price}} ฿</h5>
-      </div>
       {% endfor %}
     </div>
   </div>
@@ -47,7 +47,9 @@
       {% endif %}
     </div>
     <div class="col-md-6">
-      <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
+      {% if is_last_page %}
+        <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
+      {% endif %}
     </div>
   </div>
 {% endblock %}
