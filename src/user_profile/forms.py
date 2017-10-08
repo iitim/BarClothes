@@ -15,9 +15,6 @@ class EditProfileForm(forms.ModelForm):
 
 class top_up_form(forms.ModelForm):
     bill_pic = forms.ImageField()
-	class Meta:
-		model = User
-		fields = ['bill_pic']
 
 # Creating a form to add an article.
 # form = EditProfileForm()
