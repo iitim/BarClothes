@@ -1,14 +1,16 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
+from .models import Product
 
 # from main.forms import SignUpForm
 # from main.models import UserExtendData
 
 def home(request):
-    context = locals()
+    interesting = Product.objects.order_by('pk')[0:9]
+    bestsell = Product.objects.order_by('-pk')[0:9]
     template = 'home.html'
-    return render(request, template, context)
+    return render(request, template, {'interesting' : interesting, 'bestsell' : bestsell})
 
 def store(request):
     context = locals()

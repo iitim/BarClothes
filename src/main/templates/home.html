@@ -5,37 +5,77 @@
     <link href="{% static 'css/home_main.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block title_content1 %}<div class="home-title">Interesting</div>{% endblock %}
+{% block title_content1 %}<div class="home-title">Interesting items</div>{% endblock %}
 {% block content1 %}
-    <div class="row">      
-        <div class="col-md-offset-0 post-body">
-            <p>หากต้องการใช้พืี้นที่ตรงนี้(Head1)</p>
-            <p>{/% block title_content1 %} ...Title... {/% endblock %} </p>
-            <p>{/% block content1 %} ...content... {/% endblock %} </p>
-            <p>:: หมายเหตุ หากไม่ใช้ Head2 ::</p>
-            <p>แทรก {/% block no_title_content2 %}{/% endblock %} ด้วย</p>
+    <div class="col-md-12">
+        <div class="first">
+            <a href="{% url 'product:view' interesting.1.id %}">
+                <img class="product-image2" src="/media/{{interesting.1.picture_path}}"></a>
+            <a href="{% url 'product:view' interesting.0.id %}">
+                <img class="product-image1" src="/media/{{interesting.0.picture_path}}"></a>
+            <a href="{% url 'product:view' interesting.2.id %}">
+                <img class="product-image2" src="/media/{{interesting.2.picture_path}}"></a>
         </div>
+    </div>
+    <div class="col-md-12">
+        <div class="second">
+            <a href="{% url 'product:view' interesting.3.id %}">
+                <img class="product-image3" src="/media/{{interesting.3.picture_path}}"></a>
+            <a href="{% url 'product:view' interesting.4.id %}">
+                <img class="product-image3" src="/media/{{interesting.4.picture_path}}"></a>
+            <a href="{% url 'product:view' interesting.5.id %}">
+                <img class="product-image3" src="/media/{{interesting.5.picture_path}}"></a>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="third">
+            <a href="{% url 'product:view' interesting.6.id %}">
+                <img class="product-image3" src="/media/{{interesting.6.picture_path}}"></a>
+            <a href="{% url 'product:view' interesting.7.id %}">
+                <img class="product-image3" src="/media/{{interesting.7.picture_path}}"></a>
+            <a href="{% url 'product:view' interesting.7.id %}">
+                <img class="product-image3" src="/media/{{interesting.8.picture_path}}"></a>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <img class="sponser" src="{% static 'img/mo-s-banner-1024x200.jpg' %}">
     </div>
 {% endblock %}
 
-{% block title_content2 %}<div class="home-title">Best Sell</div>{% endblock %}
-
+{% block title_content2 %}<div class="home-title">Best Sellers</div>{% endblock %}
 {% block content2 %}
-    <div class="row">      
-        <div class="col-md-offset-0 post-body">
-            <p>หากต้องการใช้พืี้นที่ตรงนี้(Head2)</p>
-            <p>{/% block title_content2 %} ...Title... {/% endblock %} </p>
-            <p>{/% block content2 %} ...content... {/% endblock %} </p>
+    <div class="row">
+        <h1>1st</h1>
+    </div>
+    <div class="col-md-12">
+        <div class="first">
+            <a href="{% url 'product:view' bestsell.1.id %}">
+                <img class="product-image2" src="/media/{{bestsell.1.picture_path}}"></a>
+            <a href="{% url 'product:view' bestsell.0.id %}">
+                <img class="product-image1" src="/media/{{bestsell.0.picture_path}}"></a>
+            <a href="{% url 'product:view' bestsell.2.id %}">
+                <img class="product-image2" src="/media/{{bestsell.2.picture_path}}"></a>
         </div>
     </div>
-{% endblock %}
-
-{% block content %}
-    <div class="row">      
-        <div class="col-md-offset-0 post-body">
-            <p>หากไม่ใช้ทั้ง Head1,Head2</p>
-            <p>แทรก {/% block no_title_content %}{/% endblock %} </p>
-            <p>{/% block content %} ...content... {/% endblock %} </p>
+    <div class="col-md-12">
+        <div class="second">
+            <a href="{% url 'product:view' bestsell.3.id %}">
+                <img class="product-image3" src="/media/{{bestsell.3.picture_path}}"></a>
+            <a href="{% url 'product:view' bestsell.4.id %}">
+                <img class="product-image3" src="/media/{{bestsell.4.picture_path}}"></a>
+            <a href="{% url 'product:view' bestsell.5.id %}">
+                <img class="product-image3" src="/media/{{bestsell.5.picture_path}}"></a>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="third">
+            <a href="{% url 'product:view' bestsell.6.id %}">
+                <img class="product-image3" src="/media/{{bestsell.6.picture_path}}"></a>
+            <a href="{% url 'product:view' bestsell.7.id %}">
+                <img class="product-image3" src="/media/{{bestsell.7.picture_path}}"></a>
+            <a href="{% url 'product:view' bestsell.8.id %}">
+                <img class="product-image3" src="/media/{{bestsell.8.picture_path}}"></a>
         </div>
     </div>
 {% endblock %}
