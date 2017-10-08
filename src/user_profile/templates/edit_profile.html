@@ -5,7 +5,7 @@
 	<form action="{% url 'user_profile:profile_edit' %}" method="POST">
 		{% csrf_token %}
 		{{ edit_profile_form.as_p }}
-		<input type="submit" class="btn btn-lg bt" value="save" name="edit_profile">
+		
 	</form>
 	
 	<br>

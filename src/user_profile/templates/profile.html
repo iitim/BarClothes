@@ -5,6 +5,7 @@
     {% block stylesheet %}
         <link rel="stylesheet" href="{% static 'css/styles_profile_km.css'%}">
         <link rel="stylesheet" href="{% static 'css/profile.css'%}">
+        <link rel="stylesheet" href="{% static 'css/styles_changepass.css'%}">
     {% endblock %}
 {% block content %}
     <form action="{% url 'user_profile:profile' %}" method="POST">
@@ -41,7 +42,7 @@
                         <div class="edit-text-div"><span class="fix-edit-text">Email </span>
                             <input type="email" placeholder={{ user.email }} class="input-email">
                         </div>
-                        <div class="edit-text-div"><span class="fix-edit-text">Address</span>
+                        <div class="edit-text-div"><span placeholder={{ address }} class="fix-edit-text">Address</span>
                             <div class="input-txt">
                                 <input type="text"class="input-edit-text-3">
                             </div>
@@ -55,5 +56,38 @@
             <script src="{% static 'javascript/jquery.min.js'%}"></script>
             <script src="{% static 'javascript/bootstrap.min.js'%}"></script>
         </body>
-        </form>
+    </form>
+    <form action="{% url 'user_profile:profile' %}" method="POST">
+        <body class="profile">
+            <div class="edit-profile">
+                <div class="profile">
+                    <div class="edit-text">
+                        <div class="edit-text-div"><span class="fix-edit-text">Old Password</span>
+                            <div class="input-pass1">
+                                <input type="password" class="input-edit-pass1">
+                            </div>
+                        </div>
+                        <div class="edit-text-div"><span class="fix-edit-text">New Password</span>
+                            <div class="input-txt">
+                                <input type="password" class="input-edit-pass2">
+                            </div>
+                        </div>
+                        <div class="edit-text-div"><span class="fix-edit-text">Confirm Password</span>
+                            <div class="input-txt">
+                                <input type="password" class="input-edit-pass3">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="updat-buttom">
+                    <button class="btn btn-default uodate-profile" type="submit">Change Password</button>
+                </div>
+            </div>
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        </body>
+    </form>
+    
+    
 {% endblock %}
+
