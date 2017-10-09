@@ -1,16 +1,17 @@
 from django.shortcuts import get_object_or_404, render
 from django.shortcuts import redirect
-from .models import Product, UserExtendData
+from .models import Product, PRODUCT_TYPE_CHOICES
 from django.contrib.auth.models import User
 
 def product_view(request, num):
     product = get_object_or_404(Product, pk=num)
+    type = PRODUCT_TYPE_CHOICES
     
     if not request.user.is_authenticated:
-        return render(request, 'product_view.html', {'product': product})
+        return render(request, 'product_view.html', {'product': product, 'type' : type})
     else:
-        user = get_object_or_404(UserExtendData, user=request.user)
-        return render(request, 'product_view.html', {'product': product , 'user' : user})
+        user = request.user
+        return render(request, 'product_view.html', {'product': product , 'user' : user, 'type' : type})
 
 def product_buy(request, num):
     if not request.user.is_authenticated:
