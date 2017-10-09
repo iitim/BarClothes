@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^$', views.profile, name='profile'),
     url(r'^success$', views.success, name='success'),
     # url(r'^edit$', views.profile_edit, name='profile_edit'),
-    # url(r'^change-password/$', views.change_password, name='change_password'),
+    url(r'^change_password/$', views.change_password, name='change_password'),
     # url(r'^change-password/profile$', views.profile),
     url(r'^cancel$', views.cancel, name='cancel'),
      url(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk')

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+<!-- {% load profile_filter %} -->
+
 <title>{% block title %}Profile{% endblock %}</title>
 
 {% block stylesheet %}
@@ -7,102 +9,115 @@
 {% endblock %}
 
 {% block content %}
+<body class="profile">	
 	<form action="{% url 'user_profile:profile' %}" method="POST">
 		{% csrf_token %}
-		<body class="profile">
-			<div class="profile-page">
-				<div class="edit-profile">
-					<div class="profile">
-						<div class="show profile">
-							<div class="image-profile"><img src="{% static 'img/icon.png'%}" class="profile-pic"></div>
-							<div class="pic-edit">
-								<input type="file" accept="image/*" name="pic-input" class="edit-pic">
-							</div>
-						</div>
-
-						<div class="edit-text">
-							<div class="edit-text-div">
-								<span class="fix-edit-text">Username</span>
-								<div class="edit-input-text">
-									{{edit_profile_form.username}}
-								</div>
-							</div>
-
-							<div class="edit-text-div">
-								<span class="fix-edit-text"> FirstName </span>
-								<div class="edit-input-text">
-										{{ edit_profile_form.first_name }}
-								</div>
-							</div>
-
-							<div class="edit-text-div">
-									<span class="fix-edit-text"> LastName </span>
-									<div class="edit-input-text">
-											{{ edit_profile_form.last_name }}
-									</div>
-							</div>
-
-							<div class="edit-text-div">
-								<span class="fix-edit-text">Citizen ID</span>
-								<div class="edit-input-text">
-									{{ edit_profile_form.id_num }}										
-								</div>
-							</div>
-							
-							<div class="edit-text-div">
-								<span class="fix-edit-text">Phone no</span>
-								<div class="edit-input-text">
-									{{ edit_profile_form.id_num }}
-								</div>
-							</div>
-
-							<div class="edit-text-div">
-								<span class="fix-edit-text">Email </span>
-								<div class="edit-input-text">
-										{{ edit_profile_form.email }}
-								</div>
-							</div>
-
-							<div class="edit-text-div"><span class="fix-edit-text">Address</span>
-								<div class="edit-input-text">
-										{{ edit_profile_form.address }}
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="update-button">
-						<button class="btn btn-default update-profile" type="submit" name="profile">Update Profile</button>
+		<div class="profile-page">
+			<div class="edit-profile">
+				<div class="show profile">
+					<div class="image-profile"><img src="{% static 'img/icon.png'%}" class="profile-pic"></div>
+					<div class="pic-edit">
+						<input type="file" accept="image/*" name="pic-input" class="edit-pic">
 					</div>
 				</div>
 
-				<div class="pass-page">
-					<div class="edit-password">
-						<div class="pass-block"><span class="pass-text">Old Password</span>
-							<div class="pass-input1">
-								<input type="password" class="input-pass">
-							</div>
-						</div>
-
-						<div class="pass-block"><span class="pass-text">New Password</span>
-							<div class="pass-input2">
-								<input type="password" class="input-pass">
-							</div>
-						</div>
-
-						<div class="pass-block"><span class="pass-text">Confirm Password</span>
-							<div class="pass-input3">
-								<input type="password" class="input-pass">
-							</div>
+				<div class="edit-text">
+					<div class="edit-text-div">
+						{{ edit_profile_form.username.errors }}							
+						<span class="fix-edit-text">Username</span>
+						<div class="edit-input-text">
+							{{ edit_profile_form.username }}
 						</div>
 					</div>
 
-					<div class="update-button-pass">
-						<button class="btn btn-default uodate-profile" type="submit">Change Password</button>
+					<div class="edit-text-div">
+						{{ edit_profile_form.first_name.errors }}
+						<span class="fix-edit-text"> FirstName </span>
+						<div class="edit-input-text">
+							{{ edit_profile_form.first_name }}
+						</div>
+					</div>
+
+					<div class="edit-text-div">
+						{{ edit_profile_form.last_name.errors }}							
+						<span class="fix-edit-text"> LastName </span>
+						<div class="edit-input-text">
+							{{ edit_profile_form.last_name }}
+						</div>
+					</div>
+
+					<div class="edit-text-div">
+						{{ edit_profile_form.id_num.errors }}							
+						<span class="fix-edit-text">Citizen ID</span>
+						<div class="edit-input-text">
+							{{ edit_profile_form.id_num }}										
+						</div>
+					</div>
+						
+					<div class="edit-text-div">
+						<!-- {{ edit_profile_form.id_num.errors }} -->
+						{{ edit_profile_form.tel_no.errors }}
+						<span class="fix-edit-text">Phone no</span>
+						<div class="edit-input-text">
+							<!-- {{ edit_profile_form.isd_num }} -->
+							{{ edit_profile_form.tel_no }}
+						</div>
+					</div>
+
+					<div class="edit-text-div">
+						{{ edit_profile_form.email.errors }}							
+						<span class="fix-edit-text">Email </span>
+						<div class="edit-input-text">
+							{{ edit_profile_form.email }}
+						</div>
+					</div>
+
+					<div class="edit-text-div"><span class="fix-edit-text">Address</span>
+						{{ edit_profile_form.address.errors }}						
+						<div class="edit-input-text">
+							{{ edit_profile_form.address }}
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<script src="{% static 'javascript/jquery.min.js' %}"></script>
-			<script src="{% static 'javascript/bootstrap.min.js' %}"></script>
-		</body>
+			<div class="update-button">
+				<button class="btn btn-default update-profile" type="submit" name="profile" value="profile">Update Profile</button>
+			</div>
+		</div>
+	</form>
+
+	<!-- <form action="{% url 'user_profile:profile' %}" method="post">
+		{% csrf_token %}	
+		<div class="profile-page">				
+			<div class="pass-page">
+				<div class="edit-password">
+					<div class="pass-block"><span class="pass-text">Old Password</span>
+						<div class="pass-input1">
+							{{ password_change_form.old_password | addclass_type:'input-pass,password'}}
+						</div>
+					</div>
+
+					<div class="pass-block"><span class="pass-text">New Password</span>
+						<div class="pass-input2">
+							{{ password_change_form.new_password1 | addclass_type:'input-pass,password'}}
+						</div>
+					</div>
+
+					<div class="pass-block"><span class="pass-text">Confirm Password</span>
+						<div class="pass-input3">
+							{{ password_change_form.new_password2 | addclass_type:'input-pass,password'}}
+						</div>
+					</div>
+				</div>
+
+				<div class="update-button-pass">
+					<button class="btn btn-default update-profile" type="submit" name="password_change_form">Change Password</button>
+				</div>
+			</div>
+		</div>
+	</form> -->
+	<script src="{% static 'javascript/jquery.min.js' %}"></script>
+	<script src="{% static 'javascript/bootstrap.min.js' %}"></script>
+</body>
 {% endblock %}

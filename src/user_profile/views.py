@@ -41,34 +41,36 @@ def view_profile(request, pk=None):
     args = {'user': user}
     return render(request, 'profile.html', args)
 
-# def change_password(request):
-#     if request.method == 'POST':
-#         form = PasswordChangeForm(request.user, data=request.POST)
-#         if form.is_valid():
-#             form.save()
-#             update_session_auth_hash(request, form.user) # dont logout the user.
-#             messages.success(request, "Password changed.")
-#             return redirect("/")
-#         else:
-#             messages.error(request, 'Please correct the error below.')
-#     else:
-#         form = PasswordChangeForm(request.user)
-#     data = {
-#         'form': form
-#     }
-#     return render(request, "change_password.html", data)
+def change_password(request):
+    if request.method == 'POST':
+        password_change_form = PasswordChangeForm(request.user, data=request.POST)
+        if password_change_form.is_valid():
+            password_change_form.save()
+            update_session_auth_hash(request, password_change_form.user) # dont logout the user.
+            messages.success(request, "Password changed.")
+            return redirect("/")
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        password_change_form = PasswordChangeForm(request.user)
+    data = {
+        'password_change_form': password_change_form
+    }
+    return render(request, "change_password.html", data)
 
 @login_required
 def profile(request):
     user = request.user
     edit_profile_form = EditProfileForm(instance=user)
-    password_change_form = PasswordChangeForm(request.user)
+    # password_change_form = PasswordChangeForm(request.user)
    
-    if request.method == 'POST' and 'profile' in request.POST:
+    if request.method == 'POST':
         # form = EditProfileForm(request.POST, instance=request.user)
         edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
-        password_change_form = PasswordChangeForm(request.user, data=request.POST)
+        # password_change_form = PasswordChangeForm(request.user, data=request.POST, prefix='profile')
+        print('profile eiei')
         if edit_profile_form.is_valid():
+            print('edit_profile_form.is_valid')
             edit_profile_form.save()
             tel_no = edit_profile_form.cleaned_data.get('tel_no')
             address = edit_profile_form.cleaned_data.get('address')
@@ -82,29 +84,34 @@ def profile(request):
             return redirect(reverse('user_profile:profile'))
         else:
             print(edit_profile_form.errors)
-            # render(request, 'edit_profile.html', {'edit_profile_form': edit_profile_form})
+        # return render(request, 'edit_profile.html', {'edit_profile_form': edit_profile_form})
    
-    elif request.method == 'POST' and 'password_change_form' in request.POST:
-        edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
-        password_change_form = PasswordChangeForm(request.user, data=request.POST)
-        if password_change_form.is_valid():
-            password_change_form.save()
-            update_session_auth_hash(request, password_change_form.user) # dont logout the user.
-            messages.success(request, "Password changed.")
-            return redirect(reverse('user_profile:profile'))
-        else:
-            messages.error(request, 'Please correct the error below.')
+    # elif request.method == 'POST' and 'password_change_form' in request.POST:
+    # # elif 'password_change_form' in request.POST:
+    #     # edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
+    #     password_change_form = PasswordChangeForm(request.user, data=request.POST, prefix='password_change_form')
+
+    #     if password_change_form.is_valid():
+    #         print('eiei')
+    #         password_change_form.save()
+    #         update_session_auth_hash(request, password_change_form.user) # dont logout the user.
+    #         messages.success(request, "Password changed.")
+    #         # return redirect(reverse('user_profile:profile'))
+    #         success(request)
+    #         # return redirect(reverse('user_profile:'))
+    #     else:
+    #         messages.error(request, 'Please correct the error below.')
         
     # else:
     context = {
-        'user': user,
+        # 'user': user,
         'edit_profile_form': edit_profile_form,
-        'password_change_form' : password_change_form
+        # 'password_change_form' : password_change_form
     }
     return render(request, 'profile.html', context)
 
 def success(request):
-    return redirect('/accounts/profile')
+    return redirect('/')
 
 def cancel(request):
     return redirect('/accounts/profile')
