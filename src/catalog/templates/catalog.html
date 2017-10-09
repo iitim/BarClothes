@@ -34,20 +34,13 @@
       <input type="text" name="product_name">
       <label for="seller_name">Seller name : </label>
       <input type="text" name="seller_name">
-      <br>
-      <label for="price_sort">Sort by price : </label>
-      <select name="price_sort">
-        <option value="none">none</option>
-        <option value="low">lowest first</option>
-        <option value="high">highest first</option>
+      <label for="sort">Sort by : </label>
+      <select name="sort">
+        <option value="late">latest date first</option>
+        <option value="old">oldest date first</option>
+        <option value="low">lowest price first</option>
+        <option value="high">highest price first</option>
       </select>
-      <label for="date_sort">Sort by create date : </label>
-      <select name="date_sort">
-        <option value="none">none</option>
-        <option value="late">latest first</option>
-        <option value="old">oldest first</option>
-      </select>
-      <br>
       {% csrf_token %}
       <input type="submit" value="Submit">
     </form>
