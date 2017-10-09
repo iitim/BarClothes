@@ -27,8 +27,8 @@ class UserExtendData(models.Model):
     id_num = models.CharField(max_length=13)
     address = models.CharField(max_length=1000)
     tel_no = models.CharField(max_length=45)
-    bill_pic = models.ImageField(upload_to='bill_pic/')
-    
+    bill_pic = models.ImageField(upload_to='bill_pic/', blank=True)
+
 # currently hasn't data to be extended
 class SellerExtendData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
