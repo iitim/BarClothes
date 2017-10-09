@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 def product_view(request, num):
     product = get_object_or_404(Product, pk=num)
     type = PRODUCT_TYPE_CHOICES
+    product.view += 1
+    product.save()
     
     if not request.user.is_authenticated:
         return render(request, 'product_view.html', {'product': product, 'type' : type})

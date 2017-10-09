@@ -8,7 +8,7 @@ from .models import Product, PRODUCT_TYPE_CHOICES
 
 def home(request):
     interesting = Product.objects.order_by('-pk')
-    bestsell = Product.objects.order_by('pk')
+    bestsell = Product.objects.order_by('-view')
     num_product_interesting = len(interesting)
     num_product = len(bestsell)
     template = 'home.html'
