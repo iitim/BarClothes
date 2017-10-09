@@ -57,13 +57,13 @@
           <div class="product-image">
             <span class="helper"></span><img src="/media/{{product.picture_path}}">
           </div>
-          <b>{{product.name}}</b>
-          <p>{{product.type}}</p>
-          <p>create on {{product.create_date}}</p>
-          <p>{{product.detail}}</p>
-          <p>{{product.reserved|add:product.sold}} / {{product.amount}}</p>
-          <p>sell by {{product.seller}}</p>
-          <h5>{{product.price}} ฿</h5>
+          <div class="product-text">
+            <div class="product-title"><b>{{product.name}}</b></div>
+            <div class="product-detail">
+              <div class="product-date">{{product.create_date|date:"d M Y"}}</div>
+              <div class="product-price">{{product.price|floatformat:2}} ฿</div>
+            </div>
+          </div>
         </div>
       {% endfor %}
     </div>
