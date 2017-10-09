@@ -55,11 +55,9 @@
 					</div>
 						
 					<div class="edit-text-div">
-						<!-- {{ edit_profile_form.id_num.errors }} -->
 						{{ edit_profile_form.tel_no.errors }}
 						<span class="fix-edit-text">Phone no</span>
 						<div class="edit-input-text">
-							<!-- {{ edit_profile_form.isd_num }} -->
 							{{ edit_profile_form.tel_no }}
 						</div>
 					</div>
@@ -86,37 +84,6 @@
 			</div>
 		</div>
 	</form>
-
-	<!-- <form action="{% url 'user_profile:profile' %}" method="post">
-		{% csrf_token %}	
-		<div class="profile-page">				
-			<div class="pass-page">
-				<div class="edit-password">
-					<div class="pass-block"><span class="pass-text">Old Password</span>
-						<div class="pass-input1">
-							{{ password_change_form.old_password | addclass_type:'input-pass,password'}}
-						</div>
-					</div>
-
-					<div class="pass-block"><span class="pass-text">New Password</span>
-						<div class="pass-input2">
-							{{ password_change_form.new_password1 | addclass_type:'input-pass,password'}}
-						</div>
-					</div>
-
-					<div class="pass-block"><span class="pass-text">Confirm Password</span>
-						<div class="pass-input3">
-							{{ password_change_form.new_password2 | addclass_type:'input-pass,password'}}
-						</div>
-					</div>
-				</div>
-
-				<div class="update-button-pass">
-					<button class="btn btn-default update-profile" type="submit" name="password_change_form">Change Password</button>
-				</div>
-			</div>
-		</div>
-	</form> -->
 	<script src="{% static 'javascript/jquery.min.js' %}"></script>
 	<script src="{% static 'javascript/bootstrap.min.js' %}"></script>
 </body>
