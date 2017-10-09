@@ -4,9 +4,7 @@ from django.shortcuts import render, redirect
 
 from main.forms import SignUpForm
 
-from main.models import UserExtendData, SellerExtendData
-
-from main.models import UserExtendData,SellerExtendData
+from main.models import UserExtendData
 
 def signup(request):
     if request.method == 'POST':
