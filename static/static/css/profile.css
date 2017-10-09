@@ -64,6 +64,9 @@ div.show{
   background:transparent;
   display:inline-block;
   width:inherit;
+  /* background:transparent; */
+  /* margin-bottom:20px; */
+  margin-top: 35px;
 }
 
 p.fix-right-text{
@@ -126,7 +129,7 @@ span.fix-right-text{
 div.block-left{
   border-left:6px solid #ffcc00;
   border-bottom:1px solid #ffcc00;
-  margin-bottom:6px;
+  /* margin-bottom:6px; */
   margin-left:0px;
   display:inline;
 }
@@ -164,14 +167,14 @@ input.input-edit-text{
   background:transparent;
   border-left:transparent;
   border-right:transparent;
-  width:300px;
+  /* width:300px; */
   color:gray;
   margin-top:5px;
 }
 
 div.input-txt{
   display:inline;
-  width:300px;
+  /* width:300px; */
 }
 
 div.edit-text-div{
@@ -239,7 +242,7 @@ div.edit-profile{
   background:transparent;
   margin-bottom:20px;
   /* width:1024px; */
-}
+} 
 
 div.profile-page{
   height:inherit;
