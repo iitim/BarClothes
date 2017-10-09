@@ -149,7 +149,7 @@ div.pic-edit{
 div.edit-text{
   margin-top:50px;
   display:inline-block;
-  width:800px;
+  /* width:800px; */
 }
 
 span.fix-edit-text{
@@ -231,18 +231,19 @@ button.btn.btn-default.update-profile{
   cursor:pointer;
 }
 
-button.btn.btn-default.uodate-profile:hover{
+button.btn.btn-default.update-profile:hover{
   color:white;
 }
 
 div.edit-profile{
   background:transparent;
   margin-bottom:20px;
-  width:1024px;
+  /* width:1024px; */
 }
 
 div.profile-page{
   height:inherit;
+  /* width:1024px; */
 }
 
 span.pass-text{
@@ -359,3 +360,25 @@ input.input-edit-text2{
   border-right:transparent;
 }
 
+a.btn.btn-default{
+  background-color:#d3d3d3;
+  border:none;
+  color:black;
+  padding:16px 20px;
+  text-align:center;
+  text-decoration:none;
+  display:inline-block;
+  font-size:16px;
+  margin-right:auto;
+  transition-duration:0.4s;
+  cursor:pointer;
+}
+
+a.btn.btn-default:hover{
+  background-color:#dcd7d7;
+  color:rgb(255,255,256);
+}
+
+.row {
+  width: 100%;
+}
