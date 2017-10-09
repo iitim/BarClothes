@@ -1,3 +1,45 @@
 .product_view{
     margin-top: 80px;
 }
+
+.picture-preview{
+    margin: 0 auto;
+    max-width: 321px;
+    max-height: 399px;
+}
+
+.product_view .row .col-md-7 .col-md-12{
+    text-align: right;
+    margin-top: 10px;
+    float: right;
+}
+
+.head{
+    font-size: 24px;
+    color: #ffbc49;
+    text-align: left;
+}
+
+.head-detail{
+    margin: 40px 0 0 40px;
+    font-size: 24px;
+    color: #ffbc49;
+    text-align: left;
+}
+
+.normal{
+    text-align: left;
+    padding: 4px 15px;
+    font-size: 18px;
+}
+
+.normal-detail{
+    margin: 0 0 0 40px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.buy{
+    color: #ffbc49;
+    font-size: 24px;
+}

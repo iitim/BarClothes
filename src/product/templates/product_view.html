@@ -1,29 +1,57 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block title %} | {{product.name}}{% endblock %}
 {% block stylesheet %}
     <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
 {% endblock %}
 
-{% block content %}
+{% block no_title_content2 %}{% endblock %}
+{% block title_content1 %}{{product.name}}{%endblock%}
+{% block content1 %}
     <div class="product_view">
-        {% if product.amount == 0 %}
-            <h1>ไม่สามารถซื้อสินค้าได้</h1>
-        {% endif %}
-        <div class="picture">
-            <img class="picture-preview" src="/media/{{product.picture_path}}">
+        <div class="row">
+            <div class="col-md-5">
+                <img class="picture-preview" src="/media/{{product.picture_path}}">
+            </div>
+            <div class="col-md-7">
+                {% if user == product.seller.user %}
+                    <div class="col-md-12"><p class="buy">edit</p></div>
+                {% else %}
+                    {% if product.amount > 0 %}
+                    <div class="col-md-12"><a class="buy" href="{% url 'product:buy' product.id %}">Get it!</a></div>
+                    {% else %}
+                    <div class="col-md-12"><p class="buy">out of stock</p></div>
+                    {% endif %}
+                {% endif %}
+                <div class="col-md-3"><p class="head">Type</p></div>
+                <div class="col-md-9">
+                    {% for i in type %}
+                        {% if i.0 == product.type %}<p class="normal">{{i.1}}</p>{% endif %}
+                    {% endfor %}</div>
+                
+                <div class="col-md-3"><p class="head">Price</p></div>
+                <div class="col-md-9"><p class="normal">{{product.price}} ฿</p></div>
+
+                <div class="col-md-3"><p class="head">Amount</p></div>
+                <div class="col-md-9"><p class="normal">{{product.amount}}</p></div>
+
+                <div class="col-md-3"><p class="head">Tag</p></div>
+                <div class="col-md-9"><p class="normal">tag</p></div>
+
+                <div class="col-md-3"><p class="head">Seller</p></div>
+                <div class="col-md-9"><p class="normal">{{product.seller.user}}</p></div>
+
+                <div class="col-md-3"><p class="head">Since</p></div>
+                <div class="col-md-9"><p class="normal">{{product.create_date}}</p></div>
+                
+            </div>
         </div>
-        <div class="information">
-            <h1>{{product.name}}</h1>
-            <h2>{{product.type}}</h2>
-            <h3>{{product.create_date}}</h3>
-            <h4>ราคา : {{product.price}} ฿</h4>
-            <h5>คงเหลือ {{product.amount}} ชิ้น</h5>
-            <h6>รายละเอียด : {{product.detail}}</h6>
-            <h6>Seller : {{product.seller}}</h6>
-            {% if product.amount > 0 %}
-                <a href="{% url 'product:buy' product.id %}">buy</a>
-            {% endif %}
+        <div class="row">
+            <div class="col-md-12">
+                <p class="head-detail">Detail</p>
+                <p class="normal-detail">{{product.detail}}</p>
+            </div>
         </div>
     </div>
 {% endblock %}
