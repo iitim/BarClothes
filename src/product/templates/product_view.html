@@ -31,10 +31,10 @@
                     {% endfor %}</div>
                 
                 <div class="col-md-3"><p class="head">Price</p></div>
-                <div class="col-md-9"><p class="normal">{{product.price}} ฿</p></div>
+                <div class="col-md-9"><p class="normal">{{product.price|floatformat:2}} ฿</p></div>
 
                 <div class="col-md-3"><p class="head">Amount</p></div>
-                <div class="col-md-9"><p class="normal">{{product.amount}}</p></div>
+                <div class="col-md-9"><p class="normal">{{product.remain}}</p></div>
 
                 <div class="col-md-3"><p class="head">Tag</p></div>
                 <div class="col-md-9"><p class="normal">tag</p></div>
@@ -43,7 +43,7 @@
                 <div class="col-md-9"><p class="normal">{{product.seller.user}}</p></div>
 
                 <div class="col-md-3"><p class="head">Since</p></div>
-                <div class="col-md-9"><p class="normal">{{product.create_date}}</p></div>
+                <div class="col-md-9"><p class="normal">{{product.create_date|date:"d-M-Y"}}</p></div>
                 
             </div>
         </div>
