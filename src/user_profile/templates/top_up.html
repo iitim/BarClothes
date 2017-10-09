@@ -6,13 +6,21 @@
 {% endblock %}
 
 {% block content %}
+<div align="left">
+<h1>Top Up</h1><hr>
+</div>
 <div align="center">
   <form action= "/top_up/" method="post" enctype="multipart/form-data">{% csrf_token %}
-    {{ form }}
+    {% for field in form %}
+        <div class="fieldWrapper">
+            {# uncomment to display field errors #}
+            {# {{ field.errors }} #}
+            {{ field.label_tag }} {{ field }}
+        </div>
+    {% endfor %}
     <br>
     <input type="submit" value="Submit Image">
   </form>
 </div>
 {% csrf_token %}
-
 {% endblock %}

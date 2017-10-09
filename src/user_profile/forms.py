@@ -13,8 +13,8 @@ class EditProfileForm(forms.ModelForm):
 		model = User
 		fields = ['first_name','last_name','email']
 
-class top_up_form(forms.ModelForm):
-    bill_pic = forms.ImageField()
+class top_up_form(forms.Form):
+	bill_pic = forms.ImageField()
 
 # Creating a form to add an article.
 # form = EditProfileForm()

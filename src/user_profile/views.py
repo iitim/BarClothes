@@ -27,6 +27,23 @@ from .forms import EditProfileForm, top_up_form
 # # }
 
 # uncomment 1 line below for user profile login test
+
+def top_up(request):
+    if request.method == 'POST':
+        form = top_up_form(request.POST)
+        if form.is_valid():
+            form.save()
+            bill_pic = form.cleaned_data.get('bill_pic')
+            user = request.user
+            user_extend = UserExtendData.objects.get(user_id=user.pk)
+            user_extend.bill_pic = bill_pic
+            user_extend.save()
+            return redirect(reverse('contact/'))
+        return render(request, 'top_up.html', {'form': form})
+    else:
+        form = top_up_form(request.POST)
+        return render(request, 'top_up.html', {'form': form})
+
 @login_required
 def profile(request):
     # context คือค่าที่ใช้ในการแสดงผลของ template
@@ -91,19 +108,6 @@ def profile_edit(request):
     else:
         form = EditProfileForm(instance=request.user)
         return render(request, 'edit_profile.html',{'form': form})
-
-def top_up(request):
-    if request.method == 'POST':
-        form = top_up_form(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            bill_pic = form.cleaned_data.get('bill_pic')
-            user = request.user
-            user_extend = UserExtendData.objects.get(user_id=user.pk)
-            user_extend.bill_pic = bill_pic
-            user_extend.save()
-            return redirect(reverse('user_profile:profile'))
-    return render(request, 'top_up.html', {'form': form})
 
 def success(request):
     return redirect('/accounts/profile')
