@@ -37,7 +37,10 @@
                 <div class="col-md-9"><p class="normal">{{product.remain}}</p></div>
 
                 <div class="col-md-3"><p class="head">Tag</p></div>
-                <div class="col-md-9"><p class="normal">{% for j in product.tags.all %}{{j}}{% endfor %}</p></div>
+                <div class="col-md-9"><p class="normal">
+                    {% if product.tags.all %}
+                    {% for j in product.tags.all %}{{j}} {% endfor %}
+                    {% else %}-{% endif %}</p></div>
 
                 <div class="col-md-3"><p class="head">Seller</p></div>
                 <div class="col-md-9"><p class="normal">{{product.seller.user}}</p></div>
