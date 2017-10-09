@@ -38,11 +38,14 @@ def top_up(request):
             user_extend = UserExtendData.objects.get(user_id=user.pk)
             user_extend.bill_pic = bill_pic
             user_extend.save()
-            return redirect(reverse('contact/'))
-        return render(request, 'top_up.html', {'form': form})
+            return redirect(reverse('/accounts/profile'))
+        else:
+            print(form.errors)
+            render(request, 'top_up.html', {'form': form})
     else:
-        form = top_up_form(request.POST)
-        return render(request, 'top_up.html', {'form': form})
+        form = top_up_form()
+
+    return render(request, 'top_up.html', {'form': form})
 
 @login_required
 def profile(request):
