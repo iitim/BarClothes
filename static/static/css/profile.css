@@ -53,6 +53,7 @@ button.btn.btn-default{
   margin-right:auto;
   transition-duration:0.4s;
   cursor:pointer;
+  margin-top:40px;
 }
 
 button.btn.btn-default:hover{
@@ -67,6 +68,9 @@ div.show{
   /* background:transparent; */
   /* margin-bottom:20px; */
   margin-top: 35px;
+}
+div.goto_change_pwd{
+  margin-top:50px; 
 }
 
 p.fix-right-text{
