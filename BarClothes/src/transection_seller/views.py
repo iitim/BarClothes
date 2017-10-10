@@ -8,3 +8,8 @@ def mainpage(request):
     context = locals()
     template = 'mainpage.html'
     return render(request, template, context)
+
+def orderpage(request):
+    context = locals()
+    template = 'delivery_order.html'
+    return render(request, template, context)

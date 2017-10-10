@@ -5,4 +5,5 @@ app_name = 'product'
 
 urlpatterns = [
     url(r'^$', views.mainpage, name='mainpage'),
+    url(r'^order/', views.orderpage, name='order]'),
 ]
