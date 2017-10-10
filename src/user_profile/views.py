@@ -1,50 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.urls import reverse
-from .forms import EditProfileForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from main.models import UserExtendData 
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm,UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 
+from main.models import UserExtendData 
+from .forms import EditProfileForm
+
 # Create your views here.
-
-# context = {
-#     'id_num': 'id',
-#     'tel_no': '098765',
-#     'address': 'UserExtendData.address',
-# }
-
-# uncomment for database testing
-# context = {
-#     'id_num': UserExtendData.id_num,
-#     'tel_no': UserExtendData.tel_no,
-#     'address': UserExtendData.address,
-# # }
-
-# uncomment 1 line below for user profile login test
-@login_required
-def profile(request):
-    # context คือค่าที่ใช้ในการแสดงผลของ template
-    # uncomment 2 lines below for user profile login test
-    user = request.user
-    user_extend = UserExtendData.objects.get(user_id=user.pk)
-    context = {
-        'id_num': user_extend.id_num,
-        'tel_no': user_extend.tel_no,
-        'address': user_extend.address,
-    }
-    template = 'profile.html'
-    return render(request, template, context)
-
-def change_password(request):
-    context = locals()
-    template = 'changepass.html'
-    return render(request, template, context)
 
 def view_profile(request, pk=None):
     if pk:
@@ -54,46 +22,54 @@ def view_profile(request, pk=None):
     args = {'user': user}
     return render(request, 'profile.html', args)
 
-# @login_required
-# def change_password(request):
-#     if request.method == 'POST':
-#         form = PasswordChangeForm(request.user, request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             update_session_auth_hash(request, user)  # Important!
-#             messages.success(request, 'Your password was successfully updated!')
-#             return redirect('change_password')
-#         else:
-#             messages.error(request, 'Please correct the error below.')
-#     else:
-#         form = form.PasswordChangeForm(request.user)
-#     return render(request, 'change_password.html', {
-#         'form': form
-#     })
-@login_required
-def profile_edit(request):
+def change_password(request):
     if request.method == 'POST':
-        # form = EditProfileForm(request.POST, instance=request.user)
-        form = EditProfileForm(request.POST, request.FILES, instance=request.user)
-        if form.is_valid():
-            form.save()
-            tel_no = form.cleaned_data.get('tel_no')
-            address = form.cleaned_data.get('address')
-            user = request.user
+        password_change_form = PasswordChangeForm(request.user, data=request.POST)
+        if password_change_form.is_valid():
+            password_change_form.save()
+            update_session_auth_hash(request, password_change_form.user) # dont logout the user.
+            messages.success(request, "Password changed.")
+            return redirect("/")
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        password_change_form = PasswordChangeForm(request.user)
+    data = {
+        'password_change_form': password_change_form
+    }
+    return render(request, "change_password.html", data)
+
+@login_required
+def profile(request):
+    user = request.user
+    edit_profile_form = EditProfileForm(instance=user)
+   
+    if request.method == 'POST':
+        edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
+        print('profile eiei')
+        if edit_profile_form.is_valid():
+            print('edit_profile_form.is_valid')
+            edit_profile_form.save()
+            tel_no = edit_profile_form.cleaned_data.get('tel_no')
+            address = edit_profile_form.cleaned_data.get('address')
+            id_num = edit_profile_form.cleaned_data.get('id_num')
+
             user_extend = UserExtendData.objects.get(user_id=user.pk)
             user_extend.address = address
             user_extend.tel_no = tel_no
+            user_extend.id_num = id_num
             user_extend.save()
             return redirect(reverse('user_profile:profile'))
         else:
-            print(form.errors)
-            render(request, 'edit_profile.html', {'form': form})
-    else:
-        form = EditProfileForm(instance=request.user)
-        return render(request, 'edit_profile.html',{'form': form})
+            print(edit_profile_form.errors)
+       
+    context = {
+        'edit_profile_form': edit_profile_form,
+    }
+    return render(request, 'profile.html', context)
 
 def success(request):
-    return redirect('/accounts/profile')
+    return redirect('/')
 
 def cancel(request):
     return redirect('/accounts/profile')
