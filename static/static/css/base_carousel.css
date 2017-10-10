@@ -1,16 +1,15 @@
+.bs-example{
+    margin: auto;
+    max-width: 1024px;
+}
 .carousel{
     background: #cf952d;
-    margin-top: 80px; /* after navbar */
 }
 .carousel .item{
-    min-height: 100px; 
-    max-height: 450px;
+    max-height: 200px;
 }
 .carousel .item img{
     margin: 0 auto;
-}
-.bs-example{
-    margin: 20px;
 }
 .carousel-inner{
     position: relative;
