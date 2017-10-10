@@ -364,22 +364,32 @@ input.input-edit-text2{
 }
 
 a.btn.btn-default{
-  background-color:#d3d3d3;
-  border:none;
-  color:black;
-  padding:16px 20px;
+  background:transparent;
+  color:#ed8b1a;
+  border-radius:12px;
+  border:2px solid;
+  padding:20px;
   text-align:center;
   text-decoration:none;
   display:inline-block;
   font-size:16px;
-  margin-right:auto;
-  transition-duration:0.4s;
+  margin:4px 2px;
   cursor:pointer;
 }
 
 a.btn.btn-default:hover{
-  background-color:#dcd7d7;
+  /* background-color:#dcd7d7; */
   color:rgb(255,255,256);
+}
+
+a.btn.btn-default:active{
+  background-color:transparent;
+  color:#e7e7e7;
+  text-decoration:underline;
+}
+
+.change_password_button{
+  margin-top: 100px;
 }
 
 .row {
