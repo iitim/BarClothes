@@ -24,6 +24,9 @@
 								<div class="pic-edit">
 									<input type="file" accept="image/*" name="pic-input" class="edit-pic">
 								</div>
+								<div class="goto_change_pwd">
+									<a href="{% url 'user_profile:change_password' %}" class="btn btn-default">Change Password</a>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -94,11 +97,11 @@
 				</div>
 			</div>
 		</form>
-		<div class="row">
+		{% comment %} <div class="row">
 			<div class="update-button">
 				<a href="{% url 'user_profile:change_password' %}" class="btn btn-default update-profile ">Change Password</a>
 			</div>	
-		</div>
+		</div> {% endcomment %}
 	</div>
 	<!-- <script src="{% static 'javascript/jquery.min.js' %}"></script> -->
 	<!-- <script src="{% static 'javascript/bootstrap.min.js' %}"></script> -->
