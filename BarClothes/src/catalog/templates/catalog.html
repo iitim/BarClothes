@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %} | Shop{% endblock %}
+{% block no_title_content %}{% endblock %}
+
+{% load staticfiles %}
+
+{% load static %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-3">
+    <aside class="visible-sm-block visible-md-block visible-lg-block visible-xs-inline">
+      <p id="sidebarhead">Shop by Category</p>
+      <div id="sidebar">
+        <a href="/shop"><p class="sidebar">all</p></a>
+        <a href="/shop/top"><p class="sidebar">Top</p></a>
+        <a href="/shop/jacket"><p class="sidebar">Jacket </p></a>
+        <a href="/shop/dress"><p class="sidebar">Dress </p></a>
+        <a href="/shop/skirt"><p class="sidebar">Skirt </p></a>
+        <a href="/shop/pants"><p class="sidebar">Pants </p></a>
+        <a href="/shop/shorts"><p class="sidebar">Shorts </p></a>
+        <a href="/shop/t-shirt"><p class="sidebar">T-shirt </p></a>
+        <a href="/shop/suits"><p class="sidebar">Suits </p></a>
+        <a href="/shop/bag"><p class="sidebar">Bag </p></a>
+        <a href="/shop/shoes"><p class="sidebar">Shoes </p></a>
+        <a href="/shop/accessory"><p class="sidebar">Accessory </p></a>
+      </div>
+    </aside>
+  </div>
+  <div class="product-page col-md-9">
+    {% for row in all_full_row %}
+    <div class="row imgage" >
+      {% for product in row %}
+      <div class="col-md-4">
+        <a href="{% url 'product:view' product.id %}"><img class="product-image" src="/media/{{product.picture_path}}"></a>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row text" >
+      {% for product in row %}
+      <div class="product col-md-4">
+        <p>{{product.name}}</p>
+        <h5>{{product.price}} ฿</h5>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <div class="row imgage" >
+      {% for product in remain_row %}
+      <div class="col-md-4">
+        <a href="{% url 'product:view' product.id %}"><img class="product-image" src="/media/{{product.picture_path}}"></a>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row text" >
+      {% for product in remain_row %}
+      <div class="product col-md-4">
+        <p>{{product.name}}</p>
+        <h5>{{product.price}} ฿</h5>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="paging">
+    <div class="col-md-6">
+      {% if previous_page > 0 %}
+        <a href="/shop{{type}}/{{previous_page}}"><img src="{% static 'img/Previous-page.png' %}"></a>
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
+    </div>
+  </div>
+{% endblock %}
