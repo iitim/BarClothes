@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
-from main.forms import SignUpForm
+from .forms import SignUpForm
 
 from main.models import UserExtendData
 
@@ -13,12 +13,12 @@ def signup(request):
             new_user =  form.save()
             idnum = form.cleaned_data.get('id_num')
             phone = form.cleaned_data.get('phone_num')
-            type_user = form.cleaned_data.get('type_user')
-            us = UserExtendData(user=new_user, type=type_user, id_num=idnum, tel_no=phone)
+            # type_user = form.cleaned_data.get('type_user')
+            us = UserExtendData(user=new_user, id_num=idnum, tel_no=phone)
             us.save()
-            if type_user == 'S' :
-                seller_extend_data = SellerExtendData(user=new_user)
-                seller_extend_data.save()
+            # if type_user == 'S' :
+            #     seller_extend_data = SellerExtendData(user=new_user)
+            #     seller_extend_data.save()
             return redirect('home')
         else:
             print(form.error_messages)
