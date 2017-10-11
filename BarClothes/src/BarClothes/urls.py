@@ -37,7 +37,7 @@ urlpatterns = [
     url(r'^signup/$', signup_views.signup, name='signup'),
     url(r'^accounts/profile/', include('user_profile.urls'), name='profile'),
     url(r'^product/', include('product.urls')),
-    url(r'^seller/', include('transection_seller.urls')),
+    url(r'^accounts/', include('transection_seller.urls')),
 ]
 
 if settings.DEBUG:
