@@ -13,3 +13,8 @@ def orderpage(request):
     context = locals()
     template = 'delivery_order.html'
     return render(request, template, context)
+
+def transcus(request):
+    context = locals()
+    template = 'transcus.html'
+    return render(request, template, context)
