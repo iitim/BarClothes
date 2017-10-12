@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} | new product{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/myproduct_new.css' %}">
+{% endblock %}
+
+{% block no_title_content2 %}{% endblock %}
+{% block content1 %}
+<form action="{% url 'myproduct:new' %}" method="post">
+    {% csrf_token %}
+        {{form.errors}}
+        <div class="form-group">
+            <h1 class="text-head1" style="bottom:155px">
+                <div class="col-sm-6 input-column">
+                    {% if last_name == None %}
+                    <input name="name" id="name" class="form-main" type="text" value required placeholder="Name : max 45 char"/>
+                    {% else %}
+                    <input name="name" id="name" class="form-main" type="text" value={{last_name}} required />
+                    {% endif %}
+                </div>
+            </h1>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6 input-column">
+                {{form.type}}
+            </div>
+        </div>
+
+        <input type="submit" class="btn btn-warning" value="Submit" />
+    
+</form>
+{% endblock %}

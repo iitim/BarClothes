@@ -1,0 +1,18 @@
+.form-main{
+    width: 400px;
+    line-height: 1.428571429;
+    text-align: center;
+    text-align-last: center;
+    vertical-align: middle;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    border: 0px solid rgba(0, 0, 0, 0);    
+    border-radius: 4px;
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: .3s ease;
+}
+
+input:focus{
+		outline:none;
+		border-color:rgba(0, 0, 0, 0);
+}

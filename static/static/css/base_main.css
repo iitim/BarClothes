@@ -118,6 +118,7 @@ footer{
     float: right;
 	margin-right: 650px;
 	color: #333;
+	max-width: 315px;
 }
 
 .text-head2{
