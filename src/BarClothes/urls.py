@@ -36,7 +36,8 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, {'template_name': 'logged_out.html'}, name='logout'),
     url(r'^signup/$', signup_views.signup, name='signup'),
     url(r'^accounts/profile/', include('user_profile.urls'), name='profile'),
-    url(r'^product/', include('product.urls')),
+    url(r'^product/', include('product.urls'), name='product'),
+    url(r'^myproduct/', include('myproduct.urls'), name='myproduct'),
 ]
 
 if settings.DEBUG:
