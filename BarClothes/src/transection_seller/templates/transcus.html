@@ -74,5 +74,15 @@
 {% block title_content2 %}<div class="home-title">Confirm</div>{% endblock %}
 
 {% block content2 %}
+  <ul>
+    {% for log in logs %}
+      <li>{{ log.product }} {{ log.amount }} {{ log.total_price }} {{ log.create_date }} {{ log.seller }}</li>
+    {% endfor %}
+    <!-- <li>ProductName1 Amount1 TotalPrice1 BuyDate1 Store(Seller)1</li>
+    <li>ProductName2 Amount2 TotalPrice2 BuyDate2 Store(Seller)2</li>
+    <li>ProductName3 Amount3 TotalPrice3 BuyDate3 Store(Seller)3</li>
+    <li>ProductName4 Amount4 TotalPrice4 BuyDate4 Store(Seller)4</li>
+    <li>ProductName5 Amount5 TotalPrice5 BuyDate5 Store(Seller)5</li> -->
+  </ul>
 
 {% endblock %}
