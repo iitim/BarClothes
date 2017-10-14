@@ -5,11 +5,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-USER_STATUS_CHOICES = (
-    ('n', 'can_not_sell'),
-    ('c', 'can_sell'),
-)
-
 PRODUCT_TYPE_CHOICES = (
     ('Top', 'top'),
     ('Jac', 'jacket'),
@@ -40,7 +35,6 @@ TRANSACTION_STATUS_CHOICES = (
 
 class UserExtendData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # status =  models.CharField(max_length=1, choices=USER_STATUS_CHOICES, default='n')
     id_num = models.CharField(max_length=13)
     address = models.CharField(max_length=1000)
     tel_no = models.CharField(max_length=45)

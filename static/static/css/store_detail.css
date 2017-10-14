@@ -1,0 +1,20 @@
+.storedetail-storepic{
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50%;
+}
+.storedetail-storeinfo h5, .storedetail-storeinfo p{
+    font-size: 18px;
+    display: inline;
+}
+.storedetail-storeinfo h5{
+    color: #ffbc49;
+}
+
+.storedetail-productpicblock{
+    height: 266px;
+}
+.storedetail-productpic{
+    max-width: 214px;
+    max-height: 266px;
+}

@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from main.models import USER_STATUS_CHOICES
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)

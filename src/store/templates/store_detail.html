@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+<link href="{% static 'css/store_detail.css' %}" rel="stylesheet">
+<link href="{% static 'css/catalog.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block title_content1 %}{{store.username}}{% endblock %}
+
+{% block content1 %} 
+{% comment %} {{store.userextenddata.id_num}} {% endcomment %}
+<div>
+    <img class="storedetail-storepic" src="/media/{{store.userextenddata.picture}}">
+    <div class="storedetail-storeinfo">
+        <h5>contact: </h5>
+        <p>{{store.email}}</p>
+    </div>
+</div>
+<div>
+    <label for="sort">Sort by : </label>
+    <select name="sort">
+        <option value="late">latest date first</option>
+        <option value="old">oldest date first</option>
+        <option value="low">lowest price first</option>
+        <option value="high">highest price first</option>
+    </select>
+    
+    {% for product in products %}
+    <div class="col-md-4">
+        <div class="storedetail-productpicblock">
+            <a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw">      {% comment %} link to BB's product page {% endcomment %}
+                <img class="storedetail-productpic" src="/media/{{product.picture_path}}">
+            </a>
+        </div>
+        <div class="text">       {% comment %} use css from catalog's css {% endcomment %}
+            <p>{{product.name}}</p>
+            <h5>{{product.price}} ฿</h5>
+        </div>
+    </div>
+
+    
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+
+{% block no_title_content2 %}{% endblock %}
