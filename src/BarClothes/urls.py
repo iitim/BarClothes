@@ -27,8 +27,7 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^store/', views.store, name='store'),
-    url(r'^s/', include('store.urls')),
+    url(r'^store/', include('store.urls')),
     url(r'^about/', views.about, name='about'),
     url(r'^contact/', views.contact, name='contact'),
     url(r'^shop/', include('catalog.urls')),

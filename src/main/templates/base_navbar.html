@@ -2,7 +2,7 @@
 
 {% url 'home' as home %}
 {% url 'catalog:catalog' as shop %}
-{% url 'store' as store %}
+{% url 'store:store' as store %}
 {% url 'about' as about %}
 {% url 'contact' as contact %}
 
@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav">
                 <li {% if request.path == shop %} class="active" {% endif %} role="presentation"><a href="{% url 'catalog:catalog' %}">Shop</a></li>
-                <li {% if request.path == store %} class="active" {% endif %} role="presentation"><a href="{% url 'store' %}">Store</a></li>
+                <li {% if request.path == store %} class="active" {% endif %} role="presentation"><a href="{% url 'store:store' %}">Store</a></li>
                 <li {% if request.path == about %} class="active" {% endif %} role="presentation"><a href="{% url 'about' %}">About</a></li>
                 <li {% if request.path == contact %} class="active" {% endif %} role="presentation"><a href="{% url 'contact' %}">Contact</a></li>
 

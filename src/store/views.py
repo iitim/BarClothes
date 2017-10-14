@@ -4,6 +4,11 @@ from main.models import UserExtendData, Product
 from django.contrib.auth.models import User
 from django.db import models
 
+
+def store(request):
+    context = locals()
+    return render(request, 'store_catalog.html', context)
+
 def store_detail(request): #num
     store_extend = get_object_or_404(UserExtendData, id_num=65543453)
     store = store_extend.user
@@ -11,13 +16,13 @@ def store_detail(request): #num
 
     if request.method == 'POST':
         if request.POST['sort'] == 'late' :
-            products = Product.objects.order_by('-create_date')
+            products = sorted(products, key=attrgetter('create_date'), reverse=True)
         elif request.POST['sort'] == 'old' :
-            products = Product.objects.order_by('create_date')
+            products = sorted(products, key=attrgetter('create_date'))
         elif request.POST['sort'] == 'low':
-            products = Product.objects.order_by('price')
+            products = sorted(products, key=attrgetter('price'))
         else :
-            products = Product.objects.order_by('-price')
+            products = sorted(products, key=attrgetter('price'), reverse=True)
 
     # products_latest = sorted(products, key=attrgetter('create_date'), reverse=True)
     # products_oldest = sorted(products, key=attrgetter('create_date'))
