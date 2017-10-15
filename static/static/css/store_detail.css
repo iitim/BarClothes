@@ -1,3 +1,6 @@
+.storedetail-storeprofile{
+    margin-bottom: 100px;
+}
 .storedetail-storepic{
     max-width: 300px;
     max-height: 300px;
@@ -11,8 +14,17 @@
     color: #ffbc49;
 }
 
+.storedetail-search{
+    text-align: right;
+    margin-bottom: 50px;
+}
+
+.storedetail-productblock{
+    margin-bottom: 50px;
+}
 .storedetail-productpicblock{
     height: 266px;
+    margin-bottom: 10px;
 }
 .storedetail-productpic{
     max-width: 214px;

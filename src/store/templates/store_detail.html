@@ -9,8 +9,7 @@
 {% block title_content1 %}{{store.username}}{% endblock %}
 
 {% block content1 %} 
-{% comment %} {{store.userextenddata.id_num}} {% endcomment %}
-<div>
+<div class="storedetail-storeprofile">
     <img class="storedetail-storepic" src="/media/{{store.userextenddata.picture}}">
     <div class="storedetail-storeinfo">
         <h5>contact: </h5>
@@ -18,16 +17,18 @@
     </div>
 </div>
 <div>
-    <label for="sort">Sort by : </label>
-    <select name="sort">
-        <option value="late">latest date first</option>
-        <option value="old">oldest date first</option>
-        <option value="low">lowest price first</option>
-        <option value="high">highest price first</option>
-    </select>
+    <div class="storedetail-search">
+        <label for="sort">Sort by : </label>
+        <select name="sort">
+            <option value="late">latest date first</option>
+            <option value="old">oldest date first</option>
+            <option value="low">lowest price first</option>
+            <option value="high">highest price first</option>
+        </select>
+    </div>
     
     {% for product in products %}
-    <div class="col-md-4">
+    <div class="col-md-4 storedetail-productblock">
         <div class="storedetail-productpicblock">
             <a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw">      {% comment %} link to BB's product page {% endcomment %}
                 <img class="storedetail-productpic" src="/media/{{product.picture_path}}">
