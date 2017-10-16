@@ -10,7 +10,7 @@
 <h1>Top Up</h1><hr>
 </div>
 <div align="center">
-  <form action= "/accounts/profile" method="post" enctype="multipart/form-data">{% csrf_token %}
+  <form action= "/store" method="post" enctype="multipart/form-data">{% csrf_token %}
     {% for field in form %}
         <div class="fieldWrapper">
             {# uncomment to display field errors #}
