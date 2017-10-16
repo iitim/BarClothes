@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm,UserCre
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 
-from main.models import UserExtendData
+from main.models import UserExtendData, TopUp
 from .forms import EditProfileForm, top_up_form
 # Create your views here.
 
@@ -28,16 +28,18 @@ from .forms import EditProfileForm, top_up_form
 
 # uncomment 1 line below for user profile login test
 
+@login_required
 def activate_store(request):
     user = request.user
     user_extend = UserExtendData.objects.get(user_id=user.pk)
     expire_date = user_extend.expire_date
     context = locals()
-    if first_time;
+    if first_time:
+        user_extend.free_trial_status = 0;
         template = 'my_store_first_time.html'
         return render(request, template, context)
     else:
-        if can_sell()
+        if can_sell():
             template = 'my_store_expired.html'
             return render(request, template, context)
         else:
@@ -115,11 +117,11 @@ def top_up(request):
         form = top_up_form(request.POST)
         if form.is_valid():
             form.save()
-            bill_pic = form.cleaned_data.get('bill_pic')
+            slip_pic = form.cleaned_data.get('slip_pic')
             user = request.user
-            user_extend = UserExtendData.objects.get(user_id=user.pk)
-            user_extend.bill_pic = bill_pic
-            user_extend.save()
+            user_topup = TopUp.objects.get(user_id=user.pk)
+            user_topup.slip_pic = slip_pic
+            user_topup.save()
             return redirect(reverse('/store'))
         else:
             print(form.errors)

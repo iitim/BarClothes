@@ -14,7 +14,7 @@ class EditProfileForm(forms.ModelForm):
 		fields = ['first_name','last_name','email']
 
 class top_up_form(forms.Form):
-	bill_pic = forms.ImageField()
+	slip_pic = forms.ImageField()
 
 # Creating a form to add an article.
 # form = EditProfileForm()
