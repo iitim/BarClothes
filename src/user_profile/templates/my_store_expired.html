@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+<!-- CSS paste here-->
+{% endblock %}
+
+{% block content %}
+<div align="center">
+  <div>
+    <h2>Your store is out of date. Renew your store!</h2>
+    <h3><a href="store/"><u>I've already renewedmy store.</a></u></h3>
+  </div>
+</div>
+{% csrf_token %}
+{% endblock %}

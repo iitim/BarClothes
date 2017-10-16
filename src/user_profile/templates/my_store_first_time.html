@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+<!-- CSS paste here-->
+{% endblock %}
+
+{% block content %}
+<div align="center">
+  <h2>You don't have your own stoe right now.</h2>
+  <div>
+    <h3><u><a href="store/">Try 30-Days Free Trial</a></u></h3>
+  </div>
+</div>
+{% csrf_token %}
+{% endblock %}

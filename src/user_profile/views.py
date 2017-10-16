@@ -28,6 +28,21 @@ from .forms import EditProfileForm, top_up_form
 
 # uncomment 1 line below for user profile login test
 
+def activate_store(request):
+    user = request.user
+    user_extend = UserExtendData.objects.get(user_id=user.pk)
+    context = locals()
+    if 0;
+        template = 'my_store_first_time.html'
+        return render(request, template, context)
+    else:
+        if 0:#curr>expire_date
+            template = 'my_store_expired.html'
+            return render(request, template, context)
+        else:
+            template = 'store.html'
+            return render(request, template, context)
+
 @login_required
 def profile(request):
     # context คือค่าที่ใช้ในการแสดงผลของ template
@@ -104,10 +119,10 @@ def top_up(request):
             user_extend = UserExtendData.objects.get(user_id=user.pk)
             user_extend.bill_pic = bill_pic
             user_extend.save()
-            return redirect(reverse('/accounts/profile'))
+            return redirect(reverse('/store'))
         else:
             print(form.errors)
-            render(request, 'top_up.html', {'form': form})
+            return render(request, 'top_up.html', {'form': form})
     else:
         form = top_up_form()
         return render(request, 'top_up.html', {'form': form})
