@@ -16,35 +16,56 @@
         <p>{{store.email}}</p>
     </div>
 </div>
+
+<script>
+$( document ).ready(setSort("late"));
+function setSort(val) {
+    if (val == "late"){
+        {% with products_latest as products %}
+        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endfor %}';
+        {% endwith %}
+    } else if (val == "old") {
+        {% with products_oldest as products %}
+        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endfor %}';
+        {% endwith %}
+    } else if (val == "low") {
+        {% with products_lowest_price as products %}
+        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endfor %}';
+        {% endwith %}
+    } else {
+        {% with products_highest_price as products %}
+        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endfor %}';
+        {% endwith %}
+    }
+}
+</script>
+
 <div>
     <div class="storedetail-search">
         <label for="sort">Sort by : </label>
-        <select name="sort">
-            <option value="late">latest date first</option>
+        <select name="sort" id="store_detail_sortmenu" onchange="setSort(this.value)">
+            <option value="late" selected="selected">latest date first</option>
             <option value="old">oldest date first</option>
             <option value="low">lowest price first</option>
             <option value="high">highest price first</option>
         </select>
     </div>
-    
-    {% for product in products %}
-    <div class="col-md-4 storedetail-productblock">
-        <div class="storedetail-productpicblock">
-            <a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw">      {% comment %} link to BB's product page {% endcomment %}
-                <img class="storedetail-productpic" src="/media/{{product.picture_path}}">
-            </a>
-        </div>
-        <div class="text">       {% comment %} use css from catalog's css {% endcomment %}
-            <p>{{product.name}}</p>
-            <h5>{{product.price}} ฿</h5>
-        </div>
+    <div id="storedetail-productcatalog">
+        {% for product in products_latest %}
+        <div class="col-md-4 storedetail-productblock">
+            <div class="storedetail-productpicblock">
+                <a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw">      {% comment %} link to BB's product page {% endcomment %}
+                    <img class="storedetail-productpic" src="/media/{{product.picture_path}}">
+                </a>
+            </div>
+            <div class="text">       {% comment %} use css from catalog's css {% endcomment %}
+                <p>{{product.name}}</p>
+                <h5>{{product.price}} ฿</h5>
+            </div>
+        </div> 
+        {% endfor %}
     </div>
-
-    
-    {% endfor %}
 </div>
-
 {% endblock %}
-
 
 {% block no_title_content2 %}{% endblock %}

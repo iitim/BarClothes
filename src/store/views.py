@@ -14,23 +14,16 @@ def store_detail(request): #num
     store = store_extend.user
     products = store_extend.product_set.all()
 
-    if request.method == 'POST':
-        if request.POST['sort'] == 'late' :
-            products = sorted(products, key=attrgetter('create_date'), reverse=True)
-        elif request.POST['sort'] == 'old' :
-            products = sorted(products, key=attrgetter('create_date'))
-        elif request.POST['sort'] == 'low':
-            products = sorted(products, key=attrgetter('price'))
-        else :
-            products = sorted(products, key=attrgetter('price'), reverse=True)
-
-    # products_latest = sorted(products, key=attrgetter('create_date'), reverse=True)
-    # products_oldest = sorted(products, key=attrgetter('create_date'))
-    # products_lowest_price = sorted(products, key=attrgetter('price'))
-    # products_highest_price = sorted(products, key=attrgetter('price'), reverse=True)
+    products_latest = sorted(products, key=attrgetter('create_date'), reverse=True)
+    products_oldest = sorted(products, key=attrgetter('create_date'))
+    products_lowest_price = sorted(products, key=attrgetter('price'))
+    products_highest_price = sorted(products, key=attrgetter('price'), reverse=True)
 
     context = {
         'store': store,
-        'products': products
+        'products_latest': products_latest,
+        'products_oldest': products_oldest,
+        'products_lowest_price': products_lowest_price,
+        'products_highest_price': products_highest_price
     }
     return render(request, 'store_detail.html', context)
