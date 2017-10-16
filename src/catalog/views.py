@@ -48,6 +48,7 @@ def catalog(request, num="1"):
     last_product = 18*page
     is_last_page = False
     if request.method == 'POST':
+        print(request.POST)
         user_list = User.objects.filter(username__icontains=request.POST['seller_name'])
         user_extend_data_list = UserExtendData.objects.filter(user__in=user_list)
         if request.POST['sort'] == 'late' :

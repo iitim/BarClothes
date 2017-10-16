@@ -3,6 +3,11 @@
     padding-bottom: 30px;
 }
 
+.sortbar {
+    text-align: right;
+    padding-right: 45px;
+}
+
 .searchbar {
     width: 100%;
 }

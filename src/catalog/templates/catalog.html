@@ -11,6 +11,16 @@
 
 {% block content %}
   <div class="sidebar-page col-md-3">
+    <form id="search" class="searchbar row" method="post">
+      <h3>Search</h3>
+      <label for="product_name">Product Name</label>
+      <input type="text" name="product_name">
+      <br>
+      <label for="seller_name">Store</label>
+      <input type="text" name="seller_name">
+      {% csrf_token %}
+      <input type="submit" value="Search!">
+    </form>
     <p class="sidebar-title">Shop by Category</p>
     <div class="sidebar-list">
       <a href="/shop"><p class="sidebar">all</p></a>
@@ -28,21 +38,14 @@
     </div>
   </div>
   <div class="product-page col-md-9">
-    <form class="searchbar row" method="post">
-      <h3>Search by</h3>
-      <label for="product_name">Product name : </label>
-      <input type="text" name="product_name">
-      <label for="seller_name">Seller name : </label>
-      <input type="text" name="seller_name">
-      <label for="sort">Sort by : </label>
-      <select name="sort">
-        <option value="late">latest date first</option>
-        <option value="old">oldest date first</option>
-        <option value="low">lowest price first</option>
-        <option value="high">highest price first</option>
+    <form class="sortbar row" method="post">
+      <label for="sort">Sort By : </label>
+      <select form="search" name="sort">
+        <option value="late">Latest date first</option>
+        <option value="old">Oldest date first</option>
+        <option value="low">Lowest price first</option>
+        <option value="high">Highest price first</option>
       </select>
-      {% csrf_token %}
-      <input type="submit" value="Submit">
     </form>
     <div class="product-row row">
       {% for product in all_product %}
