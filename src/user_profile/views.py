@@ -46,18 +46,14 @@ def profile(request):
     initial_data = {
         'tel_no' : user_extend.tel_no,
         'address' : user_extend.address,
-        'id_num' : user_extend.id_num}
+        'id_num' : user_extend.id_num
+    }
     edit_profile_form = EditProfileForm(instance=user, initial=initial_data)
-    # print(user_extend.tel_no)
+    
     if request.method == 'POST':
         edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
-        # print('profile eiei')
         if edit_profile_form.is_valid():
-            # print(edit_profile_form.errors)
-            # print(edit_profile_form.cleaned_data)
-            # print(user.id)
             post = edit_profile_form.save()
-            # print(post)
             tel_no = edit_profile_form.cleaned_data.get('tel_no')
             address = edit_profile_form.cleaned_data.get('address')
             id_num = edit_profile_form.cleaned_data.get('id_num')
@@ -66,7 +62,6 @@ def profile(request):
             user_extend.tel_no = tel_no
             user_extend.id_num = id_num
             user_extend.save()
-            # print(address + ' ' + tel_no + ' ' + id_num)
             return redirect(reverse('user_profile:profile'))
         else:
             print(edit_profile_form.errors)

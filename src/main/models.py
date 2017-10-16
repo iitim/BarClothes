@@ -18,19 +18,17 @@ PRODUCT_TYPE_CHOICES = (
     ('Sho', 'shoes'),
     ('Acc', 'accessory'),
 )
-
 TRANSACTION_STATUS_CHOICES = (
     ('wpy', 'wait_for_pay'),
     ('wac', 'wait_for_admin_confirm'),
     ('wss', 'wait_for_seller_sent'),
-    ('wp1', 'wait_for_receive_product_1'),
-    ('wp2', 'wait_for_receive_product_2'),
     ('suc', 'success'),
     ('cnp', 'customer_not_pay'),
+    ('cpe', 'customer_pay_error'),
     ('ccl', 'customer_cancel'),
-    ('cnr', 'customer_not_receive_product'),
     ('sns', 'seller_not_sent_product'),
 )
+
 
 
 class UserExtendData(models.Model):
