@@ -3,14 +3,13 @@ from __future__ import unicode_literals
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm,UserCreationForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 
-from main.models import UserExtendData 
 from .forms import EditProfileForm
+from main.models import UserExtendData 
 
 # Create your views here.
 
@@ -42,29 +41,40 @@ def change_password(request):
 @login_required
 def profile(request):
     user = request.user
-    edit_profile_form = EditProfileForm(instance=user)
-   
+    user_extend = UserExtendData.objects.get(user_id=user.pk)
+
+    initial_data = {
+        'tel_no' : user_extend.tel_no,
+        'address' : user_extend.address,
+        'id_num' : user_extend.id_num}
+    edit_profile_form = EditProfileForm(instance=user, initial=initial_data)
+    # print(user_extend.tel_no)
     if request.method == 'POST':
         edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
-        print('profile eiei')
+        # print('profile eiei')
         if edit_profile_form.is_valid():
-            print('edit_profile_form.is_valid')
-            edit_profile_form.save()
+            # print(edit_profile_form.errors)
+            # print(edit_profile_form.cleaned_data)
+            # print(user.id)
+            post = edit_profile_form.save()
+            # print(post)
             tel_no = edit_profile_form.cleaned_data.get('tel_no')
             address = edit_profile_form.cleaned_data.get('address')
             id_num = edit_profile_form.cleaned_data.get('id_num')
 
-            user_extend = UserExtendData.objects.get(user_id=user.pk)
             user_extend.address = address
             user_extend.tel_no = tel_no
             user_extend.id_num = id_num
             user_extend.save()
+            # print(address + ' ' + tel_no + ' ' + id_num)
             return redirect(reverse('user_profile:profile'))
         else:
             print(edit_profile_form.errors)
        
     context = {
+        'user' : user,
         'edit_profile_form': edit_profile_form,
+        'user_extend' : user_extend,
     }
     return render(request, 'profile.html', context)
 

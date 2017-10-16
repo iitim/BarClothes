@@ -1,9 +1,10 @@
 from django import forms
 from django.forms import ModelForm,TextInput
-from main.models import UserExtendData
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
+
+from main.models import UserExtendData
 
 # Create the form class.
 class EditProfileForm(forms.ModelForm):
@@ -12,7 +13,8 @@ class EditProfileForm(forms.ModelForm):
             widget = forms.TextInput(
                 attrs = {
                     'class': 'input-edit-text-3', 
-                    'type': 'text'
+                    'type': 'text',
+                    'value' : "{{ user_extend.address }}"
                 }
             )
     )
@@ -21,7 +23,8 @@ class EditProfileForm(forms.ModelForm):
         widget = forms.TextInput(
             attrs = {
                 'class': 'input-edit-text-1', 
-                'type': 'text'
+                'type': 'text',
+                'value' : '{{ user_extend.tel_no }}'
             }
         )
     )
@@ -30,7 +33,8 @@ class EditProfileForm(forms.ModelForm):
         widget = forms.TextInput(
             attrs = {
                 'class': 'input-edit-text5', 
-                'type': 'tel'
+                'type': 'tel',
+                'value' : '{{ user_extend.id_num }}'
             }
         )
     )
