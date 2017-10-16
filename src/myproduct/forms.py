@@ -1,11 +1,12 @@
 from django import forms
-from .models import Product, PRODUCT_TYPE_CHOICES
+from django.forms import Textarea, CheckboxSelectMultiple
+from .models import Product, PRODUCT_TYPE_CHOICES, Tag
 
 class ProductForm(forms.ModelForm):
-    name = forms.CharField(max_length=45)
-    type = forms.ChoiceField(choices=PRODUCT_TYPE_CHOICES)
 
     # An inline class to provide additional information on the form.
     class Meta:
         model = Product
-        fields = ('name', 'type',)
+        fields = ('name', 'type', 'price', 'amount', 'tags', 'detail', 'picture_path')
+        widgets = {'detail': Textarea(attrs={'cols': 110, 'rows': 6}),}
+        # 'tags': CheckboxSelectMultiple()}

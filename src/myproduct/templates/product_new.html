@@ -4,15 +4,16 @@
 {% block title %} | new product{% endblock %}
 {% block stylesheet %}
     <link rel="stylesheet" href="{% static 'css/myproduct_new.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
 {% endblock %}
 
 {% block no_title_content2 %}{% endblock %}
 {% block content1 %}
-<form action="{% url 'myproduct:new' %}" method="post">
+<form action="{% url 'myproduct:new' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
         {{form.errors}}
-        <div class="form-group">
-            <h1 class="text-head1" style="bottom:155px">
+        <div class="form-group" style="margin-top:-70px">
+            <h1 class="text-head1" style="bottom:115px; margin-right:700px">
                 <div class="col-sm-6 input-column">
                     {% if last_name == None %}
                     <input name="name" id="name" class="form-main" type="text" value required placeholder="Name : max 45 char"/>
@@ -22,13 +23,40 @@
                 </div>
             </h1>
         </div>
-        <div class="form-group">
-            <div class="col-sm-6 input-column">
-                {{form.type}}
+        <div class="container">
+            <div class="col-md-6 input-column">
+                <img src="{% static 'img/Header1-Logo.png' %}" style="width:400px" />
+            </div>
+            <div class="col-md-6 input-column">
+                <div class="col-md-3"><p class="head">Type</p></div>
+                <div class="col-md-9"><p class="normal">{{form.type}}</p></div>
+            </div>
+            <div class="col-md-6 input-column">
+                <div class="col-md-3"><p class="head">Price</p></div>
+                <div class="col-md-9"><p class="normal">{{form.price}}</p></div>
+            </div>
+            <div class="col-md-6 input-column">
+                <div class="col-md-3"><p class="head">Amount</p></div>
+                <div class="col-md-9"><p class="normal">{{form.amount}}</p></div>
+            </div>
+            <div class="col-md-6 input-column" style="margin-bottom: 60px">
+                <div class="col-md-3"><p class="head">Tag</p></div>
+                <div class="col-md-9"><p class="normal">{{form.tags}}</p></div>
+            </div>
+            <div class="col-md-6 input-column">
+                <div class="col-md-3"><p class="head">Image</p></div>
+                <div class="col-md-9"><p class="normal">{{form.picture_path}}</p></div>
             </div>
         </div>
-
-        <input type="submit" class="btn btn-warning" value="Submit" />
-    
+        <div class="col-md-12">
+            <div class="col-md-12" style="margin-bottom: 10px">
+                <p class="head-detail">Detail</p>
+                <p class="normal-detail">{{form.detail}}</p>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-warning" value="Submit" />
+        </div>
+        
 </form>
 {% endblock %}
