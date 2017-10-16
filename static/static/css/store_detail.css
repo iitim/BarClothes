@@ -18,6 +18,14 @@
     text-align: right;
     margin-bottom: 50px;
 }
+#storedetail-dropdown{
+    color: #fff;
+    margin: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #ffbc49;
+    background: #282626;
+}
 
 .storedetail-productblock{
     margin-bottom: 50px;
