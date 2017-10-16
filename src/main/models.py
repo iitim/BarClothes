@@ -39,8 +39,11 @@ class UserExtendData(models.Model):
     address = models.CharField(max_length=1000)
     tel_no = models.CharField(max_length=45)
     picture = models.ImageField(upload_to='user_pic/', default = 'product_pic/catalog-minimize.jpg')
-    bill_pic = models.ImageField(upload_to='bill_pic/', blank=True)
     selling_expire_date = models.DateTimeField(default=datetime.now)
+    free_trial_status = models.CharField(max_length=1, default = '1')
+
+    def first_time(self):
+        return free_trial_status == 1
 
     def can_sell(self):
         now = timezone.now()

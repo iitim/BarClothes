@@ -31,12 +31,13 @@ from .forms import EditProfileForm, top_up_form
 def activate_store(request):
     user = request.user
     user_extend = UserExtendData.objects.get(user_id=user.pk)
+    expire_date = user_extend.expire_date
     context = locals()
-    if 0;
+    if first_time;
         template = 'my_store_first_time.html'
         return render(request, template, context)
     else:
-        if 0:#curr>expire_date
+        if can_sell()
             template = 'my_store_expired.html'
             return render(request, template, context)
         else:
