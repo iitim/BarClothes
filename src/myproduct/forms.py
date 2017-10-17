@@ -11,3 +11,9 @@ class ProductForm(forms.ModelForm):
         fields = ('name', 'type', 'price', 'amount', 'tags', 'detail', 'picture_path')
         widgets = {'detail': Textarea(attrs={'cols': 110, 'rows': 6}),}
         # 'tags': CheckboxSelectMultiple()}
+
+class ProductUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ('name', 'type', 'price', 'amount', 'tags', 'detail', 'picture_path')
+        widgets = {'detail': Textarea(attrs={'cols': 110, 'rows': 6}),}
