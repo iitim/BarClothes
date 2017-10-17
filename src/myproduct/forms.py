@@ -3,7 +3,8 @@ from django.forms import Textarea, CheckboxSelectMultiple
 from .models import Product, PRODUCT_TYPE_CHOICES, Tag
 
 class ProductForm(forms.ModelForm):
-
+    amount = forms.IntegerField(min_value=1)
+    price = forms.IntegerField(min_value=0)
     # An inline class to provide additional information on the form.
     class Meta:
         model = Product

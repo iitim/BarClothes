@@ -4,6 +4,7 @@
 {% block title %} | {{product.name}}{% endblock %}
 {% block stylesheet %}
     <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
+    <link rel="stylesheet" href="{% static 'css/myproduct_new.css' %}">
 {% endblock %}
 
 {% block no_title_content2 %}{% endblock %}
@@ -19,9 +20,15 @@
                     <div class="col-md-12"><p class="buy">edit</p></div>
                 {% else %}
                     {% if product.amount > 0 %}
-                    <div class="col-md-12"><a class="buy" href="{% url 'product:buy' product.id %}">Get it!</a></div>
+                        <form action="{% url 'product:view' product.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="col-md-12">{{form.amount}}</div>
+                            <div class="col-md-12">
+                                <input type="submit" class="btn btn-lg btn-warning" color="#FFBC49" value="Get it!"/>
+                            </div>
+                        </form>
                     {% else %}
-                    <div class="col-md-12"><p class="buy">out of stock</p></div>
+                        <div class="col-md-12"><p class="buy">out of stock</p></div>
                     {% endif %}
                 {% endif %}
                 <div class="col-md-3"><p class="head">Type</p></div>
@@ -39,7 +46,7 @@
                 <div class="col-md-3"><p class="head">Tag</p></div>
                 <div class="col-md-9"><p class="normal">
                     {% if product.tags.all %}
-                    {% for j in product.tags.all %}{{j}} {% endfor %}
+                        {% for j in product.tags.all %}{{j}} {% endfor %}
                     {% else %}-{% endif %}</p></div>
 
                 <div class="col-md-3"><p class="head">Seller</p></div>
