@@ -17,9 +17,9 @@
             </div>
             <div class="col-md-7">
                 {% if user == product.seller.user %}
-                    <div class="col-md-12"><p class="buy">
+                    <div class="col-md-12"><a href="{% url 'myproduct:update' product.id %}" class="buy">
                         <input name="buy" type="submit" class="btn" color="#FFBC49" value="Edit"/>
-                    </p></div>
+                    </a></div>
                 {% else %}
                     {% if product.amount > 0 %}
                         <form action="{% url 'product:view' product.id %}" method="post">
