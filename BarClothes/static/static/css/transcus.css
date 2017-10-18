@@ -9,12 +9,14 @@ p.text1-delivery-order{
 	color: #FFBC49 !important;
 	font-size: 22px !important;
 	margin-right: 40px;
+	text-align: left;
 
 }
 
 p.textN-delivery-order{
 	color: white !important;
 	font-size: 18px !important;
+	text-align: left;
 }
 
 input[type=text] {
@@ -172,7 +174,8 @@ button.sent-button {
 	margin-top: 10px;
 	padding: 8px 16px;
 	border-radius: 24px;
-	margin-right: 60px;
+	margin-right: 10px;
+  display: block;
 }
 
 .register-form .custom-form .input-column input{
