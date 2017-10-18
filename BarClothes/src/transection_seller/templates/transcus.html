@@ -84,8 +84,7 @@
 {% block content2 %}
   <ul>
     {% for log in logs %}
-      <h1> 1 </h1>
-      <li>{{ log.product }} {{ log.amount }} {{ log.total_price }} {{ log.create_date }} {{ log.seller }}</li>
+      <li style="text-align: left">{{ log.product }} {{ log.amount }} {{ log.total_price }} {{ log.create_date }} {{ log.seller }}</li>
     {% endfor %}
     <!-- <li>ProductName1 Amount1 TotalPrice1 BuyDate1 Store(Seller)1</li>
     <li>ProductName2 Amount2 TotalPrice2 BuyDate2 Store(Seller)2</li>
