@@ -63,7 +63,7 @@ class Product(models.Model):
     sold = models.IntegerField(default=0)
     view =  models.IntegerField(default=0)
     seller = models.ForeignKey(UserExtendData, on_delete=models.CASCADE)
-    picture_path = models.ImageField(upload_to='product_pic/', default = 'product_pic/catalog-minimize.jpg')
+    picture_path = models.ImageField(upload_to='product_pic/', default = 'product_pic/product-minimize.jpg')
     tags = models.ManyToManyField(Tag, blank=True)
 
     def remain(self):

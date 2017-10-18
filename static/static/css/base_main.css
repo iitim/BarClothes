@@ -95,8 +95,12 @@ footer{
 	margin: 50px 0 0 0;
 }
 
-.footer-logo{
+.footer1-logo{
     max-width: 400px;
+}
+
+.footer2-logo{
+    max-width: 45px;
 }
 
 .bg-head{
@@ -114,6 +118,7 @@ footer{
     float: right;
 	margin-right: 650px;
 	color: #333;
+	max-width: 315px;
 }
 
 .text-head2{
@@ -128,8 +133,4 @@ footer{
 .container .content{
 	margin-top: 70px;
 	margin-bottom: 50px;
-}
-
-.footer-2{
-    max-width: 40px;
 }

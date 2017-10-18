@@ -1,0 +1,54 @@
+.form-main{
+    width: 400px;
+    line-height: 1.428571429;
+    text-align: center;
+    text-align-last: center;
+    vertical-align: middle;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: none;
+    border: 0px solid rgba(0, 0, 0, 0);    
+    border-radius: 4px;
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: .3s ease;
+}
+
+input:focus, select:focus, option:focus, option, option:hover{
+	outline:none;
+	border-color:rgba(0, 0, 0, 0);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+option:-webkit-autofill,
+option:-webkit-autofill:hover, 
+option:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+  outline:none;
+	border-color:rgba(0, 0, 0, 0);
+}
+
+select, select:focus, select:hover{
+  background-color: #282626;
+  color: white;
+  border-color: #ffbb4a;
+  width: 100px;
+}
+
+option:hover{
+  color: #ffbb4a;
+}
+
+input[name=amount], input[name=price]{
+  background-color: #282626;
+  color: white;
+  border: none;
+  border-bottom: 1px solid #ffbb4a;
+  width: 100px;
+}
