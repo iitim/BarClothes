@@ -25,10 +25,12 @@
                     {% endif %}
                 {% endif %}
                 <div class="col-md-3"><p class="head">Type</p></div>
+
                 <div class="col-md-9">
                     {% for i in type %}
                         {% if i.0 == product.type %}<p class="normal">{{i.1}}</p>{% endif %}
-                    {% endfor %}</div>
+                    {% endfor %}
+                </div>
                 
                 <div class="col-md-3"><p class="head">Price</p></div>
                 <div class="col-md-9"><p class="normal">{{product.price}} ฿</p></div>
