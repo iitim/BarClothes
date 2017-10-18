@@ -70,6 +70,7 @@ nav{
     position: absolute;
 	top: -15%;
 	z-index: 5;
+	max-width: 93px;
 }
 
 ul.nav.navbar-nav{
@@ -95,8 +96,7 @@ footer{
 }
 
 .footer-logo{
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 400px;
 }
 
 .bg-head{
@@ -128,4 +128,8 @@ footer{
 .container .content{
 	margin-top: 70px;
 	margin-bottom: 50px;
+}
+
+.footer-2{
+    max-width: 40px;
 }
