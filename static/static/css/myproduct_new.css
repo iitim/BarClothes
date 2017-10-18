@@ -37,18 +37,36 @@ select:-webkit-autofill:focus {
 select, select:focus, select:hover{
   background-color: #282626;
   color: white;
-  border-color: #ffbb4a;
+  border-color: #ffbc49;
   width: 100px;
 }
 
 option:hover{
-  color: #ffbb4a;
+  color: #ffbc49;
 }
 
 input[name=amount], input[name=price]{
   background-color: #282626;
   color: white;
   border: none;
-  border-bottom: 1px solid #ffbb4a;
+  border-bottom: 1px solid #ffbc49;
   width: 100px;
+}
+
+input[name=buy]:hover, input[name=buy]:focus{
+  color: white;
+}
+
+input[name=name]{
+  width: 400px;
+  line-height: 1.428571429;
+  text-align: center;
+  text-align-last: center;
+  vertical-align: middle;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: none;
+  border: 0px solid rgba(0, 0, 0, 0);    
+  border-radius: 4px;
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: .3s ease;
 }

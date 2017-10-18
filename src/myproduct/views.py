@@ -1,9 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from .forms import ProductForm
+from .forms import ProductForm, ProductUpdateForm
 from .models import Product, UserExtendData
 from django.contrib.auth.models import User
 
-# Create your views here.
 def product_new(request):
     if not request.user.is_authenticated:
         return redirect('%s' % ('login'))
@@ -20,25 +19,25 @@ def product_new(request):
                     new_product.seller = seller
                     new_product.save()
                     form.save_m2m()
-                    
                     return redirect('home')
                 else:
                     print(form.data)
-                    context = setcontext(form)
-                    return render(request, 'product_new.html', context)
             else:
                 form = ProductForm()
-            context = setcontext(ProductForm())
-            return render(request, 'product_new.html', context)
+            return render(request, 'product_new.html', {'last_name': form.data.get('name'), 'form': form,})
 
-
-def setcontext(lastform) :
-    context = { 'last_name': lastform.data.get('name'),
-                'last_type' : lastform.data.get('type'),
-                'last_detail' : lastform.data.get('detail'),
-                'last_price' : lastform.data.get('price'),
-                'last_amount' : lastform.data.get('amount'),
-                'last_tags' : lastform.data.get('tags'),
-                'form': lastform,
-                }
-    return  context
+def product_update(request, num):
+    if not request.user.is_authenticated:
+        return redirect('%s' % ('login'))
+    else:
+        user = get_object_or_404(UserExtendData, user=request.user)
+        product = get_object_or_404(Product, pk=num)
+        if (user.can_sell() == False) or (not user == product.seller):
+            return redirect('home')
+        else:
+            form = ProductUpdateForm(instance=product)
+            if request.POST:
+                form = ProductUpdateForm(request.POST, request.FILES, instance=product)
+                if form.is_valid():
+                    form.save()
+            return render(request, 'product_update.html', {'form': form, 'product' : product,})

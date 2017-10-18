@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %} | new product{% endblock %}
+{% block title %} | edit product{% endblock %}
 {% block stylesheet %}
     <link rel="stylesheet" href="{% static 'css/myproduct_new.css' %}">
     <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
@@ -9,23 +9,17 @@
 
 {% block no_title_content2 %}{% endblock %}
 {% block content1 %}
-<form action="{% url 'myproduct:new' %}" method="post" enctype="multipart/form-data">
+<form action="{% url 'myproduct:update' product.id %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
         {{form.errors}}
         <div class="form-group" style="margin-top:-70px">
             <h1 class="text-head1" style="bottom:115px; margin-right:700px">
-                <div class="col-sm-6 input-column">
-                    {% if last_name == None %}
-                    <input name="name" id="name" class="form-main" type="text" value required placeholder="Name : max 45 char"/>
-                    {% else %}
-                        {{form.name}}
-                    {% endif %}
-                </div>
+                <div class="col-sm-6 input-column">{{form.name}}</div>
             </h1>
         </div>
         <div class="container">
             <div class="col-md-6 input-column">
-                <img src="{% static 'img/Header1-Logo.png' %}" class="picture-preview" />
+                <img class="picture-preview" src="/media/{{product.picture_path}}"/>
             </div>
             <div class="col-md-6 input-column">
                 <div class="col-md-3"><p class="head">Type</p></div>
@@ -55,8 +49,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <input type="submit" class="btn btn-warning" value="Submit" />
+            <input type="submit" class="btn btn-warning" value="Update" />
         </div>
-        
 </form>
 {% endblock %}
