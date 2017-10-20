@@ -41,3 +41,8 @@ def product_update(request, num):
                 if form.is_valid():
                     form.save()
             return render(request, 'product_update.html', {'form': form, 'product' : product,})
+
+def product_delete(request):
+    template = 'product_delete.html'
+    context = locals()
+    return render(request, template, context)

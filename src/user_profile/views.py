@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.shortcuts import get_list_or_404, get_object_or_404, render, redirect
+from operator import attrgetter
 
 from .forms import EditProfileForm
 from main.models import UserExtendData 
@@ -78,3 +80,27 @@ def success(request):
 
 def cancel(request):
     return redirect('/accounts/profile')
+
+def view_myshop(request):
+    store_extend = get_object_or_404(UserExtendData, user=request.user)
+    store = store_extend.user
+    products = store_extend.product_set.all()
+    products_lowest_price = sorted(products, key=attrgetter('price'))
+    context = {
+       'products_lowest_price': products_lowest_price,
+    }
+    template = 'mainpage.html'
+    return render(request, template, context)
+   
+
+def orderpage(request):
+    store_extend = get_object_or_404(UserExtendData, user=request.user)
+    store = store_extend.user
+    products = store_extend.product_set.all()
+    products_lowest_price = sorted(products, key=attrgetter('price'))
+    context = {
+       'products_lowest_price': products_lowest_price,
+    }
+
+    template = 'delivery_order.html'
+    return render(request, template, context)
