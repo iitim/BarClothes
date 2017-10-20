@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from main.models import TransactionLog
+from main.models import TransactionLog, Transaction, UserExtendData
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 def mainpage(request):
@@ -17,9 +17,18 @@ def orderpage(request):
     return render(request, template, context)
 
 def transcus(request):
-    user = request.user
+    user = get_object_or_404(UserExtendData, user=request.user)
     context = {
-        'logs': TransactionLog.objects.order_by('-create_date').filter(customer=user.username)[0:10]
+        'logs': TransactionLog.objects.order_by('-create_date').filter(customer=user)[0:10],
+        'transacts': Transaction.objects.order_by('-create_date').filter(customer=user),
     }
     template = 'transcus.html'
     return render(request, template, context)
+
+# def transcus(request):
+#     user = request.user
+#     context = {
+#         'transacts': Transaction.objects.order_by('-create_date').filter(customer=user.username)[0:0]
+#     }
+#     template = 'transcus.html'
+#     return render(request, template, context)

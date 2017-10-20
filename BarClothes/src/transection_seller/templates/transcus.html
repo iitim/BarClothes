@@ -11,28 +11,38 @@
 
   <div class="delivery_order">
 
-        <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/007.jpg" >
+  {% for tranact in transacts %}
+    <div>
+      <!-- <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/007.jpg" > -->
+      <img class="picture-delivery-order col-md-2" src="/media/{{ tranact.product.picture_path }}" >
 
-        <!-- <div class="col-md-3" style="margin-left: 30px; width:125px; padding: 0px;"> -->
+          <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
+
+                <p class="text1-delivery-order">{{ tranact.status }}</p>
+                <p class="textN-delivery-order">{{ tranact.product.name }}</p>
+                <p class="textN-delivery-order">Amount: {{ tranact.amount }}</p>
+                <p class="textN-delivery-order">฿{{ tranact.total_price}}</p>
+                <p class="textN-delivery-order">Slip</p>
+                <button class="sent-button" type="submit" ip=Sent >Upload</button>
+          </div>
+      </div>
+  {% endfor %}
+
+  </div>
+
+    <!-- <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/007.jpg" >
+
         <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
 
-
-              <!-- <p class="text1-delivery-order" style="margin-right: 55px" >waiting</p> -->
               <p class="text1-delivery-order">waiting</p>
               <p class="textN-delivery-order">ProductName </p>
               <p class="textN-delivery-order">Price </p>
               <p class="textN-delivery-order">Slip </p>
               <button class="sent-button" type="submit" ip=Sent >Upload</button>
         </div>
-        <!-- <div class="col-md-2" style="padding: 0px;">
-        <div style="height: 10px; margin-bottom: 60px; margin-right: 80px;"> </div>
-        </div> -->
-
-  </div>
 
     <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/008.jpg" >
 
-        <!-- <div class="col-md-3" style="margin-left: 30px; width:125px; padding: 0px;"> -->
         <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
 
           <p class="text1-delivery-order">checking</p>
@@ -43,13 +53,9 @@
           <p style="text-align: left">path/to/slip.jpg</p>
         </div>
 
-        <!-- add -->
-  <!-- <div class="col-md-12" style="height: 80px"> </div> -->
     <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/009.jpg" >
 
-      <!-- <div class="col-md-3" style="margin-left: 30px; width:125px; padding: 0px;"> -->
       <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
-
 
         <p class="text1-delivery-order">checking</p>
         <p class="textN-delivery-order">ProductName </p>
@@ -58,9 +64,6 @@
         <button class="sent-button" type="submit" ip=Sent >Upload</button>
         <p style="text-align: left">path/to/slip.jpg</p>
       </div>
-      <!-- <div class="col-md-2" style="padding: 0px;">
-        <div style="height: 10px; margin-bottom: 60px; margin-right: 80px;"> </div>
-      </div> -->
 
     <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/006.jpg" >
 
@@ -74,8 +77,14 @@
         <p style="text-align: left">path/to/slip.jpg</p>
       </div>
 
-      <!-- <div class="col-md-12" style="height: 80px"> </div> -->
-        <!-- end -->
+    <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/007.jpg" >
+      <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
+        <p class="text1-delivery-order">waiting</p>
+        <p class="textN-delivery-order">ProductName </p>
+        <p class="textN-delivery-order">Price </p>
+        <p class="textN-delivery-order">Slip </p>
+        <button class="sent-button" type="submit" ip=Sent >Upload</button>
+      </div> -->
 
 {% endblock %}
 
@@ -86,11 +95,6 @@
     {% for log in logs %}
       <li style="text-align: left">{{ log.product }} {{ log.amount }} {{ log.total_price }} {{ log.create_date }} {{ log.seller }}</li>
     {% endfor %}
-    <!-- <li>ProductName1 Amount1 TotalPrice1 BuyDate1 Store(Seller)1</li>
-    <li>ProductName2 Amount2 TotalPrice2 BuyDate2 Store(Seller)2</li>
-    <li>ProductName3 Amount3 TotalPrice3 BuyDate3 Store(Seller)3</li>
-    <li>ProductName4 Amount4 TotalPrice4 BuyDate4 Store(Seller)4</li>
-    <li>ProductName5 Amount5 TotalPrice5 BuyDate5 Store(Seller)5</li> -->
   </ul>
 
 {% endblock %}

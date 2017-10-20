@@ -1,8 +1,10 @@
 
 img.picture-delivery-order{
-	height: 194px !important;
-    width: 156px !important;
-    margin-left: 65px;
+	max-height: 194px;
+	max-width: 156px;
+	padding: 0px;
+	margin-left: 30px;
+	margin-bottom: 50px
 }
 
 p.text1-delivery-order{
