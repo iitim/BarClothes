@@ -24,11 +24,3 @@ def transcus(request):
     }
     template = 'transcus.html'
     return render(request, template, context)
-
-# def transcus(request):
-#     user = request.user
-#     context = {
-#         'transacts': Transaction.objects.order_by('-create_date').filter(customer=user.username)[0:0]
-#     }
-#     template = 'transcus.html'
-#     return render(request, template, context)
