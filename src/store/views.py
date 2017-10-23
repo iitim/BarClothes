@@ -9,8 +9,13 @@ def store(request):
     context = locals()
     return render(request, 'store_catalog.html', context)
 
-def store_detail(request): #num
-    store_extend = get_object_or_404(UserExtendData, id_num=65543453)
+def store_detail(request, num):
+    try :
+        store_extend = UserExtendData.objects.get(id_num=num)
+    except UserExtendData.DoesNotExist:
+        return redirect('store:detail', 65543453)
+    # ใช้ข้างล่างก็พอ
+    store_extend = get_object_or_404(UserExtendData, id_num=num)
     store = store_extend.user
     products = store_extend.product_set.all()
 
