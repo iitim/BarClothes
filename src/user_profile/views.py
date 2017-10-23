@@ -34,7 +34,7 @@ def activate_store(request):
     user_extend = UserExtendData.objects.get(user_id=user.pk)
     expire_date = user_extend.expire_date
     context = locals()
-    if first_time:
+    if first_time():
         user_extend.free_trial_status = 0;
         template = 'my_store_first_time.html'
         return render(request, template, context)
@@ -122,7 +122,7 @@ def top_up(request):
             user_topup = TopUp.objects.get(user_id=user.pk)
             user_topup.slip_pic = slip_pic
             user_topup.save()
-            return redirect(reverse('/store'))
+            return redirect(reverse("{% url 'store' %}"))
         else:
             print(form.errors)
             return render(request, 'top_up.html', {'form': form})

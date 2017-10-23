@@ -7,9 +7,9 @@
 
 {% block content %}
 <div align="center">
-  <h2>You don't have your own stoe right now.</h2>
+  <h3>You don't have your own stoe right now.</h3>
   <div>
-    <h3><u><a href="store/">Try 30-Days Free Trial</a></u></h3>
+    <h2><u><a href="{% url 'store' %}">Try 30-Days Free Trial</a></u></h2>
   </div>
 </div>
 {% csrf_token %}
