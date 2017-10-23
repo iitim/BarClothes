@@ -72,7 +72,7 @@ input[name=name]{
   transition: .3s ease;
 }
 
-a {
+a[name=black], a[name=black]:hover, a[name=black]:focus{
   color:#282626;
 }
 
