@@ -51,6 +51,7 @@ input[name=amount], input[name=price]{
   border: none;
   border-bottom: 1px solid #ffbc49;
   width: 100px;
+  text-align-last: center;
 }
 
 input[name=buy]:hover, input[name=buy]:focus{
@@ -69,4 +70,20 @@ input[name=name]{
   border-radius: 4px;
   -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   transition: .3s ease;
+}
+
+a {
+  color:#282626;
+}
+
+a[name=white], a[name=white]:hover, a[name=white]:focus{
+  color: #ffffff;
+}
+
+input[name=delete]{
+  color: #282626;
+}
+
+textarea[name=detail]{
+  max-width: 100%;
 }

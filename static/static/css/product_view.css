@@ -6,22 +6,18 @@
     margin: 0 auto;
     max-width: 321px;
     max-height: 399px;
-}
-
-.product_view .row .col-md-7 .col-md-12{
-    text-align: right;
-    margin-top: 10px;
-    float: right;
+    margin-bottom: 40px;
 }
 
 .head{
     font-size: 24px;
     color: #ffbc49;
     text-align: left;
+    padding: 0 15px;
 }
 
 .head-detail{
-    margin: 40px 0 0 40px;
+    margin: 0px 40px 10px;
     font-size: 24px;
     color: #ffbc49;
     text-align: left;
@@ -31,11 +27,11 @@
     text-align: left;
     padding: 4px 15px;
     font-size: 18px;
-    max-height: 33.6px;
+    word-break: break-all;
 }
 
 .normal-detail{
-    margin: 0 0 0 40px;
+    margin: 0 40px;
     text-align: left;
     font-size: 18px;
 }
@@ -68,4 +64,15 @@
 
 input[name=buy]{
     color: #ffbc49
+}
+
+.text{
+    padding: 3px 15px;
+}
+
+.get-it{
+    float: right;
+    bottom: 35px;
+    position: relative;
+    margin: 0 10px;
 }

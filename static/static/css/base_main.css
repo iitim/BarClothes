@@ -111,6 +111,12 @@ footer{
     max-height: 100%;
 }
 
+.text-overflow{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .text-head1{
 	z-index: 5;
     position: relative;
