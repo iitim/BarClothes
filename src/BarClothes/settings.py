@@ -80,6 +80,14 @@ WSGI_APPLICATION = 'BarClothes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+EMAIL_BACKEND =
+  'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'mod41744555@hotmail.com'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+EMAIL_PORT = 1025
+
 DATABASES = {
     'default': {
         'NAME': 'TestDB',
