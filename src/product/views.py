@@ -8,14 +8,16 @@ def product_view(request, num):
     product = get_object_or_404(Product, pk=num)
     type = PRODUCT_TYPE_CHOICES
     product.view += 1
-    product.save()
     if not request.user.is_authenticated:
+        product.save()
         if request.method == 'POST':
             return product_buy(request, num, 1)
         else:
             return render(request, 'product_view.html', {'product': product, 'type' : type})
     else:
-        user = request.user
+        user = get_object_or_404(UserExtendData, user=request.user)
+        if not user == product.seller :
+            product.save()
         if request.method == 'POST':
             form = Num_BuyForm(request.POST)
             if form.is_valid():
