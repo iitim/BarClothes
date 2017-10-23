@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import ProductForm, ProductUpdateForm
-from .models import Product, UserExtendData
+from .models import Product, UserExtendData, Transaction, TransactionLog
 from django.contrib.auth.models import User
 
 def product_new(request):
@@ -19,25 +19,25 @@ def product_new(request):
                     new_product.seller = seller
                     new_product.save()
                     form.save_m2m()
-                    return redirect('home')
+                    return redirect('home') # go to store
                 else:
                     print(form.data)
             else:
                 form = ProductForm()
-            return render(request, 'product_new.html', {'last_name': form.data.get('name'), 'form': form,})
+            return render(request, 'myproduct_new.html', {'last_name': form.data.get('name'), 'form': form,})
 
 def product_update(request, num):
     if not request.user.is_authenticated:
-        return redirect('%s' % ('login'))
+        return redirect('product:view', num)
     else:
         user = get_object_or_404(UserExtendData, user=request.user)
         product = get_object_or_404(Product, pk=num)
         if (user.can_sell() == False) or (not user == product.seller):
-            return redirect('home')
+            return redirect('product:view', num)
         else:
             form = ProductUpdateForm(instance=product)
             if request.POST:
                 form = ProductUpdateForm(request.POST, request.FILES, instance=product)
                 if form.is_valid():
                     form.save()
-            return render(request, 'product_update.html', {'form': form, 'product' : product,})
+            return render(request, 'myproduct_update.html', {'form': form, 'product' : product,})
