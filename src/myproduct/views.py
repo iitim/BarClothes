@@ -41,3 +41,23 @@ def product_update(request, num):
                 if form.is_valid():
                     form.save()
             return render(request, 'myproduct_update.html', {'form': form, 'product' : product,})
+
+def product_delete(request, num):
+    if not request.user.is_authenticated:
+        return redirect('%s' % ('login'))
+    else:
+        user = get_object_or_404(UserExtendData, user=request.user)
+        product = get_object_or_404(Product, pk=num)
+        if (user.can_sell() == False) or (not user == product.seller):
+            return redirect('product:view', num)
+        else:
+            form = ProductUpdateForm(instance=product)
+            transactions = Transaction.objects.filter(product__id=product.id)
+            if request.POST:
+                for transaction in transactions:
+                    new_transectionLog = TransactionLog.from_transaction(transaction)
+                    new_transectionLog.save()
+                Transaction.objects.filter(product__id=product.id).delete()
+                Product.objects.filter(pk=num).delete()
+                return redirect('home')
+            return render(request, 'myproduct_delete.html', {'form': form, 'product' : product, 'transections' : transactions})
