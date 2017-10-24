@@ -23,75 +23,18 @@
                 <p class="textN-delivery-order">Amount: {{ tranact.amount }}</p>
                 <p class="textN-delivery-order">฿{{ tranact.total_price}}</p>
                 <p class="textN-delivery-order">Slip</p>
-                <button class="sent-button" type="submit" ip=Sent >Upload</button>
+                <button class="sent-button" type="file" ip=Sent name="pic" accept="image/*">Upload</button>
                 {% if tranact.payment_picture %}
                   <p style="text-align: left">{{ tranact.payment_picture }}</p>
                 {% else %}
                   <p style="text-align: left">Please add Slip</p>
                 {% endif %}
-                <div> </div>
 
           </div>
       </div>
   {% endfor %}
 
   </div>
-
-    <!-- <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/007.jpg" >
-
-        <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
-
-              <p class="text1-delivery-order">waiting</p>
-              <p class="textN-delivery-order">ProductName </p>
-              <p class="textN-delivery-order">Price </p>
-              <p class="textN-delivery-order">Slip </p>
-              <button class="sent-button" type="submit" ip=Sent >Upload</button>
-        </div>
-
-    <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/008.jpg" >
-
-        <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
-
-          <p class="text1-delivery-order">checking</p>
-          <p class="textN-delivery-order">ProductName </p>
-          <p class="textN-delivery-order">Price </p>
-          <p class="textN-delivery-order">Slip </p>
-          <button class="sent-button" type="submit" ip=Sent >Upload</button>
-          <p style="text-align: left">path/to/slip.jpg</p>
-        </div>
-
-    <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/009.jpg" >
-
-      <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
-
-        <p class="text1-delivery-order">checking</p>
-        <p class="textN-delivery-order">ProductName </p>
-        <p class="textN-delivery-order">Price </p>
-        <p class="textN-delivery-order">Slip </p>
-        <button class="sent-button" type="submit" ip=Sent >Upload</button>
-        <p style="text-align: left">path/to/slip.jpg</p>
-      </div>
-
-    <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/006.jpg" >
-
-      <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
-
-        <p class="text1-delivery-order">fail(try again)</p>
-        <p class="textN-delivery-order">ProductName </p>
-        <p class="textN-delivery-order">Price </p>
-        <p class="textN-delivery-order">Slip </p>
-        <button class="sent-button" type="submit" ip=Sent >Upload</button>
-        <p style="text-align: left">path/to/slip.jpg</p>
-      </div>
-
-    <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px; margin-bottom: 50px" src="/static/img/home/BestSell/007.jpg" >
-      <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
-        <p class="text1-delivery-order">waiting</p>
-        <p class="textN-delivery-order">ProductName </p>
-        <p class="textN-delivery-order">Price </p>
-        <p class="textN-delivery-order">Slip </p>
-        <button class="sent-button" type="submit" ip=Sent >Upload</button>
-      </div> -->
 
 {% endblock %}
 
@@ -100,7 +43,12 @@
 {% block content2 %}
   <ul>
     {% for log in logs %}
-      <li style="text-align: left">Product: {{ log.product }} Amount: {{ log.amount }} TotalPrice: {{ log.total_price }} CreateDate: {{ log.create_date }} Seller: {{ log.seller }}</li>
+      <li style="text-align: left"><b>Product:</b> {{ log.product }}  <b>Amount:</b> {{ log.amount }}  <b>TotalPrice:</b> {{ log.total_price }}  <b>CreateDate:</b> {{ log.create_date }}  <b>Seller:</b> {{ log.seller }}
+        {% if log.transport_code %}
+          <b>Transport Code: </b>{{ log.transport_code }}</li>
+        {% else %}
+          </li>
+        {% endif %}
     {% endfor %}
   </ul>
 
