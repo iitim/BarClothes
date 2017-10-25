@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.models import User
+
 from .forms import ProductForm, ProductUpdateForm
 from .models import Product, UserExtendData
-from django.contrib.auth.models import User
 
 def product_new(request):
     if not request.user.is_authenticated:
