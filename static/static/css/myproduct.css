@@ -87,3 +87,11 @@ input[name=delete]{
 textarea[name=detail]{
   max-width: 100%;
 }
+
+div[name=yellow]{
+  color:#ffbc49;
+}
+
+p[name=left]{
+  text-align: left;
+}

@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .forms import ProductForm, ProductUpdateForm
-from .models import Product, UserExtendData, Transaction, TransactionLog
+from .models import Product, UserExtendData, Transaction, TransactionLog, TRANSACTION_STATUS_CHOICES
 from django.contrib.auth.models import User
 
 def product_new(request):
@@ -53,6 +53,7 @@ def product_delete(request, num):
         else:
             form = ProductUpdateForm(instance=product)
             transactions = Transaction.objects.filter(product__id=product.id)
+            status = TRANSACTION_STATUS_CHOICES
             if request.POST:
                 for transaction in transactions:
                     new_transectionLog = TransactionLog.from_transaction(transaction)
@@ -60,4 +61,5 @@ def product_delete(request, num):
                 Transaction.objects.filter(product__id=product.id).delete()
                 Product.objects.filter(pk=num).delete()
                 return redirect('home')
-            return render(request, 'myproduct_delete.html', {'form': form, 'product' : product, 'transections' : transactions})
+            return render(request, 'myproduct_delete.html', 
+            {'form': form, 'product' : product, 'transections' : transactions, 'status' : status,})

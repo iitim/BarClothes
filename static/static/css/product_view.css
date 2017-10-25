@@ -9,6 +9,11 @@
     margin-bottom: 40px;
 }
 
+.picture-preview-delete{
+    margin: 15px;
+    max-height: 200px;
+}
+
 .head{
     font-size: 24px;
     color: #ffbc49;
@@ -51,7 +56,6 @@
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
-    background-color: rgba(40, 38, 38, 0);
     border: 1px solid #ffbc49;
     border-radius: 4px;
     -webkit-user-select: none;
@@ -62,8 +66,13 @@
     font-size: 24px;
 }
 
+.btn warning{
+    background-color: #ffbc49;
+}
+
 input[name=buy]{
-    color: #ffbc49
+    color: #ffbc49;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .text{

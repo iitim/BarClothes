@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %} | {{product.name}}{% endblock %}
+{% block title %} | Delete {{product.name}}{% endblock %}
 {% block stylesheet %}
     <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
     <link rel="stylesheet" href="{% static 'css/myproduct.css' %}">
@@ -11,9 +11,9 @@
 {% block content1 %}
         <form action="{% url 'myproduct:delete' product.id %}" method="post">
             {% csrf_token %}
-            <div class="col-md-12">
+            <div>
                 <p>Do you wanna delete this product?</p>
-                <img class="picture-preview" src="/media/{{product.picture_path}}">
+                <img class="picture-preview-delete" src="/media/{{product.picture_path}}">
                 <p>if you delete this product, all of this product transection will be deleted</p>
                 <p class="buy">
                     <input name="delete" type="submit" class="btn btn-warning" value="Yes!"/>
@@ -25,8 +25,30 @@
 {% endblock %}
 {% block title_content2 %}Product Transection{% endblock %}
 {% block content2 %}
-    {% for transection in transections %}
-        <img class="picture-preview" src="/media/{{transection.product.picture_path}}">
-
-    {% endfor %}
+    {% if transections.0.product == product %}
+        {% for transection in transections %}
+            {% if transection.status == 'wss' %}
+                <div class="col-md-12" name="yellow" >
+                    <p class="col-sm-5 col-sm-push-1" name="left">Customer : {{transection.customer}}</p>
+                    <p class="col-sm-3" name="left">Amount : {{transection.amount}}</p>
+                    <p class="col-sm-3" name="left">Status : 
+                        {% for i in status %}
+                            {% if i.0 == transection.status %}{{i.1}}{% endif %}
+                        {% endfor %}</p>
+                    <a class="btn" name="white" style="font-size:12px">Send</a>
+                </div>
+            {% else %}
+                <div class="col-md-12">
+                    <p class="col-sm-5 col-sm-push-1" name="left">Customer : {{transection.customer}}</p>
+                    <p class="col-sm-3" name="left">Amount : {{transection.amount}}</p>
+                    <p class="col-sm-4" name="left">Status : 
+                        {% for i in status %}
+                            {% if i.0 == transection.status %}{{i.1}}{% endif %}
+                        {% endfor %}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>This product doesn't have transection</p>
+    {% endif %}
 {% endblock %}
