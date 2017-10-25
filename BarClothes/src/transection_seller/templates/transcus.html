@@ -18,10 +18,11 @@
 
           <div class="col-md-3" style="margin-left: 20px; margin-bottom: 50px; padding: 0px;">
 
+                <!-- <p class="text1-delivery-order">{{ tranact.get_status_display }}</p> -->
                 <p class="text1-delivery-order">{{ tranact.status }}</p>
                 <p class="textN-delivery-order">{{ tranact.product.name }}</p>
                 <p class="textN-delivery-order">Amount: {{ tranact.amount }}</p>
-                <p class="textN-delivery-order">฿{{ tranact.total_price}}</p>
+                <p class="textN-delivery-order">฿ {{ tranact.total_price}}</p>
                 <p class="textN-delivery-order">Slip</p>
                 <button class="sent-button" type="file" ip=Sent name="pic" accept="image/*">Upload</button>
                 {% if tranact.payment_picture %}
@@ -47,7 +48,7 @@
         {% if log.transport_code %}
           <b>Transport Code: </b>{{ log.transport_code }}</li>
         {% else %}
-          </li>
+          <b>fail:</b> {{ log.get_status_display }}</li>
         {% endif %}
     {% endfor %}
   </ul>

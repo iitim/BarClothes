@@ -35,6 +35,9 @@ TRANSACTION_STATUS_CHOICES = (
     ('sns', 'seller_not_sent_product'),
 )
 
+@property
+def angular_t(self):
+    return self.get_type_display()
 
 class UserExtendData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
