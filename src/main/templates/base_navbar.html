@@ -1,0 +1,42 @@
+{% load staticfiles %}
+
+{% url 'home' as home %}
+{% url 'catalog:catalog' as shop %}
+{% url 'store:store' as store %}
+{% url 'about' as about %}
+{% url 'contact' as contact %}
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand navbar-link" href="{% url 'home' %}"><img class="header-logo" src="{% static 'img/Header1-Logo.png' %}"></a>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="nav navbar-nav">
+                <li {% if request.path == shop %} class="active" {% endif %} role="presentation"><a href="{% url 'catalog:catalog' %}">Shop</a></li>
+                <li {% if request.path == store %} class="active" {% endif %} role="presentation"><a href="{% url 'store:store' %}">Store</a></li>
+                <li {% if request.path == about %} class="active" {% endif %} role="presentation"><a href="{% url 'about' %}">About</a></li>
+                <li {% if request.path == contact %} class="active" {% endif %} role="presentation"><a href="{% url 'contact' %}">Contact</a></li>
+
+                {% if request.user.is_authenticated %}
+                <li class="dropdown nav-dropdown">
+                    <a href="#" class="dropdown-toggle nav-login" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user }}<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'user_profile:profile' %}" style="height: 26px; width: 160px;" >Profile</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'user_profile:change_password' %}" style="height: 26px; width: 160px;">Change Password</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'user_profile:profile' %}shopstatus/" style="height: 26px; width: 160px;">ManageShop</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'logout' %}" style="height: 26px; width: 160px;">Log out</a></li>
+                    </ul>
+                  </li>
+                {% else %}
+                    <li role="presentation"><a class="nav-login" href="{% url 'login' %}">Log in/Sign up</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,71 @@
+.product_view{
+    margin-top: 80px;
+}
+
+.picture-preview{
+    margin: 0 auto;
+    max-width: 321px;
+    max-height: 399px;
+}
+
+.product_view .row .col-md-7 .col-md-12{
+    text-align: right;
+    margin-top: 10px;
+    float: right;
+}
+
+.head{
+    font-size: 24px;
+    color: #ffbc49;
+    text-align: left;
+}
+
+.head-detail{
+    margin: 40px 0 0 40px;
+    font-size: 24px;
+    color: #ffbc49;
+    text-align: left;
+}
+
+.normal{
+    text-align: left;
+    padding: 4px 15px;
+    font-size: 18px;
+    max-height: 33.6px;
+}
+
+.normal-detail{
+    margin: 0 0 0 40px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.buy{
+    color: #ffbc49;
+    font-size: 24px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 2px 12px;
+    margin-bottom: 0;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: rgba(40, 38, 38, 0);
+    border: 1px solid #ffbc49;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    font-size: 24px;
+}
+
+input[name=buy]{
+    color: #ffbc49
+}

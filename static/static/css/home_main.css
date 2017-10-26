@@ -1,3 +1,33 @@
-.preview-item{
-    margin: 0 20px 20px 0;
+.home-title{
+    color: #ffffff
+}
+
+.product-image1{
+    max-height: 350px;
+    margin: 20px;
+}
+ 
+.product-image2{
+     max-height: 300px;
+     margin-top: 50px;
+}
+
+.product-image2_2{
+    max-height: 300px;
+    margin-top: 139px;
+}
+
+.product-image3{
+    max-height: 200px;
+    margin: 15px;
+}
+
+.sponser{
+    max-width: 800px;
+    margin: 70px auto;
+    border: groove
+}
+
+.first{
+    display: -webkit-inline-box;
 }
