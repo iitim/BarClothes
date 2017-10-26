@@ -80,27 +80,27 @@ WSGI_APPLICATION = 'BarClothes.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'NAME': 'TestDB',
-        'ENGINE': 'django.db.backends.mysql',
-        'USER': 'DjangoServer',
-        'PASSWORD': '1q2w3e4r5t6y7u8i9o0p',
-        'HOST' : '35.194.233.26',
-        'OPTIONS': {
-          'autocommit': True,
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'NAME': 'TestDB',
+#         'ENGINE': 'django.db.backends.mysql',
+#         'USER': 'DjangoServer',
+#         'PASSWORD': '1q2w3e4r5t6y7u8i9o0p',
+#         'HOST' : '35.194.233.26',
+#         'OPTIONS': {
+#           'autocommit': True,
+#         },
+#     }
+# }
 
 # use for branch catalog
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 # DATABASES = {
 #   'default': {
 #     'ENGINE': 'django.db.backends.mysql',
