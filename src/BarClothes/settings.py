@@ -16,6 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -81,11 +82,12 @@ WSGI_APPLICATION = 'BarClothes.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'mod41744555@hotmail.com'
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-EMAIL_PORT = 1025
+DEFAULT_FROM_EMAIL = ''
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'barclothesdotcom@gmail.com'
+EMAIL_HOST_PASSWORD = 'barcloth'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = True
 
 DATABASES = {
     'default': {

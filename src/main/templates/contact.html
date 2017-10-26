@@ -20,10 +20,9 @@
     </div>
 </div>
 
-<form role="form" action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
+<form method='POST' action=''> {% csrf_token %}
+{{ form.as_p }}
+<input type='submit' value='submit form' class='btn btn-default' />
 </form>
 
 {% endblock %}
