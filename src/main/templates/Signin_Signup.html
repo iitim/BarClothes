@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Login{% endblock %}</title>
+  <link href="{% static 'css/Signin-Signup.css' %}" rel="stylesheet">
+
+</head>
+<body>
+  <div class="image">
+
+    <img id=test style="margin-top: -350px" src="{% static 'img/BarC_Login.png' %}" alt="" />
+
+    <div class="onimage">
+      <header>
+ <!--        <h1 class="basic-font" style="color: White">Login Page</h1> -->
+        <a style="color: White">{% if user.is_authenticated %}
+          Hi {{ user.username }}!</a>
+          <a href="{% url 'logout' %}" style="color: White">logout</a>
+        {% else %}
+         <!--  <a href="{% url 'login' %}" style="color: White">Login | </a>
+          <a href="{% url 'signup' %}" style="color: White">Signup</a> -->
+        {% endif %}
+      </header>
+
+      <div class="center">
+       
+        <main style="color: White">
+          {% block content %}
+          {% endblock %}
+        </main>
+      </div>
+
+    </div>
+  </div>
+
+
+  <footer>
+   
+  </footer>
+</body>
+</html>
+
+<form method="post" action="{% url 'login' %}">

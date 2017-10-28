@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %} | Shop{% endblock %}
+{% block no_title_content %}{% endblock %}
+
+{% load staticfiles %}
+
+{% load static %}
+
+{% block stylesheet %}
+  <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+  <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+{% endblock %}
+
+{% block content %}
+
+  <div class="sidebar-page col-md-3" style="padding-left: 0px;">
+    <h3 style="margin-top: 40px;">Search</h3>
+     <div class="sidebar-list">
+    <form id="search" class="searchbar row" method="post">
+        <div style="margin-left: 36px; margin-top: 12px;">
+     
+          <p style="font-size: 18px; margin-top: 6px;" for="product_name">Product Name</p>
+          <input style="margin-top: -12px; width: 190px; border: none;
+    border-bottom: 1px solid #FFBC49;
+    background-color: #282626;
+    color: white;
+    font-size: 14px;
+     outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none !important;" type="text" name="product_name">
+          <br>
+          <p style="font-size: 18px; margin-top: 12px;" for="seller_name">Store</p>
+          <input style="margin-top: -12px; width: 190px; border: none;
+    border-bottom: 1px solid #FFBC49;
+    background-color: #282626;
+    color: white;
+    font-size: 14px;
+     outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none !important;" type="text" name="seller_name">
+          {% csrf_token %}
+          <input class="sent-button" style="margin-top: 25px; margin-left: 58px; margin-bottom: 15px;
+          font-family: 'Glacial Indifference';
+    font-size: 14px;
+    border-color: #FFBC49;
+    background-color: #282626;
+    color: #FFBC49 !important;
+
+    padding: 8px 16px;
+    border-radius: 10px;
+    margin-right: 60px;" type="submit" value="Search!">
+        </div>
+   
+    </form>
+    </div>
+
+    <p style="font-size: 24px; margin-top: 25px; margin-bottom: 16px;" class="sidebar-title">Shop by Category</p>
+    <div class="sidebar-list">
+      <a href="/shop"><p class="sidebar" style="font-size: 14px; height: 35px;">All</p></a>
+      <a href="/shop/top"><p class="sidebar" style="font-size: 14px; height: 35px;">Top</p></a>
+      <a href="/shop/jacket"><p class="sidebar" style="font-size: 14px; height: 35px;">Jacket </p></a>
+      <a href="/shop/dress"><p class="sidebar" style="font-size: 14px; height: 35px;">Dress </p></a>
+      <a href="/shop/skirt"><p class="sidebar" style="font-size: 14px; height: 35px;">Skirt </p></a>
+      <a href="/shop/pants"><p class="sidebar" style="font-size: 14px; height: 35px;">Pants </p></a>
+      <a href="/shop/shorts"><p class="sidebar" style="font-size: 14px; height: 35px;">Shorts </p></a>
+      <a href="/shop/t-shirt"><p class="sidebar" style="font-size: 14px; height: 35px;">T-shirt </p></a>
+      <a href="/shop/suits"><p class="sidebar" style="font-size: 14px; height: 35px;">Suits </p></a>
+      <a href="/shop/bag"><p class="sidebar" style="font-size: 14px; height: 35px;">Bag </p></a>
+      <a href="/shop/shoes"><p class="sidebar" style="font-size: 14px; height: 35px;">Shoes </p></a>
+      <a href="/shop/accessory"><p class="sidebar" style="font-size: 14px; height: 35px;">Accessory </p></a>
+    </div>
+  </div>
+
+
+  <div class="product-page col-md-9">
+    <form class="sortbar row" method="post" >
+      <label for="sort" style="font-size: 16px;">Sort By :  </label>
+      <select style="border: 1px 
+                     solid #FFBC49 !important;
+                     background: #282626 !important;
+                     width: 150px; 
+                     color: white;
+                     font-size: 16px;" 
+              form="search" name="sort">
+        <option  value="late">Latest date first</option>
+        <option  value="old">Oldest date first</option>
+        <option value="low">Lowest price first</option>
+        <option value="high">Highest price first</option>
+      </select>
+
+
+
+    </form>
+    <div class="product-row row">
+      {% for product in all_product %}
+        <div class="product col-md-4">
+          <div class="product-image">
+            <span class="helper"></span><img src="/media/{{product.picture_path}}">
+          </div>
+          <div class="product-text">
+            <div class="product-title"><b>{{product.name}}</b></div>
+            <div class="product-detail">
+              <div class="product-date">{{product.create_date|date:"d M Y"}}</div>
+              <div class="product-price">{{product.price|floatformat:2}} ฿</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="paging">
+    <div class="col-md-6">
+      {% if previous_page > 0 %}
+        <a href="/shop{{type}}/{{previous_page}}"><img src="{% static 'img/Previous-page.png' %}"></a>
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      {% if is_last_page %}
+        <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

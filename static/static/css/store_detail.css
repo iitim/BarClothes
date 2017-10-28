@@ -1,0 +1,47 @@
+.storedetail-storeprofile{
+    margin-bottom: 100px;
+}
+.storedetail-storepic{
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50%;
+}
+.storedetail-storeinfo h5, .storedetail-storeinfo p{
+    font-size: 18px;
+    display: inline;
+}
+.storedetail-storeinfo h5{
+    color: #ffbc49;
+}
+
+.storedetail-search{
+    text-align: right;
+    margin-bottom: 50px;
+}
+
+select.storedetail-dropdown{
+    /*color: #fff;
+    margin: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 1px solid #ffbc49;
+    background: #282626;*/
+
+   border: 1px solid #FFBC49 !important;
+   background: #282626 !important;
+   width: 100px; 
+   font-size: 14px;  
+}
+
+.storedetail-productblock{
+    margin-bottom: 50px;
+}
+.storedetail-productpicblock{
+    height: 266px;
+    margin-bottom: 10px;
+}
+.storedetail-productpic{
+    max-width: 214px;
+    max-height: 266px;
+}
+
