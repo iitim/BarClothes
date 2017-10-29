@@ -13,18 +13,18 @@ from .forms import top_up_form
 def activate_store(request):
     user = request.user
     user_extend = UserExtendData.objects.get(user_id=user.pk)
-    expire_date = user_extend.expire_date
+    expire_date = user_extend.selling_expire_date
     context = locals()
-    if first_time():
+    if user_extend.first_time():
         user_extend.free_trial_status = 0;
         template = 'my_store_first_time.html'
         return render(request, template, context)
     else:
-        if can_sell():
-            template = 'my_store_expired.html'
+        if user_extend.can_sell():
+            template = "{% url 'store' %}"
             return render(request, template, context)
         else:
-            template = 'store.html'
+            template = 'my_store_expired.html'
             return render(request, template, context)
 
 @login_required

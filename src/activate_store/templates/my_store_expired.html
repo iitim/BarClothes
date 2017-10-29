@@ -5,11 +5,16 @@
 <!-- CSS paste here-->
 {% endblock %}
 
+{% block no_title_content %}
+{% block no_title_content2 %}
+{% endblock %}
+{% endblock %}
+
 {% block content %}
 <div align="center">
     <h3>Your store is out of date.</h3>
   <div>
-    <h2><a href="/profiles/top_up"><u>Renew your store!</a></u></h2>
+    <h2><a href="/activate_store/top_up"><u>Renew your store!</a></u></h2>
   </div>
 </div>
 {% csrf_token %}
