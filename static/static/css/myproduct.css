@@ -72,6 +72,57 @@ input[name=name]{
   transition: .3s ease;
 }
 
+/* tags */
+input[type=search]{
+  color: #ffffff;
+}
+
+.select2-container--default .select2-selection--multiple{
+  width: 100px;
+  max-height: 100px;
+  overflow: overlay;
+  background-color: rgba(0, 0, 0, 0); 
+  border-color: #ffbc49;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+  color: #ffffff;
+  border: #ffbc49;
+  background-color: #ffbc49;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+  color: #282626;
+}
+
+.select2-container{
+  width: 200px;
+  color: #ffbc49;
+}
+
+/* scrollbar */
+.select2-container--default .select2-selection--multiple::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.select2-container--default .select2-selection--multiple::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+.select2-container--default .select2-selection--multiple::-webkit-scrollbar-thumb
+{
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.3);
+	background-color: #555;
+}
+
+
+/* remove blue text */
 a[name=black], a[name=black]:hover, a[name=black]:focus{
   color:#282626;
 }

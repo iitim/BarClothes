@@ -3,6 +3,7 @@
 
 {% block title %} | new product{% endblock %}
 {% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/select2.css' %}">
     <link rel="stylesheet" href="{% static 'css/myproduct.css' %}">
     <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
 {% endblock %}
@@ -41,7 +42,15 @@
             </div>
             <div class="col-md-6 input-column">
                 <div class="col-sm-3"><p class="head">Tag</p></div>
-                <div class="col-sm-9"><p class="normal">{{form.tags}}</p></div>
+                <div class="col-sm-9">
+                    <p class="normal"> 
+                        <select class="js-example-basic-multiple" id="id_tags" name="tags" multiple="multiple">
+                            {% for tag in form.tags %}
+                                {{tag}}
+                            {% endfor %}
+                        </select>
+                    </p>
+                </div>
             </div>
             <div class="col-md-6 input-column">
                 <div class="col-sm-3"><p class="head">Image</p></div>
@@ -59,4 +68,17 @@
         </div>
         
 </form>
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2();
+        });
+    </script>
+    <script src="{% static 'javascript/selectize.js' %}"></script>
+    <script src="{% static 'javascript/select2.js' %}"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/highlight.min.js"></script> -->
 {% endblock %}
