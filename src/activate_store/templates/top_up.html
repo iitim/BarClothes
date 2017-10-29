@@ -5,10 +5,11 @@
 <!-- CSS paste here-->
 {% endblock %}
 
-{% block content %}
-<div align="left">
-<h1>Top Up</h1><hr>
-</div>
+
+
+
+{% block title_content1 %}Top Up{% endblock %}
+{% block content1 %}
 <div align="center">
   <form action= "store/" method="post" enctype="multipart/form-data">{% csrf_token %}
     {% for field in form %}
@@ -23,4 +24,6 @@
   </form>
 </div>
 {% csrf_token %}
+{% endblock %}
+{% block no_title_content2 %}
 {% endblock %}
