@@ -38,6 +38,7 @@ class UserExtendData(models.Model):
     tel_no = models.CharField(max_length=45)
     picture = models.ImageField(upload_to='user_pic/', default = 'product_pic/catalog-minimize.jpg')
     selling_expire_date = models.DateTimeField(default=datetime.now)
+    free_trial_status = models.IntegerField(default = '1')
 
     def get_image_path(self):
         return "/media/" + self.picture.__str__()
@@ -47,6 +48,9 @@ class UserExtendData(models.Model):
 
     image.short_description = 'Image'
     image.allow_tags = True
+
+    def first_time(self):
+        return self.free_trial_status
 
     def can_sell(self):
         now = timezone.now()

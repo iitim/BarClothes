@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'catalog',
     'product',
     'store',
-    'myproduct'
+    'myproduct',
+    'activate_store'
 ]
 
 MIDDLEWARE = [
