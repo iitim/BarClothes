@@ -39,6 +39,7 @@ select, select:focus, select:hover{
   color: white;
   border-color: #ffbc49;
   width: 100px;
+  border-radius: 4px;
 }
 
 option:hover{
