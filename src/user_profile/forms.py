@@ -1,62 +1,70 @@
 from django import forms
-from django.forms import ModelForm,TextInput
-from main.models import UserExtendData
+from django.forms import ModelForm,TextInput,FileInput
 from django.contrib.auth.models import User
+from main.models import UserExtendData 
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
 
+from main.models import UserExtendData
+
 # Create the form class.
 class EditProfileForm(forms.ModelForm):
-    address = forms.CharField(
-        max_length=1000,
+    # first_name = forms.CharField(max_length=30)
+    # last_name = forms.CharField(max_length=30)
+    # email = forms.EmailField(max_length=254, )
+    # phone_num = forms.CharField(max_length=30)
+
+    first_name = forms.CharField(
+        max_length=30,
             widget = forms.TextInput(
                 attrs = {
-                    'class': 'input-edit-text-3', 
-                    'type': 'text'
+                    'class': 'input-edit-text2', 
+                    'type': 'text',
+                    'value' : "{{ user.first_name }}"
                 }
             )
     )
-    tel_no = forms.CharField(
-        max_length=45,
+    last_name = forms.CharField(
+        max_length=30,
         widget = forms.TextInput(
             attrs = {
-                'class': 'input-edit-text-1', 
-                'type': 'text'
+                'class': 'input-edit-text2', 
+                'type': 'text',
+                'value' : '{{ user.last_name }}'
             }
         )
     )
-    id_num = forms.CharField(
-        max_length=13,
+    email = forms.CharField(
+        max_length=254,
+        help_text='Required. Inform a valid email address.',
         widget = forms.TextInput(
             attrs = {
-                'class': 'input-edit-text5', 
-                'type': 'tel'
+                'class': 'input-edit-text4', 
+                'type': 'tel',
+                'value' : '{{ user.email }}'
             }
         )
     )
+
 
     class Meta:
-        model = User
-        user = get_user_model()
-        fields = ['username','first_name','last_name','email']
+        model = UserExtendData
+        # user = get_user_model()
+        fields = ('address', 'tel_no', 'picture')
         widgets = {
-            'username': TextInput(attrs= {
-                'class': 'input-edit-text-1', 
-                'type': 'text',
-                # 'placeholder':  user.username
-            }),
-
-            'first_name': TextInput(attrs={
-                'class': 'input-edit-text2', 
+            'address': TextInput(attrs={
+                'class': 'input-edit-text-3', 
                 'type': 'text',
                 # 'value': 'user.first_name'
             }),
-            'last_name': TextInput(attrs={
-                'class': "input-edit-text2", 
+            'tel_no': TextInput(attrs={
+                'class': 'input-edit-text-1', 
                 'type': 'text',
+                # 'value': 'user.first_name'
             }),
-            'email': TextInput(attrs={
-                'class': 'input-edit-text4',
-                'type': 'email',
+                        
+            'picture': FileInput(attrs={
+                'class' : "edit-pic",
+                'type' : "file",
             }),
         }

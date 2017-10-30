@@ -1,0 +1,18 @@
+.bs-example{
+    margin: auto;
+    max-width: 1024px;
+}
+.carousel{
+    background: #cf952d;
+}
+.carousel .item{
+    max-height: 200px;
+}
+.carousel .item img{
+    margin: 0 auto;
+}
+.carousel-inner{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}

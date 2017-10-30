@@ -22,7 +22,7 @@ class CanSellFilter(admin.SimpleListFilter):
             return queryset.filter(selling_expire_date__lte=now)
 
 class UserExtendDataAdmin(admin.ModelAdmin):
-    list_display = ('user','can_sell', 'tel_no', 'selling_expire_date',)
+    list_display = ('user', 'image','can_sell', 'tel_no', 'selling_expire_date',)
     list_filter = ( CanSellFilter,)
     search_fields = ['user__username']
 
@@ -30,7 +30,7 @@ admin.site.register(UserExtendData, UserExtendDataAdmin)
 
 class ProductAdmin(admin.ModelAdmin):
     date_hierarchy = 'create_date'
-    list_display = ('name', 'type', 'create_date', 'price','amount','sold','remain','seller',)
+    list_display = ('name','image', 'type', 'create_date', 'price','amount','sold','remain','seller',)
     search_fields = ['name', 'seller__user__username', 'tags__name']
     list_filter = ('type', 'tags',)
 
@@ -65,9 +65,9 @@ class TransactionLogAdmin(admin.ModelAdmin):
 
 admin.site.register(TransactionLog, TransactionLogAdmin)
 
-# class TopUpAdmin(admin.ModelAdmin):
-#     date_hierarchy = 'top_up_date'
-#     list_display = ('user', 'top_up_date', 'price',)
-#     search_fields = ['user__username']
+class TopUpAdmin(admin.ModelAdmin):
+    date_hierarchy = 'top_up_date'
+    list_display = ('user', 'top_up_date', 'price',)
+    search_fields = ['user__username']
 
-# admin.site.register(TopUp,TopUpAdmin )
+admin.site.register(TopUp,TopUpAdmin )
