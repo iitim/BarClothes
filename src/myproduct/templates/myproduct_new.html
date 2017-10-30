@@ -15,7 +15,7 @@
         {{form.errors}}
         <div class="form-group" style="margin-top:-70px">
             <h1 class="text-head1" style="bottom:115px; margin-right:700px">
-                <div class="col-sm-6 input-column">
+                <div class="col-sm-6">
                     {% if last_name == None %}
                     <input name="name" id="name" class="form-main" type="text" value required placeholder="Name : max 45 char"/>
                     {% else %}
@@ -25,36 +25,46 @@
             </h1>
         </div>
         <div class="container">
-            <div class="col-md-6 input-column">
-                <img src="{% static 'img/Header1-Logo.png' %}" class="picture-preview" />
-            </div>
-            <div class="col-md-6 input-column">
-                <div class="col-sm-3"><p class="head">Type</p></div>
-                <div class="col-sm-9"><p class="normal">{{form.type}}</p></div>
-            </div>
-            <div class="col-md-6 input-column">
-                <div class="col-sm-3"><p class="head">Price</p></div>
-                <div class="col-sm-9"><p class="normal">{{form.price}}</p></div>
-            </div>
-            <div class="col-md-6 input-column">
-                <div class="col-sm-3"><p class="head">Amount</p></div>
-                <div class="col-sm-9"><p class="normal">{{form.amount}}</p></div>
-            </div>
-            <div class="col-md-6 input-column">
-                <div class="col-sm-3"><p class="head">Tag</p></div>
-                <div class="col-sm-9">
-                    <p class="normal"> 
-                        <select class="js-example-basic-multiple" id="id_tags" name="tags" multiple="multiple">
-                            {% for tag in form.tags %}
-                                {{tag}}
-                            {% endfor %}
-                        </select>
-                    </p>
+            <div class="col-md-6" style="bottom: 50px;">
+                <div class="preview img-wrapper"></div>
+                <div class="file-upload-wrapper">
+                        <input type="file" name="picture_path" id="id_picture_path" class="file-upload-native" accept="image/*" />
+                        <input type="text" disabled placeholder="upload image" class="file-upload-text" />
                 </div>
             </div>
-            <div class="col-md-6 input-column">
-                <div class="col-sm-3"><p class="head">Image</p></div>
-                <div class="col-sm-9"><p class="normal">{{form.picture_path}}</p></div>
+            <div class="col-md-6">
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Type</p></div>
+                    <div class="col-sm-9">
+                        <p class="normal">
+                            <select class="js-example-basic-single" id="id_type" name="type">
+                                {% for type in form.type %}
+                                    {{type}}
+                                {% endfor %}
+                            </select>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Price</p></div>
+                    <div class="col-sm-9"><p class="normal">{{form.price}}</p></div>
+                </div>
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Amount</p></div>
+                    <div class="col-sm-9"><p class="normal">{{form.amount}}</p></div>
+                </div>
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Tag</p></div>
+                    <div class="col-sm-9">
+                        <p class="normal"> 
+                            <select class="js-example-basic-multiple" id="id_tags" name="tags" multiple="multiple">
+                                {% for tag in form.tags %}
+                                    {{tag}}
+                                {% endfor %}
+                            </select>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-12">
@@ -66,19 +76,17 @@
         <div class="col-md-12">
             <input type="submit" class="btn btn-warning" value="Submit" />
         </div>
-        
 </form>
 {% endblock %}
 
 {% block script %}
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-        });
-    </script>
-    <script src="{% static 'javascript/selectize.js' %}"></script>
     <script src="{% static 'javascript/select2.js' %}"></script>
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.3/highlight.min.js"></script> -->
+    <script src="{% static 'javascript/myproduct.upload_pic.js' %}"></script>
+{% endblock %}
+
+{% block jquery %}
+    $('.js-example-basic-multiple').select2({
+        placeholder: 'Select a tag...',
+      });
+    $('.js-example-basic-single').select2();
 {% endblock %}

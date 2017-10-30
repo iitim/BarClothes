@@ -18,7 +18,7 @@
     font-size: 24px;
     color: #ffbc49;
     text-align: left;
-    padding: 0 15px;
+    /* padding: 0 15px; */
 }
 
 .head-detail{
@@ -81,7 +81,7 @@ input[name=buy]{
 
 .get-it{
     float: right;
-    bottom: 35px;
+    bottom: 100px;
     position: relative;
     margin: 0 10px;
 }
