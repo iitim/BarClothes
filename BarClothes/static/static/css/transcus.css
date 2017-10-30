@@ -42,130 +42,20 @@ ul.dropdown-menu {
 
 }
 
-button.delivery_order_button{
-  border: 1px solid #FFBC49 !important;
-  background: #282626 !important;
-  color: white !important;
-  font-size: 18px;
+button.cancel_order_button{
+	font-family: 'Glacial Indifference';
+	font-size: 10px;
+	border-color: #FFBC49;
+	background-color: #282626;
+	color: #FFBC49 !important;
+	margin-top: 10px;
+	padding: 2px 5px;
+	border-radius: 24px;
+	margin-right: 10px;
+	display: box;
+	box-align: end;
 
-
 }
-
-
-/*#cssmenu {
-  width: auto;
-  border: 1px solid #b9121b;
-  background: #b9121b;
-}
-#cssmenu > ul {
-  padding: 1px 0;
-  margin: 0px;
-  list-style: none;
-  width: 100%;
-  height: 21px;
-  border-top: 1px solid #FFFFFF;
-  border-bottom: 1px solid #FFFFFF;
-  font: normal 8pt verdana, arial, helvetica;
-}
-#cssmenu > ul li {
-  margin: 0;
-  padding: 0;
-  display: block;
-  float: left;
-  position: relative;
-  width: 148px;
-}
-#cssmenu > ul li a:link,
-#cssmenu > ul li a:visited {
-  padding: 4px 0;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  background: #b9121b;
-  color: #ffffff;
-  width: 148px;
-}
-#cssmenu > ul li:hover a,
-#cssmenu > ul li a:hover,
-#cssmenu > ul li a:active {
-  padding: 4px 0;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  background: #eb2d37;
-  color: #ffffff;
-  width: 146px;
-  border-left: 1px solid #ffffff;
-  border-right: 1px solid #ffffff;
-}
-#cssmenu > ul li ul {
-  margin: 0;
-  padding: 1px 1px 0;
-  list-style: none;
-  display: none;
-  background: #ffffff;
-  width: 146px;
-  position: absolute;
-  top: 21px;
-  left: -1px;
-  border: 1px solid #b9121b;
-  border-top: none;
-}
-#cssmenu > ul li:hover ul {
-  display: block;
-}
-#cssmenu > ul li ul li {
-  clear: left;
-  width: 146px;
-}
-#cssmenu > ul li ul li a:link,
-#cssmenu > ul li ul li a:visited {
-  clear: left;
-  background: #b9121b;
-  padding: 4px 0;
-  width: 146px;
-  border: none;
-  border-bottom: 1px solid #ffffff;
-  position: relative;
-  z-index: 1000;
-}
-#cssmenu > ul li ul li:hover a,
-#cssmenu > ul li ul li a:active,
-#cssmenu > ul li ul li a:hover {
-  clear: left;
-  background: #eb2d37;
-  padding: 4px 0;
-  width: 146px;
-  border: none;
-  border-bottom: 1px solid #ffffff;
-  position: relative;
-  z-index: 1000;
-}
-#cssmenu > ul li ul li ul.navigation-3 {
-  display: none;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  position: absolute;
-  left: 145px;
-  top: -2px;
-  padding: 1px 1px 0 1px;
-  border: 1px solid #b9121b;
-  border-left: 1px solid #b9121b;
-  background: #ffffff;
-  z-index: 900;
-}
-#cssmenu > ul li ul li:hover ul.navigation-3 {
-  display: block;
-}
-#cssmenu > ul li ul li ul.navigation-3 li a:link,
-#cssmenu > ul li ul li ul.navigation-3 li a:visited {
-  background: #b9121b;
-}
-*/
-
-
-
 
 button.sent-button {
 	font-family: 'Glacial Indifference';
