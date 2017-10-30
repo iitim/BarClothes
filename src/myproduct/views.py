@@ -62,4 +62,4 @@ def product_delete(request, num):
                 Product.objects.filter(pk=num).delete()
                 return redirect('home')
             return render(request, 'myproduct_delete.html', 
-            {'form': form, 'product' : product, 'transections' : transactions, 'status' : status,})
+            {'form': form, 'product' : product, 'transactions' : transactions, 'status' : status,})
