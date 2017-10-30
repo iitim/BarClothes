@@ -48,22 +48,32 @@ def profile(request):
     initial_data = {
         'tel_no' : user_extend.tel_no,
         'address' : user_extend.address,
-        'id_num' : user_extend.id_num
+        # 'id_num' : user_extend.id_num
+        'first_name' : user.first_name,
+        'last_name' : user.last_name,
+        'email' : user.email,
+        # 'phone_num' : user.phone_num
     }
-    edit_profile_form = EditProfileForm(instance=user, initial=initial_data)
+    edit_profile_form = EditProfileForm(instance=user_extend, initial=initial_data)
+    # edit_profile_form = EditProfileForm(instance=user_extend)
     
     if request.method == 'POST':
-        edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
+        # print('eeieieie')
+        edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user_extend, initial=initial_data)
         if edit_profile_form.is_valid():
             post = edit_profile_form.save()
             tel_no = edit_profile_form.cleaned_data.get('tel_no')
             address = edit_profile_form.cleaned_data.get('address')
-            id_num = edit_profile_form.cleaned_data.get('id_num')
-
+            first_name = edit_profile_form.cleaned_data.get('first_name')
+            last_name = edit_profile_form.cleaned_data.get('last_name')
             user_extend.address = address
             user_extend.tel_no = tel_no
-            user_extend.id_num = id_num
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
             user_extend.save()
+            edit_profile_form.save()
+            # print(user.first_name)
             return redirect(reverse('user_profile:profile'))
         else:
             print(edit_profile_form.errors)

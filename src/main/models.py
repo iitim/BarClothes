@@ -36,7 +36,7 @@ class UserExtendData(models.Model):
     id_num = models.CharField(max_length=13)
     address = models.CharField(max_length=1000)
     tel_no = models.CharField(max_length=45)
-    picture = models.ImageField(upload_to='user_pic/', default = 'product_pic/catalog-minimize.jpg')
+    picture = models.ImageField(upload_to='user_pic/', default = 'user_pic/icon.png')
     selling_expire_date = models.DateTimeField(default=datetime.now)
 
     def get_image_path(self):
