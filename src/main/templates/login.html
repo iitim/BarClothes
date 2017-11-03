@@ -4,15 +4,21 @@
 
 <form method="post" action="{% url 'login' %}">  
 {% block content %}
-  <p class="Customer">Login</p>
-   <form method="post">
+<!--   <p class="Customer">Login</p> -->
+   <form method="post" style="margin-top: -430px">
   	<a id=Customer style="color: black;" >
 	    {% csrf_token %}
 	    {{ form.as_p }}
 	</a>
-    <button type="submit" ip=b_change >Login</button>
+	{% if user.is_authenticated %}	  
+    {% else %}
+       <a href="{% url 'login' %}" style="color: Black">If you don't have user account, </a>
+       <a href="{% url 'signup' %}" style="color: Blue">Signup</a>
+    {% endif %}
+
+  	<p style="margin-top: 30px"><button type="submit" ip=b_change >SUBMIT</button></p>
   </form>
+ 
 </form>  
-  <a id=Customer href="{% url 'signup' %}">Signup</a>
 
 {% endblock %}

@@ -20,7 +20,7 @@ from django.contrib import admin
 from signup import views as signup_views
 from main import views
 from django.contrib.auth import views as auth_views
-from django.views.generic.base import TemplateView
+# from django.views.generic.base import TemplateView
 
 # from profile import views as profiles_views
 # from about import views as about_views

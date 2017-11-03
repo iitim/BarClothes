@@ -9,9 +9,22 @@ body {
     -o-background-size: cover;
 }
 
+.errorlist,
+.nonfield{
+
+  margin-top: -100px;
+  font-size: smaller;
+  word-wrap:break-word;
+  width: 30em;
+  margin-left: 480px;
+  color: red;
+  margin-bottom: 10px;
+
+}
+
 a:link{
 	text-decoration: none;
-    color: white; 
+    color: white;
     font-size: 16px;
     font-family: 'Glacial Indifference';
 }
@@ -25,6 +38,7 @@ p.Customer{
 	font-size: 28px;
 	font-family: 'GlacialIndifference-Bold';
 	src: url('GlacialIndifference-Bold.eot');
+
 }
 
 button[type="submit"] {
@@ -33,7 +47,7 @@ button[type="submit"] {
 	border-color: #FFBC49;
 	border-radius: 10px;
 	padding: 0 8px;
-	color: black; 
+	color: black;
 	outline: none;
 	-webkit-box-shadow: 0 0 0 30px #FFBC49 inset;
 	margin-bottom:10px;
@@ -41,7 +55,7 @@ button[type="submit"] {
 
 
 .Customer{
-	 color: black; 
+	 color: black;
 }
 
 #id_username{
@@ -67,21 +81,21 @@ button[type="submit"] {
   outline: none;
   -webkit-box-shadow: 0 0 0 30px white inset;
   margin-bottom:10px;
-	
+
 }
 
-.image { 
-   position: relative; 
+.image {
+   position: relative;
    width: 100%; /* for IE 6 */
    padding: 70px 0;
    text-align: center;
 }
 
-.onimage { 
-   position: absolute; 
-   top: 200px; 
-   left: 0; 
-   width: 100%; 
+.onimage {
+   position: absolute;
+   top: 200px;
+   left: 0;
+   width: 100%;
 }
 
 h1.basic-font{
@@ -94,31 +108,32 @@ h1.basic-font{
 
 .invisible-button {
 	background-color: Transparent;
-	position: relative; 
+	position: relative;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
     outline:none;
     padding: 23px 100px;
-    top: -25px; 
-    left: 235px; 
+    top: -25px;
+    left: 235px;
     border: -10px solid green;
 }
 
 .invisible-button_right{
 	background-color: Transparent;
-	position: relative; 
+	position: relative;
     background-repeat:no-repeat;
     border: none;
     cursor:pointer;
     overflow: hidden;
     outline:none;
     padding: 23px 100px;
-    top: -25px; 
-    right: 205px; 
+    top: -25px;
+    right: 205px;
     border: -10px solid green;
 }
+
 
 body {
   margin-top: 400px;
@@ -128,7 +143,6 @@ body {
 @font-face {
     font-family: 'Glacial Indifference';
     src: url('GlacialIndifference-Italic.eot');
-    
-}
 
+}
 
