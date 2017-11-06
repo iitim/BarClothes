@@ -11,11 +11,11 @@ def store(request):
 
 def store_detail(request, num):
     try :
-        store_extend = UserExtendData.objects.get(id_num=num)
+        store_extend = UserExtendData.objects.get(pk=num)
     except UserExtendData.DoesNotExist:
-        return redirect('store:detail', 65543453)
+        return redirect('store:store')
     # ใช้ข้างล่างก็พอ
-    store_extend = get_object_or_404(UserExtendData, id_num=num)
+    store_extend = get_object_or_404(UserExtendData, pk=num)
     store = store_extend.user
     products = store_extend.product_set.all()
 
