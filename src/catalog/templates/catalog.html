@@ -68,15 +68,44 @@
     </div>
   </div>
   <div class="paging">
-    <div class="col-md-6">
-      {% if previous_page > 0 %}
-        <a href="/shop{{type}}/{{previous_page}}"><img src="{% static 'img/Previous-page.png' %}"></a>
+    {% if page >= 1 and  page <= last_page %}
+      {% if page|add:'-1' > 0 %}
+        <a href="/shop{{type}}/{{page|add:'-1'}}"><img src="{% static 'img/Previous-page.png' %}"></a><span> </span>
       {% endif %}
-    </div>
-    <div class="col-md-6">
-      {% if not is_last_page %}
-        <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
+      {% if page|add:'-4' >= 1 %}
+        <a href="/shop{{type}}/1">1</a><span> </span>
       {% endif %}
-    </div>
+      {% if page|add:'-5' >= 1 %}
+        <span>... </span>
+      {% endif %}
+      {% if page|add:'-3' >= 1 %}
+        <a href="/shop{{type}}/{{page|add:'-3'}}">{{page|add:'-3'}}</a><span> </span>
+      {% endif %}
+      {% if page|add:'-2' >= 1 %}
+        <a href="/shop{{type}}/{{page|add:'-2'}}">{{page|add:'-2'}}</a><span> </span>
+      {% endif %}
+      {% if page|add:'-1' >= 1 %}
+        <a href="/shop{{type}}/{{page|add:'-1'}}">{{page|add:'-1'}}</a><span> </span>
+      {% endif %}
+        <span>{{page}} </span>
+      {% if page|add:'1' <= last_page %}
+        <a href="/shop{{type}}/{{page|add:'1'}}">{{page|add:'1'}}</a><span> </span>
+      {% endif %}
+      {% if page|add:'2' <= last_page %}
+        <a href="/shop{{type}}/{{page|add:'2'}}">{{page|add:'2'}}</a><span> </span>
+      {% endif %}
+      {% if page|add:'3' <= last_page %}
+        <a href="/shop{{type}}/{{page|add:'3'}}">{{page|add:'3'}}</a><span> </span>
+      {% endif %}
+      {% if page|add:'5' <= last_page %}
+        <span>... </span>
+      {% endif %}
+      {% if page|add:'4' <= last_page %}
+        <a href="/shop{{type}}/{{last_page}}">{{last_page}}</a><span> </span>
+      {% endif %}
+      {% if page|add:'1' <= last_page %}
+        <a href="/shop{{type}}/{{page|add:'1'}}"><img src="{% static 'img/Next-page.png' %}"></a>
+      {% endif %}
+    {% endif %}
   </div>
 {% endblock %}

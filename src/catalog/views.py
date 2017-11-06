@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.models import User
-from .models import Product , UserExtendData
+from .models import *
 
 def home(request):
     context = locals()
@@ -26,16 +26,26 @@ def filter(request, product_type, num):
         else :
             product = Product.objects.order_by('-price')
         product = product.filter(type=product_type, seller__in=user_extend_data_list, name__icontains=request.POST['product_name'])[first_product:last_product+1]
+        all_product_length = product.filter(type=product_type, seller__in=user_extend_data_list, name__icontains=request.POST['product_name']).count()
     else :
         product = Product.objects.order_by('-create_date').filter(type=product_type)[first_product:last_product+1]
+        all_product_length = Product.objects.order_by('-create_date').filter(type=product_type).count()
+    if all_product_length == 0 :
+        last_page = 0
+    else :
+        last_page = all_product_length/18 + 1
     if len(product) < 19 :
         is_last_page = True
     product = product[0:18]
+    for choice in PRODUCT_TYPE_CHOICES :
+        if choice[0] == product_type :
+            real_product_type = choice[1]
+    print(real_product_type)
+    print(PRODUCT_TYPE_CHOICES[0][1])
     context = {
-        'type': '/' + product_type,
-        'previous_page': page-1,
-        'next_page': page+1,
-        'is_last_page': is_last_page,
+        'type': '/' + real_product_type,
+        'page': page,
+        'last_page': last_page,
         'all_product': product
     }
     return context
@@ -60,16 +70,21 @@ def catalog(request, num="1"):
         else :
             product = Product.objects.order_by('-price')
         product = product.filter(seller__in=user_extend_data_list, name__icontains=request.POST['product_name'])[first_product:last_product+1]
+        all_product_length = product.filter(seller__in=user_extend_data_list, name__icontains=request.POST['product_name']).count()
     else :
         product = Product.objects.order_by('-create_date')[first_product:last_product+1]
+        all_product_length = Product.objects.order_by('-create_date').count()
+    if all_product_length == 0 :
+        last_page = 0
+    else :
+        last_page = all_product_length/18 + 1
     if len(product) < 19 :
         is_last_page = True
     product = product[0:18]
     context = {
         'type': '',
-        'previous_page': page-1,
-        'next_page': page+1,
-        'is_last_page': is_last_page,
+        'page': page,
+        'last_page': last_page,
         'all_product': product
     }
     template = 'catalog.html'
