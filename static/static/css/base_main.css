@@ -140,3 +140,11 @@ footer{
 	margin-top: 70px;
 	margin-bottom: 50px;
 }
+
+.overflow{
+	overflow: hidden;
+    max-width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-flex;
+}
