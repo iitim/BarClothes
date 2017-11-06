@@ -30,7 +30,13 @@
                 <p class="textN-delivery-order">Amount: {{ tranact.amount }}</p>
                 <p class="textN-delivery-order">฿ {{ tranact.total_price}}</p>
                 <p class="textN-delivery-order">Slip</p>
+
+                <!-- <form action="{% url 'transaction:transcus' %}" method="post" enctype="multipart/form-data"> -->
+                  <!-- {% csrf_token %} -->
+                  <!-- {{ form.payment_picture }} -->
                 <button class="sent-button" type="file" ip=Sent name="pic" accept="image/*">Upload</button>
+                  <!-- <button class="sent-button" type="submit">Submit</button> -->
+                <!-- </form> -->
                 {% if tranact.payment_picture %}
                   <p style="text-align: left">{{ tranact.payment_picture }}</p>
                 {% else %}
