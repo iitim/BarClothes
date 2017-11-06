@@ -74,7 +74,7 @@
       {% endif %}
     </div>
     <div class="col-md-6">
-      {% if is_last_page %}
+      {% if not is_last_page %}
         <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
       {% endif %}
     </div>

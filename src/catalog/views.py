@@ -28,9 +28,9 @@ def filter(request, product_type, num):
         product = product.filter(type=product_type, seller__in=user_extend_data_list, name__icontains=request.POST['product_name'])[first_product:last_product+1]
     else :
         product = Product.objects.order_by('-create_date').filter(type=product_type)[first_product:last_product+1]
-    if product[last_product:last_product+1] == None :
+    if len(product) < 19 :
         is_last_page = True
-    product = product[first_product:last_product]
+    product = product[0:18]
     context = {
         'type': '/' + product_type,
         'previous_page': page-1,
@@ -62,9 +62,9 @@ def catalog(request, num="1"):
         product = product.filter(seller__in=user_extend_data_list, name__icontains=request.POST['product_name'])[first_product:last_product+1]
     else :
         product = Product.objects.order_by('-create_date')[first_product:last_product+1]
-    if product[last_product:last_product+1] == None :
+    if len(product) < 19 :
         is_last_page = True
-    product = product[first_product:last_product]
+    product = product[0:18]
     context = {
         'type': '',
         'previous_page': page-1,
