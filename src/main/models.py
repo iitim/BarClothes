@@ -29,6 +29,12 @@ TRANSACTION_STATUS_CHOICES = (
     ('sns', 'seller_not_sent_product'),
 )
 
+TOPUP_STATUS_CHOICES = (
+    ('w', 'wait_for_check'),
+    ('s', 'success'),
+    ('f', 'fail'),
+)
+
 
 
 class UserExtendData(models.Model):
@@ -38,6 +44,7 @@ class UserExtendData(models.Model):
     tel_no = models.CharField(max_length=45)
     picture = models.ImageField(upload_to='user_pic/', default = 'user_pic/icon.png')
     selling_expire_date = models.DateTimeField(default=datetime.now)
+    bank_account = models.CharField(max_length=200, default='', blank=True)
 
     def get_image_path(self):
         return "/media/" + self.picture.__str__()
@@ -142,4 +149,6 @@ class TopUp(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     slip_pic = models.ImageField(upload_to='slip_pic/', blank=True)
     price = models.FloatField(default=0)
+    status = models.CharField(max_length=1, choices=TOPUP_STATUS_CHOICES, default='w')
     top_up_date = models.DateTimeField(default=datetime.now)
+
