@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-<!-- {% load profile_filter %} -->
 
 <title>{% block title %}Profile{% endblock %}</title>
 
@@ -13,7 +12,7 @@
 {% block content1 %}
 <body class="profile">	
 	<div class="container-fluid">
-		<form action="{% url 'user_profile:profile' %}" method="POST">
+		<form action="{% url 'user_profile:profile' %}" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="profile-page">
 				<div class="row">
@@ -21,26 +20,26 @@
 						<div class="edit-profile">
 							<div class="show">
 								<div class="image-profile">
-									<img src="{% static 'img/icon.png'%}" class="profile-pic">
+									<img src="/media/{{user_extend.picture}}" class="profile-pic"/>
 								</div>
 								<div class="pic-edit">
-									<input type="file" accept="image/*" name="pic-input" class="edit-pic">
-								</div>
-								{% comment %} <div class="goto_change_pwd">
-									<a href="{% url 'user_profile:change_password' %}" class="btn btn-default">Change Password</a>
-								</div> {% endcomment %}
+									{{ user_extend.picture}}	
+									{{edit_profile_form.picture}}
+								</div>					
 							</div>
 						</div>
 					</div>
 
 					<div class="col-md-6">
 						<div class="edit-text">
-							<div class="edit-text-div">
-								{{ edit_profile_form.username.errors }}
-								<span class="fix-edit-text">Username</span>
-								<div class="edit-input-text">
-									{{ edit_profile_form.username }}
-								</div>
+							<div class="edit-text-div2">
+								<span class="fix-edit-text2">Username</span>
+								<div class="fix-text"><span class="fix-text">{{ user.username }}</span></div>
+							</div>
+
+							<div class="edit-text-div2">
+								<span class="fix-edit-text2">Citizen ID</span>
+								<div class="fix-text2"><span class="fix-text">{{user_extend.id_num}}</span></div>
 							</div>
 
 							<div class="edit-text-div">
@@ -57,16 +56,8 @@
 									{{ edit_profile_form.last_name }}
 								</div>
 								{{ edit_profile_form.last_name.errors }}
-							</div>
+							</div>	
 
-							<div class="edit-text-div">
-								<span class="fix-edit-text">Citizen ID</span>
-								<div class="edit-input-text">
-									{{ edit_profile_form.id_num }}
-								</div>
-								{{ edit_profile_form.id_num.errors }}
-							</div>
-								
 							<div class="edit-text-div">
 								{{ edit_profile_form.tel_no.errors }}
 								<span class="fix-edit-text">Phone no</span>
@@ -91,7 +82,6 @@
 								</div>
 							</div>
 						</div>
-
 						<div class="update-button">
 							<button class="btn btn-default update-profile" type="submit" name="profile" value="profile">Update Profile</button>
 						</div>
@@ -100,15 +90,8 @@
 				</div>
 			</div>
 		</form>
-		{% comment %} <div class="row">
-			<div class="update-button">
-				<a href="{% url 'user_profile:change_password' %}" class="btn btn-default update-profile ">Change Password</a>
-			</div>	
-		</div> {% endcomment %}
+		
 	</div>
-	<!-- <script src="{% static 'javascript/jquery.min.js' %}"></script>
-	<script src="{% static 'javascript/bootstrap.min.js' %}"></script> -->
-	
 </body>
 {% endblock %}
 {% block no_title_content2 %}{% endblock %}

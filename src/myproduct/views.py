@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.models import User
+
 from .forms import ProductForm, ProductUpdateForm
 from .models import Product, UserExtendData, Transaction, TransactionLog, TRANSACTION_STATUS_CHOICES
 from django.contrib.auth.models import User

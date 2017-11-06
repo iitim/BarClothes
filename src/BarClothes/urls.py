@@ -17,11 +17,11 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from signup import views as signup_views
-from main import views
+
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import TemplateView
-
+from main import views
+from signup import views as signup_views
 # from profile import views as profiles_views
 # from about import views as about_views
 

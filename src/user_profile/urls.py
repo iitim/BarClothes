@@ -12,5 +12,8 @@ urlpatterns = [
     url(r'^change_password/$', views.change_password, name='change_password'),
     # url(r'^change-password/profile$', views.profile),
     url(r'^cancel$', views.cancel, name='cancel'),
-    url(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk')
+    url(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),
+    url(r'^shopstatus/$', views.view_myshop, name='view_myshop'),
+    url(r'^shopstatus/order/$', views.orderpage, name='orderpage')
+
 ]

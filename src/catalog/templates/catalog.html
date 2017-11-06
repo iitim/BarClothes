@@ -13,56 +13,57 @@
 {% endblock %}
 
 {% block content %}
-  <div class="col-md-3">
-    <aside class="visible-sm-block visible-md-block visible-lg-block visible-xs-inline">
-      <p id="sidebarhead">Shop by Category</p>
-      <div id="sidebar">
-        <a href="/shop"><p class="sidebar">all</p></a>
-        <a href="/shop/top"><p class="sidebar">Top</p></a>
-        <a href="/shop/jacket"><p class="sidebar">Jacket </p></a>
-        <a href="/shop/dress"><p class="sidebar">Dress </p></a>
-        <a href="/shop/skirt"><p class="sidebar">Skirt </p></a>
-        <a href="/shop/pants"><p class="sidebar">Pants </p></a>
-        <a href="/shop/shorts"><p class="sidebar">Shorts </p></a>
-        <a href="/shop/t-shirt"><p class="sidebar">T-shirt </p></a>
-        <a href="/shop/suits"><p class="sidebar">Suits </p></a>
-        <a href="/shop/bag"><p class="sidebar">Bag </p></a>
-        <a href="/shop/shoes"><p class="sidebar">Shoes </p></a>
-        <a href="/shop/accessory"><p class="sidebar">Accessory </p></a>
-      </div>
-    </aside>
+  <div class="sidebar-page col-md-3">
+    <form id="search" class="searchbar row" method="post">
+      <h3>Search</h3>
+      <label for="product_name">Product Name</label>
+      <input type="text" name="product_name">
+      <br>
+      <label for="seller_name">Store</label>
+      <input type="text" name="seller_name">
+      {% csrf_token %}
+      <input type="submit" value="Search!">
+    </form>
+    <p class="sidebar-title">Shop by Category</p>
+    <div class="sidebar-list">
+      <a href="/shop"><p class="sidebar">all</p></a>
+      <a href="/shop/top"><p class="sidebar">Top</p></a>
+      <a href="/shop/jacket"><p class="sidebar">Jacket </p></a>
+      <a href="/shop/dress"><p class="sidebar">Dress </p></a>
+      <a href="/shop/skirt"><p class="sidebar">Skirt </p></a>
+      <a href="/shop/pants"><p class="sidebar">Pants </p></a>
+      <a href="/shop/shorts"><p class="sidebar">Shorts </p></a>
+      <a href="/shop/t-shirt"><p class="sidebar">T-shirt </p></a>
+      <a href="/shop/suits"><p class="sidebar">Suits </p></a>
+      <a href="/shop/bag"><p class="sidebar">Bag </p></a>
+      <a href="/shop/shoes"><p class="sidebar">Shoes </p></a>
+      <a href="/shop/accessory"><p class="sidebar">Accessory </p></a>
+    </div>
   </div>
   <div class="product-page col-md-9">
-    {% for row in all_full_row %}
-    <div class="row imgage" >
-      {% for product in row %}
-      <div class="col-md-4">
-        <a href="{% url 'product:view' product.id %}"><img class="product-image" src="/media/{{product.picture_path}}"></a>
-      </div>
-      {% endfor %}
-    </div>
-    <div class="row text" >
-      {% for product in row %}
-      <div class="product col-md-4">
-        <p>{{product.name}}</p>
-        <h5>{{product.price}} ฿</h5>
-      </div>
-      {% endfor %}
-    </div>
-    {% endfor %}
-    <div class="row imgage" >
-      {% for product in remain_row %}
-      <div class="col-md-4">
-        <a href="{% url 'product:view' product.id %}"><img class="product-image" src="/media/{{product.picture_path}}"></a>
-      </div>
-      {% endfor %}
-    </div>
-    <div class="row text" >
-      {% for product in remain_row %}
-      <div class="product col-md-4">
-        <p>{{product.name}}</p>
-        <h5>{{product.price}} ฿</h5>
-      </div>
+    <form class="sortbar row" method="post">
+      <label for="sort">Sort By : </label>
+      <select form="search" name="sort">
+        <option value="late">Latest date first</option>
+        <option value="old">Oldest date first</option>
+        <option value="low">Lowest price first</option>
+        <option value="high">Highest price first</option>
+      </select>
+    </form>
+    <div class="product-row row">
+      {% for product in all_product %}
+        <div class="product col-md-4">
+          <div class="product-image">
+            <span class="helper"></span><img src="/media/{{product.picture_path}}">
+          </div>
+          <div class="product-text">
+            <div class="product-title"><b>{{product.name}}</b></div>
+            <div class="product-detail">
+              <div class="product-date">{{product.create_date|date:"d M Y"}}</div>
+              <div class="product-price">{{product.price|floatformat:2}} ฿</div>
+            </div>
+          </div>
+        </div>
       {% endfor %}
     </div>
   </div>
@@ -73,7 +74,9 @@
       {% endif %}
     </div>
     <div class="col-md-6">
-      <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
+      {% if is_last_page %}
+        <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

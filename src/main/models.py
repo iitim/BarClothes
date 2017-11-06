@@ -36,8 +36,17 @@ class UserExtendData(models.Model):
     id_num = models.CharField(max_length=13)
     address = models.CharField(max_length=1000)
     tel_no = models.CharField(max_length=45)
-    picture = models.ImageField(upload_to='user_pic/', default = 'product_pic/catalog-minimize.jpg')
+    picture = models.ImageField(upload_to='user_pic/', default = 'user_pic/icon.png')
     selling_expire_date = models.DateTimeField(default=datetime.now)
+
+    def get_image_path(self):
+        return "/media/" + self.picture.__str__()
+
+    def image(self):
+        return u'<img src="%s" height="50" width="50"/>' % self.get_image_path()
+
+    image.short_description = 'Image'
+    image.allow_tags = True
 
     def can_sell(self):
         now = timezone.now()
@@ -68,6 +77,15 @@ class Product(models.Model):
 
     def remain(self):
         return self.amount - self.sold - self.reserved
+
+    def get_image_path(self):
+        return "/media/" + self.picture_path.__str__()
+
+    def image(self):
+        return u'<img src="%s" height="50" width="50"/>' % self.get_image_path()
+
+    image.short_description = 'Image'
+    image.allow_tags = True
 
     def __str__(self):
         return self.name + " (" + self.type +")"
