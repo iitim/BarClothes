@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import User
 
 from .forms import ProductForm, ProductUpdateForm
-from .models import Product, UserExtendData
+from .models import Product, UserExtendData, Transaction, TransactionLog, TRANSACTION_STATUS_CHOICES
+from django.contrib.auth.models import User
 
 def product_new(request):
     if not request.user.is_authenticated:
@@ -20,30 +21,47 @@ def product_new(request):
                     new_product.seller = seller
                     new_product.save()
                     form.save_m2m()
-                    return redirect('home')
+                    return redirect('home') # go to store
                 else:
                     print(form.data)
             else:
                 form = ProductForm()
-            return render(request, 'product_new.html', {'last_name': form.data.get('name'), 'form': form,})
+            return render(request, 'myproduct_new.html', {'last_name': form.data.get('name'), 'form': form,})
 
 def product_update(request, num):
     if not request.user.is_authenticated:
-        return redirect('%s' % ('login'))
+        return redirect('product:view', num)
     else:
         user = get_object_or_404(UserExtendData, user=request.user)
         product = get_object_or_404(Product, pk=num)
         if (user.can_sell() == False) or (not user == product.seller):
-            return redirect('home')
+            return redirect('product:view', num)
         else:
             form = ProductUpdateForm(instance=product)
             if request.POST:
                 form = ProductUpdateForm(request.POST, request.FILES, instance=product)
                 if form.is_valid():
                     form.save()
-            return render(request, 'product_update.html', {'form': form, 'product' : product,})
+            return render(request, 'myproduct_update.html', {'form': form, 'product' : product,})
 
-def product_delete(request):
-    template = 'product_delete.html'
-    context = locals()
-    return render(request, template, context)
+def product_delete(request, num):
+    if not request.user.is_authenticated:
+        return redirect('%s' % ('login'))
+    else:
+        user = get_object_or_404(UserExtendData, user=request.user)
+        product = get_object_or_404(Product, pk=num)
+        if (user.can_sell() == False) or (not user == product.seller):
+            return redirect('product:view', num)
+        else:
+            form = ProductUpdateForm(instance=product)
+            transactions = Transaction.objects.filter(product__id=product.id)
+            status = TRANSACTION_STATUS_CHOICES
+            if request.POST:
+                for transaction in transactions:
+                    new_transectionLog = TransactionLog.from_transaction(transaction)
+                    new_transectionLog.save()
+                Transaction.objects.filter(product__id=product.id).delete()
+                Product.objects.filter(pk=num).delete()
+                return redirect('home')
+            return render(request, 'myproduct_delete.html', 
+            {'form': form, 'product' : product, 'transactions' : transactions, 'status' : status,})

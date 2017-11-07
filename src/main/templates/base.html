@@ -32,7 +32,7 @@
     <img class="bg-head" src="{% static 'img/Content1-head.png' %}">
 
     <div class="container">
-      <h1 class="text-head1">{% block title_content1 %}{% endblock %}</h1>
+      <h1 class="text-head1 text-overflow">{% block title_content1 %}{% endblock %}</h1>
       <div class="content">
         {% block content1 %}
         {% endblock %}
@@ -42,7 +42,7 @@
     {% block no_title_content2 %}
     <img class="bg-head" src="{% static 'img/Content2-head.png' %}">
     <div class="container">
-      <h1 class="text-head2">{% block title_content2 %}{% endblock %}</h1>
+      <h1 class="text-head2 text-overflow">{% block title_content2 %}{% endblock %}</h1>
       <div class="content">
           {% block content2 %}
           {% endblock %}

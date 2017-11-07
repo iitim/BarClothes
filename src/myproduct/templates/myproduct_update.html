@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} | Edit {{product.name}}{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/select2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/myproduct.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
+{% endblock %}
+
+{% block no_title_content2 %}{% endblock %}
+{% block content1 %}
+<form action="{% url 'myproduct:update' product.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        {{form.errors}}
+        <div class="form-group" style="margin-top:-70px">
+            <h1 class="text-head1" style="bottom:115px; margin-right:700px">
+                <div class="col-sm-6 input-column">{{form.name}}</div>
+            </h1>
+        </div>
+        <div class="container">
+            <div class="col-md-12">
+                <p class="buy get-it"><input name="buy" type="submit" class="btn" value="Update" /></p>
+                <p class="buy get-it">
+                    <a name="black" class="btn btn-warning" href="{% url 'myproduct:delete' product.id %}">Delete</a>
+                </p>
+            </div>
+            <div class="col-md-6" style="bottom: 50px;">
+                <div class="preview img-wrapper" style="box-shadow: none;"><img class="picture-preview" src="/media/{{product.picture_path}}"/></div>
+                <div class="file-upload-wrapper">
+                    <input type="file" name="picture_path" id="id_picture_path" class="file-upload-native" accept="image/*" />
+                    <input type="text" disabled placeholder="change picture" class="file-upload-text" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Type</p></div>
+                    <div class="col-sm-9">
+                        <p class="normal">
+                            <select class="js-example-basic-single" id="id_type" name="type">
+                                {% for type in form.type %}
+                                    {{type}}
+                                {% endfor %}
+                            </select>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Price</p></div>
+                    <div class="col-md-9"><p class="normal">
+                        <input type="number" name="price" min="0" value={{product.price}} step="any" required="" id="id_price">
+                        <span style="position: absolute; left: 180px;">฿</span></p>
+                    </p></div>
+                </div>
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Amount</p></div>
+                    <div class="col-sm-9"><p class="normal">
+                        <input type="number" name="amount" min={{product.reserved|add:product.sold}} value={{product.amount}} required="" id="id_amount">    
+                    </p></div>
+                </div>
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Tag</p></div>
+                    <div class="col-sm-9">
+                        <p class="normal"> 
+                            <select class="js-example-basic-multiple" id="id_tags" name="tags" multiple="multiple">
+                                {% for tag in form.tags %}
+                                    {{tag}}
+                                {% endfor %}
+                            </select>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-sm-12" style="margin-bottom: 10px"></div>
+                <p class="head-detail">Detail</p>
+                <p class="normal-detail">{{form.detail}}</p>
+            </div>
+        </div>
+</form>
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'javascript/select2.js' %}"></script>
+    <script src="{% static 'javascript/myproduct.upload_pic.js' %}"></script>
+{% endblock %}
+
+{% block jquery %}
+    $('.js-example-basic-multiple').select2({
+        placeholder: 'Select a tag...',
+    });
+    $('.js-example-basic-single').select2();
+{% endblock %}

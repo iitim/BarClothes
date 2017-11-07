@@ -6,7 +6,7 @@
 {% url 'about' as about %}
 {% url 'contact' as contact %}
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" style="border-radius: 0;">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand navbar-link" href="{% url 'home' %}"><img class="header-logo" src="{% static 'img/Header1-Logo.png' %}"></a>
@@ -21,7 +21,10 @@
 
                 {% if request.user.is_authenticated %}
                 <li class="dropdown nav-dropdown">
-                    <a href="#" class="dropdown-toggle nav-login" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user }}<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle nav-login" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="overflow">{{ request.user }}</span>
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url 'user_profile:profile' %}" style="height: 26px; width: 160px;" >Profile</a></li>
                         <li role="separator" class="divider"></li>

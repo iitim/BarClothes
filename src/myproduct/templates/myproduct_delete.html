@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} | Delete {{product.name}}{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
+    <link rel="stylesheet" href="{% static 'css/myproduct.css' %}">
+{% endblock %}
+
+{% block title_content1 %}{{product.name}}{%endblock%}
+{% block content1 %}
+        <form action="{% url 'myproduct:delete' product.id %}" method="post">
+            {% csrf_token %}
+            <div>
+                <p>Do you want to delete this product?</p>
+                <img class="picture-preview-delete" src="/media/{{product.picture_path}}">
+
+                {% if transactions.0.product == product %}
+                    <p>Please manage existing transaction of this product.</p>
+                {% else %}
+                <!-- <p>if you delete this product, all of this product transaction will be deleted</p> -->
+                <p class="buy">
+                    <input name="delete" type="submit" class="btn btn-warning" value="Yes!"/>
+                    <a name="white" class="btn" href="{% url 'myproduct:update' product.id %}">No</a>
+                </p>
+                {% endif %}
+            </div>
+        </form>
+
+{% endblock %}
+{% block title_content2 %}Product Transaction{% endblock %}
+{% block content2 %}
+    {% if transactions.0.product == product %}
+        {% for transaction in transactions %}
+            {% if transaction.status == 'wss' %}
+                <div class="col-md-12" name="yellow" >
+                    <p class="col-sm-5 col-sm-push-1" name="left">Customer : {{transaction.customer}}</p>
+                    <p class="col-sm-3" name="left">Amount : {{transaction.amount}}</p>
+                    <p class="col-sm-3" name="left">Status : 
+                        {% for i in status %}
+                            {% if i.0 == transaction.status %}{{i.1}}{% endif %}
+                        {% endfor %}</p>
+                    <a class="btn" name="white" style="font-size:12px">Send</a>
+                </div>
+            {% else %}
+                <div class="col-md-12">
+                    <p class="col-sm-5 col-sm-push-1" name="left">Customer : {{transaction.customer}}</p>
+                    <p class="col-sm-3" name="left">Amount : {{transaction.amount}}</p>
+                    <p class="col-sm-4" name="left">Status : 
+                        {% for i in status %}
+                            {% if i.0 == transaction.status %}{{i.1}}{% endif %}
+                        {% endfor %}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p>This product doesn't have transaction</p>
+    {% endif %}
+{% endblock %}

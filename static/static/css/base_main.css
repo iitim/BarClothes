@@ -111,6 +111,12 @@ footer{
     max-height: 100%;
 }
 
+.text-overflow{
+	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .text-head1{
 	z-index: 5;
     position: relative;
@@ -133,4 +139,12 @@ footer{
 .container .content{
 	margin-top: 70px;
 	margin-bottom: 50px;
+}
+
+.overflow{
+	overflow: hidden;
+    max-width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-flex;
 }
