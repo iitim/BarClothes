@@ -21,7 +21,7 @@ def product_new(request):
                     new_product.seller = seller
                     new_product.save()
                     form.save_m2m()
-                    return redirect('home') # go to store
+                    return redirect('user_profile:view_myshop') # go to mystore
                 else:
                     print(form.data)
             else:
@@ -62,6 +62,6 @@ def product_delete(request, num):
                     new_transectionLog.save()
                 Transaction.objects.filter(product__id=product.id).delete()
                 Product.objects.filter(pk=num).delete()
-                return redirect('home')
+                return redirect('user_profile:view_myshop') # go to mystore
             return render(request, 'myproduct_delete.html', 
             {'form': form, 'product' : product, 'transactions' : transactions, 'status' : status,})
