@@ -69,8 +69,11 @@ input.sent-button {
 }
 
 .product-title {
-    width: 100%;
     font-size: 25px;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important; 
 }
 
 .product-detail{

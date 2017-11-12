@@ -1,10 +1,10 @@
 from django import forms
-from django.forms import ModelForm,TextInput
+from django.forms import ModelForm, TextInput
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
 
-from main.models import UserExtendData
+from main.models import UserExtendData, Transaction
 
 # Create the form class.
 class EditProfileForm(forms.ModelForm):
@@ -64,3 +64,8 @@ class EditProfileForm(forms.ModelForm):
                 'type': 'email',
             }),
         }
+
+class TransactionUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ('status', 'sent_date', 'transport_code')

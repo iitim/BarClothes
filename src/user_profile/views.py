@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -9,11 +7,11 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import get_list_or_404, get_object_or_404, render, redirect
 from operator import attrgetter
+from collections import defaultdict
 
-from .forms import EditProfileForm
-from main.models import UserExtendData 
+from .forms import EditProfileForm, TransactionUpdateForm
+from main.models import UserExtendData , Transaction
 
-# Create your views here.
 
 def view_profile(request, pk=None):
     if pk:
@@ -95,12 +93,27 @@ def view_myshop(request):
 
 def orderpage(request):
     store_extend = get_object_or_404(UserExtendData, user=request.user)
-    store = store_extend.user
-    products = store_extend.product_set.all()
-    products_lowest_price = sorted(products, key=attrgetter('price'))
-    context = {
-       'products_lowest_price': products_lowest_price,
-    }
+    transaction = Transaction.objects.filter(product__seller=store_extend)
+    groups = defaultdict(list)
+    forms = defaultdict(list)
+    for obj in transaction:
+        groups[obj.product].append(obj)
+        forms[obj.product].append(sentorder(request, obj))
+    new_list = list(groups.values())
+    form_list = list(forms.values())
 
+    context = {
+        'transaction': zip(new_list, form_list)
+    #    'transaction': new_list,
+    #    'forms': form_list
+    }
     template = 'delivery_order.html'
     return render(request, template, context)
+
+def sentorder(request, transaction):
+    form = TransactionUpdateForm(instance=transaction)
+    if request.POST:
+        form = TransactionUpdateForm(request.POST, request.FILES, instance=transaction)
+        if form.is_valid():
+            form.save()
+    return form

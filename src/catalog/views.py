@@ -1,6 +1,7 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect ,get_object_or_404 
 from django.contrib.auth.models import User
-from .models import Product , UserExtendData
+from .models import Product , UserExtendData 
+from operator import attrgetter
 
 def home(request):
     context = locals()
@@ -28,15 +29,18 @@ def filter(request, product_type, num):
         product = product.filter(type=product_type, seller__in=user_extend_data_list, name__icontains=request.POST['product_name'])[first_product:last_product+1]
     else :
         product = Product.objects.order_by('-create_date').filter(type=product_type)[first_product:last_product+1]
-    if product[last_product:last_product+1] == None :
+    if len(product) < 19 :
         is_last_page = True
-    product = product[first_product:last_product]
+        
+    product = product[0:18]
+
     context = {
         'type': '/' + product_type,
         'previous_page': page-1,
         'next_page': page+1,
         'is_last_page': is_last_page,
-        'all_product': product
+        'all_product': product,
+       
     }
     return context
 
@@ -62,15 +66,27 @@ def catalog(request, num="1"):
         product = product.filter(seller__in=user_extend_data_list, name__icontains=request.POST['product_name'])[first_product:last_product+1]
     else :
         product = Product.objects.order_by('-create_date')[first_product:last_product+1]
-    if product[last_product:last_product+1] == None :
+    if len(product) < 19 :
         is_last_page = True
-    product = product[first_product:last_product]
+
+    product = product[0:18]
+     # //add
+    product_all_latest = Product.objects.order_by('-create_date')
+    product_all_oldest = Product.objects.order_by('create_date')
+    product_all_lowest_price = Product.objects.order_by('price')
+    product_all_highest_price = Product.objects.order_by('-price')
+
+    # add
     context = {
         'type': '',
         'previous_page': page-1,
         'next_page': page+1,
         'is_last_page': is_last_page,
-        'all_product': product
+        'all_product': product,
+        'product_latest' : product_all_latest ,
+        'product_oldest' : product_all_oldest,
+        'product_lowest_price' : product_all_lowest_price,
+        'product_highest_price' : product_all_highest_price,
     }
     template = 'catalog.html'
     return render(request, template, context)
