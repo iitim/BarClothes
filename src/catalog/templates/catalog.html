@@ -8,6 +8,7 @@
 {% load static %}
 
 {% block stylesheet %}
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
@@ -197,7 +198,9 @@
           <div class="product-text">
             <div class="product-title"><b>{{product.name}}</b></div>
             <div class="product-detail">
-                <div class="product-date">{{product.create_date|date:"d M Y"}}</div>
+                <div class="product-date" style="white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div>
                 <div class="product-price">{{product.price|floatformat:2}} ฿</div>
             </div>
           </div>
@@ -207,7 +210,7 @@
     
   </div>
 
-  <div class="paging">
+  <!-- <div class="paging">
     <div class="col-md-6" style="margin-left: 420px; width: 100px">
       {% if previous_page > 0 %}
         <a href="/shop{{type}}/{{previous_page}}"><img src="{% static 'img/Previous-page.png' %}"></a>
@@ -218,5 +221,124 @@
         <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
       {% endif %}
     </div>
+  </div> -->
+
+  <div class="paging">
+    {% if page >= 1 and  page <= last_page %}
+      {% if page|add:'-1' > 0 %}
+        <a href="/shop{{type}}/{{page|add:'-1'}}"><img src="{% static 'img/Previous-page.png' %}" style="padding-bottom: 4px;
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;" ></a><span> </span>
+      {% endif %}
+      {% if page|add:'-4' >= 1 %}
+        <a href="/shop{{type}}/1"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">1</button></a><span> </span>
+      {% endif %}
+      {% if page|add:'-5' >= 1 %}
+        <span><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">... </button></span>
+      {% endif %}
+      {% if page|add:'-3' >= 1 %}
+        <a href="/shop{{type}}/{{page|add:'-3'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'-3'}}</button></a><span> </span>
+      {% endif %}
+      {% if page|add:'-2' >= 1 %}
+        <a href="/shop{{type}}/{{page|add:'-2'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'-2'}}</button></a><span> </span>
+      {% endif %}
+      {% if page|add:'-1' >= 1 %}
+        <a href="/shop{{type}}/{{page|add:'-1'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'-1'}}</button></a><span> </span>
+      {% endif %}
+        <span><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page}}
+              </button> </span>
+      {% if page|add:'1' <= last_page %}
+        <a href="/shop{{type}}/{{page|add:'1'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'1'}}</button></a><span> </span>
+      {% endif %}
+      {% if page|add:'2' <= last_page %}
+        <a href="/shop{{type}}/{{page|add:'2'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'2'}}</button></a><span> </span>
+      {% endif %}
+      {% if page|add:'3' <= last_page %}
+        <a href="/shop{{type}}/{{page|add:'3'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'3'}}</button></a><span> </span>
+      {% endif %}
+      {% if page|add:'5' <= last_page %}
+        <span><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">... </button></span>
+      {% endif %}
+      {% if page|add:'4' <= last_page %}
+        <a href="/shop{{type}}/{{last_page}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{last_page}}</button></a><span> </span>
+      {% endif %}
+      {% if page|add:'1' <= last_page %}
+        <a href="/shop{{type}}/{{page|add:'1'}}"><img src="{% static 'img/Next-page.png' %}" style="padding-bottom: 4px;
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;"></a>
+      {% endif %}
+    {% endif %}
   </div>
 {% endblock %}
