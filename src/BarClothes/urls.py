@@ -38,7 +38,6 @@ urlpatterns = [
     url(r'^profiles/', include('user_profile.urls'), name='profile'),
     url(r'^product/', include('product.urls'), name='product'),
     url(r'^myproduct/', include('myproduct.urls'), name='myproduct'),
-    # url(r'^mycart/', include('mycart.urls'), name='mycart'),
 ]
 
 if settings.DEBUG:

@@ -3,16 +3,146 @@
 
 {% block title %} | My cart{% endblock %}
 {% block stylesheet %}
-    <link rel="stylesheet" href="{% static 'css/product_view.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mycart.css' %}">
 {% endblock %}
 
 {% block title_content1 %}My cart{% endblock %}
 {% block content1 %}
-    <p>mycart</p>
+    <form action="{% url 'user_profile:mycart:mycart' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-warning" value="Update slips" />
+        <div class ="mycart-section">
+            {% if transactions_error %}
+                <div class="col-md-12">
+                    <h3 style="text-align: left">Error : please sent payment again</h3>
+                </div>
+                {% for transaction in transactions_error %}
+                    <div class="col-md-6 mycart-block">
+                        <img class="col-md-6 picture-preview" src="/media/{{ transactions_error.i.product.picture_path }}" >
+                        <div class="col-md-6">
+                            <h2 class="col-sm-12 mycart-head">
+                                <a class="col-sm-12 mycart-cancel" href="{% url 'user_profile:mycart:delete' transaction.id %}">X </a>
+                            </h2>
+                            <p class="col-sm-12 mycart-head">{{ transaction.product.name }}</p>
+                            <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
+                            <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
+                            <p class="col-sm-12 mycart-head">Please pay before : </p>
+                            <p class="col-sm-12 mycart-head">{{ transaction.expire_date|date:"d-M-Y h:m" }}</p>
+                            {{  transaction.slips }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
 
+        <div class ="mycart-section">
+            {% if transactions_cart %}
+                <h3 style="text-align: left">Please sent payment</h3>
+                {% for transaction in transactions_cart %}
+                    <div class="col-md-6 mycart-block">
+                        <img class="col-md-6 picture-preview" src="/media/{{ transaction.product.picture_path }}" >
+                        <div class="col-md-6">
+                            <h2 class="col-sm-12 mycart-head">
+                                <a class="col-sm-12 mycart-cancel" href="{% url 'user_profile:mycart:delete' transaction.id %}">X </a>
+                            </h2>
+                            <p class="col-sm-12 mycart-head">{{ transaction.product.name }}</p>
+                            <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
+                            <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
+                            <p class="col-sm-12 mycart-head">Please pay before : </p>
+                            <p class="col-sm-12 mycart-head">{{ transaction.expire_date|date:"d-M-Y h:m" }}</p>
+                            {{  transaction.slips }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </form>
+
+    <div class ="mycart-section">
+        {% if transactions_check %}
+            <h3 style="text-align: left">Checking...</h3>
+            {% for transaction in transactions_check %}
+                <div class="col-md-6 mycart-block">
+                    <img class="col-md-6 picture-preview" src="/media/{{ transaction.product.picture_path }}" >
+                    <div class="col-md-6">
+                        <p class="col-sm-12 mycart-head"  style="margin-top:20px">{{ transaction.product.name }}</p>
+                        <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
+                        <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class ="mycart-section">
+        {% if transactions_wait %}
+            <h3 style="text-align: left">Waiting...</h3>
+            {% for transaction in transactions_wait %}
+                <div class="col-md-6 mycart-block">
+                    <img class="col-md-6 picture-preview" src="/media/{{ transaction.product.picture_path }}" >
+                    <div class="col-md-6">
+                        <p class="col-sm-12 mycart-head" style="margin-top:20px">{{ transaction.product.name }}</p>
+                        <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
+                        <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block title_content2 %}History{% endblock %}
 {% block content2 %}
-    <p>mycart</p>
+    {% if not logs %}-{% endif %}
+    {% if logs_success %}
+        <h3 style="text-align: left">Success</h3>
+        <ul>
+            {% for log in logs_success %}
+            <li style="text-align: left">
+                <b>Product :</b> {{ log.product }}
+                <b>Amount :</b> {{ log.amount }}  
+                <b>TotalPrice :</b> {{ log.total_price }} ฿
+                <b>Seller :</b> {{ log.seller }}
+                <b>SentDate :</b> {{ log.sent_date|date:"d-M-Y" }}  
+                <b>Transport Code : </b>{{ log.transport_code }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if logs_notsent %}
+        <h3 style="text-align: left">Seller not sent</h3>
+        <ul>
+            {% for log in logs_notsent %}
+            <li style="text-align: left">
+                <b>Product :</b> {{ log.product }}
+                <b>Amount :</b> {{ log.amount }}  
+                <b>TotalPrice :</b> {{ log.total_price }} ฿
+                <b>Seller :</b> {{ log.seller }}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if logs_notpay %}
+        <h3 style="text-align: left">User not pay</h3>
+        <ul>
+            {% for log in logs_notpay %}
+            <li style="text-align: left">
+                <b>Product :</b> {{ log.product }}
+                <b>Amount :</b> {{ log.amount }}  
+                <b>TotalPrice :</b> {{ log.total_price }} ฿
+                <b>Seller :</b> {{ log.seller }}
+                <b>ExpireDate :</b> {{ log.expire_date|date:"d-M-Y" }}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if logs_cancel %}
+        <h3 style="text-align: left">Cancel</h3>
+        <ul>
+            {% for log in logs_cancel %}
+            <li style="text-align: left">
+                <b>Product :</b> {{ log.product }}
+                <b>Amount :</b> {{ log.amount }}  
+                <b>TotalPrice :</b> {{ log.total_price }} ฿
+                <b>Seller :</b> {{ log.seller }}
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

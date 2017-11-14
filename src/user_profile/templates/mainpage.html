@@ -31,7 +31,7 @@
           	    <p class="textN-delivery-order" style="margin-right: 84px">Price</p>
                 <p class="text1-delivery-order" style="margin-right: 60px" >Amount </p>
                 </a>
-                <a href="{% url 'myproduct:delete' %}">
+                <a href="{% url 'myproduct:delete' product.id %}">
           	            <button class="sent-button" type="submit" ip=Sent style="margin-bottom: 50px;">Delete</button>
                 </a>
           </div>

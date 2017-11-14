@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/myproduct.css' %}">
 {% endblock %}
 
-{% block title_content1 %}{{product.name}}{%endblock%}
+{% block title_content1 %}{{product.name}}{% endblock %}
 {% block content1 %}
         <form action="{% url 'myproduct:delete' product.id %}" method="post">
             {% csrf_token %}
