@@ -82,14 +82,14 @@ input.sent-button {
 
 .product-date {
     float: left;
-    width: 40%;
+    width: 50%;
     font-size: 15px;
     text-align: center;
 }
 
 .product-price {
     float: left;
-    width: 60%;
+    width: 50%;
     font-size: 15px;
     text-align: center;
     color: #ffbc49;
