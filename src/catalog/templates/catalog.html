@@ -52,7 +52,7 @@
   <div class="sidebar-page col-md-3" style="padding-left: 0px;">
     <h3 style="margin-top: 40px;">Search</h3>
     <div class="sidebar-list">
-      <form id="search" class="searchbar row" method="post">
+      <form id="search" class="searchbar row" method="get">
         <div style="margin-left: 36px; margin-top: 12px;">
           <p style="font-size: 18px; margin-top: 6px;" for="product_name">Product Name</p>
           <input style="margin-top: -12px; width: 190px; border: none;
@@ -63,7 +63,7 @@
                         outline: none;
                         -webkit-box-shadow: none;
                         -moz-box-shadow: none;
-                        box-shadow: none !important;" type="text" name="product_name">
+                        box-shadow: none !important;" type="text" value="{{default_product_name}}" name="product_name">
           <br>
           <p style="font-size: 18px; margin-top: 12px;" for="seller_name">Store</p>
           <input style="margin-top: -12px; width: 190px; border: none;
@@ -74,8 +74,7 @@
                         outline: none;
                         -webkit-box-shadow: none;
                         -moz-box-shadow: none;
-                        box-shadow: none !important;" type="text" name="seller_name">
-          {% csrf_token %}
+                        box-shadow: none !important;" type="text" value="{{default_seller_name}}" name="seller_name">
           <input class="sent-button" style="margin-top: 25px; margin-left: 58px; margin-bottom: 15px;
                         font-family: 'Glacial Indifference';
                         font-size: 14px;
@@ -90,32 +89,24 @@
     </div>
     <p style="font-size: 24px; margin-top: 25px; margin-bottom: 16px;" class="sidebar-title">Category</p>
     <div class="sidebar-list" >
-      <a href="/shop"><p class="sidebar" style="font-size: 14px; height: 35px;">All</p></a>
-      <a href="/shop/top"><p class="sidebar" style="font-size: 14px; height: 35px;">Top</p></a>
-      <a href="/shop/jacket"><p class="sidebar" style="font-size: 14px; height: 35px;">Jacket </p></a>
-      <a href="/shop/dress"><p class="sidebar" style="font-size: 14px; height: 35px;">Dress </p></a>
-      <a href="/shop/skirt"><p class="sidebar" style="font-size: 14px; height: 35px;">Skirt </p></a>
-      <a href="/shop/pants"><p class="sidebar" style="font-size: 14px; height: 35px;">Pants </p></a>
-      <a href="/shop/shorts"><p class="sidebar" style="font-size: 14px; height: 35px;">Shorts </p></a>
-      <a href="/shop/t-shirt"><p class="sidebar" style="font-size: 14px; height: 35px;">T-shirt </p></a>
-      <a href="/shop/suits"><p class="sidebar" style="font-size: 14px; height: 35px;">Suits </p></a>
-      <a href="/shop/bag"><p class="sidebar" style="font-size: 14px; height: 35px;">Bag </p></a>
-      <a href="/shop/shoes"><p class="sidebar" style="font-size: 14px; height: 35px;">Shoes </p></a>
-      <a href="/shop/accessory"><p class="sidebar" style="font-size: 14px; height: 35px;">Accessory </p></a>
+      <a href="/shop{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">All</p></a>
+      <a href="/shop/top{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Top</p></a>
+      <a href="/shop/jacket{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Jacket </p></a>
+      <a href="/shop/dress{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Dress </p></a>
+      <a href="/shop/skirt{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Skirt </p></a>
+      <a href="/shop/pants{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Pants </p></a>
+      <a href="/shop/shorts{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Shorts </p></a>
+      <a href="/shop/t-shirt{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">T-shirt </p></a>
+      <a href="/shop/suits{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Suits </p></a>
+      <a href="/shop/bag{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Bag </p></a>
+      <a href="/shop/shoes{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Shoes </p></a>
+      <a href="/shop/accessory{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Accessory </p></a>
     </div>
     <p style="font-size: 24px; margin-top: 25px; margin-bottom: 16px;" class="sidebar-title">Tag</p>
-    <div class="sidebar-list scrollbar" style="width: 241px; height: 350px; overflow: scroll;">
-      <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-      <a href="/shop/top"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Top</p></a>
-      <a href="/shop/jacket"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Jacket </p></a>
-      <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-      <a href="/shop/top"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Top</p></a>
-      <a href="/shop/jacket"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Jacket </p></a>
-      <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-      <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-      <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-      <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-      <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
+    <div class="sidebar-list scrollbar" style="height: 350px; overflow: scroll;">
+      {% for tag in tags%}
+        <p class="sidebar" style="font-size: 14px; height: 35px;">{{tag.name}}</p>
+      {% endfor %}
     </div>
   </div>
   <script>
@@ -203,7 +194,7 @@
   <div class="paging">
     {% if page >= 1 and  page <= last_page %}
       {% if page|add:'-1' > 0 %}
-        <a href="/shop{{type}}/{{page|add:'-1'}}"><img src="{% static 'img/Previous-page.png' %}" style="padding-bottom: 4px;
+        <a href="/shop{{type}}/{{page|add:'-1'}}{{search_path}}"><img src="{% static 'img/Previous-page.png' %}" style="padding-bottom: 4px;
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
@@ -211,7 +202,7 @@
             margin-left: 16px;" ></a><span> </span>
       {% endif %}
       {% if page|add:'-4' >= 1 %}
-        <a href="/shop{{type}}/1"><button class="w3-button w3-large w3-circle w3-white" style="
+        <a href="/shop{{type}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
@@ -229,7 +220,7 @@
         ">... </button></span>
       {% endif %}
       {% if page|add:'-3' >= 1 %}
-        <a href="/shop{{type}}/{{page|add:'-3'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        <a href="/shop{{type}}/{{page|add:'-3'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
@@ -238,7 +229,7 @@
         ">{{page|add:'-3'}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'-2' >= 1 %}
-        <a href="/shop{{type}}/{{page|add:'-2'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        <a href="/shop{{type}}/{{page|add:'-2'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
@@ -247,7 +238,7 @@
         ">{{page|add:'-2'}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'-1' >= 1 %}
-        <a href="/shop{{type}}/{{page|add:'-1'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        <a href="/shop{{type}}/{{page|add:'-1'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
@@ -263,7 +254,7 @@
           margin-left: 16px;
       ">{{page}}</button></span>
       {% if page|add:'1' <= last_page %}
-        <a href="/shop{{type}}/{{page|add:'1'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        <a href="/shop{{type}}/{{page|add:'1'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
@@ -272,7 +263,7 @@
         ">{{page|add:'1'}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'2' <= last_page %}
-        <a href="/shop{{type}}/{{page|add:'2'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        <a href="/shop{{type}}/{{page|add:'2'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
@@ -281,7 +272,7 @@
         ">{{page|add:'2'}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'3' <= last_page %}
-        <a href="/shop{{type}}/{{page|add:'3'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        <a href="/shop{{type}}/{{page|add:'3'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
@@ -299,7 +290,7 @@
         ">... </button></span>
       {% endif %}
       {% if page|add:'4' <= last_page %}
-        <a href="/shop{{type}}/{{last_page}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        <a href="/shop{{type}}/{{last_page}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
@@ -308,7 +299,7 @@
         ">{{last_page}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'1' <= last_page %}
-        <a href="/shop{{type}}/{{page|add:'1'}}"><img src="{% static 'img/Next-page.png' %}" style="padding-bottom: 4px;
+        <a href="/shop{{type}}/{{page|add:'1'}}{{search_path}}"><img src="{% static 'img/Next-page.png' %}" style="padding-bottom: 4px;
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
