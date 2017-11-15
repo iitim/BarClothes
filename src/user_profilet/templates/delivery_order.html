@@ -34,7 +34,7 @@
             <p style="font-size: 14px; color: #FFBC49;"> {{trans.0.0.product.name}} </p>
 
             <div class="btn-group">
-              <select id="dropdownorder" onchange="selectCust(this.value)"> <!-- class="dropdown-menu"  -->
+              <select id="dropdownorder" onchange="selectCust('this.value')"> <!-- class="dropdown-menu"  -->
                 {% for each_trans in trans.0 %}
                 <option value="1" >{{each_trans.customer}} ({{each_trans.amount}} orders)</option>
                 {% endfor %}
@@ -44,7 +44,8 @@
                 // $( document ).ready(selectCust("late"));
                 function selectCust(val) {
                   {% with trans.1.val as form %}
-                  document.getElementById("order-form").innerHTML = val;
+                  console.log(val);
+                   document.getElementById("order-form").innerHTML = val;
                   // '<form method="post" enctype="multipart/form-data">{% csrf_token %}{{form.as_p}}<div><p>{{form.transport_code}}</p></div><input type="submit" class="btn btn-warning" value="Submit" /></form>';
                   {% endwith %}
                 }
@@ -52,7 +53,7 @@
 
           </div>
           <div id="order-form">
-              <input type="text" id="form1" style="font-size: 18px;" class="form-control"> 
+               <input type="text" id="form1" style="font-size: 18px;" class="form-control">  
           </div>   
          </div>
      
@@ -64,3 +65,4 @@
     <!-- Split button -->
 
 {% endblock %}
+

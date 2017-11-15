@@ -10,7 +10,7 @@ def store(request):
     return render(request, 'store_catalog.html', context)
 
 def store_detail(request): #num
-    store_extend = get_object_or_404(UserExtendData, id_num=65543453)
+    store_extend = get_object_or_404(UserExtendData, id_num=1000000000000)
     store = store_extend.user
     products = store_extend.product_set.all()
 

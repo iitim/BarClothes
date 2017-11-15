@@ -8,103 +8,326 @@
 {% load static %}
 
 {% block stylesheet %}
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+        // $( function() {
+        //   $( ".widget input[type=submit], .widget a, .widget button" ).button();
+        //   $( "button, input, a" ).click( function( event ) {
+        //     event.preventDefault();
+        //   } );
+        // } );
+        function hide(){
+          var item = document.getElementById('FFF');
+          var item0 = document.getElementById('FFF1');
+          item.style.visibility = 'hidden';
+          item0.style.visibility = 'hidden';
+        }
+
+        function show(){
+          var item = document.getElementById('FFF');
+          var item0 = document.getElementById('FFF1');
+          item.style.visibility = 'visible';
+          item0.style.visibility = 'visible';
+        }
+        
+      function myFunction(){
+        var x = document.getElementById("myDIV");
+        
+        if (window.location.href == "http://127.0.0.1:8000/shop/" 
+          || window.location.href == "http://127.0.0.1:8000/shop/1/") {
+            $( "#FFF" ).prop( "disabled", false ); 
+            $( "#FFF" ).css( "background", "#282626" );  
+            show();
+        } else {
+            $( "#FFF" ).prop( "disabled", true );
+            $( "#FFF" ).css( "background", "#808080" );
+       
+            hide(); 
+        }
+      }
+      setTimeout(myFunction, 0);
+        
+
+  </script>
   <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
   <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
 {% endblock %}
 
 {% block content %}
-  <div class="sidebar-page col-md-3">
-    <form id="search" class="searchbar row" method="post">
-      <h3>Search</h3>
-      <label for="product_name">Product Name</label>
-      <input type="text" name="product_name">
-      <br>
-      <label for="seller_name">Store</label>
-      <input type="text" name="seller_name">
-      {% csrf_token %}
-      <input type="submit" value="Search!">
-    </form>
-    <p class="sidebar-title">Shop by Category</p>
-    <div class="sidebar-list">
-      <a href="/shop"><p class="sidebar">all</p></a>
-      <a href="/shop/top"><p class="sidebar">Top</p></a>
-      <a href="/shop/jacket"><p class="sidebar">Jacket </p></a>
-      <a href="/shop/dress"><p class="sidebar">Dress </p></a>
-      <a href="/shop/skirt"><p class="sidebar">Skirt </p></a>
-      <a href="/shop/pants"><p class="sidebar">Pants </p></a>
-      <a href="/shop/shorts"><p class="sidebar">Shorts </p></a>
-      <a href="/shop/t-shirt"><p class="sidebar">T-shirt </p></a>
-      <a href="/shop/suits"><p class="sidebar">Suits </p></a>
-      <a href="/shop/bag"><p class="sidebar">Bag </p></a>
-      <a href="/shop/shoes"><p class="sidebar">Shoes </p></a>
-      <a href="/shop/accessory"><p class="sidebar">Accessory </p></a>
+  <div class="sidebar-page col-md-3" style="padding-left: 0px;">
+    <h3 style="margin-top: 40px;">Search</h3>
+     <div class="sidebar-list">
+        <form id="search" class="searchbar row" method="post">
+        <div style="margin-left: 36px; margin-top: 12px;">
+          <p style="font-size: 18px; margin-top: 6px;" for="product_name">Product Name</p>
+          <input style="margin-top: -12px; width: 190px; border: none;
+                        border-bottom: 1px solid #FFBC49;
+                        background-color: #282626;
+                        color: white;
+                        font-size: 14px;
+                        outline: none;
+                        -webkit-box-shadow: none;
+                        -moz-box-shadow: none;
+                        box-shadow: none !important;" type="text" name="product_name">
+          <br>
+          <p style="font-size: 18px; margin-top: 12px;" for="seller_name">Store</p>
+          <input style="margin-top: -12px; width: 190px; border: none;
+                        border-bottom: 1px solid #FFBC49;
+                        background-color: #282626;
+                        color: white;
+                        font-size: 14px;
+                        outline: none;
+                        -webkit-box-shadow: none;
+                        -moz-box-shadow: none;
+                        box-shadow: none !important;" type="text" name="seller_name">
+          {% csrf_token %}
+          <input class="sent-button" style="margin-top: 25px; margin-left: 58px; margin-bottom: 15px;
+                  font-family: 'Glacial Indifference';
+                  font-size: 14px;
+                  border-color: #FFBC49;
+                  background-color: #282626;
+                  color: #FFBC49 !important;
+                  padding: 8px 16px;
+                  border-radius: 10px;
+                  margin-right: 60px;" type="submit" value="Search!" >
+        </div>
+        </form>
+    
+    </div>
+    <p style="font-size: 24px; margin-top: 25px; margin-bottom: 16px;" class="sidebar-title">Category</p>
+
+    <div class="sidebar-list" >
+        <a href="/shop"><p class="sidebar" style="font-size: 14px; height: 35px;">All</p></a>
+        <a href="/shop/top"><p class="sidebar" style="font-size: 14px; height: 35px;">Top</p></a>
+        <a href="/shop/jacket"><p class="sidebar" style="font-size: 14px; height: 35px;">Jacket </p></a>
+        <a href="/shop/dress"><p class="sidebar" style="font-size: 14px; height: 35px;">Dress </p></a>
+        <a href="/shop/skirt"><p class="sidebar" style="font-size: 14px; height: 35px;">Skirt </p></a>
+        <a href="/shop/pants"><p class="sidebar" style="font-size: 14px; height: 35px;">Pants </p></a>
+        <a href="/shop/shorts"><p class="sidebar" style="font-size: 14px; height: 35px;">Shorts </p></a>
+        <a href="/shop/t-shirt"><p class="sidebar" style="font-size: 14px; height: 35px;">T-shirt </p></a>
+        <a href="/shop/suits"><p class="sidebar" style="font-size: 14px; height: 35px;">Suits </p></a>
+        <a href="/shop/bag"><p class="sidebar" style="font-size: 14px; height: 35px;">Bag </p></a>
+        <a href="/shop/shoes"><p class="sidebar" style="font-size: 14px; height: 35px;">Shoes </p></a>
+        <a href="/shop/accessory"><p class="sidebar" style="font-size: 14px; height: 35px;">Accessory </p></a>
+    </div>
+
+    <p style="font-size: 24px; margin-top: 25px; margin-bottom: 16px;" class="sidebar-title">Tag</p>
+    <div class="sidebar-list scrollbar" style="
+            width: 241px;
+            height: 350px;
+            overflow: scroll;">
+
+        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
+        <a href="/shop/top"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Top</p></a>
+        <a href="/shop/jacket"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Jacket </p></a>
+        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
+        <a href="/shop/top"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Top</p></a>
+        <a href="/shop/jacket"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Jacket </p></a>
+        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
+        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
+        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
+        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
+        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
     </div>
   </div>
+
+   <script>         
+        function setSort(val) {
+            if (val == "late"){
+                {% with product_latest as products %}
+                document.getElementById("product_catalog").innerHTML = '{% for product in products %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                {% endwith %}
+            } else if (val == "old") {
+                {% with product_oldest as products %}
+                document.getElementById("product_catalog").innerHTML = '{% for product in products %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                {% endwith %}
+            } else if (val == "low") {
+                {% with products_lowest_price as products %}
+                document.getElementById("product_catalog").innerHTML = '{% for product in product_lowest_price %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                {% endwith %}
+            } else if (val == "high") {
+                {% with products_highest_price as products %}
+                document.getElementById("product_catalog").innerHTML = '{% for product in product_highest_price %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                {% endwith %}
+            } else {
+                {% with all_product as products %}
+                document.getElementById("product_catalog").innerHTML = '{% for product in product_highest_price %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                {% endwith %}
+            }
+      }
+   </script>
+
   <div class="product-page col-md-9">
-    <form class="sortbar row" method="post">
-      <label for="sort">Sort By : </label>
-      <select form="search" name="sort">
-        <option value="late">Latest date first</option>
-        <option value="old">Oldest date first</option>
-        <option value="low">Lowest price first</option>
-        <option value="high">Highest price first</option>
-      </select>
+    <form class="sortbar row" method="post" >
+      <div id="myDIV">
+      <label for="sort" id="FFF1" style="font-size: 16px;">Sort By :  </label>
+        <select id="FFF" name="test" style="border: 1px 
+                       solid #FFBC49 !important;
+                       background: #282626 !important;
+                       width: 170px; 
+                       color: white;
+                       font-size: 16px;" 
+                       form="search" name="sort" onchange="setSort(this.value)" >
+          <option value="select">Select</option>           
+          <option value="late">Latest date first</option>
+          <option value="old">Oldest date first</option>
+          <option value="low">Lowest price first</option>
+          <option value="high">Highest price first</option>
+        </select>
+      </div>
     </form>
-    <div class="product-row row">
+
+    <div class="product-row row" id="product_catalog">
       {% for product in all_product %}
         <div class="product col-md-4">
-          <div class="product-image">
-            <span class="helper"></span><img src="/media/{{product.picture_path}}">
+          <div class="product-image" style="height: 240px;">
+            <span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}">
           </div>
           <div class="product-text">
             <div class="product-title"><b>{{product.name}}</b></div>
             <div class="product-detail">
-              <div class="product-date">{{product.create_date|date:"d M Y"}}</div>
-              <div class="product-price">{{product.price|floatformat:2}} ฿</div>
+                <div class="product-date" style="white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div>
+                <div class="product-price">{{product.price|floatformat:2}} ฿</div>
             </div>
           </div>
         </div>
       {% endfor %}
     </div>
+    
   </div>
+
+  <!-- <div class="paging">
+    <div class="col-md-6" style="margin-left: 420px; width: 100px">
+      {% if previous_page > 0 %}
+        <a href="/shop{{type}}/{{previous_page}}"><img src="{% static 'img/Previous-page.png' %}"></a>
+      {% endif %}
+    </div>
+    <div class="col-md-6" style="margin-left: 200px; width: 100px">
+      {% if not is_last_page %}
+        <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
+      {% endif %}
+    </div>
+  </div> -->
+
   <div class="paging">
     {% if page >= 1 and  page <= last_page %}
       {% if page|add:'-1' > 0 %}
-        <a href="/shop{{type}}/{{page|add:'-1'}}"><img src="{% static 'img/Previous-page.png' %}"></a><span> </span>
+        <a href="/shop{{type}}/{{page|add:'-1'}}"><img src="{% static 'img/Previous-page.png' %}" style="padding-bottom: 4px;
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;" ></a><span> </span>
       {% endif %}
       {% if page|add:'-4' >= 1 %}
-        <a href="/shop{{type}}/1">1</a><span> </span>
+        <a href="/shop{{type}}/1"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">1</button></a><span> </span>
       {% endif %}
       {% if page|add:'-5' >= 1 %}
-        <span>... </span>
+        <span><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">... </button></span>
       {% endif %}
       {% if page|add:'-3' >= 1 %}
-        <a href="/shop{{type}}/{{page|add:'-3'}}">{{page|add:'-3'}}</a><span> </span>
+        <a href="/shop{{type}}/{{page|add:'-3'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'-3'}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'-2' >= 1 %}
-        <a href="/shop{{type}}/{{page|add:'-2'}}">{{page|add:'-2'}}</a><span> </span>
+        <a href="/shop{{type}}/{{page|add:'-2'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'-2'}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'-1' >= 1 %}
-        <a href="/shop{{type}}/{{page|add:'-1'}}">{{page|add:'-1'}}</a><span> </span>
+        <a href="/shop{{type}}/{{page|add:'-1'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'-1'}}</button></a><span> </span>
       {% endif %}
-        <span>{{page}} </span>
+        <span><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page}}
+              </button> </span>
       {% if page|add:'1' <= last_page %}
-        <a href="/shop{{type}}/{{page|add:'1'}}">{{page|add:'1'}}</a><span> </span>
+        <a href="/shop{{type}}/{{page|add:'1'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'1'}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'2' <= last_page %}
-        <a href="/shop{{type}}/{{page|add:'2'}}">{{page|add:'2'}}</a><span> </span>
+        <a href="/shop{{type}}/{{page|add:'2'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'2'}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'3' <= last_page %}
-        <a href="/shop{{type}}/{{page|add:'3'}}">{{page|add:'3'}}</a><span> </span>
+        <a href="/shop{{type}}/{{page|add:'3'}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{page|add:'3'}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'5' <= last_page %}
-        <span>... </span>
+        <span><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">... </button></span>
       {% endif %}
       {% if page|add:'4' <= last_page %}
-        <a href="/shop{{type}}/{{last_page}}">{{last_page}}</a><span> </span>
+        <a href="/shop{{type}}/{{last_page}}"><button class="w3-button w3-large w3-circle w3-white" style="
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;
+        ">{{last_page}}</button></a><span> </span>
       {% endif %}
       {% if page|add:'1' <= last_page %}
-        <a href="/shop{{type}}/{{page|add:'1'}}"><img src="{% static 'img/Next-page.png' %}"></a>
+        <a href="/shop{{type}}/{{page|add:'1'}}"><img src="{% static 'img/Next-page.png' %}" style="padding-bottom: 4px;
+            border-right-width: 30\;
+            border-right-width: 30px;
+            border-left-width: 30px;
+            margin-right: 16px;
+            margin-left: 16px;"></a>
       {% endif %}
     {% endif %}
   </div>
