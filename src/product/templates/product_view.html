@@ -10,59 +10,85 @@
 {% block no_title_content2 %}{% endblock %}
 {% block title_content1 %}{{product.name}}{%endblock%}
 {% block content1 %}
+    {% if user == product.seller %}
+        {% if user.can_sell %}
+            <div class="col-md-12"><a href="{% url 'myproduct:update' product.id %}" class="buy">
+                <input name="buy" type="submit" class="btn get-it" color="#FFBC49" value="Update"/>
+            </a></div>
+        {% else %}
+        <!-- user can not sell >>> can not update product so >>> top-up -->
+            <div class="col-md-12"><a href="{% url 'user_profile:profile' %}" class="buy">
+                <input name="buy" type="submit" class="btn get-it" color="#FFBC49" value="Update"/>
+            </a></div>
+        {% endif %}
+    {% else %}
+        {% if product.remain > 0 %}
+            <form action="{% url 'product:view' product.id %}" method="post">
+                {% csrf_token %}
+                <div class="col-md-12">
+                    <p class="buy get-it">
+                    <input name="buy" type="submit" class="btn" color="#FFBC49" value="Get it!"/>
+                    <input type="number" name="amount" value="1" min="1" max={{product.remain}} required="" id="id_amount">
+                    Unit</p>
+                </div>
+            </form>
+        {% else %}
+            <div class="col-md-12"><p class="buy get-it">Out of stock</p></div>
+        {% endif %}
+    {% endif %}
+
     <div class="product_view">
         <div class="row">
             <div class="col-md-5">
                 <img class="picture-preview" src="/media/{{product.picture_path}}">
             </div>
-            <div class="col-md-7">
-                {% if user == product.seller.user %}
-                    <div class="col-md-12"><a href="{% url 'myproduct:update' product.id %}" class="buy">
-                        <input name="buy" type="submit" class="btn" color="#FFBC49" value="Edit"/>
-                    </a></div>
-                {% else %}
-                    {% if product.amount > 0 %}
-                        <form action="{% url 'product:view' product.id %}" method="post">
-                            {% csrf_token %}
-                            <div class="col-md-12">{{form.amount}}</div>
-                            <div class="col-md-12">
-                                <input name="buy" type="submit" class="btn" color="#FFBC49" value="Get it!"/>
-                            </div>
-                        </form>
-                    {% else %}
-                        <div class="col-md-12"><p class="buy">out of stock</p></div>
-                    {% endif %}
-                {% endif %}
-                <div class="col-md-3"><p class="head">Type</p></div>
-
-                <div class="col-md-9">
-                    {% for i in type %}
-                        {% if i.0 == product.type %}<p class="normal">{{i.1}}</p>{% endif %}
-                    {% endfor %}
+            <div class="col-md-7" style="padding: 10px;">
+                
+                <div class="col-sm-12 text">
+                    <div class="col-sm-3"><p class="head">Product</p></div>
+                    <div class="col-sm-9"><p class="normal">{{product.name}}</p></div>
                 </div>
-                
-                <div class="col-md-3"><p class="head">Price</p></div>
-                <div class="col-md-9"><p class="normal">{{product.price|floatformat:2}} ฿</p></div>
 
-                <div class="col-md-3"><p class="head">Amount</p></div>
-                <div class="col-md-9"><p class="normal">{{product.remain}}</p></div>
-
-                <div class="col-md-3"><p class="head">Tag</p></div>
-                <div class="col-md-9"><p class="normal">
-                    {% if product.tags.all %}
-                        {% for j in product.tags.all %}{{j}} {% endfor %}
-                    {% else %}-{% endif %}</p></div>
-
-                <div class="col-md-3"><p class="head">Seller</p></div>
-                <div class="col-md-9"><p class="normal">{{product.seller.user}}</p></div>
-
-                <div class="col-md-3"><p class="head">Since</p></div>
-                <div class="col-md-9"><p class="normal">{{product.create_date|date:"d-M-Y"}}</p></div>
-                
+                <div class="col-sm-12 text">
+                    <div class="col-sm-3"><p class="head">Type</p></div>
+                    <div class="col-sm-9">
+                        {% for i in type %}
+                            {% if i.0 == product.type %}<p class="normal">{{i.1}}</p>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                    
+                <div class="col-sm-12 text">
+                    <div class="col-sm-3"><p class="head">Price</p></div>
+                    <div class="col-sm-9"><p class="normal">{{product.price|floatformat:2}} ฿</p></div>
+                </div>
+                    
+                <div class="col-sm-12 text">
+                    <div class="col-sm-3"><p class="head">Amount</p></div>
+                    <div class="col-sm-9"><p class="normal">{{product.remain}}</p></div>
+                </div>
+                    
+                <div class="col-sm-12 text">
+                    <div class="col-sm-3"><p class="head">Tag</p></div>
+                    <div class="col-sm-9"><p class="normal">
+                        {% if product.tags.all %}
+                            {% for j in product.tags.all %}{{j}} {% endfor %}
+                        {% else %}-{% endif %}</p></div>
+                </div>
+                    
+                <div class="col-sm-12 text">
+                    <div class="col-sm-3"><p class="head">Seller</p></div>
+                    <div class="col-sm-9"><p class="normal">{{product.seller.user}}</p></div>
+                </div>
+                    
+                <div class="col-sm-12 text">
+                    <div class="col-sm-3"><p class="head">Since</p></div>
+                    <div class="col-sm-9"><p class="normal">{{product.create_date|date:"d-M-Y"}}</p></div>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-12">
                 <p class="head-detail">Detail</p>
                 <p class="normal-detail">{{product.detail}}</p>
             </div>

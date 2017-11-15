@@ -18,6 +18,7 @@
         //     event.preventDefault();
         //   } );
         // } );
+
         function hide(){
           var item = document.getElementById('FFF');
           var item0 = document.getElementById('FFF1');
@@ -33,8 +34,6 @@
         }
         
       function myFunction(){
-        var x = document.getElementById("myDIV");
-        
         if (window.location.href == "http://127.0.0.1:8000/shop/" 
           || window.location.href == "http://127.0.0.1:8000/shop/1/") {
             $( "#FFF" ).prop( "disabled", false ); 
@@ -47,6 +46,7 @@
             hide(); 
         }
       }
+
       setTimeout(myFunction, 0);
         
 
@@ -137,28 +137,45 @@
 
   </div>
 
-   <script>         
-        function setSort(val) {
+   <script>   
+
+        
+      function hide_page(){
+         var item = document.getElementById('page-hide');
+         item.style.visibility = 'hidden';
+      }
+
+      function show_page(){
+         var item = document.getElementById('page-hide');
+         item.style.visibility = 'visible';
+      }
+
+      function setSort(val) {
             if (val == "late"){
                 {% with product_latest as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in products %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                document.getElementById("product_catalog").innerHTML = '{% for product in products %}<div class="product col-md-4"><a href="{% url 'product:view' product.id %}" class="buy"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
                 {% endwith %}
+                hide_page();
             } else if (val == "old") {
                 {% with product_oldest as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in products %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                document.getElementById("product_catalog").innerHTML = '{% for product in products %}<div class="product col-md-4"> <a href="{% url 'product:view' product.id %}" class="buy"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
                 {% endwith %}
+                 hide_page();
             } else if (val == "low") {
                 {% with products_lowest_price as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in product_lowest_price %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                document.getElementById("product_catalog").innerHTML = '{% for product in product_lowest_price %}<div class="product col-md-4"> <a href="{% url 'product:view' product.id %}" class="buy"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
                 {% endwith %}
+                 hide_page();
             } else if (val == "high") {
                 {% with products_highest_price as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in product_highest_price %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                document.getElementById("product_catalog").innerHTML = '{% for product in product_highest_price %} <a href="{% url 'product:view' product.id %}" class="buy"><div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
                 {% endwith %}
+                 hide_page();
             } else {
                 {% with all_product as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in product_highest_price %}<div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div>{% endfor %}';
+                document.getElementById("product_catalog").innerHTML = '{% for product in product_highest_price %} <a href="{% url 'product:view' product.id %}" class="buy"><div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
                 {% endwith %}
+                show_page();
             }
       }
       
@@ -191,6 +208,7 @@
 
     <div class="product-row row" id="product_catalog">
       {% for product in all_product %}
+      <a href="{% url 'product:view' product.id %}" class="buy">
         <div class="product col-md-4">
           <div class="product-image" style="height: 240px;">
             <span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}">
@@ -205,25 +223,13 @@
             </div>
           </div>
         </div>
+      </a>
       {% endfor %}
     </div>
     
   </div>
 
-  <!-- <div class="paging">
-    <div class="col-md-6" style="margin-left: 420px; width: 100px">
-      {% if previous_page > 0 %}
-        <a href="/shop{{type}}/{{previous_page}}"><img src="{% static 'img/Previous-page.png' %}"></a>
-      {% endif %}
-    </div>
-    <div class="col-md-6" style="margin-left: 200px; width: 100px">
-      {% if not is_last_page %}
-        <a href="/shop{{type}}/{{next_page}}"><img src="{% static 'img/Next-page.png' %}"></a>
-      {% endif %}
-    </div>
-  </div> -->
-
-  <div class="paging">
+  <div class="paging" id="page-hide">
     {% if page >= 1 and  page <= last_page %}
       {% if page|add:'-1' > 0 %}
         <a href="/shop{{type}}/{{page|add:'-1'}}"><img src="{% static 'img/Previous-page.png' %}" style="padding-bottom: 4px;
@@ -278,13 +284,15 @@
             margin-left: 16px;
         ">{{page|add:'-1'}}</button></a><span> </span>
       {% endif %}
-        <span><button class="w3-button w3-large w3-circle w3-white" style="
+        <span><button class="w3-button w3-large w3-circle" style="
             border-right-width: 30\;
             border-right-width: 30px;
             border-left-width: 30px;
             margin-right: 16px;
             margin-left: 16px;
-        ">{{page}}
+            color: #000 !important;
+            background-color: #ffbc49 !important; " >
+            {{page}}
               </button> </span>
       {% if page|add:'1' <= last_page %}
         <a href="/shop{{type}}/{{page|add:'1'}}"><button class="w3-button w3-large w3-circle w3-white" style="
