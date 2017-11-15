@@ -5,25 +5,15 @@
 <!-- CSS paste here-->
 {% endblock %}
 
-
-
-
 {% block title_content1 %}Top Up{% endblock %}
 {% block content1 %}
 <div align="center">
-  <form action= "store/" method="post" enctype="multipart/form-data">{% csrf_token %}
-    {% for field in form %}
-        <div class="fieldWrapper">
-            {# uncomment to display field errors #}
-            {# {{ field.errors }} #}
-            {{ field.label_tag }} {{ field }}
-        </div>
-    {% endfor %}
+  <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{form}}
     <br>
     <input type="submit" value="Submit Image">
   </form>
 </div>
-{% csrf_token %}
 {% endblock %}
 {% block no_title_content2 %}
 {% endblock %}

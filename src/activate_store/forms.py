@@ -1,6 +1,8 @@
-from django import forms
+from django.forms import ModelForm
 
-from main.models import UserExtendData
+from main.models import TopUp
 
-class top_up_form(forms.Form):
-	slip_pic = forms.ImageField()
+class upload_img_form(ModelForm):
+	class Meta:
+		model = TopUp
+		fields = ['slip_pic']
