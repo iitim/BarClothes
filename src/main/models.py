@@ -145,7 +145,7 @@ class TransactionLog(models.Model):
 
 
 class TopUp(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     slip_pic = models.ImageField(upload_to='slip_pic/', blank=True)
     price = models.FloatField(default=0)
     status = models.CharField(max_length=1, choices=TOPUP_STATUS_CHOICES, default='w')
