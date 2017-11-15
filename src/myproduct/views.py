@@ -34,15 +34,18 @@ def product_update(request, num):
     else:
         user = get_object_or_404(UserExtendData, user=request.user)
         product = get_object_or_404(Product, pk=num)
-        if (user.can_sell() == False) or (not user == product.seller):
+        if not user == product.seller:
             return redirect('product:view', num)
-        else:
-            form = ProductUpdateForm(instance=product)
-            if request.POST:
-                form = ProductUpdateForm(request.POST, request.FILES, instance=product)
-                if form.is_valid():
-                    form.save()
-            return render(request, 'myproduct_update.html', {'form': form, 'product' : product,})
+        else: 
+            if user.can_sell() == False:
+                return redirect('user_profile:view_myshop') # go to topup
+            else:
+                form = ProductUpdateForm(instance=product)
+                if request.POST:
+                    form = ProductUpdateForm(request.POST, request.FILES, instance=product)
+                    if form.is_valid():
+                        form.save()
+                return render(request, 'myproduct_update.html', {'form': form, 'product' : product,})
 
 def product_delete(request, num):
     if not request.user.is_authenticated:
@@ -50,18 +53,21 @@ def product_delete(request, num):
     else:
         user = get_object_or_404(UserExtendData, user=request.user)
         product = get_object_or_404(Product, pk=num)
-        if (user.can_sell() == False) or (not user == product.seller):
+        if not user == product.seller:
             return redirect('product:view', num)
         else:
-            form = ProductUpdateForm(instance=product)
-            transactions = Transaction.objects.filter(product__id=product.id)
-            status = TRANSACTION_STATUS_CHOICES
-            if request.POST:
-                for transaction in transactions:
-                    new_transectionLog = TransactionLog.from_transaction(transaction)
-                    new_transectionLog.save()
-                Transaction.objects.filter(product__id=product.id).delete()
-                Product.objects.filter(pk=num).delete()
-                return redirect('user_profile:view_myshop') # go to mystore
-            return render(request, 'myproduct_delete.html', 
-            {'form': form, 'product' : product, 'transactions' : transactions, 'status' : status,})
+            if user.can_sell() == False:
+                return redirect('user_profile:view_myshop') # go to topup
+            else:
+                form = ProductUpdateForm(instance=product)
+                transactions = Transaction.objects.filter(product__id=product.id)
+                status = TRANSACTION_STATUS_CHOICES
+                if request.POST:
+                    for transaction in transactions:
+                        new_transectionLog = TransactionLog.from_transaction(transaction)
+                        new_transectionLog.save()
+                    Transaction.objects.filter(product__id=product.id).delete()
+                    Product.objects.filter(pk=num).delete()
+                    return redirect('user_profile:view_myshop') # go to mystore
+                return render(request, 'myproduct_delete.html', 
+                {'form': form, 'product' : product, 'transactions' : transactions, 'status' : status,})
