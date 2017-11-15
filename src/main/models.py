@@ -45,6 +45,7 @@ class UserExtendData(models.Model):
     picture = models.ImageField(upload_to='user_pic/', default = 'user_pic/icon.png')
     selling_expire_date = models.DateTimeField(default=datetime.now)
     bank_account = models.CharField(max_length=200, default='', blank=True)
+    free_trial_status = models.BooleanField(default=True)
 
     def get_image_path(self):
         return "/media/" + self.picture.__str__()
@@ -107,7 +108,6 @@ class Transaction(models.Model):
     expire_date = models.DateTimeField(default=datetime.now() + timedelta(days=3))
     payment_date = models.DateTimeField(null = True, blank= True)
     sent_date = models.DateTimeField(null=True, blank=True)
-    receive_date = models.DateTimeField(null=True, blank=True)
     payment_picture = models.ImageField(upload_to='payment_pic/', blank=True)
     transport_code = models.CharField(max_length=13, blank=True)
 
@@ -124,7 +124,6 @@ class TransactionLog(models.Model):
     create_date = models.DateTimeField(default=datetime.now)
     payment_date = models.DateTimeField(null=True, blank=True)
     sent_date = models.DateTimeField(null=True, blank=True)
-    receive_date = models.DateTimeField(null=True, blank=True)
     transport_code = models.CharField(max_length=13, blank=True)
 
     @staticmethod
