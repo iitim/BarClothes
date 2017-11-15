@@ -114,21 +114,31 @@
     <div class="product-row row" id="product_catalog">
       {% for product in products %}
         <div class="product col-md-4">
-          <div class="product-image" style="height: 240px;">
-            <span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}">
-          </div>
-          <div class="product-text">
-            <div class="product-title"><b>{{product.name}}</b></div>
-            <div class="product-detail">
-                <div class="product-date" style="white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div>
-                <div class="product-price">{{product.price|floatformat:2}} ฿</div>
+          <a href="{% url 'product:view' product.id %}" class="buy">
+            <div class="product-image" style="height: 240px;">
+              <span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}">
             </div>
-          </div>
+            <div class="product-text">
+              <div class="product-title"><b>{{product.name}}</b></div>
+              <div class="product-detail">
+                  <div class="product-date" style="white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div>
+                  <div class="product-price">{{product.price|floatformat:2}} ฿</div>
+              </div>
+            </div>
+          </a>
         </div>
       {% endfor %}
     </div>'
+    function hide_page(){
+      var item = document.getElementById('page-hide');
+      item.style.visibility = 'hidden';
+    }
+    function show_page(){
+      var item = document.getElementById('page-hide');
+      item.style.visibility = 'visible';
+    }
     function setSort(val) {
       if (val == "late"){
         {% with product_latest as products %}
@@ -174,24 +184,26 @@
     </form>
     <div class="product-row row" id="product_catalog">
       {% for product in product_lowest_price %}
-        <div class="product col-md-4">
-          <div class="product-image" style="height: 240px;">
-            <span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}">
-          </div>
-          <div class="product-text">
-            <div class="product-title"><b>{{product.name}}</b></div>
-            <div class="product-detail">
-                <div class="product-date" style="white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div>
-                <div class="product-price">{{product.price|floatformat:2}} ฿</div>
+        <a href="{% url 'product:view' product.id %}" class="buy">
+          <div class="product col-md-4">
+            <div class="product-image" style="height: 240px;">
+              <span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}">
+            </div>
+            <div class="product-text">
+              <div class="product-title"><b>{{product.name}}</b></div>
+              <div class="product-detail">
+                  <div class="product-date" style="white-space: nowrap;
+                      overflow: hidden;
+                      text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div>
+                  <div class="product-price">{{product.price|floatformat:2}} ฿</div>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       {% endfor %}
     </div>
   </div>
-  <div class="paging">
+  <div class="paging" id="page-hide">
     {% if page >= 1 and  page <= last_page %}
       {% if page|add:'-1' > 0 %}
         <a href="/shop{{type}}/{{page|add:'-1'}}{{search_path}}"><img src="{% static 'img/Previous-page.png' %}" style="padding-bottom: 4px;
@@ -246,13 +258,14 @@
             margin-left: 16px;
         ">{{page|add:'-1'}}</button></a><span> </span>
       {% endif %}
-      <span><button class="w3-button w3-large w3-circle w3-white" style="
+      <span><button class="w3-button w3-large w3-circle" style="
           border-right-width: 30\;
           border-right-width: 30px;
           border-left-width: 30px;
           margin-right: 16px;
           margin-left: 16px;
-      ">{{page}}</button></span>
+          color: #000 !important;
+          background-color: #ffbc49 !important; " >{{page}}</button> </span>
       {% if page|add:'1' <= last_page %}
         <a href="/shop{{type}}/{{page|add:'1'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
             border-right-width: 30\;
