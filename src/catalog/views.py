@@ -7,62 +7,49 @@ def search(request, product_type, num):
     real_product_type = ''
     product_name = ''
     seller_name = ''
+    sort_type = ''
     search_path = ''
     if product_type != '':
         for choice in PRODUCT_TYPE_CHOICES:
             if choice[0] == product_type:
                 real_product_type = choice[1]
     page = int(num)
-    print(page)
     if page < 1:
         return redirect('/shop/' + real_product_type)
     first_product = product_per_page * (page - 1)
     last_product = product_per_page * page
-    if ('seller_name' in request.GET) and ('product_name' in request.GET):
+    if ('seller_name' in request.GET) and ('product_name' in request.GET) and ('sort' in request.GET):
         product_name = request.GET['product_name']
         seller_name = request.GET['seller_name']
-        search_path = '/?product_name=' + product_name + '&seller_name=' + seller_name
+        sort_type = request.GET['sort']
+        search_path = '/?product_name=' + product_name + '&seller_name=' + seller_name + '&sort=' + sort_type
         user_list = User.objects.filter(username__icontains=seller_name)
         user_extend_data_list = UserExtendData.objects.filter(user__in=user_list)
+        if sort_type == 'low':
+            sort_word = 'price'
+        elif sort_type == 'high':
+            sort_word = '-price'
+        elif sort_type == 'old':
+            sort_word = 'create_date'
+        else:
+            sort_word = '-create_date'
         if real_product_type == '':
-            product_latest = Product.objects.order_by('-create_date').filter(seller__in=user_extend_data_list,
-                                                                             name__icontains=product_name)[first_product:last_product + 1]
-            product_oldest = Product.objects.order_by('create_date').filter(seller__in=user_extend_data_list,
-                                                                            name__icontains=product_name)[first_product:last_product + 1]
-            product_lowest_price = Product.objects.order_by('price').filter(seller__in=user_extend_data_list,
-                                                                            name__icontains=product_name)[first_product:last_product + 1]
-            product_highest_price = Product.objects.order_by('-price').filter(seller__in=user_extend_data_list,
-                                                                              name__icontains=product_name)[first_product:last_product + 1]
+            all_product = Product.objects.order_by(sort_word).filter(seller__in=user_extend_data_list,
+                                                                             name__icontains=product_name)[first_product:last_product]
             all_product_length = Product.objects.filter(seller__in=user_extend_data_list,
                                                         name__icontains=product_name).count()
         else:
-            product_latest = Product.objects.order_by('-create_date').filter(type=product_type, seller__in=user_extend_data_list,
-                                                                             name__icontains=product_name)[first_product:last_product + 1]
-            product_oldest = Product.objects.order_by('create_date').filter(type=product_type, seller__in=user_extend_data_list,
-                                                                            name__icontains=product_name)[first_product:last_product + 1]
-            product_lowest_price = Product.objects.order_by('price').filter(type=product_type, seller__in=user_extend_data_list,
-                                                                            name__icontains=product_name)[first_product:last_product + 1]
-            product_highest_price = Product.objects.order_by('-price').filter(type=product_type, seller__in=user_extend_data_list,
-                                                                              name__icontains=product_name)[first_product:last_product + 1]
+            all_product = Product.objects.order_by(sort_word).filter(type=product_type, seller__in=user_extend_data_list,
+                                                                             name__icontains=product_name)[first_product:last_product]
             all_product_length = Product.objects.filter(type=product_type, seller__in=user_extend_data_list,
                                                         name__icontains=product_name).count()
     else:
         if real_product_type == '':
-            product_latest = Product.objects.order_by('-create_date')[first_product:last_product + 1]
-            product_oldest = Product.objects.order_by('create_date')[first_product:last_product + 1]
-            product_lowest_price = Product.objects.order_by('price')[first_product:last_product + 1]
-            product_highest_price = Product.objects.order_by('-price')[first_product:last_product + 1]
+            all_product = Product.objects.order_by('-create_date')[first_product:last_product]
             all_product_length = Product.objects.count()
         else:
-            product_latest = Product.objects.order_by('-create_date').filter(type=product_type)[first_product:last_product + 1]
-            product_oldest = Product.objects.order_by('create_date').filter(type=product_type)[first_product:last_product + 1]
-            product_lowest_price = Product.objects.order_by('price').filter(type=product_type)[first_product:last_product + 1]
-            product_highest_price = Product.objects.order_by('-price').filter(type=product_type)[first_product:last_product + 1]
+            all_product = Product.objects.order_by('-create_date').filter(type=product_type)[first_product:last_product]
             all_product_length = Product.objects.filter(type=product_type).count()
-    product_latest = product_latest[0:product_per_page]
-    product_oldest = product_oldest[0:product_per_page]
-    product_lowest_price = product_lowest_price[0:product_per_page]
-    product_highest_price = product_highest_price[0:product_per_page]
     if all_product_length == 0:
         last_page = 0
     else:
@@ -73,12 +60,10 @@ def search(request, product_type, num):
         'type': '/' + real_product_type,
         'page': page,
         'last_page': last_page,
-        'product_latest': product_latest,
-        'product_oldest': product_oldest,
-        'product_lowest_price': product_lowest_price,
-        'product_highest_price': product_highest_price,
+        'all_product': all_product,
         'default_product_name': product_name,
         'default_seller_name': seller_name,
+        'default_sort_type': sort_type,
         'search_path': search_path,
         'tags': Tag.objects.all(),
     }
