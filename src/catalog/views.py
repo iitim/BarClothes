@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import *
+from operator import itemgetter
 
 def search(request, product_type, num):
     current_state = State(request.GET, product_type, num)
@@ -47,7 +48,21 @@ def set_last_page(current_state, all_product_length):
     return last_page
 
 def query_tag():
-    return Tag.objects.all()
+    tag_count = []
+    for tag in Tag.objects.all():
+        tag_count.append([tag,0])
+    for product in Product.objects.all():
+        index = 0
+        for tag in product.tags.all():
+            while tag != tag_count[index][0]:
+                index += 1
+            tag_count[index][1] += 1
+            index += 1
+    tag_count.sort(key=itemgetter(1), reverse=True)
+    tag_context = []
+    for tag in tag_count:
+        tag_context.append(tag[0])
+    return tag_context
 
 def catalog(request, num='1'):
     return search(request, '', num)

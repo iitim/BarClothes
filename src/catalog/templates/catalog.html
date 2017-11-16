@@ -11,39 +11,6 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!--<script>-->
-  <!--// $( function() {-->
-  <!--//   $( ".widget input[type=submit], .widget a, .widget button" ).button();-->
-  <!--//   $( "button, input, a" ).click( function( event ) {-->
-  <!--//     event.preventDefault();-->
-  <!--//   } );-->
-  <!--// } );-->
-  <!--function hide(){-->
-    <!--var item = document.getElementById('FFF');-->
-    <!--var item0 = document.getElementById('FFF1');-->
-    <!--item.style.visibility = 'hidden';-->
-    <!--item0.style.visibility = 'hidden';-->
-  <!--}-->
-  <!--function show(){-->
-    <!--var item = document.getElementById('FFF');-->
-    <!--var item0 = document.getElementById('FFF1');-->
-    <!--item.style.visibility = 'visible';-->
-    <!--item0.style.visibility = 'visible';-->
-  <!--}-->
-  <!--function myFunction(){-->
-    <!--var x = document.getElementById("myDIV");-->
-    <!--if (window.location.href == "http://127.0.0.1:8000/shop/" || window.location.href == "http://127.0.0.1:8000/shop/1/") {-->
-      <!--$( "#FFF" ).prop( "disabled", false );-->
-      <!--$( "#FFF" ).css( "background", "#282626" );-->
-      <!--show();-->
-    <!--} else {-->
-      <!--$( "#FFF" ).prop( "disabled", true );-->
-      <!--$( "#FFF" ).css( "background", "#808080" );-->
-      <!--hide();-->
-    <!--}-->
-  <!--}-->
-  <!--setTimeout(myFunction, 0);-->
-<!--</script>-->
 <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
 <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
 {% endblock %}
@@ -54,7 +21,7 @@
   <div class="sidebar-list">
     <form id="search" class="searchbar row" method="get">
       <div style="margin-left: 36px; margin-top: 12px;">
-        <p style="font-size: 18px; margin-top: 6px;" for="product_name">Product Name</p>
+        <label style="font-size: 18px; margin-top: 6px;" for="product_name">Product Name</label>
         <input style="margin-top: -12px; width: 190px; border: none;
                       border-bottom: 1px solid #FFBC49;
                       background-color: #282626;
@@ -63,9 +30,9 @@
                       outline: none;
                       -webkit-box-shadow: none;
                       -moz-box-shadow: none;
-                      box-shadow: none !important;" type="text" value="{{default_product_name}}" name="product_name">
+                      box-shadow: none !important;" type="text" value="{{default_product_name}}" id="product_name" name="product_name">
         <br>
-        <p style="font-size: 18px; margin-top: 12px;" for="seller_name">Store</p>
+        <label style="font-size: 18px; margin-top: 12px;" for="seller_name">Store</label>
         <input style="margin-top: -12px; width: 190px; border: none;
                       border-bottom: 1px solid #FFBC49;
                       background-color: #282626;
@@ -74,7 +41,7 @@
                       outline: none;
                       -webkit-box-shadow: none;
                       -moz-box-shadow: none;
-                      box-shadow: none !important;" type="text" value="{{default_seller_name}}" name="seller_name">
+                      box-shadow: none !important;" type="text" value="{{default_seller_name}}" id="seller_name" name="seller_name">
         <input type="hidden" name="submit_search" value="submit">
         <input class="sent-button" style="margin-top: 25px; margin-left: 58px; margin-bottom: 15px;
                       font-family: 'Glacial Indifference';
@@ -110,26 +77,16 @@
     {% endfor %}
   </div>
 </div>
-<script>
-  function hide_page(){
-    var item = document.getElementById('page-hide');
-    item.style.visibility = 'hidden';
-  }
-  function show_page(){
-    var item = document.getElementById('page-hide');
-    item.style.visibility = 'visible';
-  }
-</script>
 <div class="product-page col-md-9">
   <form class="sortbar row" method="get" >
-    <label for="sort" id="FFF1" style="font-size: 16px;">Sort By :  </label>
-    <select id="FFF" style="border: 1px
+    <label for="sort" style="font-size: 16px;">Sort By :  </label>
+    <select style="border: 1px
                    solid #FFBC49 !important;
                    background: #282626 !important;
                    width: 170px;
                    color: white;
                    font-size: 16px;"
-                   form="search" name="sort" onchange="this.form.submit();" >
+                   form="search" id="sort" name="sort" onchange="this.form.submit();" >
       <option value="select">Select</option>
       {% if default_sort_type == "late" %}
       <option value="late" selected>Latest date first</option>
@@ -175,7 +132,7 @@
     {% endfor %}
   </div>
 </div>
-<div class="paging" id="page-hide">
+<div class="paging">
   {% if page >= 1 and  page <= last_page %}
   {% if page|add:'-1' > 0 %}
   <a href="/shop{{type}}/{{page|add:'-1'}}{{search_path}}"><img src="{% static 'img/Previous-page.png' %}" style="padding-bottom: 4px;
