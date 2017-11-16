@@ -27,7 +27,7 @@ def filter(request, product_type, num):
         else :
             product = Product.objects.order_by('-price')
         product = product.filter(type=product_type, seller__in=user_extend_data_list, name__icontains=request.POST['product_name'])[first_product:last_product+1]
-        all_product_length = product.filter(type=product_type, seller__in=user_extend_data_list, name__icontains=request.POST['product_name']).count()
+        all_product_length = Product.objects.filter(type=product_type, seller__in=user_extend_data_list, name__icontains=request.POST['product_name']).count()
     else :
         product = Product.objects.order_by('-create_date').filter(type=product_type)[first_product:last_product+1]
         all_product_length = Product.objects.order_by('-create_date').filter(type=product_type).count()
@@ -77,7 +77,7 @@ def catalog(request, num="1"):
         else :
             product = Product.objects.order_by('-price')
         product = product.filter(seller__in=user_extend_data_list, name__icontains=request.POST['product_name'])[first_product:last_product+1]
-        all_product_length = product.filter(seller__in=user_extend_data_list, name__icontains=request.POST['product_name']).count()
+        all_product_length = Product.objects.filter(seller__in=user_extend_data_list, name__icontains=request.POST['product_name']).count()
     else :
         product = Product.objects.order_by('-create_date')[first_product:last_product+1]
         all_product_length = Product.objects.order_by('-create_date').count()

@@ -11,46 +11,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-        // $( function() {
-        //   $( ".widget input[type=submit], .widget a, .widget button" ).button();
-        //   $( "button, input, a" ).click( function( event ) {
-        //     event.preventDefault();
-        //   } );
-        // } );
-
-        function hide(){
-          var item = document.getElementById('FFF');
-          var item0 = document.getElementById('FFF1');
-          item.style.visibility = 'hidden';
-          item0.style.visibility = 'hidden';
-        }
-
-        function show(){
-          var item = document.getElementById('FFF');
-          var item0 = document.getElementById('FFF1');
-          item.style.visibility = 'visible';
-          item0.style.visibility = 'visible';
-        }
-        
-      function myFunction(){
-        if (window.location.href == "http://127.0.0.1:8000/shop/" 
-          || window.location.href == "http://127.0.0.1:8000/shop/1/") {
-            $( "#FFF" ).prop( "disabled", false ); 
-            $( "#FFF" ).css( "background", "#282626" );  
-            show();
-        } else {
-            $( "#FFF" ).prop( "disabled", true );
-            $( "#FFF" ).css( "background", "#808080" );
-       
-            hide(); 
-        }
-      }
-
-      setTimeout(myFunction, 0);
-        
-
-  </script>
+  
   <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
   <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
 {% endblock %}
@@ -137,72 +98,24 @@
 
   </div>
 
-   <script>   
-
-        
-      function hide_page(){
-         var item = document.getElementById('page-hide');
-         item.style.visibility = 'hidden';
-      }
-
-      function show_page(){
-         var item = document.getElementById('page-hide');
-         item.style.visibility = 'visible';
-      }
-
-      function setSort(val) {
-            if (val == "late"){
-                {% with product_latest as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in products %}<div class="product col-md-4"><a href="{% url 'product:view' product.id %}" class="buy"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
-                {% endwith %}
-                hide_page();
-            } else if (val == "old") {
-                {% with product_oldest as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in products %}<div class="product col-md-4"> <a href="{% url 'product:view' product.id %}" class="buy"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
-                {% endwith %}
-                 hide_page();
-            } else if (val == "low") {
-                {% with products_lowest_price as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in product_lowest_price %}<div class="product col-md-4"> <a href="{% url 'product:view' product.id %}" class="buy"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
-                {% endwith %}
-                 hide_page();
-            } else if (val == "high") {
-                {% with products_highest_price as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in product_highest_price %} <a href="{% url 'product:view' product.id %}" class="buy"><div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
-                {% endwith %}
-                 hide_page();
-            } else {
-                {% with all_product as products %}
-                document.getElementById("product_catalog").innerHTML = '{% for product in product_highest_price %} <a href="{% url 'product:view' product.id %}" class="buy"><div class="product col-md-4"><div class="product-image" style="height: 240px;"><span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{product.picture_path}}"></div><div class="product-text"><div class="product-title"><b>{{product.name}}</b></div><div class="product-detail"><div class="product-date" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis !important;">{{product.create_date|date:"d M Y"}}</div><div class="product-price">{{product.price|floatformat:2}} ฿</div></div></div></div></a>{% endfor %}';
-                {% endwith %}
-                show_page();
-            }
-      }
-      
-     
-
-  </script> 
-
-
-
   <div class="product-page col-md-9">
     <form class="sortbar row" method="post" >
-      <div id="myDIV">
+      
       <label for="sort" id="FFF1" style="font-size: 16px;">Sort By :  </label>
-        <select id="FFF" name="test" style="border: 1px 
+        <select id="FFF" style="border: 1px 
                        solid #FFBC49 !important;
                        background: #282626 !important;
                        width: 170px; 
                        color: white;
                        font-size: 16px;" 
-                       form="search" name="sort" onchange="setSort(this.value)" >
+                       form="search" name="sort" onchange="this.form.submit()"  >
           <option value="select">Select</option>           
           <option value="late">Latest date first</option>
           <option value="old">Oldest date first</option>
           <option value="low">Lowest price first</option>
           <option value="high">Highest price first</option>
         </select>
-      </div>
+      
     </form>
  
 
@@ -233,7 +146,7 @@
     {% if page >= 1 and  page <= last_page %}
       {% if page|add:'-1' > 0 %}
         <a href="/shop{{type}}/{{page|add:'-1'}}"><img src="{% static 'img/Previous-page.png' %}" style="padding-bottom: 4px;
-            border-right-width: 30\;
+            border-right-width: 30px;
             border-right-width: 30px;
             border-left-width: 30px;
             margin-right: 16px;
