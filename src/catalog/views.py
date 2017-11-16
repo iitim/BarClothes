@@ -3,73 +3,51 @@ from django.contrib.auth.models import User
 from .models import *
 
 def search(request, product_type, num):
-    product_per_page = 18
-    real_product_type = ''
-    product_name = ''
-    seller_name = ''
-    sort_type = ''
-    search_path = ''
-    if product_type != '':
-        for choice in PRODUCT_TYPE_CHOICES:
-            if choice[0] == product_type:
-                real_product_type = choice[1]
-    page = int(num)
-    if page < 1:
-        return redirect('/shop/' + real_product_type)
-    first_product = product_per_page * (page - 1)
-    last_product = product_per_page * page
-    if ('seller_name' in request.GET) and ('product_name' in request.GET) and ('sort' in request.GET):
-        product_name = request.GET['product_name']
-        seller_name = request.GET['seller_name']
-        sort_type = request.GET['sort']
-        search_path = '/?product_name=' + product_name + '&seller_name=' + seller_name + '&sort=' + sort_type
-        user_list = User.objects.filter(username__icontains=seller_name)
-        user_extend_data_list = UserExtendData.objects.filter(user__in=user_list)
-        if sort_type == 'low':
-            sort_word = 'price'
-        elif sort_type == 'high':
-            sort_word = '-price'
-        elif sort_type == 'old':
-            sort_word = 'create_date'
-        else:
-            sort_word = '-create_date'
-        if real_product_type == '':
-            all_product = Product.objects.order_by(sort_word).filter(seller__in=user_extend_data_list,
-                                                                             name__icontains=product_name)[first_product:last_product]
-            all_product_length = Product.objects.filter(seller__in=user_extend_data_list,
-                                                        name__icontains=product_name).count()
-        else:
-            all_product = Product.objects.order_by(sort_word).filter(type=product_type, seller__in=user_extend_data_list,
-                                                                             name__icontains=product_name)[first_product:last_product]
-            all_product_length = Product.objects.filter(type=product_type, seller__in=user_extend_data_list,
-                                                        name__icontains=product_name).count()
-    else:
-        if real_product_type == '':
-            all_product = Product.objects.order_by('-create_date')[first_product:last_product]
-            all_product_length = Product.objects.count()
-        else:
-            all_product = Product.objects.order_by('-create_date').filter(type=product_type)[first_product:last_product]
-            all_product_length = Product.objects.filter(type=product_type).count()
-    if all_product_length == 0:
-        last_page = 0
-    else:
-        last_page = int(all_product_length / product_per_page)
-        if all_product_length % product_per_page != 0:
-            last_page += 1
-    context = {
-        'type': '/' + real_product_type,
-        'page': page,
-        'last_page': last_page,
-        'all_product': all_product,
-        'default_product_name': product_name,
-        'default_seller_name': seller_name,
-        'default_sort_type': sort_type,
-        'search_path': search_path,
-        'tags': Tag.objects.all(),
-    }
-    if real_product_type == '':
-        context['type'] = ''
+    current_state = State(request.GET, product_type, num)
+    if current_state.must_redirect():
+        return redirect(current_state.get_redirect_path())
+    context = init_context(current_state)
+    context['all_product'], all_product_length = query_product(product_type,current_state)
+    context['last_page'] = set_last_page(current_state, all_product_length)
+    context['tags'] = query_tag()
     return render(request, 'catalog.html', context)
+
+def init_context(current_state):
+    context = {
+        'page': current_state.page,
+        'default_product_name': current_state.product_name,
+        'default_seller_name': current_state.seller_name,
+        'default_sort_type': current_state.sort_type,
+        'search_path': current_state.get_search_path(),
+    }
+    if current_state.use_category_All():
+        context['type'] = ''
+    else:
+        context['type'] = '/' + current_state.real_product_type
+    return context
+
+def query_product(product_type, current_state):
+    if current_state.use_search_or_sort():
+        user_list = User.objects.filter(username__icontains=current_state.seller_name)
+        user_extend_data_list = UserExtendData.objects.filter(user__in=user_list)
+        all_product = Product.objects.order_by(current_state.how_to_order_by())
+        all_product = all_product.filter(seller__in=user_extend_data_list, name__icontains=current_state.product_name)
+    else:
+        all_product = Product.objects.order_by('-create_date')
+    if not current_state.use_category_All():
+        all_product = all_product.filter(type=product_type)
+    all_product_length = len(all_product)
+    all_product = all_product[current_state.first_product:current_state.last_product]
+    return all_product, all_product_length
+
+def set_last_page(current_state, all_product_length):
+    last_page = int(all_product_length / current_state.product_per_page)
+    if all_product_length % current_state.product_per_page != 0:
+        last_page += 1
+    return last_page
+
+def query_tag():
+    return Tag.objects.all()
 
 def catalog(request, num='1'):
     return search(request, '', num)
@@ -106,3 +84,63 @@ def shoes(request, num='1'):
 
 def accessory(request, num='1'):
     return search(request, 'Acc', num)
+
+class State:
+    product_per_page = 18
+
+    def __init__(self, request, product_type, num):
+        self.request = request
+        self.decode_request(request)
+        self.real_product_type = self.decode_product_type(product_type)
+        self.page = int(num)
+        self.first_product = self.product_per_page * (self.page - 1)
+        self.last_product = self.product_per_page * self.page
+
+    def decode_request(self, request):
+        if self.use_search_or_sort():
+            self.product_name = request['product_name']
+            self.seller_name = request['seller_name']
+            self.sort_type = request['sort']
+        else:
+            self.product_name = ''
+            self.seller_name = ''
+            self.sort_type = ''
+
+    def decode_product_type(self, product_type):
+        if product_type != '':
+            for choice in PRODUCT_TYPE_CHOICES:
+                if choice[0] == product_type:
+                    return choice[1]
+        else:
+            return ''
+
+    def get_redirect_path(self):
+        if self.use_category_All():
+            return '/shop' + self.get_search_path()
+        else:
+            return '/shop/' + self.real_product_type + self.get_search_path()
+
+    def get_search_path(self):
+        if self.use_search_or_sort():
+            return '/?product_name=' + self.product_name + '&seller_name=' + self.seller_name + '&sort=' + self.sort_type
+        else:
+            return ''
+
+    def use_search_or_sort(self):
+        return ('product_name' in self.request) and ('seller_name' in self.request) and ('sort' in self.request)
+
+    def must_redirect(self):
+        return (self.page < 1) or ('submit_search' in self.request)
+
+    def use_category_All(self):
+        return self.real_product_type == ''
+
+    def how_to_order_by(self):
+        if self.sort_type == 'low':
+            return 'price'
+        elif self.sort_type == 'high':
+            return '-price'
+        elif self.sort_type == 'old':
+            return 'create_date'
+        else:
+            return '-create_date'
