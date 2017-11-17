@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, TextInput
+from django.forms import ModelForm, TextInput, HiddenInput
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
@@ -66,6 +66,11 @@ class EditProfileForm(forms.ModelForm):
         }
 
 class TransactionUpdateForm(forms.ModelForm):
+    pk = forms.IntegerField(widget=forms.HiddenInput())
+
     class Meta:
         model = Transaction
         fields = ('transport_code',)
+        widgets = {
+            'transport_code': TextInput(),
+        }

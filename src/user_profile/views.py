@@ -93,6 +93,7 @@ def view_myshop(request):
    
 
 def orderpage(request):
+    print(request.POST)
     store_extend = get_object_or_404(UserExtendData, user=request.user)
     transaction = Transaction.objects.filter(product__seller=store_extend)
     groups = defaultdict(list)
@@ -100,6 +101,7 @@ def orderpage(request):
     for obj in transaction:
         groups[obj.product].append(obj)
         forms[obj.product].append(sentorder(request, obj))
+
     new_list = list(groups.values())
     form_list = list(forms.values())
 
@@ -112,10 +114,12 @@ def orderpage(request):
     return render(request, template, context)
 
 def sentorder(request, transaction):
-    form = TransactionUpdateForm(instance=transaction)
-    if request.POST:
-        form = TransactionUpdateForm(request.POST, request.FILES, instance=transaction)
+    form = TransactionUpdateForm(instance=transaction, initial={'pk':transaction._get_pk_val()})
+    if request.POST and transaction._get_pk_val() == int(request.POST['pk']):
+        form = TransactionUpdateForm(request.POST, request.FILES, instance=transaction, initial={'pk':transaction._get_pk_val()})
         if form.is_valid():
+            print("IT'S VALID")
+            print(form)
             fixform = form.save(commit=False)
             fixform.status = 'suc'
             fixform.sent_date = datetime.now()

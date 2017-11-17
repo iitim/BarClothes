@@ -38,7 +38,7 @@
                 {% for each_trans in trans.0 %}
                 {% for each_form in trans.1 %}
                 {% if forloop.parentloop.counter == forloop.counter %}
-                <option value='{{ each_form.transport_code }}'> {{each_trans.customer}} ({{each_trans.amount}} orders)</option>
+                <option value='{{ each_form.transport_code }}{{ each_form.pk}}'> {{each_trans.customer}} ({{each_trans.amount}} orders)</option>
                 {% endif %}
                 {% endfor %}
                 {% endfor %}
@@ -50,7 +50,7 @@
                   // {% with val as form %}
                   var $csrf = $('input[name="csrfmiddlewaretoken"]');
                   // document.getElementById("order-form").innerHTML = '<form method="post" enctype="multipart/form-data"><div><p>' + val + '</p></div><input type="submit" class="btn btn-warning" value="Submit" /></form>';
-                  var $form = $($.parseHTML('<form method="post" enctype="multipart/form-data"><div><p>' + val + '</p></div><input type="submit" class="btn btn-warning" value="Submit" /></form>'));
+                  var $form = $($.parseHTML('<form method="post" enctype="multipart/form-data"><div><p>' + val + '</p></div><input type="submit" class="btn btn-warning"  value="Submit" /></form>'));
                   $form.append($csrf[0])
                   $('#order-form').append($form);
                   // {% endwith %}

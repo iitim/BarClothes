@@ -89,6 +89,7 @@ class Transaction(models.Model):
     def __str__(self):
         return self.customer.user.username + " buy " + self.product.name +" at " + self.create_date.__str__() + " from " + self.product.seller.user.username + " current state:" + self.status
 
+
 class TransactionLog(models.Model):
     customer = models.CharField(max_length=100)
     seller = models.CharField(max_length=100)
