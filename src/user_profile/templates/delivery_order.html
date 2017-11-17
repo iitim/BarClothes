@@ -21,7 +21,7 @@
           <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px" src="/media/{{product.picture_path}}" >
    
           <div class="col-md-2" style="margin-left: 30px; width:125px; padding: 0px;">
-                <p class="text1-delivery-order" >{{ trans|length }} Orders </p>
+                <p class="text1-delivery-order" >{{ trans.0|length }} Orders </p>
                 <p class="textN-delivery-order" style="margin-right: 20px" >ProductName </p>
                 <p class="textN-delivery-order" style="margin-right: 50px">Customer </p>
                 <p class="textN-delivery-order" style="margin-right: 30px">Tracking No.</p>
@@ -31,24 +31,36 @@
           </div>
           <div class="col-md-2" style="padding: 0px;">
             <div style="height: 10px; margin-bottom: 32px; margin-right: 80px;"> </div>
-             <p style="font-size: 14px; color: #FFBC49;"> {{trans.0.product.name}} </p>
+            <p style="font-size: 14px; color: #FFBC49;"> {{trans.0.0.product.name}} </p>
 
-             <div class="btn-group">
-
-              <button type="button" name="abc" id="mainbutton" style="width: 140px;" class="btn delivery_order_button">select</button>
-
-              <button type="button" class="btn dropdown-toggle delivery_order_button" data-toggle="dropdown" id="ddvalue" aria-haspopup="true" aria-expanded="false" value="0">
-                <span class="caret"></span>
-                <span class="sr-only">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu" id="dropdownorder">
-                {% for each_trans in trans %}
-                <li><a href="#" style="color: white;" value="{{each_trans.id}}" >{{each_trans.customer}} ({{each_trans.amount}} orders)</a></li>
+            <div class="btn-group">
+              <select id="dropdownorder" onchange="selectCust(this.value)"> <!-- class="dropdown-menu"  -->
+                {% for each_trans in trans.0 %}
+                {% for each_form in trans.1 %}
+                {% if forloop.parentloop.counter == forloop.counter %}
+                <option value='{{ each_form.transport_code }}'> {{each_trans.customer}} ({{each_trans.amount}} orders)</option>
+                {% endif %}
                 {% endfor %}
-              </ul>
+                {% endfor %}
+              </select>
+              
+              <script>
+                // $( document ).ready(selectCust("late"));
+                function selectCust(val) {
+                  // {% with val as form %}
+                  var $csrf = $('input[name="csrfmiddlewaretoken"]');
+                  // document.getElementById("order-form").innerHTML = '<form method="post" enctype="multipart/form-data"><div><p>' + val + '</p></div><input type="submit" class="btn btn-warning" value="Submit" /></form>';
+                  var $form = $($.parseHTML('<form method="post" enctype="multipart/form-data"><div><p>' + val + '</p></div><input type="submit" class="btn btn-warning" value="Submit" /></form>'));
+                  $form.append($csrf[0])
+                  $('#order-form').append($form);
+                  // {% endwith %}
+                }
+              </script>
+
           </div>
-          <div>
-              <input type="text" id="form1" style="font-size: 18px;" class="form-control">
+          {% csrf_token %} 
+          <div id="order-form">
+              <!-- <input type="text" id="form1" style="font-size: 18px;" class="form-control">  -->
           </div>   
          </div>
      

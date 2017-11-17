@@ -8,8 +8,9 @@ from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import get_list_or_404, get_object_or_404, render, redirect
 from operator import attrgetter
 from collections import defaultdict
+from datetime import datetime
 
-from .forms import EditProfileForm
+from .forms import EditProfileForm, TransactionUpdateForm
 from main.models import UserExtendData , Transaction
 
 
@@ -95,11 +96,30 @@ def orderpage(request):
     store_extend = get_object_or_404(UserExtendData, user=request.user)
     transaction = Transaction.objects.filter(product__seller=store_extend)
     groups = defaultdict(list)
+    forms = defaultdict(list)
     for obj in transaction:
         groups[obj.product].append(obj)
+        forms[obj.product].append(sentorder(request, obj))
     new_list = list(groups.values())
+    form_list = list(forms.values())
+
     context = {
-       'transaction': new_list
+        'transaction': zip(new_list, form_list)
+    #    'transaction': new_list,
+    #    'forms': form_list
     }
     template = 'delivery_order.html'
     return render(request, template, context)
+
+def sentorder(request, transaction):
+    form = TransactionUpdateForm(instance=transaction)
+    if request.POST:
+        form = TransactionUpdateForm(request.POST, request.FILES, instance=transaction)
+        if form.is_valid():
+            fixform = form.save(commit=False)
+            fixform.status = 'suc'
+            fixform.sent_date = datetime.now()
+            form.save()
+        else:
+            print (form.errors)
+    return form
