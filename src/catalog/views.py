@@ -37,9 +37,26 @@ def query_product(product_type, current_state):
         all_product = Product.objects.order_by('-create_date')
     if not current_state.use_category_All():
         all_product = all_product.filter(type=product_type)
+    #all_product = filter_by_tag(all_product)
+    all_product = filter_out_of_product(all_product)
     all_product_length = len(all_product)
     all_product = all_product[current_state.first_product:current_state.last_product]
     return all_product, all_product_length
+
+def filter_by_tag(all_product):
+    all_product_filter = []
+    tags = Tag.objects.all()
+    for product in all_product:
+        if set(tags).issubset(product.tags.all()):
+            all_product_filter.append(product)
+    return all_product_filter
+
+def filter_out_of_product(all_product):
+    all_product_filter = []
+    for product in all_product:
+        if product.remain() > 0:
+            all_product_filter.append(product)
+    return all_product_filter
 
 def set_last_page(current_state, all_product_length):
     last_page = int(all_product_length / current_state.product_per_page)
