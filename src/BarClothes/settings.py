@@ -97,8 +97,9 @@ WSGI_APPLICATION = 'BarClothes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'barclothes$db',
+        # 'NAME': 'barclothes$db',
         # 'NAME': 'barclothes$barclothes',
+        'NAME': 'barclothes$cycle2-rehersal',
         'USER': 'barclothes',
         'PASSWORD': 'gintama1234',
         'HOST': 'barclothes.mysql.pythonanywhere-services.com',
