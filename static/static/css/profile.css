@@ -200,6 +200,16 @@ div.edit-text-div{
   margin-bottom:20px;
 }
 
+input.input-edit-text-bank{
+  margin-left:30px;
+  width:300px;
+  border-bottom:2px solid #ed8b1a;
+  background:transparent;
+  border-left:transparent;
+  border-right:transparent;
+  color:gray;
+  border-top:transparent;
+}
 div.edit-text-div2{
   margin-bottom:20px;
   text-align: left;

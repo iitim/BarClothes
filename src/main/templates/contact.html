@@ -16,7 +16,14 @@
             <p>Tel : 086-662-5526</p>
             <p>facebook : fb.com/BarClothes</p>
             <p>Instagram : instagr.am/BarClothes</p>
+            <p>E-mail : barclothesdotcom@gmail.com</p>
         </div>
     </div>
 </div>
+
+<form method='POST' action=''> {% csrf_token %}
+{{ form.as_p }}
+<input type='submit' value='submit form' class='btn btn-default' />
+</form>
+
 {% endblock %}

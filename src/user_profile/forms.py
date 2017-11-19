@@ -50,7 +50,7 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = UserExtendData
         # user = get_user_model()
-        fields = ('address', 'tel_no', 'picture')
+        fields = ('address', 'tel_no', 'picture','bank_account')
         widgets = {
             'address': TextInput(attrs={
                 'class': 'input-edit-text-3', 
@@ -66,5 +66,11 @@ class EditProfileForm(forms.ModelForm):
             'picture': FileInput(attrs={
                 'class' : "edit-pic",
                 'type' : "file",
+            }),
+            
+            'bank_account': TextInput(attrs={
+                'class': 'input-edit-text-bank', 
+                'type': 'text',
+                # 'value': 'user.first_name'
             }),
         }
