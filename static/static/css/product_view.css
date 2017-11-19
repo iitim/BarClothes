@@ -1,0 +1,87 @@
+.product_view{
+    margin-top: 80px;
+}
+
+.picture-preview{
+    margin: 0 auto;
+    max-width: 321px;
+    max-height: 399px;
+    margin-bottom: 40px;
+}
+
+.picture-preview-delete{
+    margin: 15px;
+    max-height: 200px;
+}
+
+.head{
+    font-size: 24px;
+    color: #ffbc49;
+    text-align: left;
+    /* padding: 0 15px; */
+}
+
+.head-detail{
+    margin: 0px 40px 10px;
+    font-size: 24px;
+    color: #ffbc49;
+    text-align: left;
+}
+
+.normal{
+    text-align: left;
+    padding: 4px 15px;
+    font-size: 18px;
+    word-break: break-all;
+}
+
+.normal-detail{
+    margin: 0 40px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.buy{
+    color: #ffbc49;
+    font-size: 24px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 2px 12px;
+    margin-bottom: 0;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid #ffbc49;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    font-size: 24px;
+}
+
+.btn warning{
+    background-color: #ffbc49;
+}
+
+input[name=buy]{
+    color: #ffbc49;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.text{
+    padding: 3px 15px;
+}
+
+.get-it{
+    float: right;
+    bottom: 100px;
+    position: relative;
+    margin: 0 10px;
+}

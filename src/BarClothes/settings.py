@@ -16,6 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -41,6 +42,9 @@ INSTALLED_APPS = [
     'signup',
     'user_profile',
     'catalog',
+    'product',
+    'store',
+    'myproduct'
 ]
 
 MIDDLEWARE = [
@@ -101,6 +105,31 @@ DATABASES = {
     }
 }
 
+# use for branch catalog
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.mysql',
+#     'NAME': 'BarClothes',
+#     'USER': 'BarClothes',
+#     # 'PASSWORD': 'gintama1234'
+#     'PASSWORD': None
+#    }
+# }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         # 'OPTIONS': {
+#         #     'read_default_file': '/path/to/my.cnf',
+#         # },
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -146,3 +175,4 @@ if DEBUG:
     )
 
 MEDIA_ROOT = os.path.join(os.path.join(os.path.dirname(BASE_DIR),"static"), 'media')
+LOGIN_REDIRECT_URL = '/profiles/'

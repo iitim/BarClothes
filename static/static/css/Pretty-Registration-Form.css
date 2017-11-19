@@ -1,3 +1,34 @@
+/*add*/
+@font-face {
+	font-family: 'Glacial Indifference';
+  src: url(../fonts/GlacialIndifference-Bold.eot);
+ 	src: url(../fonts/GlacialIndifference-Bold.eot?#iefix) format('embedded-opentype'),
+ 		url(../fonts/GlacialIndifference-Bold.woff) format('woff'),
+ 		url(../fonts/GlacialIndifference-Bold.ttf) format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Glacial Indifference';
+  src: url(../fonts/GlacialIndifference-Italic.eot);
+ 	src: url(../fonts/GlacialIndifference-Italic.eot?#iefix) format('embedded-opentype'),
+ 		url(../fonts/GlacialIndifference-Italic.woff) format('woff'),
+ 		url(../fonts/GlacialIndifference-Italic.ttf) format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Glacial Indifference';
+  src: url(../fonts/GlacialIndifference-Regular.eot);
+ 	src: url(../fonts/GlacialIndifference-Regular.eot?#iefix) format('embedded-opentype'),
+ 		url(../fonts/GlacialIndifference-Regular.woff) format('woff'),
+ 		url(../fonts/GlacialIndifference-Regular.ttf) format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+/*end*/
 html,
 body {
     font-family: 'Glacial Indifference';
@@ -10,6 +41,7 @@ body {
 }
 
 .register-form form.custom-form{
+	font-family: 'Glacial Indifference';/*add*/
   padding:55px;
   box-sizing:border-box;
   background-color:#282626;
@@ -23,46 +55,64 @@ body {
 @media (max-width:400px) {
   .register-form form.custom-form{
     padding:55px 10px;
+		font-family: 'Glacial Indifference';/*add*/
   }
 }
 
 .register-form .custom-form h1{
+	font-family: 'Glacial Indifference';/*add*/
   display:inline-block;
-  color:#FFBC49;
+  color:rgb(255, 242, 244);
   font-size:24px;
   font-weight:bold;
-  padding:0 10px 15px;
-  margin-bottom:60px;
-  border-bottom:2px solid rgb(252,49,232);
+  padding:15px 10px 15px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  border:2px solid rgb(255, 242, 244);
+  /*border: 2px solid white;*/
+  border-radius: 15px;
 }
 
 .register-form .custom-form .form-group{
+	font-family: 'Glacial Indifference';/*add*/
   margin-bottom:25px;
 }
 
 .register-form .custom-form .label-column{
+	font-family: 'Glacial Indifference';/*add*/
   text-align:right;
   color:#FFBC49;
 }
 
 @media (max-width:768px) {
   .register-form .custom-form .label-column{
+		font-family: 'Glacial Indifference';/*add*/
     text-align:left;
   }
 }
 
 .register-form .custom-form .input-column{
+	font-family: 'Glacial Indifference';/*add*/
   color:#282626;
   text-align:left;
 }
 
 .register-form .custom-form .input-column input{
-  color:#282626;
+	font-family: 'Glacial Indifference';/*add*/
+  color:white;
+  background-color: #282626;
   box-shadow:1px 2px 4px 0 rgba(0, 0, 0, 0.08);
   padding:12px;
-  border:1px solid #dbdbdb;
-  border-radius:2px;
+  /*border:1px solid #dbdbdb;
+  border-radius:2px;*/
   height:42px;
+  border: none;
+  border-bottom: 2px solid rgba(255,188,73,1);
+}
+
+.errorlist{
+	font-family: 'Glacial Indifference';/*add*/
+  color: white
 }
 
 .register-form .custom-form .dropdown .dropdown-toggle{
@@ -88,6 +138,7 @@ body {
 }
 
 .register-form .custom-form .submit-button{
+	font-family: 'Glacial Indifference';/*add*/
   border-radius:2px;
   background:#FFBC49;
   color:#282626;
@@ -100,6 +151,7 @@ body {
 }
 
 input.form-control.input-lg{
+	font-family: 'Glacial Indifference';/*add*/
   display:block;
   width:216px;
   height:42px;

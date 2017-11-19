@@ -1,68 +1,91 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block title %}Login{% endblock %}
-
 {% block stylesheet %}
     <link href="{% static 'css/home_main.css' %}" rel="stylesheet">
-    <link href="{% static 'css/home_carousel.css' %}" rel="stylesheet">
-    <link href="{% static 'css/home_VIP.css' %}" rel="stylesheet">
-    <link href="{% static 'css/home_bestsell.css' %}" rel="stylesheet">
 {% endblock %}
 
-{% block content %}
-    <div class="bs-example">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Carousel indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>   
-            <!-- Wrapper for carousel items -->
-            <div class="carousel-inner">
-                <div class="item active">
-                    <a href="#"><img src="{% static 'img/home/carousel/first.jpg' %}"  alt="First Slide"/></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="{% static 'img/home/carousel/second.jpg' %}"  alt="First Slide"/></a>
-                </div>
-                <div class="item">
-                    <a href="#"><img src="{% static 'img/home/carousel/third.jpg' %}"  alt="First Slide"/></a>
-                </div>
-            </div>
-            <!-- Carousel controls -->
-            <a class="carousel-control left" href="#myCarousel" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left"></span>
-            </a>
-            <a class="carousel-control right" href="#myCarousel" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
+{% block title_content1 %}<div class="home-title">Interesting items</div>{% endblock %}
+{% block content1 %}
+    {% if num_product_interesting > 0 %}
+    <div class="col-md-12">
+        <div class="first">
+            {% if num_product_interesting > 1 %}<a href="{% url 'product:view' interesting.1.id %}">
+                <img class="product-image2" src="/media/{{interesting.1.picture_path}}"></a>{% endif %}
+            <a href="{% url 'product:view' interesting.0.id %}">
+                <img class="product-image1" src="/media/{{interesting.0.picture_path}}"></a>
+            {% if num_product_interesting > 2 %}<a href="{% url 'product:view' interesting.2.id %}">
+                <img class="product-image2" src="/media/{{interesting.2.picture_path}}"></a>{% endif %}
         </div>
     </div>
-    
-    <!-- end carousel -->
+    {% endif %}
+    {% if num_product_interesting > 3 %}
+    <div class="col-md-12">
+        <div class="second">
+            <a href="{% url 'product:view' interesting.3.id %}">
+                <img class="product-image3" src="/media/{{interesting.3.picture_path}}"></a>
+            {% if num_product_interesting > 4 %}<a href="{% url 'product:view' interesting.4.id %}">
+                <img class="product-image3" src="/media/{{interesting.4.picture_path}}"></a>{% endif %}
+            {% if num_product_interesting > 5 %}<a href="{% url 'product:view' interesting.5.id %}">
+                <img class="product-image3" src="/media/{{interesting.5.picture_path}}"></a>{% endif %}
+        </div>
+    </div>
+    {% endif %}
+    {% if num_product_interesting > 6 %}
+    <div class="col-md-12">
+        <div class="third">
+            <a href="{% url 'product:view' interesting.6.id %}">
+                <img class="product-image3" src="/media/{{interesting.6.picture_path}}"></a>
+            {% if num_product_interesting > 7 %}<a href="{% url 'product:view' interesting.7.id %}">
+                <img class="product-image3" src="/media/{{interesting.7.picture_path}}"></a>{% endif %}
+            {% if num_product_interesting > 8 %}<a href="{% url 'product:view' interesting.7.id %}">
+                <img class="product-image3" src="/media/{{interesting.8.picture_path}}"></a>{% endif %}
+        </div>
+    </div>
+    {% endif %}
 
-    <div class="row-VIPItems">
-        <div class="col-md-6">
-            <img src="{% static 'img/home/VIP/Head.png' %}">
-        </div>
-        <div class="col-md-6">
-            <img class="preview-item" src="{% static 'img/home/VIP/V001.jpg' %}" height="267">
-            <img class="preview-item" src="{% static 'img/home/VIP/V002.jpg' %}" height="267">
-            <img class="preview-item" src="{% static 'img/home/VIP/V003.jpg' %}" height="267">
-            <img class="preview-item" src="{% static 'img/home/VIP/V004.jpg' %}" height="267">
+    <div class="col-md-12">
+        <img class="sponser" src="{% static 'img/mo-s-banner-1024x200.jpg' %}">
+    </div>
+{% endblock %}
+
+{% block title_content2 %}<div class="home-title">Best Sellers</div>{% endblock %}
+{% block content2 %}
+    {% if num_product > 0 %}
+    <div class="col-md-12">
+        <div class="first">
+            {% if num_product > 1 %}<a href="{% url 'product:view' bestsell.1.id %}">
+                <img class="product-image2_2" src="/media/{{bestsell.1.picture_path}}"></a>{% endif %}
+            <div><h1>1st</h1>
+                <a href="{% url 'product:view' bestsell.0.id %}">
+                    <img class="product-image1" src="/media/{{bestsell.0.picture_path}}"></a></div>
+            {% if num_product > 2 %}<a href="{% url 'product:view' bestsell.2.id %}">
+                <img class="product-image2_2" src="/media/{{bestsell.2.picture_path}}"></a>{% endif %}
         </div>
     </div>
-    <div class="row-BestSell">
-        <div class="col-md-6 col-md-push-6">
-            <img src="{% static 'img/home/BestSell/Head.png' %}">
-        </div>
-        <div class="col-md-6 col-md-pull-6">
-            <img class="preview-item" src="{% static 'img/home/BestSell/B001.jpg' %}" height="267">
-            <img class="preview-item" src="{% static 'img/home/BestSell/B002.jpg' %}" height="267">
-            <img class="preview-item" src="{% static 'img/home/BestSell/B003.jpg' %}" height="267">
-            <img class="preview-item" src="{% static 'img/home/BestSell/B004.jpg' %}" height="267">
+    {% endif %}
+    {% if num_product > 3 %}
+    <div class="col-md-12">
+        <div class="second">
+            <a href="{% url 'product:view' bestsell.3.id %}">
+                <img class="product-image3" src="/media/{{bestsell.3.picture_path}}"></a>
+            {% if num_product > 4 %}<a href="{% url 'product:view' bestsell.4.id %}">
+                <img class="product-image3" src="/media/{{bestsell.4.picture_path}}"></a>{% endif %}
+            {% if num_product > 5 %}<a href="{% url 'product:view' bestsell.5.id %}">
+                <img class="product-image3" src="/media/{{bestsell.5.picture_path}}"></a>{% endif %}
         </div>
     </div>
+    {% endif %}
+    {% if num_product > 6 %}
+    <div class="col-md-12">
+        <div class="third">
+            <a href="{% url 'product:view' bestsell.6.id %}">
+                <img class="product-image3" src="/media/{{bestsell.6.picture_path}}"></a>
+            {% if num_product > 7 %}<a href="{% url 'product:view' bestsell.7.id %}">
+                <img class="product-image3" src="/media/{{bestsell.7.picture_path}}"></a>{% endif %}
+            {% if num_product > 8 %}<a href="{% url 'product:view' bestsell.8.id %}">
+                <img class="product-image3" src="/media/{{bestsell.8.picture_path}}"></a>{% endif %}
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
