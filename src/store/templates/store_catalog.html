@@ -1,5 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %} | Store{% endblock %}
 {% block no_title_content %}{% endblock %}
 
+{% load staticfiles %}
+
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="{% static 'css/store_catalog.css' %}">
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+{% endblock %}
+
 {% block content %}
-<p>for store_catalog</p>
+<div class="sidebar-page col-md-3" style="padding-left: 0px;">
+  <h3 style="margin-top: 40px;">Search</h3>
+  <div class="sidebar-list">
+    <form id="search" class="searchbar row" method="get">
+      <div style="margin-left: 36px; margin-top: 12px;">
+        <label style="font-size: 18px; margin-top: 12px;" for="seller_name">Store</label>
+        <input style="margin-top: -12px; width: 190px; border: none;
+                      border-bottom: 1px solid #FFBC49;
+                      background-color: #282626;
+                      color: white;
+                      font-size: 14px;
+                      outline: none;
+                      -webkit-box-shadow: none;
+                      -moz-box-shadow: none;
+                      box-shadow: none !important;" type="text" value="{{default_seller_name}}" id="seller_name" name="seller_name">
+        <input type="hidden" name="submit_search" value="submit">
+        <input class="sent-button" style="margin-top: 25px; margin-left: 58px; margin-bottom: 15px;
+                      font-family: 'Glacial Indifference';
+                      font-size: 14px;
+                      border-color: #FFBC49;
+                      background-color: #282626;
+                      color: #FFBC49 !important;
+                      padding: 8px 16px;
+                      border-radius: 10px;
+                      margin-right: 60px;" type="submit" value="Search!">
+      </div>
+    </form>
+  </div>
+</div>
+<div class="store-page col-md-9">
+  <div class="store-row row" id="store_catalog">
+    {% for store in all_store %}
+    <a href="{% url 'store:store_detail' %}" class="buy">
+      <div class="store col-md-4">
+        <div class="store-image" style="height: 240px;">
+          <span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{store.picture}}">
+        </div>
+        <div class="store-text">
+          <div class="store-title"><b>{{store.user.username}}</b></div>
+          <!--<div class="store-detail">-->
+              <!--<div class="store-date" style="white-space: nowrap;-->
+                  <!--overflow: hidden;-->
+                  <!--text-overflow: ellipsis !important;">{{store.create_date|date:"d M Y"}}</div>-->
+              <!--<div class="store-price">{{store.price|floatformat:2}} ฿</div>-->
+          <!--</div>-->
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+<div class="paging">
+  {% if page >= 1 and  page <= last_page %}
+  {% if page|add:'-1' > 0 %}
+  <a href="/store/{{page|add:'-1'}}{{search_path}}"><img src="{% static 'img/Previous-page.png' %}" style="padding-bottom: 4px;
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;" ></a><span> </span>
+  {% endif %}
+  {% if page|add:'-4' >= 1 %}
+  <a href="/store{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">1</button></a><span> </span>
+  {% endif %}
+  {% if page|add:'-5' >= 1 %}
+  <span><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">... </button></span>
+  {% endif %}
+  {% if page|add:'-3' >= 1 %}
+  <a href="/store/{{page|add:'-3'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">{{page|add:'-3'}}</button></a><span> </span>
+  {% endif %}
+  {% if page|add:'-2' >= 1 %}
+  <a href="/store/{{page|add:'-2'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">{{page|add:'-2'}}</button></a><span> </span>
+  {% endif %}
+  {% if page|add:'-1' >= 1 %}
+  <a href="/store/{{page|add:'-1'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">{{page|add:'-1'}}</button></a><span> </span>
+  {% endif %}
+  <span><button class="w3-button w3-large w3-circle" style="
+      border-right-width: 30\;
+      border-right-width: 30px;
+      border-left-width: 30px;
+      margin-right: 16px;
+      margin-left: 16px;
+      color: #000 !important;
+      background-color: #ffbc49 !important; " >{{page}}</button> </span>
+  {% if page|add:'1' <= last_page %}
+  <a href="/store/{{page|add:'1'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">{{page|add:'1'}}</button></a><span> </span>
+  {% endif %}
+  {% if page|add:'2' <= last_page %}
+  <a href="/store/{{page|add:'2'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">{{page|add:'2'}}</button></a><span> </span>
+  {% endif %}
+  {% if page|add:'3' <= last_page %}
+  <a href="/store/{{page|add:'3'}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">{{page|add:'3'}}</button></a><span> </span>
+  {% endif %}
+  {% if page|add:'5' <= last_page %}
+  <span><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">... </button></span>
+  {% endif %}
+  {% if page|add:'4' <= last_page %}
+  <a href="/store/{{last_page}}{{search_path}}"><button class="w3-button w3-large w3-circle w3-white" style="
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;
+    ">{{last_page}}</button></a><span> </span>
+  {% endif %}
+  {% if page|add:'1' <= last_page %}
+  <a href="/store/{{page|add:'1'}}{{search_path}}"><img src="{% static 'img/Next-page.png' %}" style="padding-bottom: 4px;
+        border-right-width: 30\;
+        border-right-width: 30px;
+        border-left-width: 30px;
+        margin-right: 16px;
+        margin-left: 16px;"></a>
+  {% endif %}
+  {% endif %}
+</div>
 {% endblock %}

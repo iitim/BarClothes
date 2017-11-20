@@ -1,13 +1,41 @@
 from django.shortcuts import get_list_or_404, get_object_or_404, render, redirect
-from operator import attrgetter
-from main.models import UserExtendData, Product
+from operator import attrgetter, itemgetter
+from main.models import *
 from django.contrib.auth.models import User
-from django.db import models
 
-
-def store(request):
-    context = locals()
+def store(request, num='1'):
+    current_state = State(request.GET, num)
+    if current_state.must_redirect():
+        return redirect(current_state.get_redirect_path())
+    context = init_context(current_state)
+    context['all_store'], all_store_length = query_store(current_state)
+    context['last_page'] = set_last_page(current_state, all_store_length)
     return render(request, 'store_catalog.html', context)
+
+def init_context(current_state):
+    context = {
+        'page': current_state.page,
+        'default_seller_name': current_state.seller_name,
+        'search_path': current_state.get_search_path(),
+    }
+    return context
+
+def query_store(current_state):
+    if current_state.use_search():
+        user_list = User.objects.filter(username__icontains=current_state.seller_name)
+        all_store = UserExtendData.objects.filter(user__in=user_list)
+    else:
+        all_store = UserExtendData.objects.all()
+    # all_store = filter_can_sell(all_store)
+    all_store_length = len(all_store)
+    all_store = all_store[current_state.first_store:current_state.last_store]
+    return all_store, all_store_length
+
+def set_last_page(current_state, all_store_length):
+    last_page = int(all_store_length / current_state.store_per_page)
+    if all_store_length % current_state.store_per_page != 0:
+        last_page += 1
+    return last_page
 
 def store_detail(request): #num
     store_extend = get_object_or_404(UserExtendData, id_num=1000000000000)
@@ -27,3 +55,34 @@ def store_detail(request): #num
         'products_highest_price': products_highest_price
     }
     return render(request, 'store_detail.html', context)
+
+class State:
+    store_per_page = 18
+
+    def __init__(self, request, num):
+        self.request = request
+        self.decode_request(request)
+        self.page = int(num)
+        self.first_store = self.store_per_page * (self.page - 1)
+        self.last_store = self.store_per_page * self.page
+
+    def decode_request(self, request):
+        if self.use_search():
+            self.seller_name = request['seller_name']
+        else:
+            self.seller_name = ''
+
+    def get_redirect_path(self):
+        return '/store' + self.get_search_path()
+
+    def get_search_path(self):
+        if self.use_search():
+            return '/?seller_name=' + self.seller_name
+        else:
+            return ''
+
+    def use_search(self):
+        return 'seller_name' in self.request
+
+    def must_redirect(self):
+        return (self.page < 1) or ('submit_search' in self.request)
