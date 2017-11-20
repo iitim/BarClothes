@@ -66,7 +66,8 @@ class EditProfileForm(forms.ModelForm):
             'picture': FileInput(attrs={
                 'class' : "edit-pic",
                 'type' : "file",
-            }),
+                'value' : 'edit_profile_form.picture',
+             }),
             
             'bank_account': TextInput(attrs={
                 'class': 'input-edit-text-bank', 
@@ -74,3 +75,9 @@ class EditProfileForm(forms.ModelForm):
                 # 'value': 'user.first_name'
             }),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+        self.fields['picture'] = forms.ImageField(
+            required=False
+        )
