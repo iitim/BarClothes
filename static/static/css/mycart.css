@@ -1,0 +1,57 @@
+.mycart-section{
+    display: inline-block;
+}
+
+.mycart-block{
+    height: 300px;
+    margin-bottom: 30px;
+}
+
+.picture-preview{
+    max-height: 300px;
+}
+
+.mycart-cancel{
+    font-size: small;
+    text-align: right;
+    color: #ffbc49;
+}
+
+.mycart-head{
+    text-align: left;
+    font-size: medium;
+}
+
+.mycart-status{
+    color: #ffbc49;
+    padding: 0;
+    font-size: xx-large;
+}
+
+/* upload image styles */
+.upload-image-form {  
+  padding-top: 40px;
+}
+
+.upload-image {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-image input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-image-confirmation {
+  display: none;
+}
+.upload-image-cancel {
+  /* background: red; */
+}

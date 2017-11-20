@@ -14,6 +14,6 @@ urlpatterns = [
     url(r'^cancel$', views.cancel, name='cancel'),
     url(r'^profile/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),
     url(r'^shopstatus/$', views.view_myshop, name='view_myshop'),
-    url(r'^shopstatus/order/$', views.orderpage, name='orderpage')
-
+    url(r'^shopstatus/order/$', views.orderpage, name='orderpage'),
+    url(r'^mycart/', include('mycart.urls'), name='mycart'),
 ]
