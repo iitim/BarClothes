@@ -10,7 +10,8 @@ def search(request, product_type, num):
     context = init_context(current_state)
     context['all_product'], all_product_length = query_product(product_type,current_state)
     context['last_page'] = set_last_page(current_state, all_product_length)
-    context['tags'] = query_tag()
+    all_tag = query_tag()
+    context['tags'] = set_tag_select(all_tag, current_state)
     return render(request, 'catalog.html', context)
 
 def init_context(current_state):
@@ -28,24 +29,32 @@ def init_context(current_state):
     return context
 
 def query_product(product_type, current_state):
-    if current_state.use_search_or_sort():
-        user_list = User.objects.filter(username__icontains=current_state.seller_name)
-        user_extend_data_list = UserExtendData.objects.filter(user__in=user_list)
-        all_product = Product.objects.order_by(current_state.how_to_order_by())
-        all_product = all_product.filter(seller__in=user_extend_data_list, name__icontains=current_state.product_name)
-    else:
-        all_product = Product.objects.order_by('-create_date')
+    user_extend_data_list = filter_user_can_sell(current_state.seller_name)
+    all_product = Product.objects.order_by(current_state.how_to_order_by())
+    all_product = all_product.filter(seller__in=user_extend_data_list, name__icontains=current_state.product_name)
     if not current_state.use_category_All():
         all_product = all_product.filter(type=product_type)
-    #all_product = filter_by_tag(all_product)
+    if current_state.use_tag():
+      all_product = filter_by_tag(all_product, current_state.tags)
     all_product = filter_out_of_product(all_product)
     all_product_length = len(all_product)
     all_product = all_product[current_state.first_product:current_state.last_product]
     return all_product, all_product_length
 
-def filter_by_tag(all_product):
+def filter_user_can_sell(seller_name):
+    all_user_list = User.objects.filter(username__icontains=seller_name)
+    all_user_extend_data_list = UserExtendData.objects.filter(user__in=all_user_list)
+    filter_username = []
+    for user_extend_data in all_user_extend_data_list:
+        if user_extend_data.can_sell():
+            filter_username.append(user_extend_data.user.username)
+    filter_user_list = User.objects.filter(username__in=filter_username)
+    filter_user_extend_data_list = UserExtendData.objects.filter(user__in=filter_user_list)
+    return filter_user_extend_data_list
+
+def filter_by_tag(all_product, tag_list):
     all_product_filter = []
-    tags = Tag.objects.all()
+    tags = Tag.objects.filter(name__in=tag_list)
     for product in all_product:
         if set(tags).issubset(product.tags.all()):
             all_product_filter.append(product)
@@ -76,9 +85,22 @@ def query_tag():
             tag_count[index][1] += 1
             index += 1
     tag_count.sort(key=itemgetter(1), reverse=True)
-    tag_context = []
+    all_tag = []
     for tag in tag_count:
-        tag_context.append(tag[0])
+        all_tag.append(tag[0])
+    return all_tag
+
+def set_tag_select(all_tag, current_state):
+    if current_state.use_tag():
+        search_tag = current_state.tags
+    else:
+        search_tag = []
+    tag_context = []
+    for tag in all_tag:
+        if tag.name in search_tag:
+            tag_context.append([tag,True])
+        else:
+            tag_context.append([tag,False])
     return tag_context
 
 def catalog(request, num='1'):
@@ -133,10 +155,13 @@ class State:
             self.product_name = request['product_name']
             self.seller_name = request['seller_name']
             self.sort_type = request['sort']
+            if self.use_tag():
+                self.tags = request.getlist('tags')
         else:
             self.product_name = ''
             self.seller_name = ''
             self.sort_type = ''
+
 
     def decode_product_type(self, product_type):
         if product_type != '':
@@ -154,12 +179,19 @@ class State:
 
     def get_search_path(self):
         if self.use_search_or_sort():
-            return '/?product_name=' + self.product_name + '&seller_name=' + self.seller_name + '&sort=' + self.sort_type
+            tag_search = ''
+            if self.use_tag():
+                for tag in self.tags:
+                    tag_search += '&tags=' + tag
+            return '/?product_name=' + self.product_name + '&seller_name=' + self.seller_name + '&sort=' + self.sort_type + tag_search
         else:
             return ''
 
     def use_search_or_sort(self):
         return ('product_name' in self.request) and ('seller_name' in self.request) and ('sort' in self.request)
+
+    def use_tag(self):
+        return 'tags' in self.request
 
     def must_redirect(self):
         return (self.page < 1) or ('submit_search' in self.request)

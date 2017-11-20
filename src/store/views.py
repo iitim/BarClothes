@@ -21,15 +21,21 @@ def init_context(current_state):
     return context
 
 def query_store(current_state):
-    if current_state.use_search():
-        user_list = User.objects.filter(username__icontains=current_state.seller_name)
-        all_store = UserExtendData.objects.filter(user__in=user_list)
-    else:
-        all_store = UserExtendData.objects.all()
-    # all_store = filter_can_sell(all_store)
+    all_store = filter_user_can_sell(current_state.seller_name)
     all_store_length = len(all_store)
     all_store = all_store[current_state.first_store:current_state.last_store]
     return all_store, all_store_length
+
+def filter_user_can_sell(seller_name):
+    all_user_list = User.objects.filter(username__icontains=seller_name)
+    all_user_extend_data_list = UserExtendData.objects.filter(user__in=all_user_list)
+    filter_username = []
+    for user_extend_data in all_user_extend_data_list:
+        if user_extend_data.can_sell():
+            filter_username.append(user_extend_data.user.username)
+    filter_user_list = User.objects.filter(username__in=filter_username)
+    filter_user_extend_data_list = UserExtendData.objects.filter(user__in=filter_user_list)
+    return filter_user_extend_data_list
 
 def set_last_page(current_state, all_store_length):
     last_page = int(all_store_length / current_state.store_per_page)

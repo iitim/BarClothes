@@ -72,9 +72,15 @@
   </div>
   <p style="font-size: 24px; margin-top: 25px; margin-bottom: 16px;" class="sidebar-title">Tag</p>
   <div class="sidebar-list scrollbar" style="height: 350px; overflow: scroll;">
-    {% for tag in tags%}
-    <p class="sidebar" style="font-size: 14px; height: 35px;">{{tag.name}}</p>
-    {% endfor %}
+    <form method="get">
+      {% for tag in tags%}
+      {% if tag.1 %}
+      <input type="checkbox" form="search" name="tags" value="{{tag.0.name}}" checked><p class="sidebar" style="font-size: 14px; height: 35px;">{{tag.0.name}}</p>
+      {% else %}
+      <input type="checkbox" form="search" name="tags" value="{{tag.0.name}}"><p class="sidebar" style="font-size: 14px; height: 35px;">{{tag.0.name}}</p>
+      {% endif %}
+      {% endfor %}
+    </form>
   </div>
 </div>
 <div class="product-page col-md-9">
