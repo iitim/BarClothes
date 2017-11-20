@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/activate_store.css'%}">
 <!-- CSS paste here-->
 {% endblock %}
 
@@ -11,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-<div align="center">
+<div class="normal_font" align="center">
   <h3>You don't have your own store right now.</h3>
   <div>
     <h2><u><a href="/store/seller/">Try 30-Days Free Trial</a></u></h2>

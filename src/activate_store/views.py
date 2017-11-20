@@ -11,6 +11,11 @@ from datetime import datetime, timedelta
 from main.models import UserExtendData, TopUp
 from .forms import upload_img_form
 
+def wait_page(request):
+    context = locals()
+    template = 'wait.html'
+    return render(request, template, context)
+
 @login_required
 def activate_store(request):
     user = request.user
@@ -33,11 +38,12 @@ def activate_store(request):
 @login_required
 def top_up(request):
     user = request.user
+    top_up = TopUp(user=user)
     if request.method == 'POST':
-        top_up_form = upload_img_form(request.POST, request.FILES, instance=user)
+        top_up_form = upload_img_form(request.POST, request.FILES, instance=top_up)
         if top_up_form.is_valid():
             top_up_form.save()
-            return redirect('home')
+            return redirect('/activate_store/wait_page')
     else:
-        top_up_form = upload_img_form()
+        top_up_form = upload_img_form(instance=top_up)
     return render(request, 'top_up.html', {'form': top_up_form})

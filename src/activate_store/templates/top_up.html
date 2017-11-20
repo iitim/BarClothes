@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/activate_store.css'%}">
 <!-- CSS paste here-->
 {% endblock %}
 
@@ -9,8 +10,19 @@
 {% block content1 %}
 <div align="center">
   <form method="post" enctype="multipart/form-data">{% csrf_token %}
-    {{form}}
-    <br>
+    <div class="edit-text">
+      <div class="edit-input-text">
+        <span class="edit-text-min"> Price </span>
+        {{ form.price }}
+      </div>
+      {{ form.price.errors }}
+    </div>
+    <div class="edit-text">
+      <div class="edit-input-text">
+        {{ form.slip_pic }}
+      </div>
+      {{ form.slip_pic.errors }}
+    </div>
     <input type="submit" value="Submit Image">
   </form>
 </div>

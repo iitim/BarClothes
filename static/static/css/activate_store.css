@@ -1,0 +1,23 @@
+div.edit-text{
+  margin-bottom:20px;
+}
+
+span.edit-text-min{
+  color:white;
+  font-size:20px;
+  display:inline;
+}
+
+div.edit-input-text{
+  display:inline;
+}
+
+div.normal_font{
+  color:white;
+  font-size:20px;
+}
+
+a{
+  color:white;
+  font-size:25px;
+}
