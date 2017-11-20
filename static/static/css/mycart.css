@@ -27,3 +27,31 @@
     padding: 0;
     font-size: xx-large;
 }
+
+/* upload image styles */
+.upload-image-form {  
+  padding-top: 40px;
+}
+
+.upload-image {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-image input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.upload-image-confirmation {
+  display: none;
+}
+.upload-image-cancel {
+  /* background: red; */
+}

@@ -10,6 +10,8 @@ def mycart(request):
     else:
         user = get_object_or_404(UserExtendData, user=request.user)
 
+        # updateExpire(request, user)
+
         transactions = Transaction.objects.order_by('-create_date').filter(customer=user)
         transactions_error = transactions.filter(status='cpe')
         transactions_cart = transactions.filter(status='wpy')
@@ -20,9 +22,9 @@ def mycart(request):
         num_transaction_cart = len(transactions_cart)
 
         for i in range(num_transaction_error):
-            transactions_error[i].slips = updateslipForm(request, transactions_error[i])
+            transactions_error[i].slips = updateslipForm(request, transactions_error[i].id)
         for i in range(num_transaction_cart):
-            transactions_cart[i].slips = updateslipForm(request, transactions_cart[i])
+            transactions_cart[i].slips = updateslipForm(request, transactions_cart[i].id)
 
         logs = TransactionLog.objects.order_by('-create_date').filter(customer=user)
         logs_success = logs.filter(status='suc')
@@ -43,32 +45,53 @@ def mycart(request):
                 'logs_notpay' : logs_notpay,
                 'logs_cancel' : logs_cancel,
             }
-        # if request.POST:
-        #     return redirect('user_profile:mycart:mycart')
         return render(request, 'mycart.html', context)
 
 
-def updateslipForm(request, transaction):
-    form = UpdateSlipForm(instance=transaction)
-    old_picture = transaction.payment_picture
-    if request.POST:
-        form = UpdateSlipForm(request.POST, request.FILES, instance=transaction)
-        if form.is_valid():
-            new_picture = form.cleaned_data.get('payment_picture')
-            if not new_picture == old_picture:
-                transaction.expire_date = datetime.now()
+def updateslipForm(request, num):
+    transaction = get_object_or_404(Transaction, pk=num)
+    form = UpdateSlipForm(instance=transaction, initial={'pk':transaction._get_pk_val()})
+    if request.POST and transaction._get_pk_val() == int(request.POST['pk']):
+        if True:
+            form = UpdateSlipForm(request.POST, request.FILES, instance=transaction, initial={'pk':transaction._get_pk_val()})
+            if form.is_valid():
+                # print(form.data)
+                # transaction = form.save(commit=False)
+                # transaction.expire_date = datetime.now() + timedelta(days=3)
+                transaction.payment_picture = form.cleaned_data.get('payment_picture')
                 transaction.status = 'wac'
+                print(transaction.id)
+                print(transaction)
                 transaction.save()
-            form.save()
+                return redirect('user_profile:mycart:mycart')
+                # form.save()
+    # print("\n")
     return form
-        
 
 def delete(request, num):
-    transaction = get_object_or_404(Transaction, pk=num)
-    if transaction.status == 'cpe' or transaction.status == 'wpy':
-        transaction.status = 'ccl'
-        transaction.save()
-        new_transectionLog = TransactionLog.from_transaction(transaction)
-        new_transectionLog.save()
-        Transaction.objects.filter(pk=num).delete()
-    return redirect('user_profile:mycart:mycart')
+    if not request.user.is_authenticated:
+        return redirect('%s' % ('login'))
+    else:
+        user = get_object_or_404(UserExtendData, user=request.user)
+        transaction = get_object_or_404(Transaction, pk=num)
+        if not transaction.customer == user:
+            return redirect('user_profile:mycart:mycart')
+        else:
+            if transaction.status == 'cpe' or transaction.status == 'wpy':
+                transaction.status = 'ccl'
+                transaction.save()
+                new_transectionLog = TransactionLog.from_transaction(transaction)
+                new_transectionLog.save()
+                Transaction.objects.filter(pk=num).delete()
+            return redirect('user_profile:mycart:mycart')
+
+def updateExpire(request, user):
+    transactions = Transaction.objects.filter(customer=user)
+    time = datetime.now()
+    for transaction in transactions:
+        if transaction.expire_date < time:
+            transaction.status = 'cnp'
+            transaction.save()
+            new_transectionLog = TransactionLog.from_transaction(transaction)
+            new_transectionLog.save()
+            Transaction.objects.filter(pk=transaction.id).delete()
