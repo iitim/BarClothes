@@ -50,7 +50,7 @@ class EditProfileForm(forms.ModelForm):
     class Meta:
         model = UserExtendData
         # user = get_user_model()
-        fields = ('address', 'tel_no', 'picture')
+        fields = ('address', 'tel_no', 'picture','bank_account')
         widgets = {
             'address': TextInput(attrs={
                 'class': 'input-edit-text-3', 
@@ -66,6 +66,13 @@ class EditProfileForm(forms.ModelForm):
             'picture': FileInput(attrs={
                 'class' : "edit-pic",
                 'type' : "file",
+                'value' : 'edit_profile_form.picture',
+             }),
+            
+            'bank_account': TextInput(attrs={
+                'class': 'input-edit-text-bank', 
+                'type': 'text',
+                # 'value': 'user.first_name'
             }),
         }
 
@@ -73,3 +80,8 @@ class TransactionUpdateForm(forms.ModelForm):
     class Meta:
         model = Transaction
         fields = ('transport_code',)
+    def __init__(self, *args, **kwargs):
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+        self.fields['picture'] = forms.ImageField(
+            required=False
+        )

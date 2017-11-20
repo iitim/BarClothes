@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
 <title>{% block title %}Profile{% endblock %}</title>
 
 {% block stylesheet %}
 	<link rel="stylesheet" href="{% static 'css/profile.css'%}">
+	<link rel="stylesheet" href="{% static 'css/myproduct.css' %}">
+	
 {% endblock %}
 
 {% block title_content1 %}Profile{% endblock %}
@@ -22,10 +23,12 @@
 								<div class="image-profile">
 									<img src="/media/{{user_extend.picture}}" class="profile-pic"/>
 								</div>
-								<div class="pic-edit">
-									{{ user_extend.picture}}	
-									{{edit_profile_form.picture}}
-								</div>					
+
+								<div class="file-upload-wrapper">
+									<input type="file" name="picture" id="id_picture_path" class="file-upload-native" accept="image/*" />
+									<input type="text" disabled placeholder="change picture" class="file-upload-text" />
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -79,6 +82,13 @@
 								{{ edit_profile_form.address.errors }}						
 								<div class="edit-input-text">
 									{{ edit_profile_form.address }}
+								</div>
+							</div>
+							<div class="edit-text-div">
+								<span class="fix-edit-text">Bank no</span>
+								{{ edit_profile_form.bank_account.errors }}						
+								<div class="edit-input-text">
+									{{ edit_profile_form.bank_account }}
 								</div>
 							</div>
 						</div>
