@@ -3,6 +3,7 @@ from .models import Product, UserExtendData, Transaction, TransactionLog, TRANSA
 from django.contrib.auth.models import User
 from .forms import UpdateSlipForm
 from datetime import datetime, timedelta
+from django.utils import timezone
 
 def mycart(request):
     if not request.user.is_authenticated:
@@ -10,7 +11,7 @@ def mycart(request):
     else:
         user = get_object_or_404(UserExtendData, user=request.user)
 
-        # updateExpire(request, user)
+        updateExpire(request, user)
 
         transactions = Transaction.objects.order_by('-create_date').filter(customer=user)
         transactions_error = transactions.filter(status='cpe')
@@ -87,9 +88,9 @@ def delete(request, num):
 
 def updateExpire(request, user):
     transactions = Transaction.objects.filter(customer=user)
-    time = datetime.now()
+    now = timezone.now()
     for transaction in transactions:
-        if transaction.expire_date < time:
+        if transaction.expire_date < now and (transaction.status == 'wpy' or transaction.status == 'cpe'):
             transaction.status = 'cnp'
             transaction.save()
             new_transectionLog = TransactionLog.from_transaction(transaction)
