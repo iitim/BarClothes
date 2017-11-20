@@ -8,57 +8,58 @@
 {% block title_content1 %}<div class="home-title">My delivery order</div>{% endblock %}
 
 {% block content1 %}
- 
-    <div class="col-md-12" style="height: 10px; margin-bottom: 100px;">   
-    <a href="/profiles/shopstatus/"><img class="icon-back" style="height: 80px; width: 80px; margin-left: 780px; " src="{% static 'img/Icon-Back.png' %}"> </div></a>
+  <div class="col-md-12" style="height: 10px; margin-bottom: 100px;">   
+    <a href="/profiles/shopstatus/"><img class="icon-back" style="height: 80px; width: 80px; margin-left: 780px; " src="{% static 'img/Icon-Back.png' %}"></a>
+  </div>
+  <div class="delivery_order">
+    {% if transaction|length == 0 %}
+      <p class="no-element-label">You don't have any order to delivery now.</p>
+    {% else %}
+      {% for trans in transaction %}
+        <div class="col-md-6 each-order-group">
+          <a href="{% url 'myproduct:update' trans.0.product.id %}"> 
+            <img class="picture-delivery-order col-md-2" style="padding: 0px;" src="/media/{{product.picture_path}}">
+    
+            <div class="col-md-2" style="margin-left: 30px; width:125px; padding: 0px;">
+              <p class="text1-delivery-order" >{{ trans|length }} Orders </p>
+              <p class="textN-delivery-order" style="margin-right: 20px" >ProductName </p>
+              <p class="textN-delivery-order" style="margin-right: 50px">Customer </p>
+              <p class="textN-delivery-order" style="margin-right: 30px">Tracking No.</p>
+          </a>
+        </div>
+        <div style="padding: 0px;">
+          <div style="height: 10px; margin-bottom: 32px; margin-right: 80px;"></div>
+            <p style="font-size: 14px; color: #FFBC49;"> {{trans.0.product.name}} </p>
 
-    <div class="delivery_order">
-
-        {% for product in products_lowest_price %}
-           
-          <a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw"> 
-  
-          <img class="picture-delivery-order col-md-2" style="padding: 0px; margin-left: 30px" src="/media/{{product.picture_path}}" >
-   
-          <div class="col-md-2" style="margin-left: 30px; width:125px; padding: 0px;">
-                <p class="text1-delivery-order" >2 Orders </p>
-                <p class="textN-delivery-order" style="margin-right: 20px" >ProductName </p>
-                <p class="textN-delivery-order" style="margin-right: 50px">Customer </p>
-                <p class="textN-delivery-order" style="margin-right: 30px">Tracking No.</p>
-                </a>
-                <button class="sent-button" type="submit" ip=Sent style="margin-bottom: 50px;">SUBMIT</button>
-
-          </div>
-          <div class="col-md-2" style="padding: 0px;">
-            <div style="height: 10px; margin-bottom: 32px; margin-right: 80px;"> </div>
-             <p style="font-size: 14px; color: #FFBC49;"> {{product.name}} </p>
-
-             <div class="btn-group">
-
-              <button type="button" name="abc" id="mainbutton" style="width: 140px;" class="btn delivery_order_button">select</button>
-
+            <div class="btn-group">
+              <button type="button" name="abc" id="mainbutton" style="width: 140px;" class="btn delivery_order_button">
+                {% if target.product.id == trans.0.product.id %} {{target.customer}} ({{target.amount}} orders)
+                {% else %} select
+                {% endif %}
+              </button>
               <button type="button" class="btn dropdown-toggle delivery_order_button" data-toggle="dropdown" id="ddvalue" aria-haspopup="true" aria-expanded="false" value="0">
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
               </button>
               <ul class="dropdown-menu" id="dropdownorder">
-                <li><a href="#" style="color: white;" value="1" >Amm</a></li>
-                <li><a href="#" style="color: white;" value="2" >Ice</a></li>
-                <li><a href="#" style="color: white;" value="3" >Bebe</a></li>
-                <li><a href="#" style="color: white;" value="4" >Kaimook</a></li>
+                {% for each_trans in trans %}
+                <li><a href="{% url 'user_profile:orderpage_selected' each_trans.id %}" style="color: white;" value="{{each_trans.id}}" >{{each_trans.customer}} ({{each_trans.amount}} orders)</a></li>
+                {% endfor %}
               </ul>
-          </div>
-          <div>
-              <input type="text" id="form1" style="font-size: 18px;" class="form-control">
-          </div>   
-         </div>
-     
-        {% endfor %}
-      </div>
-
-
-
-    <!-- Split button -->
-
+            </div>
+            <div>
+              {% if target.product.id == trans.0.product.id %}
+                <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form.transport_code }}
+                  <input type="submit" class="sent-button btn" value="Submit" />
+                </form>
+              {% endif %}
+            </div>   
+          </div>     
+        </div>    
+      {% endfor %}
+    {% endif %}
+  </div>
 {% endblock %}
 

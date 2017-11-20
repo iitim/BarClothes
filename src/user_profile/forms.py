@@ -5,7 +5,7 @@ from main.models import UserExtendData
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
 
-from main.models import UserExtendData
+from main.models import UserExtendData, Transaction
 
 # Create the form class.
 class EditProfileForm(forms.ModelForm):
@@ -68,3 +68,8 @@ class EditProfileForm(forms.ModelForm):
                 'type' : "file",
             }),
         }
+
+class TransactionUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ('transport_code',)

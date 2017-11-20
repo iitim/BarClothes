@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
@@ -9,11 +7,12 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import get_list_or_404, get_object_or_404, render, redirect
 from operator import attrgetter
+from collections import defaultdict
+from datetime import datetime
 
-from .forms import EditProfileForm
-from main.models import UserExtendData 
+from .forms import EditProfileForm, TransactionUpdateForm
+from main.models import UserExtendData , Transaction
 
-# Create your views here.
 
 def view_profile(request, pk=None):
     if pk:
@@ -105,12 +104,44 @@ def view_myshop(request):
 
 def orderpage(request):
     store_extend = get_object_or_404(UserExtendData, user=request.user)
-    store = store_extend.user
-    products = store_extend.product_set.all()
-    products_lowest_price = sorted(products, key=attrgetter('price'))
+    transaction = Transaction.objects.filter(product__seller=store_extend, status='wss')
+    groups = defaultdict(list)
+    for obj in transaction:
+        groups[obj.product].append(obj)
+    new_list = list(groups.values())
     context = {
-       'products_lowest_price': products_lowest_price,
+       'transaction': new_list
     }
+    template = 'delivery_order.html'
+    return render(request, template, context)
 
+def orderpage_selected(request, num):
+    store_extend = get_object_or_404(UserExtendData, user=request.user)
+    transaction = Transaction.objects.filter(product__seller=store_extend, status='wss')
+    groups = defaultdict(list)
+    for obj in transaction:
+        groups[obj.product].append(obj)
+    new_list = list(groups.values())
+
+    target = get_object_or_404(Transaction, pk=num)
+    if target.status != 'wss':
+        return redirect('/profiles/shopstatus/order')
+    form = TransactionUpdateForm(instance=target)
+    if request.POST:
+        form = TransactionUpdateForm(request.POST, request.FILES, instance=target)
+        print ("form")
+        if form.is_valid():
+            print ("1")
+            fixform = form.save(commit=False)
+            fixform.status = 'suc'
+            fixform.sent_date = datetime.now()
+            form.save()
+            return redirect('/profiles/shopstatus/order')
+
+    context = {
+       'transaction': new_list,
+       'target': target,
+       'form': form
+    }
     template = 'delivery_order.html'
     return render(request, template, context)
