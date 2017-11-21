@@ -75,13 +75,14 @@ class EditProfileForm(forms.ModelForm):
                 # 'value': 'user.first_name'
             }),
         }
+    def __init__(self, *args, **kwargs):
+        super(EditProfileForm, self).__init__(*args, **kwargs)
+    self.fields['picture'] = forms.ImageField(
+        required=False
+    )
 
 class TransactionUpdateForm(forms.ModelForm):
     class Meta:
         model = Transaction
         fields = ('transport_code',)
-    def __init__(self, *args, **kwargs):
-        super(EditProfileForm, self).__init__(*args, **kwargs)
-        self.fields['picture'] = forms.ImageField(
-            required=False
-        )
+
