@@ -55,6 +55,20 @@ span.right-text{
   margin-right:20px;
 }
 
+button.btn.btn-default{
+  background-color:#d3d3d3;
+  border:none;
+  color:black;
+  padding:16px 20px;
+  text-align:center;
+  text-decoration:none;
+  display:inline-block;
+  font-size:16px;
+  margin-right:auto;
+  transition-duration:0.4s;
+  cursor:pointer;
+}
+
 button.btn.btn-default:hover{
   background-color:#dcd7d7;
   color:rgb(255,255,256);
@@ -64,6 +78,8 @@ div.show{
   background:transparent;
   display:inline-block;
   width:inherit;
+  /* background:transparent; */
+  /* margin-bottom:20px; */
   margin-top: 35px;
 }
 
@@ -92,6 +108,7 @@ a.change_password:hover, a.change_password:active{
 }
 
 div.profile{
+  /*  margin:auto;*/  
   background:transparent;
   display:inline-flex;
   margin-top:20px;
@@ -126,6 +143,7 @@ span.fix-right-text{
 div.block-left{
   border-left:6px solid #ffcc00;
   border-bottom:1px solid #ffcc00;
+  /* margin-bottom:6px; */
   margin-left:0px;
   display:inline;
 }
@@ -148,6 +166,7 @@ div.pic-edit{
 div.edit-text{
   margin-top:50px;
   display:inline-block;
+  /* width:800px; */
 }
 
 span.fix-edit-text{
@@ -157,6 +176,7 @@ span.fix-edit-text{
 
 span.fix-edit-text2{
   color:white;
+  /*display:inline;*/
 }
 
 input.input-edit-text{
@@ -166,12 +186,14 @@ input.input-edit-text{
   background:transparent;
   border-left:transparent;
   border-right:transparent;
+  /* width:300px; */
   color:gray;
   margin-top:5px;
 }
 
 div.input-txt{
   display:inline;
+  /* width:300px; */
 }
 
 div.edit-text-div{
@@ -244,8 +266,6 @@ button.btn.btn-default.update-profile{
   font-size:16px;
   margin:4px 2px;
   cursor:pointer;
-  transition-duration:0.4s;
-  
 }
 
 button.btn.btn-default.update-profile:hover{
@@ -255,10 +275,12 @@ button.btn.btn-default.update-profile:hover{
 div.edit-profile{
   background:transparent;
   margin-bottom:20px;
+  /* width:1024px; */
 } 
 
 div.profile-page{
   height:inherit;
+  /* width:1024px; */
 }
 
 span.pass-text{
@@ -390,6 +412,7 @@ a.btn.btn-default{
 }
 
 a.btn.btn-default:hover{
+  /* background-color:#dcd7d7; */
   color:rgb(255,255,256);
 }
 
