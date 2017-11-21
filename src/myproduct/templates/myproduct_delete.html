@@ -40,7 +40,7 @@
                         {% for i in status %}
                             {% if i.0 == transaction.status %}{{i.1}}{% endif %}
                         {% endfor %}</p>
-                    <a class="btn" name="white" style="font-size:12px">Send</a>
+                    <a class="btn" name="white" style="font-size:12px" href="{% url 'user_profile:orderpage_selected' transaction.id %}">Send</a>
                 </div>
             {% else %}
                 <div class="col-md-12">
