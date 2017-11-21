@@ -9,11 +9,6 @@ from main.models import UserExtendData, Transaction
 
 # Create the form class.
 class EditProfileForm(forms.ModelForm):
-    # first_name = forms.CharField(max_length=30)
-    # last_name = forms.CharField(max_length=30)
-    # email = forms.EmailField(max_length=254, )
-    # phone_num = forms.CharField(max_length=30)
-
     first_name = forms.CharField(
         max_length=30,
             widget = forms.TextInput(
@@ -75,11 +70,12 @@ class EditProfileForm(forms.ModelForm):
                 # 'value': 'user.first_name'
             }),
         }
+
     def __init__(self, *args, **kwargs):
         super(EditProfileForm, self).__init__(*args, **kwargs)
-    self.fields['picture'] = forms.ImageField(
-        required=False
-    )
+        self.fields['picture'] = forms.ImageField(
+            required=False
+        )
 
 class TransactionUpdateForm(forms.ModelForm):
     class Meta:
