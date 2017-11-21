@@ -8,8 +8,8 @@
 {% block title_content1 %}<div class="home-title">My delivery order</div>{% endblock %}
 
 {% block content1 %}
-  <div class="col-md-12" style="height: 10px; margin-bottom: 100px;">   
-    <a href="/profiles/shopstatus/"><img class="icon-back" style="height: 80px; width: 80px; margin-left: 780px; " src="{% static 'img/Icon-Back.png' %}"></a>
+  <div class="group-btn">   
+    <a href="/profiles/shopstatus/"><img class="each-btn" src="{% static 'img/btn-back.png' %}"></a>
   </div>
   <div class="delivery_order">
     {% if transaction|length == 0 %}

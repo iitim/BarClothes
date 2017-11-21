@@ -1,7 +1,18 @@
+.group-btn {
+  text-align: right;
+  margin-bottom: 80px;
+}
+.each-btn {
+  margin-left: 40px;
+  width: 80px;
+  height: 80px;
+}
 
 img.picture-delivery-order{
 	height: 194px !important;
   width: 156px !important;
+  padding: 0px;
+  margin-left: 30px;
 }
 
 p.text1-delivery-order{
@@ -57,7 +68,7 @@ button.delivery_order_button{
   display: inline;
 }
 
-input.sent-button {
+.sent-button {
 	font-family: 'Glacial Indifference';
 	font-size: 14px;
 	border-color: #FFBC49;
