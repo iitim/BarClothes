@@ -1,0 +1,110 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/base_bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Pretty-Registration-Form.css' %}">
+</head>
+
+<body style="background-color:#282626;">
+  <div class="row register-form">
+      <div class="col-md-8 col-md-offset-2">
+          <form class="form-horizontal custom-form" action="{% url 'signup' as signup %}" method="post">
+            {% csrf_token %}
+              <h1><div class="boxed">Create Account</div></h1></br>
+              <!-- <h1><span>Create Account</span></h1></br> -->
+              {{ form.errors}}
+              <!-- add -->
+              <font color="white">Please fill all field</font>
+              <div class="form-group">
+                  <div class="col-sm-4 label-column">
+                      <label name="username" style="color: white" class="control-label" for="username" >Username </label>
+                  </div>
+                  <div class="col-sm-6 input-column">
+                      <input name="username" id="username" class="form-control" type="text" value={{last_username}} required />
+                  </div>
+                  <div>
+                    <span class="help_text" style="color: white">Required. 30characters or fewer.</span>
+                  </div>
+              </div>
+              <!-- end -->
+              <div class="form-group">
+                  <div class="col-sm-4 label-column">
+                      <label class="control-label" style="color: white" for="first_name">First Name </label>
+                  </div>
+                  <div class="col-sm-6 input-column">
+                      <input name="first_name" id="first_name" class="form-control" type="text" value={{last_first_name}} required />
+                  </div>
+              </div>
+              <!-- add -->
+              <div class="form-group">
+                  <div class="col-sm-4 label-column">
+                      <label class="control-label" style="color: white" for="last_name">Last Name </label>
+                  </div>
+                  <div class="col-sm-6 input-column">
+                      <input name="last_name" id="last_name" class="form-control" type="text" value={{last_last_name}} required />
+                  </div>
+              </div>
+              <!-- end -->
+              <!-- add -->
+              <div class="form-group">
+                  <div class="col-sm-4 label-column">
+                      <label class="control-label" style="color: white" for="id_num">Identification Number </label>
+                  </div>
+                  <div class="col-sm-6 input-column">
+                      <input name="id_num" id="id_num" class="form-control" type="text" value={{last_id_num}} required />
+                  </div>
+              </div>
+              <!-- end -->
+              <!-- add -->
+              <div class="form-group">
+                  <div class="col-sm-4 label-column">
+                      <label class="control-label" style="color: white" for="phone_num">Phone Number </label>
+                  </div>
+                  <div class="col-sm-6 input-column">
+                      <input name="phone_num" id="phone_num" class="form-control" type="text" value={{last_phone_num}} required />
+                  </div>
+                  <div>
+                    <span class="help_text" style="color: white">Ex.0801234567</span>
+                  </div>
+              </div>
+              <!-- end -->
+              <div class="form-group">
+                  <div class="col-sm-4 label-column">
+                      <label class="control-label" style="color: white" for="email">Email </label>
+                  </div>
+                  <div class="col-sm-6 input-column">
+                      <input name="email" id="email" class="form-control" type="email" value={{last_email}} required />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col-sm-4 label-column">
+                      <label class="control-label" style="color: white" for="password1">Password </label>
+                  </div>
+                  <div class="col-sm-6 input-column">
+                      <input name="password1" id="password1" class="form-control" type="password"  required />
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col-sm-4 label-column">
+                      <label class="control-label" style="color: white" for="password2">Repeat Password </label>
+                  </div>
+                  <div class="col-sm-6 input-column">
+                      <input name="password2" id="password2" class="form-control" type="password" required />
+                  </div>
+              </div>
+              <input type="submit" class="btn btn-lg btn-warning" color="#FFBC49" value="Submit"/>
+          </form>
+      </div>
+  </div>
+    <script src="{% static 'javascript/jquery.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

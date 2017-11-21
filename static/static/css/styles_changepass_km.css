@@ -1,0 +1,123 @@
+div.container{
+}
+
+small.current-pass{
+  display:block;
+  border-left:20px solid transparent;
+  border-top:15px solid transparent;
+}
+
+input.cur-pass{
+  display:block;
+  border-left:20px solid transparent;
+}
+
+strong.cur-pas{
+  color:white;
+  border-bottom:20px solid transparent;
+}
+
+input.input-cur-pass{
+  margin-left:0px;
+  display:block;
+  width:300px;
+  margin-bottom:20px;
+}
+
+strong.new-pass{
+  border-top:20px;
+  border-bottom:20px solid transparent;
+  color:white;
+}
+
+input.new-pass-input{
+  display:block;
+  margin-left:0px;
+  width:300px;
+  margin-bottom:20px;
+}
+
+strong.confirm-pass{
+  color:white;
+  border-top:20px;
+  border-bottom:20px solid transparent;
+}
+
+button#change-pass.btn.btn-default{
+  display:inline-block;
+  margin-left:50px;
+  background-color:#dee6de;
+  border:none;
+  padding:16px 10px;
+  text-align:center;
+  text-decoration:none;
+  transition-duration:0.4s;
+  cursor:pointer;
+}
+
+button#cancel.btn.btn-default{
+  display:block;
+  margin-left:25px;
+}
+
+button#change-pass.btn.btn-default:hover{
+  background-color:#e7e7e7;
+  border:0px solid #e7e7e7;
+  margin-bottom:20px;
+}
+
+div.changepwd{
+  width:400px;
+  background:transparent;
+  margin:auto;
+}
+
+body.changepwd{
+  background:transparent;
+}
+
+a#change-pass.btn.btn-default{
+  background:white;
+  margin-left:0px;
+  border:4px solid #e7e7e7;
+  padding:10px 20px;
+  text-align:center;
+  text-decoration:none;
+  display:inline-block;
+  -webkit-transition-duration:0.4s;
+  transition-duration:0.4s;
+  cursor:pointer;
+}
+
+a#change-pass.btn.btn-default.cancel{
+  margin-left:89px;
+}
+
+a#change-pass.btn.btn-default.cancel{
+  padding:10px 20px;
+  text-align:center;
+  text-decoration:none;
+  display:inline-block;
+  -webkit-transition-duration:0.4s;
+  transition-duration:0.4s;
+  cursor:pointer;
+  background:white;
+  border:4px solid #e7e7e7;
+  margin-left:50px;
+}
+
+a#change-pass.btn.btn-default.cancel:hover{
+  background:#e7e7e7;
+  color:white;
+}
+
+a#change-pass.btn.btn-default:hover{
+  background:#e7e7e7;
+  color:white;
+}
+
+div.left-text-fix{
+  margin-left:0px;
+  text-align:left;
+}
+

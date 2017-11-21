@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} | Contact Us{% endblock %}
+{% block stylesheet %}
+<link href="{% static 'css/contact-about.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block no_title_content2 %}{% endblock %}
+{% block title_content1 %}Contact Us{%endblock%}
+{% block content %}
+<div class="container post contact-about-container">
+    <div class="row">
+        <div class="col-md-offset-0 post-body">
+            <p>You can contact us at</p>
+            <p>Tel : 086-662-5526</p>
+            <p>facebook : fb.com/BarClothes</p>
+            <p>Instagram : instagr.am/BarClothes</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

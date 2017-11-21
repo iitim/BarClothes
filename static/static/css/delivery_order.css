@@ -1,0 +1,271 @@
+
+img.picture-delivery-order{
+	height: 194px !important;
+    width: 156px !important;
+    margin-left: 65px;
+}
+
+p.text1-delivery-order{
+	color: #FFBC49 !important;
+	font-size: 22px !important;
+	margin-right: 40px;
+
+}
+
+p.textN-delivery-order{
+	color: white !important;
+	font-size: 18px !important;
+}
+
+input[type=text] {
+    border: none;
+    border-bottom: 2px solid #FFBC49;
+    background-color: #282626;
+    color: white;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none !important;
+}
+
+
+ul#dropdownorder {
+  
+  border: 1px solid #FFBC49 !important;
+  background: #282626 !important;
+  width: 100px; 
+  font-size: 14px;  
+
+}
+
+button.delivery_order_button{
+  border: 1px solid #FFBC49 !important;
+  background: #282626 !important;
+  color: white !important;
+  font-size: 18px;  
+
+
+}
+
+
+/*#cssmenu {
+  width: auto;
+  border: 1px solid #b9121b;
+  background: #b9121b;
+}
+#cssmenu > ul {
+  padding: 1px 0;
+  margin: 0px;
+  list-style: none;
+  width: 100%;
+  height: 21px;
+  border-top: 1px solid #FFFFFF;
+  border-bottom: 1px solid #FFFFFF;
+  font: normal 8pt verdana, arial, helvetica;
+}
+#cssmenu > ul li {
+  margin: 0;
+  padding: 0;
+  display: block;
+  float: left;
+  position: relative;
+  width: 148px;
+}
+#cssmenu > ul li a:link,
+#cssmenu > ul li a:visited {
+  padding: 4px 0;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background: #b9121b;
+  color: #ffffff;
+  width: 148px;
+}
+#cssmenu > ul li:hover a,
+#cssmenu > ul li a:hover,
+#cssmenu > ul li a:active {
+  padding: 4px 0;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background: #eb2d37;
+  color: #ffffff;
+  width: 146px;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+}
+#cssmenu > ul li ul {
+  margin: 0;
+  padding: 1px 1px 0;
+  list-style: none;
+  display: none;
+  background: #ffffff;
+  width: 146px;
+  position: absolute;
+  top: 21px;
+  left: -1px;
+  border: 1px solid #b9121b;
+  border-top: none;
+}
+#cssmenu > ul li:hover ul {
+  display: block;
+}
+#cssmenu > ul li ul li {
+  clear: left;
+  width: 146px;
+}
+#cssmenu > ul li ul li a:link,
+#cssmenu > ul li ul li a:visited {
+  clear: left;
+  background: #b9121b;
+  padding: 4px 0;
+  width: 146px;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  position: relative;
+  z-index: 1000;
+}
+#cssmenu > ul li ul li:hover a,
+#cssmenu > ul li ul li a:active,
+#cssmenu > ul li ul li a:hover {
+  clear: left;
+  background: #eb2d37;
+  padding: 4px 0;
+  width: 146px;
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  position: relative;
+  z-index: 1000;
+}
+#cssmenu > ul li ul li ul.navigation-3 {
+  display: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  left: 145px;
+  top: -2px;
+  padding: 1px 1px 0 1px;
+  border: 1px solid #b9121b;
+  border-left: 1px solid #b9121b;
+  background: #ffffff;
+  z-index: 900;
+}
+#cssmenu > ul li ul li:hover ul.navigation-3 {
+  display: block;
+}
+#cssmenu > ul li ul li ul.navigation-3 li a:link,
+#cssmenu > ul li ul li ul.navigation-3 li a:visited {
+  background: #b9121b;
+}
+*/
+
+
+
+
+button.sent-button {
+	font-family: 'Glacial Indifference';
+	font-size: 14px;
+	border-color: #FFBC49;
+	background-color: #282626;
+	color: #FFBC49 !important;
+	margin-top: 10px;
+	padding: 8px 16px;
+	border-radius: 24px;
+	margin-right: 60px;
+}
+
+.register-form .custom-form .input-column input{
+  color:#282626;
+  box-shadow:1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+  padding:12px;
+  border:1px solid #dbdbdb;
+  border-radius:2px;
+  height:42px;
+}
+
+
+.md-form {
+  position: relative;
+  margin-bottom: 1.5rem; }
+  .md-form label {
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+    color: #757575;
+    position: absolute;
+    top: 0.8rem;
+    left: 0;
+    font-size: 1rem;
+    cursor: text; }
+    .md-form label.active {
+      -webkit-transform: translateY(-140%);
+      -ms-transform: translateY(-140%);
+      transform: translateY(-140%);
+      font-size: 0.8rem; }
+  .md-form .prefix {
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+    position: absolute;
+    width: 3rem;
+    font-size: 2rem; }
+    .md-form .prefix ~ input, .md-form .prefix ~ textarea {
+      margin-left: 3rem;
+      width: 92%;
+      width: -webkit-calc(100% - 3rem);
+      width: calc(100% - 3rem); }
+    .md-form .prefix ~ textarea {
+      padding-top: .8rem; }
+    .md-form .prefix ~ label {
+      margin-left: 3rem; }
+    .md-form .prefix.active {
+      color: #4285F4; }
+  @media only screen and (max-width: 992px) {
+    .md-form .prefix ~ input {
+      width: 86%;
+      width: -webkit-calc(100% - 3rem);
+      width: calc(100% - 3rem); } }
+  @media only screen and (max-width: 600px) {
+    .md-form .prefix ~ input {
+      width: 80%;
+      width: -webkit-calc(100% - 3rem);
+      width: calc(100% - 3rem); } }
+  .md-form .btn {
+    margin-bottom: 1.5rem; }
+  .md-form.form-sm input {
+    padding-bottom: 0.2rem;
+    padding-top: 0.2rem;
+    font-size: 0.8rem;
+    line-height: 0.5; }
+  .md-form.form-sm label {
+    font-size: 0.9rem; }
+  .md-form.form-sm .prefix {
+    font-size: 1.5rem;
+    top: 0.4rem; }
+  .md-form.form-sm .prefix ~ input, .md-form.form-sm .prefix ~ textarea, .md-form.form-sm .prefix ~ label {
+    margin-left: 2.2rem; }
+  .md-form.input-group {
+    padding-left: 1rem; }
+    .md-form.input-group::-webkit-input-placeholder {
+      color: #999;
+      padding-top: 2px; }
+    .md-form.input-group:-moz-placeholder {
+      color: #999;
+      padding-top: 2px; }
+    .md-form.input-group::-moz-placeholder {
+      color: #999;
+      padding-top: 2px; }
+    .md-form.input-group::-ms-placeholder {
+      color: #999;
+      padding-top: 2px; }
+    .md-form.input-group::-webkit-input-placeholder {
+      color: #999;
+      padding-top: 2px; }
+    .md-form.input-group::-moz-placeholder {
+      color: #999;
+      padding-top: 2px; }
+    .md-form.input-group:-ms-input-placeholder {
+      color: #999;
+      padding-top: 2px; }
+    .md-form.input-group::placeholder {
+      color: #999;
+      padding-top: 2px; }
