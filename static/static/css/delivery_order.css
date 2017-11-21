@@ -39,7 +39,7 @@ input[type=text] {
 }
 
 .no-element-label {
-  padding-top: 200px;
+  padding-top: 80px;
   padding-bottom: 100px;
   color: #FFBC49;
   font-size: 24px;
@@ -62,6 +62,12 @@ button.delivery_order_button{
   font-size: 18px;  
 
 
+}
+
+.product-information {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .each-order-group {
