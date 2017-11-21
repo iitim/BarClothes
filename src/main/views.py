@@ -6,13 +6,36 @@ from .forms import ContactForm
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from django.conf import settings
+from django.db.models import Q
 
 # from main.forms import SignUpForm
 # from main.models import UserExtendData
 
 def home(request):
-    interesting = Product.objects.order_by('-pk')
-    bestsell = Product.objects.order_by('-view')
+    product = Product.objects.order_by('-pk')
+    num = len(product)
+    for i in range(num):
+        if not product[i].seller.can_sell() or product[i].remain() == 0:
+            temp = product[i].amount
+            product[i].amount = 0
+            product[i].save()
+            # print(product[i])
+            # print(product[i].amount)
+            product[i].amount = temp
+            # print(product[i].amount)
+    
+    interesting = product.filter(~Q(amount = 0))
+
+    for i in range(num):
+        if not product[i].seller.can_sell() or product[i].remain() <= 0:
+            product[i].save()
+            # print(product[i])
+            # print(product[i].amount)
+
+    bestsell = interesting.order_by('-view')
+    
+    # interesting = Product.objects.order_by('-pk')
+    # bestsell = Product.objects.order_by('-view')
     num_product_interesting = len(interesting)
     num_product = len(bestsell)
     template = 'home.html'
