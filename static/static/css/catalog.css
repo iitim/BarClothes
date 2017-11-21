@@ -8,7 +8,7 @@
     padding-right: 45px;
 }
 
-
+/*[ADD] */
 .hidden{
   opacity:0;
   /*  OR   */
@@ -93,6 +93,7 @@
 }
 
 
+/*[END-ADD] */
 
 .searchbar {
     width: 100%;

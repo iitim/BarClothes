@@ -75,6 +75,7 @@
     <form method="get">
       {% for tag in tags%}
       {% if tag.1 %}
+    <!--   /*[ADD] */ -->
       <label class="control control--checkbox" style="font-size: 14px; height: 35px;margin-left: 70px;margin-bottom: 0px;margin-top: 10px;">{{tag.0.name}}<input type="checkbox" form="search" name="tags" value="{{tag.0.name}}" checked class='hidden'><div class="control__indicator"></div></label>
       {% else %}
       <label class="control control--checkbox" style="font-size: 14px; height: 35px;margin-left: 70px;margin-bottom: 0px;margin-top: 10px;">{{tag.0.name}}<input type="checkbox" form="search" name="tags" value="{{tag.0.name}}" class='hidden'><div class="control__indicator"></div></label> 
@@ -82,6 +83,7 @@
       {% endif %}
       {% endfor %}
     </form>
+    <!-- /*[END-ADD] */ -->
   
 
   </div>
