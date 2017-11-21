@@ -7,23 +7,21 @@
 {% endblock %}
 
 {% block no_title_content2 %}{% endblock %}
-{% block title_content1 %}Contact Us{%endblock%}
+{% block title_content1 %}Contact Us{% endblock %}
 {% block content %}
-<div class="container post contact-about-container">
-    <div class="row">
-        <div class="col-md-offset-0 post-body">
-            <p>You can contact us at</p>
-            <p>Tel : 086-662-5526</p>
-            <p>facebook : fb.com/BarClothes</p>
-            <p>Instagram : instagr.am/BarClothes</p>
-            <p>E-mail : barclothesdotcom@gmail.com</p>
-        </div>
+    <img src="{% static 'img/about-logo.png' %}">
+    <div class="col-md-offset-0 post-body contact-information-group">
+        <h3>You can contact us at</h3>
+        <div class="contact-information-couple"><h4>Tel : </h4><p>086-662-5526</p></div>
+        <div class="contact-information-couple"><h4>facebook : </h4><p>fb.com/BarClothes</p></div>
+        <div class="contact-information-couple"><h4>Instagram : </h4><p>instagr.am/BarClothes</p></div>
+        <div class="contact-information-couple"><h4>E-mail : </h4><p>barclothesdotcom@gmail.com</p></div>
     </div>
-</div>
-
-<form method='POST' action=''> {% csrf_token %}
-{{ form.as_p }}
-<input type='submit' value='submit form' class='btn btn-default' />
-</form>
-
+    <div class="contact-form-group">
+        <h3>Leave your comment here</h3>
+        <form method='POST' action=''> {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='Submit' class='btn' />
+        </form>
+    </div>
 {% endblock %}
