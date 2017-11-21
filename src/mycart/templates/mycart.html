@@ -9,6 +9,13 @@
 {% block title_content1 %}My cart{% endblock %}
 {% block content1 %}
         <div class ="mycart-section">
+            {% if not transaction %}
+            <div>
+                <img class="empty-cart-icon" src="{% static 'img/empty-cart.png' %}">
+            </div>
+            
+            <h4>Your cart is empty</h4>
+            {% endif %}
             {% if transactions_error %}
                 <div class="col-md-12">
                     <h3 style="text-align: left">Error : please sent payment again</h3>
