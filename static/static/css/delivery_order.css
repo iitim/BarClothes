@@ -66,6 +66,7 @@ button.delivery_order_button{
 
 .each-order-group {
   display: inline;
+  padding-bottom: 50px;
 }
 
 .sent-button {
