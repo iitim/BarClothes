@@ -10,12 +10,9 @@ def store(request):
     return render(request, 'store_catalog.html', context)
 
 def store_detail(request, num):
-    try :
-        store_extend = UserExtendData.objects.get(pk=num)
-    except UserExtendData.DoesNotExist:
-        return redirect('store:store')
-    # ใช้ข้างล่างก็พอ
     store_extend = get_object_or_404(UserExtendData, pk=num)
+    if not store_extend.can_sell():
+            return redirect('store:store')
     store = store_extend.user
     products = store_extend.product_set.all()
 
