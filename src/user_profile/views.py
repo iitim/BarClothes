@@ -95,7 +95,7 @@ def cancel(request):
 
 def view_myshop(request):
     store_extend = get_object_or_404(UserExtendData, user=request.user)
-    if store_extend.can_sell():
+    if not store_extend.can_sell():
         return redirect('home') #top up
     store = store_extend.user
     products = store_extend.product_set.all()
