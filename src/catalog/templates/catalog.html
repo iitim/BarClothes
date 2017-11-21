@@ -14,10 +14,11 @@
   
   <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
   <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+
 {% endblock %}
 
 {% block content %}
-  
 
   <div class="sidebar-page col-md-3" style="padding-left: 0px;">
     <h3 style="margin-top: 40px;">Search</h3>
@@ -76,27 +77,43 @@
         <a href="/shop/accessory"><p class="sidebar" style="font-size: 14px; height: 35px;">Accessory </p></a>
     </div>
 
+
+    <!--  Tag is here --> 
     <p style="font-size: 24px; margin-top: 25px; margin-bottom: 16px;" class="sidebar-title">Tag</p>
     <div class="sidebar-list scrollbar" style="
             width: 241px;
             height: 350px;
             overflow: scroll;">
-
-        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-        <a href="/shop/top"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Top</p></a>
-        <a href="/shop/jacket"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Jacket </p></a>
-        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-        <a href="/shop/top"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Top</p></a>
-        <a href="/shop/jacket"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">Jacket </p></a>
-        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-        <a href="/shop"><p class="sidebar" style="font-size: 14px; width: 217px; height: 35px;">All</p></a>
-
-    </div>
-
+            <!-- only first list -->
+          <div style="margin-top: 20px;">
+            <label class="container" style="height: 20px;">  
+              <input type="checkbox" class="cbx" 
+                      style="
+                      padding-left: 30px;
+                      margin-left: 30px;
+                      margin-top: 0px;
+                      margin-right: 20px;
+                      "
+              ><label>Top</label>
+              <span class="checkmark"></span>
+            </label>
+          </div>
+            
+            <!-- other -->
+            <div style="margin-top: 10px;">
+            <label class="container" style="height: 20px;">
+                <input type="checkbox" class="cbx" 
+                style="
+                padding-left: 30px;
+                margin-left: 30px;
+                margin-top: 0px;
+                margin-right: 20px;
+                "
+        ><label>Top</label>
+             </label>
+            </div>
   </div>
+</div>
 
   <div class="product-page col-md-9">
     <form class="sortbar row" method="post" >
@@ -141,6 +158,8 @@
     </div>
     
   </div>
+
+ 
 
   <div class="paging" id="page-hide">
     {% if page >= 1 and  page <= last_page %}
