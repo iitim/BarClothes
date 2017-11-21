@@ -29,6 +29,12 @@ TRANSACTION_STATUS_CHOICES = (
     ('sns', 'seller_not_sent_product'),
 )
 
+TOPUP_STATUS_CHOICES = (
+    ('w', 'wait_for_check'),
+    ('s', 'success'),
+    ('f', 'fail'),
+)
+
 
 
 class UserExtendData(models.Model):
@@ -38,6 +44,8 @@ class UserExtendData(models.Model):
     tel_no = models.CharField(max_length=45)
     picture = models.ImageField(upload_to='user_pic/', default = 'user_pic/icon.png')
     selling_expire_date = models.DateTimeField(default=datetime.now)
+    bank_account = models.CharField(max_length=200, default='', blank=True)
+    free_trial_status = models.BooleanField(default=True)
 
     def get_image_path(self):
         return "/media/" + self.picture.__str__()
@@ -100,7 +108,6 @@ class Transaction(models.Model):
     expire_date = models.DateTimeField(default=datetime.now() + timedelta(days=3))
     payment_date = models.DateTimeField(null = True, blank= True)
     sent_date = models.DateTimeField(null=True, blank=True)
-    receive_date = models.DateTimeField(null=True, blank=True)
     payment_picture = models.ImageField(upload_to='payment_pic/', blank=True)
     transport_code = models.CharField(max_length=13, blank=True)
 
@@ -117,7 +124,6 @@ class TransactionLog(models.Model):
     create_date = models.DateTimeField(default=datetime.now)
     payment_date = models.DateTimeField(null=True, blank=True)
     sent_date = models.DateTimeField(null=True, blank=True)
-    receive_date = models.DateTimeField(null=True, blank=True)
     transport_code = models.CharField(max_length=13, blank=True)
 
     @staticmethod
@@ -139,7 +145,9 @@ class TransactionLog(models.Model):
 
 
 class TopUp(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     slip_pic = models.ImageField(upload_to='slip_pic/', blank=True)
     price = models.FloatField(default=0)
+    status = models.CharField(max_length=1, choices=TOPUP_STATUS_CHOICES, default='w')
     top_up_date = models.DateTimeField(default=datetime.now)
+

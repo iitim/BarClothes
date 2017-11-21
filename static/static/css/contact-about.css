@@ -1,11 +1,75 @@
-.contact-about-title{
+.about-howtouse p {
+    margin-left: 5%;
+    text-align: left;
+}
+.about-aboutus img {
+    margin-bottom: 50px;
+}
+.about-aboutus p {
+    margin: 0 10%;
+    margin-bottom: 10px;
+    text-align: justify;
+    text-justify: distribute;
+}
+
+.contact-information-group {
+    margin: 0 30% 100px 30%;
+}
+.contact-information-group h3, .contact-form-group h3 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.contact-information-couple {
+    text-align: left;
+    margin-left: 23%;
+}
+.contact-information-couple h4 {
+    color: #FFBC49;
+    display: inline;
+    font-size: 14px;
+}
+.contact-information-couple p {
+    display: inline;
+}
+.contact-form-group {
+    text-align: justify;
+    text-justify: distribute;
+    margin: 0 25% 50px 25%;
+}
+label {
+    font-size: 16px;
+    color: #FFBC49;
+    font-weight: normal;
+    width: 20%;
+    float: left;
+}
+input[type=text], input[type=email] {
+    border: none;
+    border-bottom: 1px solid #FFBC49;
+    background-color: #282626;
+    color: white;
+    width: 80%;
+    margin-bottom: 20px;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none !important;
+}
+textarea {
+    background-color: #282626;
+    color: white;
+    border-color: #ffbc49;
+    width: 80%;
+    border-radius: 4px;
+}
+input[type=submit] {
     font-family: 'Glacial Indifference';
-}
-
-.contact-about-head{
-    margin-bottom: 30px
-}
-
-.contact-about-container{
-    margin: 50px 0;
+	font-size: 14px;
+	border-color: #FFBC49;
+	background-color: #282626 !important;
+	color: #FFBC49 !important;
+	margin-top: 10px;
+	padding: 8px 16px;
+	border-radius: 24px;
+	margin-right: 60px;
 }

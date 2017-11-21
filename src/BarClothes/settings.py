@@ -92,7 +92,7 @@ EMAIL_USE_TLS = True
 
 DATABASES = {
     'default': {
-        'NAME': 'TestDB',
+        'NAME': 'TestDB3',
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'DjangoServer',
         'PASSWORD': '1q2w3e4r5t6y7u8i9o0p',
