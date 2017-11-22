@@ -148,3 +148,11 @@ def orderpage_selected(request, num):
     }
     template = 'delivery_order.html'
     return render(request, template, context)
+
+def sentorder(request, transaction):
+    form = TransactionUpdateForm(instance=transaction)
+    if request.POST:
+        form = TransactionUpdateForm(request.POST, request.FILES, instance=transaction)
+        if form.is_valid():
+            form.save()
+    return form

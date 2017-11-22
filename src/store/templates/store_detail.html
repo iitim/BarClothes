@@ -8,14 +8,14 @@
 
 {% block title_content1 %}{{store.username}}{% endblock %}
 
-{% block content1 %} 
-<div class="storedetail-storeprofile">
-    <img class="storedetail-storepic" src="/media/{{store.userextenddata.picture}}">
-    <div class="storedetail-storeinfo">
-        <h5>contact: </h5>
-        <p>{{store.email}}</p>
+{% block content1 %}
+    <div class="storedetail-storeprofile">
+        <img class="storedetail-storepic" src="/media/{{store.userextenddata.picture}}">
+        <div class="storedetail-storeinfo">
+            <h5>contact: </h5>
+            <p>{{store.email}}</p>
+        </div>
     </div>
-</div>
 
 <script>
 $( document ).ready(setSort("late"));
@@ -58,14 +58,23 @@ function setSort(val) {
                     <img class="storedetail-productpic" src="/media/{{product.picture_path}}">
                 </a>
             </div>
-            <div class="text">       {% comment %} use css from catalog's css {% endcomment %}
-                <p>{{product.name}}</p>
-                <h5>{{product.price}} ฿</h5>
+            
+            <div id="storedetail-productcatalog">
+                {% for product in products_latest %}
+                <div class="col-md-4 storedetail-productblock">
+                    <div class="storedetail-productpicblock">
+                        <a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw">      {% comment %} link to BB's product page {% endcomment %}
+                            <img class="storedetail-productpic" src="/media/{{product.picture_path}}">
+                        </a>
+                    </div>
+                    <div class="text">  {% comment %} use css from catalog's css {% endcomment %}
+                        <p>{{product.name}}</p>
+                        <h5>{{product.price}} ฿</h5>
+                    </div>
+                </div> 
+                {% endfor %}
             </div>
-        </div> 
-        {% endfor %}
     </div>
-</div>
 {% endblock %}
 
 {% block no_title_content2 %}{% endblock %}
