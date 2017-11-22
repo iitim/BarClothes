@@ -28,6 +28,10 @@
     font-size: xx-large;
 }
 
+.empty-cart-icon{
+    max-height: 500px;
+}
+
 /* upload image styles */
 .upload-image-form {  
   padding-top: 40px;
@@ -51,7 +55,4 @@
 
 .upload-image-confirmation {
   display: none;
-}
-.upload-image-cancel {
-  /* background: red; */
 }

@@ -24,8 +24,12 @@ def mycart(request):
 
         for i in range(num_transaction_error):
             transactions_error[i].slips = updateslipForm(request, transactions_error[i].id)
+            if transactions_error[i].slips == "redirect('user_profile:mycart:mycart')":
+                return redirect('user_profile:mycart:mycart')
         for i in range(num_transaction_cart):
             transactions_cart[i].slips = updateslipForm(request, transactions_cart[i].id)
+            if transactions_cart[i].slips == "redirect('user_profile:mycart:mycart')":
+                return redirect('user_profile:mycart:mycart')
 
         logs = TransactionLog.objects.order_by('-create_date').filter(customer=user)
         logs_success = logs.filter(status='suc')
@@ -53,20 +57,15 @@ def updateslipForm(request, num):
     transaction = get_object_or_404(Transaction, pk=num)
     form = UpdateSlipForm(instance=transaction, initial={'pk':transaction._get_pk_val()})
     if request.POST and transaction._get_pk_val() == int(request.POST['pk']):
-        if True:
-            form = UpdateSlipForm(request.POST, request.FILES, instance=transaction, initial={'pk':transaction._get_pk_val()})
-            if form.is_valid():
-                # print(form.data)
-                # transaction = form.save(commit=False)
-                # transaction.expire_date = datetime.now() + timedelta(days=3)
-                transaction.payment_picture = form.cleaned_data.get('payment_picture')
-                transaction.status = 'wac'
-                print(transaction.id)
-                print(transaction)
-                transaction.save()
-                return redirect('user_profile:mycart:mycart')
-                # form.save()
-    # print("\n")
+        form = UpdateSlipForm(request.POST, request.FILES, instance=transaction, initial={'pk':transaction._get_pk_val()})
+        if form.is_valid():
+            # print(form.data)
+            transaction.payment_picture = form.cleaned_data.get('payment_picture')
+            transaction.status = 'wac'
+            print(transaction.id)
+            print(transaction)
+            transaction.save()
+            return "redirect('user_profile:mycart:mycart')"
     return form
 
 def delete(request, num):
