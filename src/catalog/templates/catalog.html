@@ -71,13 +71,13 @@
     <a href="/shop/accessory{{search_path}}"><p class="sidebar" style="font-size: 14px; height: 35px;">Accessory </p></a>
   </div>
   <p style="font-size: 24px; margin-top: 25px; margin-bottom: 16px;" class="sidebar-title">Tag</p>
-  <div class="sidebar-list scrollbar" style="height: 350px; overflow: scroll;">
+  <div class="sidebar-list scrollbar" style="height: 350px; overflow-y: scroll;">
     <form method="get">
       {% for tag in tags%}
       {% if tag.1 %}
-      <input type="checkbox" form="search" name="tags" value="{{tag.0.name}}" checked><p class="sidebar" style="font-size: 14px; height: 35px;">{{tag.0.name}}</p>
+      <label class="control control--checkbox" style="font-size: 14px; height: 35px;margin-left: 70px;margin-bottom: 0px;margin-top: 10px;">{{tag.0.name}}<input type="checkbox" form="search" name="tags" value="{{tag.0.name}}" checked class='hidden'><div class="control__indicator"></div></label>
       {% else %}
-      <input type="checkbox" form="search" name="tags" value="{{tag.0.name}}"><p class="sidebar" style="font-size: 14px; height: 35px;">{{tag.0.name}}</p>
+      <label class="control control--checkbox" style="font-size: 14px; height: 35px;margin-left: 70px;margin-bottom: 0px;margin-top: 10px;">{{tag.0.name}}<input type="checkbox" form="search" name="tags" value="{{tag.0.name}}" class='hidden'><div class="control__indicator"></div></label>
       {% endif %}
       {% endfor %}
     </form>

@@ -48,7 +48,7 @@
 <div class="store-page col-md-9">
   <div class="store-row row" id="store_catalog">
     {% for store in all_store %}
-    <a href="{% url 'store:store_detail' %}" class="buy">
+    <a href="{% url 'store:store_detail' %} store.pk" class="buy">
       <div class="store col-md-4">
         <div class="store-image" style="height: 240px;">
           <span class="helper"></span><img style="height: 216px; width: 216px;" src="/media/{{store.picture}}">
