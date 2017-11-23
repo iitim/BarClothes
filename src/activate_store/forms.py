@@ -11,5 +11,5 @@ class upload_img_form(ModelForm):
 	def __init__(self, *args, **kwargs):
 		super(upload_img_form, self).__init__(*args, **kwargs)
 		self.fields['price'] = forms.IntegerField(
-			min_value = 0
+			min_value = 1
 		)
