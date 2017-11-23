@@ -29,7 +29,11 @@ TRANSACTION_STATUS_CHOICES = (
     ('sns', 'seller_not_sent_product'),
 )
 
-
+TOPUP_STATUS_CHOICES = (
+    ('w', 'wait_for_check'),
+    ('s', 'success'),
+    ('f', 'fail'),
+)
 
 class UserExtendData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -50,7 +54,7 @@ class UserExtendData(models.Model):
     image.allow_tags = True
 
     def first_time(self):
-        return self.free_trial_status
+        return self.free_trial_status != 0
 
     def can_sell(self):
         now = timezone.now()
@@ -143,7 +147,8 @@ class TransactionLog(models.Model):
 
 
 class TopUp(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     slip_pic = models.ImageField(upload_to='slip_pic/', blank=True)
     price = models.FloatField(default=0)
+    status = models.CharField(max_length=1, choices=TOPUP_STATUS_CHOICES, default='w')
     top_up_date = models.DateTimeField(default=datetime.now)

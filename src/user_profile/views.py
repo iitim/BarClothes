@@ -11,7 +11,7 @@ from django.shortcuts import get_list_or_404, get_object_or_404, render, redirec
 from operator import attrgetter
 
 from .forms import EditProfileForm
-from main.models import UserExtendData 
+from main.models import UserExtendData
 
 # Create your views here.
 
@@ -51,7 +51,7 @@ def profile(request):
         'id_num' : user_extend.id_num
     }
     edit_profile_form = EditProfileForm(instance=user, initial=initial_data)
-    
+
     if request.method == 'POST':
         edit_profile_form = EditProfileForm(request.POST, request.FILES, instance=user)
         if edit_profile_form.is_valid():
@@ -67,7 +67,7 @@ def profile(request):
             return redirect(reverse('user_profile:profile'))
         else:
             print(edit_profile_form.errors)
-       
+
     context = {
         'user' : user,
         'edit_profile_form': edit_profile_form,
@@ -83,15 +83,17 @@ def cancel(request):
 
 def view_myshop(request):
     store_extend = get_object_or_404(UserExtendData, user=request.user)
-    store = store_extend.user
-    products = store_extend.product_set.all()
-    products_lowest_price = sorted(products, key=attrgetter('price'))
-    context = {
-       'products_lowest_price': products_lowest_price,
-    }
-    template = 'mainpage.html'
-    return render(request, template, context)
-   
+    if store_extend.can_sell():
+        store = store_extend.user
+        products = store_extend.product_set.all()
+        products_lowest_price = sorted(products, key=attrgetter('price'))
+        context = {
+           'products_lowest_price': products_lowest_price,
+        }
+        template = 'mainpage.html'
+        return render(request, template, context)
+    else:
+        return redirect('/activate_store')
 
 def orderpage(request):
     store_extend = get_object_or_404(UserExtendData, user=request.user)
