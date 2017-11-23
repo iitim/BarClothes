@@ -21,3 +21,12 @@ div.normal_font{
   color:white;
   font-size:25px;
 }
+
+.form-price{
+  background-color: #282626;
+  color: white;
+  border: none;
+  border-bottom: 1px solid #ffbc49;
+  width: 180px;
+  text-align-last: center;
+}

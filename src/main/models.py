@@ -35,14 +35,17 @@ TOPUP_STATUS_CHOICES = (
     ('f', 'fail'),
 )
 
+
+
 class UserExtendData(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     id_num = models.CharField(max_length=13)
     address = models.CharField(max_length=1000)
     tel_no = models.CharField(max_length=45)
-    picture = models.ImageField(upload_to='user_pic/', default = 'product_pic/catalog-minimize.jpg')
+    picture = models.ImageField(upload_to='user_pic/', default = 'user_pic/icon.png')
     selling_expire_date = models.DateTimeField(default=datetime.now)
-    free_trial_status = models.IntegerField(default = '1')
+    bank_account = models.CharField(max_length=200, default='', blank=True)
+    free_trial_status = models.BooleanField(default=True)
 
     def get_image_path(self):
         return "/media/" + self.picture.__str__()
@@ -52,9 +55,6 @@ class UserExtendData(models.Model):
 
     image.short_description = 'Image'
     image.allow_tags = True
-
-    def first_time(self):
-        return self.free_trial_status != 0
 
     def can_sell(self):
         now = timezone.now()
@@ -108,7 +108,6 @@ class Transaction(models.Model):
     expire_date = models.DateTimeField(default=datetime.now() + timedelta(days=3))
     payment_date = models.DateTimeField(null = True, blank= True)
     sent_date = models.DateTimeField(null=True, blank=True)
-    receive_date = models.DateTimeField(null=True, blank=True)
     payment_picture = models.ImageField(upload_to='payment_pic/', blank=True)
     transport_code = models.CharField(max_length=13, blank=True)
 
@@ -125,7 +124,6 @@ class TransactionLog(models.Model):
     create_date = models.DateTimeField(default=datetime.now)
     payment_date = models.DateTimeField(null=True, blank=True)
     sent_date = models.DateTimeField(null=True, blank=True)
-    receive_date = models.DateTimeField(null=True, blank=True)
     transport_code = models.CharField(max_length=13, blank=True)
 
     @staticmethod

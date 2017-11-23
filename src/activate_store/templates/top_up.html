@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% load topup_filter %}
+
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/activate_store.css'%}">
 <!-- CSS paste here-->
@@ -9,11 +11,12 @@
 {% block title_content1 %}Top Up{% endblock %}
 {% block content1 %}
 <div align="center">
-  <form method="post" enctype="multipart/form-data">{% csrf_token %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="edit-text">
       <div class="edit-input-text">
-        <span class="edit-text-min"> Price </span>
-        {{ form.price }}
+        <span class="edit-text-min"> Price       </span>
+        {{ form.price | addclass:'form-price'}}
       </div>
       {{ form.price.errors }}
     </div>
