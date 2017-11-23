@@ -43,8 +43,8 @@ def set_last_page(current_state, all_store_length):
         last_page += 1
     return last_page
 
-def store_detail(request): #num
-    store_extend = get_object_or_404(UserExtendData, id_num=1000000000000)
+def store_detail(request, num):
+    store_extend = get_object_or_404(UserExtendData, pk=num)
     store = store_extend.user
     products = store_extend.product_set.all()
 

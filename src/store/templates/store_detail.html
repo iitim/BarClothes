@@ -58,23 +58,14 @@ function setSort(val) {
                     <img class="storedetail-productpic" src="/media/{{product.picture_path}}">
                 </a>
             </div>
-            
-            <div id="storedetail-productcatalog">
-                {% for product in products_latest %}
-                <div class="col-md-4 storedetail-productblock">
-                    <div class="storedetail-productpicblock">
-                        <a href="https://www.google.co.th/?gws_rd=cr&dcr=0&ei=_yziWYWNCYrnvgTUmpywAw">      {% comment %} link to BB's product page {% endcomment %}
-                            <img class="storedetail-productpic" src="/media/{{product.picture_path}}">
-                        </a>
-                    </div>
-                    <div class="text">  {% comment %} use css from catalog's css {% endcomment %}
-                        <p>{{product.name}}</p>
-                        <h5>{{product.price}} ฿</h5>
-                    </div>
-                </div> 
-                {% endfor %}
+            <div class="text">  {% comment %} use css from catalog's css {% endcomment %}
+                <p>{{product.name}}</p>
+                <h5>{{product.price}} ฿</h5>
             </div>
+        </div>
+    {% endfor %}
     </div>
+</div>
 {% endblock %}
 
 {% block no_title_content2 %}{% endblock %}
