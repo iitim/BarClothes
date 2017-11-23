@@ -22,11 +22,20 @@
     </div>
     <div class="edit-text">
       <div class="edit-input-text">
-        {{ form.slip_pic }}
+        {% comment %} {{ form.slip_pic }} {% endcomment %}
+        <div class="file-upload-wrapper">
+          <input type="file" name="slip_pic" id="id_slip_pic_path" class="file-upload-native" accept="image/*" />
+          <input type="text" disabled placeholder="upload slip" class="file-upload-text" />
+        </div>
       </div>
       {{ form.slip_pic.errors }}
     </div>
-    <input type="submit" value="Submit Image">
+    {% comment %} <input type="submit" value="Submit Image"> {% endcomment %}
+
+    <div class="update-button">
+      <button class="btn btn-default update-profile" type="submit" name="submit-image" value="submit-image">Submit Slip</button>
+    </div>
+  
   </form>
 </div>
 {% endblock %}
