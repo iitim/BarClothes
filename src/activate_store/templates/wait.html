@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css\activate_store.css'%}">
+<!-- CSS paste here-->
+{% endblock %}
+
+{% block title_content1 %}Top Up{% endblock %}
+{% block content1 %}
+  <div class="normal_font" align="center">
+      <p>Upload Complete!</p>
+      <p>Please waiting for Administrator to activete your store</p>
+      <br>
+    <p><u><a href="/" class="link-topup">Back Home</a></u></p>
+  </div>
+{% endblock %}
+{% block no_title_content2 %}
+{% endblock %}

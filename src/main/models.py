@@ -63,6 +63,9 @@ class UserExtendData(models.Model):
     def __str__(self):
         return self.user.username
 
+    def first_time(self):
+        return self.free_trial_status == 1
+    
 class Tag(models.Model):
     name = models.CharField(max_length=45)
 

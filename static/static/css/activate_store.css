@@ -1,0 +1,122 @@
+div.edit-text{
+  margin-bottom:20px;
+}
+
+span.edit-text-min{
+  color:white;
+  font-size:20px;
+  display:inline;
+}
+
+div.edit-input-text{
+  display:inline;
+}
+
+div.normal_font{
+  color:white;
+  font-size:20px;
+}
+
+.link-topup {
+  color:white;
+  font-size:25px;
+}
+
+/* input price */
+.form-price{
+  background-color: #282626;
+  color: white;
+  border: none;
+  border-bottom: 1px solid #ffbc49;
+  width: 180px;
+  text-align-last: center;
+  padding: 10px;
+}
+
+/* upload_pic */
+.file-upload-wrapper {
+  position: relative;
+  z-index: 5;
+  display: block;
+  width: 250px;
+  height: 30px;
+  margin: 25px auto;
+  border-radius: 0px;
+  border-bottom: 1px dashed #ffbc49;
+}
+
+.file-upload-native,
+.file-upload-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: rgba(255,255,255,0.8);
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  cursor: pointer;
+}
+
+.file-upload-native:focus,
+.file-upload-text:focus {
+  outline: none;
+}
+
+.file-upload-text {
+  z-index: 10;
+  padding: 5px 15px 8px;
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 1px;
+  text-overflow: ellipsis;
+  border: 0;
+  background-color: transparent;
+}
+
+.file-upload-native {
+  z-index: 15;
+  opacity: 0;
+}
+
+
+/* button */
+div.update-button{
+  padding-top:20px;
+  margin:auto;
+  width:140px;
+}
+
+button.btn.btn-default.update-profile{
+  background:transparent;
+  color:#ed8b1a;
+  border-radius:12px;
+  border:2px solid;
+  padding:20px;
+  text-align:center;
+  text-decoration:none;
+  display:inline-block;
+  font-size:16px;
+  margin:4px 2px;
+  cursor:pointer;
+}
+button.btn.btn-default:hover{
+  background-color:#dcd7d7;
+  color:rgb(255,255,256);
+}
+
+/* button looks like link */
+.linkButton { 
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer; 
+  color:white;
+  font-size:25px;
+}

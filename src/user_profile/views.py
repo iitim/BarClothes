@@ -79,7 +79,7 @@ def profile(request):
             return redirect(reverse('user_profile:profile'))
         else:
             print(edit_profile_form.errors)
-       
+
     context = {
         'user' : user,
         'edit_profile_form': edit_profile_form,
@@ -96,7 +96,7 @@ def cancel(request):
 def view_myshop(request):
     store_extend = get_object_or_404(UserExtendData, user=request.user)
     if not store_extend.can_sell():
-        return redirect('home') #top up
+        return redirect('activate_store') #top up
     store = store_extend.user
     products = store_extend.product_set.all()
     products_lowest_price = sorted(products, key=attrgetter('price'))
