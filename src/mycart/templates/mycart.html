@@ -9,7 +9,7 @@
 {% block title_content1 %}My cart{% endblock %}
 {% block content1 %}
         <div class ="mycart-section">
-            {% if not transaction %}
+            {% if not transactions %}
             <div>
                 <img class="empty-cart-icon" src="{% static 'img/empty-cart.png' %}">
             </div>
