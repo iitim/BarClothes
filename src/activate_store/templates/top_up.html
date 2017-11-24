@@ -16,7 +16,7 @@
     <div class="edit-text">
       <div class="edit-input-text">
         <span class="edit-text-min"> Price       </span>
-        {{ form.price | addclass:'form-price'}}
+        {{ form.price | addclass_type_step:'form-price,number,1000'}}
       </div>
       {{ form.price.errors }}
     </div>
