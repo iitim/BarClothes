@@ -11,7 +11,7 @@ from collections import defaultdict
 from datetime import datetime
 
 from .forms import EditProfileForm, TransactionUpdateForm
-from main.models import UserExtendData , Transaction
+from main.models import UserExtendData , Transaction, PRODUCT_TYPE_CHOICES
 
 
 def view_profile(request, pk=None):
@@ -98,10 +98,12 @@ def view_myshop(request):
     if not store_extend.can_sell():
         return redirect('activate_store') #top up
     store = store_extend.user
+    type = PRODUCT_TYPE_CHOICES
     products = store_extend.product_set.all()
     products_lowest_price = sorted(products, key=attrgetter('price'))
     context = {
        'products_lowest_price': products_lowest_price,
+       'type' : type,
     }
     template = 'mainpage.html'
     return render(request, template, context)
