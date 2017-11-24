@@ -84,10 +84,11 @@ def free_trial(request):
 def topup_transaction(request):
     user = request.user
     top_up = list(TopUp.objects.filter(user_id=user.pk))
+    if len(top_up) == 0:
+        return redirect('/activate_store/top_up')
     context = {
         'topups': init_topuptrans_context(top_up),
     }
-    print(context)
     return render(request, 'topup_transaction.html', context)
 
 def init_topuptrans_context(top_ups):
@@ -106,7 +107,7 @@ def prepare_topup(topup):
     res = {}
     type = dict(TOPUP_STATUS_CHOICES)
     res['status'] = type[topup.status].replace('_', ' ')
-    res['price'] = topup.price
+    res['price'] = str(topup.price) + ' ฿'
     res['pk'] = topup.pk
 
     date, time = datetime_string(topup.top_up_date)
