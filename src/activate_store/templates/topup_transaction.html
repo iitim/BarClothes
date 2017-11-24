@@ -10,38 +10,36 @@
 
 {% block title_content1 %}Top Up Transaction{% endblock %}
 
-{% block content1 %}
+{% block content1%}
+
+<div class="button-div">
+		<a class="btn btn-default link-button pull-right" href="/activate_store/top_up">Top Up</a>
+</div>
+
 <div class="container">            
 <table class="table">
 	<thead>
 		<tr>
 			<th>ID</th>				
-			<th>DateTime</th>
-			<th>Price</th>
+			<th>Date</th>
+			<th>Time</th>			
+			<th>Price</th>			
 			<th>Status</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>John</td>
-			<td>Doe</td>
-			<td>john@example.com</td>
-			<td>john@example.com</td>			
-		</tr>
-		<tr>
-			<td>Mary</td>
-			<td>Moe</td>
-			<td>mary@example.com</td>
-			<td>mary@example.com</td>
-		</tr>
-		<tr>
-			<td>July</td>
-			<td>Dooley</td>
-			<td>july@example.com</td>
-			<td>mary@example.com</td>			
-		</tr>
+		{% for topup in topups %}
+			<tr>
+				<td>{{ topup.pk }}</td>
+				<td>{{ topup.date }}</td>
+				<td>{{ topup.time }}</td>
+				<td>{{ topup.price }}</td>
+				<td>{{ topup.status }}</td>				
+			</tr>
+		{% endfor %}
 	</tbody>
 </table>
+
 </div>
   
 {% endblock %}

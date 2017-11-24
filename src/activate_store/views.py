@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from datetime import datetime, timedelta
 
-from main.models import UserExtendData, TopUp
+from main.models import UserExtendData, TopUp, TOPUP_STATUS_CHOICES
 from .forms import upload_img_form
 
 @login_required
@@ -84,9 +84,32 @@ def free_trial(request):
 def topup_transaction(request):
     user = request.user
     top_up = list(TopUp.objects.filter(user_id=user.pk))
-    
-    print(top_up)
-    print(type(top_up))
-    return render(request, 'topup_transaction.html')
+    context = {
+        'topups': init_topuptrans_context(top_up),
+    }
+    print(context)
+    return render(request, 'topup_transaction.html', context)
 
+def init_topuptrans_context(top_ups):
+    contexts = []
+    for topup in top_ups:
+        context = prepare_topup(topup)
+        contexts.append(context)
+    return contexts
 
+def datetime_string(date_time):
+    date = date_time.date().strftime("%d/%m/%y")
+    time = date_time.time().strftime("%H:%M")
+    return date, time
+
+def prepare_topup(topup):
+    res = {}
+    type = dict(TOPUP_STATUS_CHOICES)
+    res['status'] = type[topup.status].replace('_', ' ')
+    res['price'] = topup.price
+    res['pk'] = topup.pk
+
+    date, time = datetime_string(topup.top_up_date)
+    res['date'] = date
+    res['time'] = time
+    return res
