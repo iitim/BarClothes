@@ -72,10 +72,10 @@ def top_up(request):
 
 @login_required
 def free_trial(request):
-    print("free trial")
-    # user = request.user
-    # user_extend = UserExtendData.objects.get(user_id=user.pk)
-    # user_extend.selling_expire_date = datetime.now()+timedelta(days=30)
-    # user_extend.free_trial_status = 0;
-    # user_extend.save()
+    print("use free trial")
+    user = request.user
+    user_extend = UserExtendData.objects.get(user_id=user.pk)
+    user_extend.selling_expire_date = datetime.now()+timedelta(days=30)
+    user_extend.free_trial_status = 0;
+    user_extend.save()
     return redirect('/profiles/shopstatus/')
