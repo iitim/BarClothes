@@ -82,6 +82,9 @@ def free_trial(request):
 
 @login_required
 def topup_transaction(request):
+    user = request.user
+    top_up = TopUp.objects.get(user_id=user.pk)
+    print(top_up)
     return render(request, 'topup_transaction.html')
 
 
