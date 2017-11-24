@@ -44,15 +44,18 @@ def profile(request):
     user = request.user
     user_extend = UserExtendData.objects.get(user_id=user.pk)
 
+    selling_expire_date = '0'
+    if user_extend.free_trial_status == 0:
+        selling_expire_date = datetime_string(user_extend.selling_expire_date)
+    print(selling_expire_date)
+
     initial_data = {
         'tel_no' : user_extend.tel_no,
         'address' : user_extend.address,
-        # 'id_num' : user_extend.id_num
         'first_name' : user.first_name,
         'last_name' : user.last_name,
         'email' : user.email,
         'bank_account' : user_extend.bank_account,
-        # 'phone_num' : user.phone_num
     }
     edit_profile_form = EditProfileForm(instance=user_extend, initial=initial_data)
     # edit_profile_form = EditProfileForm(instance=user_extend)
@@ -84,6 +87,7 @@ def profile(request):
         'user' : user,
         'edit_profile_form': edit_profile_form,
         'user_extend' : user_extend,
+        'selling_expire_date' : selling_expire_date,
     }
     return render(request, 'profile.html', context)
 
@@ -160,3 +164,7 @@ def sentorder(request, transaction):
         if form.is_valid():
             form.save()
     return form
+
+def datetime_string(date_time):
+    date = date_time.date().strftime("%d/%m/%y")
+    return date
