@@ -18,7 +18,7 @@ div.normal_font{
 }
 
 .link-topup {
-  color:white;
+  color:#ed8b1a;
   font-size:25px;
 }
 
@@ -119,4 +119,11 @@ button.btn.btn-default:hover{
   cursor: pointer; 
   color:#ffbc49;
   font-size:25px;
+}
+
+/* top up rules */
+.about-howtouse p {
+  font-size: 20px;    
+  margin-left: 5%;
+  text-align: left;
 }

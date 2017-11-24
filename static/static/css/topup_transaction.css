@@ -5,3 +5,28 @@ th {
 th,td {
     font-size: 18px;
 }
+
+/* button */
+div.button-div{
+    margin:auto;
+}
+
+.btn.btn-default.link-button{
+    background:transparent;
+    color:#ed8b1a;
+    border-radius:12px;
+    border:2px solid;
+    padding:20px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    font-size:16px;
+    /* margin:4px 2px; */
+    cursor: pointer;
+    right: 20px;
+    align: right;
+}
+
+button.btn.btn-default.link-button:hover{
+    color:white;
+}
