@@ -79,3 +79,9 @@ def free_trial(request):
     user_extend.free_trial_status = 0;
     user_extend.save()
     return redirect('/profiles/shopstatus/')
+
+@login_required
+def topup_log(request):
+    return render(request, 'topup_log.html')
+
+

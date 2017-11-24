@@ -10,34 +10,34 @@
 {% block content1 %}
  
     <div class="group-btn">
-        <a href="{% url 'user_profile:orderpage' %}"><img class="each-btn" src="{% static 'img/btn-order.png' %}"></a> 
-        <a href="{% url 'myproduct:new' %}"><img class="each-btn" src="{% static 'img/btn-add.png' %}"></a>
+	<a href="{% url 'user_profile:orderpage' %}"><img class="each-btn" src="{% static 'img/btn-order.png' %}"></a> 
+	<a href="{% url 'myproduct:new' %}"><img class="each-btn" src="{% static 'img/btn-add.png' %}"></a>
     </div>
 
     <div class="delivery_order">
 
        {% for product in products_lowest_price %}
-        <a href="{% url 'myproduct:update' product.id %}">           
-                <img class="picture-delivery-order col-md-2" src="/media/{{product.picture_path}}" >
-                <div class="col-md-3" style="margin-left: 30px; width:125px; padding: 0px;">
-                <p class="textN-delivery-order" style="margin-right: 20px">ProductName </p>
-                <p class="textN-delivery-order" style="margin-right: 100px">Type </p>
-                <p class="textN-delivery-order" style="margin-right: 84px">Price</p>
-                <p class="text1-delivery-order" style="margin-right: 60px" >Amount </p>
-        </a>
-        <a href="{% url 'myproduct:delete' product.id %}">
-                <button class="sent-button" type="submit" ip=Sent style="margin-bottom: 50px;">Delete</button>
-        </a>
-        </div>
+	<a href="{% url 'myproduct:update' product.id %}">           
+		<img class="picture-delivery-order col-md-2" src="/media/{{product.picture_path}}" >
+		<div class="col-md-3" style="margin-left: 30px; width:125px; padding: 0px;">
+		<p class="textN-delivery-order" style="margin-right: 20px">ProductName </p>
+		<p class="textN-delivery-order" style="margin-right: 100px">Type </p>
+		<p class="textN-delivery-order" style="margin-right: 84px">Price</p>
+		<p class="text1-delivery-order" style="margin-right: 60px" >Amount </p>
+	</a>
+	<a href="{% url 'myproduct:delete' product.id %}">
+		<button class="sent-button" type="submit" ip=Sent style="margin-bottom: 50px;">Delete</button>
+	</a>
+	</div>
 
-        <div class="col-md-2" style="padding: 0px;">
-        <div style="height: 10px; margin-top: -6px; margin-right: 90px;"> </div>
-                <p class="product-information" style="font-size: 14px; color: #F5F5F5;"> {{product.name}} </p>
-                <p style="font-size: 16px; color: #F5F5F5;  margin-top: 14px;"> {{product.type}} </p>
-                <p style="font-size: 16px; color: #F5F5F5;  margin-top: 14px;"> {{product.price}} </p>
-                <p style="font-size: 16px; color: #FFBC49;  margin-top: 14px;"> {{product.remain}} </p>
-        </div>
-          {% endfor %}
+	<div class="col-md-2" style="padding: 0px;">
+	<div style="height: 10px; margin-top: -6px; margin-right: 90px;"> </div>
+		<p class="product-information" style="font-size: 14px; color: #F5F5F5;"> {{product.name}} </p>
+		<p style="font-size: 16px; color: #F5F5F5;  margin-top: 14px;"> {{product.type}} </p>
+		<p style="font-size: 16px; color: #F5F5F5;  margin-top: 14px;"> {{product.price}} </p>
+		<p style="font-size: 16px; color: #FFBC49;  margin-top: 14px;"> {{product.remain}} </p>
+	</div>
+	  {% endfor %}
 
     </div>
 
