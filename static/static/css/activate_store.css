@@ -117,6 +117,6 @@ button.btn.btn-default:hover{
   border: none;
   text-decoration: underline;
   cursor: pointer; 
-  color:white;
+  color:#ffbc49;
   font-size:25px;
 }

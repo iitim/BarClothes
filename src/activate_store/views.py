@@ -81,7 +81,7 @@ def free_trial(request):
     return redirect('/profiles/shopstatus/')
 
 @login_required
-def topup_log(request):
-    return render(request, 'topup_log.html')
+def topup_transaction(request):
+    return render(request, 'topup_transaction.html')
 
 
