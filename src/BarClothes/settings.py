@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'catalog',
     'product',
     'store',
-    'myproduct'
+    'myproduct',
+    'activate_store',
+    'mycart'
 ]
 
 MIDDLEWARE = [
@@ -105,6 +107,21 @@ DATABASES = {
         'HOST': 'barclothes.mysql.pythonanywhere-services.com',
     }
 }
+
+# use for branch catalog
+
+# DATABASES = {
+#     'default': {
+#         'NAME': 'TestDB',
+#         'ENGINE': 'django.db.backends.mysql',
+#         'USER': 'DjangoServer',
+#         'PASSWORD': '1q2w3e4r5t6y7u8i9o0p',
+#         'HOST' : '35.194.233.26',
+#         'OPTIONS': {
+#           'autocommit': True,
+#         },
+#     }
+# }
 
 # use for branch catalog
 

@@ -8,14 +8,14 @@
 
 {% block title_content1 %}{{store.username}}{% endblock %}
 
-{% block content1 %} 
-<div class="storedetail-storeprofile">
-    <img class="storedetail-storepic" src="/media/{{store.userextenddata.picture}}">
-    <div class="storedetail-storeinfo">
-        <h5>contact: </h5>
-        <p>{{store.email}}</p>
+{% block content1 %}
+    <div class="storedetail-storeprofile">
+        <img class="storedetail-storepic" src="/media/{{store.userextenddata.picture}}">
+        <div class="storedetail-storeinfo">
+            <h5>contact: </h5>
+            <p>{{store.email}}</p>
+        </div>
     </div>
-</div>
 
 <script>
 $( document ).ready(setSort("late"));
@@ -58,12 +58,12 @@ function setSort(val) {
                     <img class="storedetail-productpic" src="/media/{{product.picture_path}}">
                 </a>
             </div>
-            <div class="text">       {% comment %} use css from catalog's css {% endcomment %}
+            <div class="text">  {% comment %} use css from catalog's css {% endcomment %}
                 <p>{{product.name}}</p>
                 <h5>{{product.price}} ฿</h5>
             </div>
-        </div> 
-        {% endfor %}
+        </div>
+    {% endfor %}
     </div>
 </div>
 {% endblock %}

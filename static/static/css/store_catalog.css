@@ -1,0 +1,70 @@
+.store-page {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.searchbar {
+    width: 100%;
+}
+
+.store-row {
+    width: 100%;
+}
+
+.store {
+    margin-bottom: 25px;
+}
+
+.store-image {
+    width: 100%;
+    height: 265px;
+    margin-bottom: 10px;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.store-image img {
+    vertical-align: middle;
+    max-height: 265px;
+    max-width: 100%;
+}
+
+.store-text {
+    width: 100%;
+}
+
+.store-title {
+    font-size: 25px;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+}
+
+.store-detail{
+    width: 100%;
+    overflow: hidden;
+}
+
+.store-date {
+    float: left;
+    width: 50%;
+    font-size: 15px;
+    text-align: center;
+}
+
+.store-price {
+    float: left;
+    width: 50%;
+    font-size: 15px;
+    text-align: center;
+    color: #ffbc49;
+}
+
+.paging {
+    width: 100%;
+}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/activate_store.css'%}">
+<!-- CSS paste here-->
+{% endblock %}
+
+{% block no_title_content %}
+{% block no_title_content2 %}
+{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="normal_font" align="center">
+    <h3>Your store is out of date.</h3>
+  <div>
+    <h2><a href="/activate_store/top_up" class="link-topup"><u>Renew your store!</a></u></h2>
+  </div>
+</div>
+{% endblock %}

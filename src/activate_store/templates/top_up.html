@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% load topup_filter %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/activate_store.css'%}">
+<!-- CSS paste here-->
+{% endblock %}
+
+{% block title_content1 %}Top Up{% endblock %}
+{% block content1 %}
+<div align="center">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="edit-text">
+      <div class="edit-input-text">
+        <span class="edit-text-min"> Price       </span>
+        {{ form.price | addclass_type_step:'form-price,number,1000'}}
+      </div>
+      {{ form.price.errors }}
+    </div>
+    <div class="edit-text">
+      <div class="edit-input-text">
+        {% comment %} {{ form.slip_pic }} {% endcomment %}
+        <div class="file-upload-wrapper">
+          <input type="file" name="slip_pic" id="id_slip_pic_path" class="file-upload-native" accept="image/*" />
+          <input type="text" disabled placeholder="upload slip" class="file-upload-text" />
+        </div>
+      </div>
+      {{ form.slip_pic.errors }}
+    </div>
+    {% comment %} <input type="submit" value="Submit Image"> {% endcomment %}
+
+    <div class="update-button">
+      <button class="btn btn-default update-profile" type="submit" name="submit-image" value="submit-image">Submit Slip</button>
+    </div>
+  
+  </form>
+</div>
+{% endblock %}
+
+{% block title_content2 %}Top Up's Rules{% endblock %}
+
+{% block content2 %}
+	<div class="col-md-offset-0 post-body about-howtouse">
+		<p>1. Top Up rate is only 1000฿ per month.</p>
+		<p>2. You can top up more than one month in one time.</p>
+		<p>3. Please pay fit for month that you want to top up. Barclothes reserves the right not to refund the difference. </p>		
+	</div>	
+{% endblock %}

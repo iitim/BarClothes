@@ -63,6 +63,9 @@ class UserExtendData(models.Model):
     def __str__(self):
         return self.user.username
 
+    def first_time(self):
+        return self.free_trial_status == 1
+    
 class Tag(models.Model):
     name = models.CharField(max_length=45)
 
@@ -137,7 +140,7 @@ class TransactionLog(models.Model):
                               create_date=transaction.create_date,
                               payment_date=transaction.payment_date,
                               sent_date=transaction.sent_date,
-                              receive_date=transaction.receive_date,
+                            #   receive_date=transaction.receive_date,
                               transport_code=transaction.transport_code)
 
     def __str__(self):

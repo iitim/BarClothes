@@ -41,6 +41,6 @@ def product_buy(request, num, num_buy):
             total_price = float(num_buy) * float(product.price)
             new_transaction = Transaction(customer=user, product=product, amount=num_buy, total_price=total_price)
             new_transaction.save()
-            return redirect('%s' % ('home'))
+            return redirect('%s' % ('user_profile:mycart:mycart'))
         else:
             return product_view(request, num)

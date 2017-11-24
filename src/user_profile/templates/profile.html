@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
 <title>{% block title %}Profile{% endblock %}</title>
 
 {% block stylesheet %}
 	<link rel="stylesheet" href="{% static 'css/profile.css'%}">
+	<link rel="stylesheet" href="{% static 'css/myproduct.css' %}">
+	
 {% endblock %}
 
 {% block title_content1 %}Profile{% endblock %}
@@ -22,10 +23,12 @@
 								<div class="image-profile">
 									<img src="/media/{{user_extend.picture}}" class="profile-pic"/>
 								</div>
-								<div class="pic-edit">
-									{{ user_extend.picture}}	
-									{{edit_profile_form.picture}}
-								</div>					
+
+								<div class="file-upload-wrapper">
+									<input type="file" name="picture" id="id_picture_path" class="file-upload-native" accept="image/*" />
+									<input type="text" disabled placeholder="change picture" class="file-upload-text" />
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -81,11 +84,25 @@
 									{{ edit_profile_form.address }}
 								</div>
 							</div>
+							<div class="edit-text-div">
+								<span class="fix-edit-text">Bank no</span>
+								{{ edit_profile_form.bank_account.errors }}						
+								<div class="edit-input-text">
+									{{ edit_profile_form.bank_account }}
+								</div>
+							</div>
+							{% if selling_expire_date != "0" %}
+								<div class="edit-text-div2">
+									<span class="fix-edit-text2" style="width: 100px;">Selling Expire Date </span>
+									<div class="fix-text">
+										<span class="fix-text">{{ selling_expire_date }}</span>
+									</div>
+								</div>
+							{% endif %}
 						</div>
 						<div class="update-button">
 							<button class="btn btn-default update-profile" type="submit" name="profile" value="profile">Update Profile</button>
 						</div>
-						<!-- <input value="{{ user_extend.address }}"> -->
 					</div>
 				</div>
 			</div>
