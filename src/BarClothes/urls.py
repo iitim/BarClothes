@@ -22,8 +22,6 @@ from django.contrib.auth import views as auth_views
 from django.views.generic.base import TemplateView
 from main import views
 from signup import views as signup_views
-# from profile import views as profiles_views
-# from about import views as about_views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
@@ -38,7 +36,7 @@ urlpatterns = [
     url(r'^profiles/', include('user_profile.urls'), name='profile'),
     url(r'^product/', include('product.urls'), name='product'),
     url(r'^myproduct/', include('myproduct.urls'), name='myproduct'),
-    url(r'^activate_store/', include('activate_store.urls'),name="activate_store"),
+    url(r'^activate_store/', include('activate_store.urls'),name='activate_store'),
 ]
 
 if settings.DEBUG:

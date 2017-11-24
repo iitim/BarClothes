@@ -15,13 +15,7 @@
 <div class="normal_font" align="center">
   <h3>You don't have your own store right now.</h3>
   <div>
-    {% comment %} <h2><u><a href="{% url 'activate_store:free_trial' %}" class="link-topup">Try 30-Days Free Trial</a></u></h2> {% endcomment %}
     <h2><u><a href="/activate_store/free_trial" class="link-topup">Try 30-Days Free Trial</a></u></h2>
-    
-    {% comment %} <form action="{% url 'activate_store:free_trial' %}" method="POST">
-      {% csrf_token %}
-      <input type="submit" class="linkButton" value="Try 30-Days Free Trial" name="free_trial"/>
-    </form> {% endcomment %}
   </div>
 </div>
 {% csrf_token %}
