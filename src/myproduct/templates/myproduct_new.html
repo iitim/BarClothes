@@ -47,13 +47,16 @@
                 </div>
                 <div class="col-md-12 input-column">
                     <div class="col-sm-3"><p class="head">Price</p></div>
-                    <div class="col-sm-9"><p class="normal">{{form.price}}
+                    <div class="col-sm-9"><p class="normal">
+                        <input type="number" name="price" min="0" value="0" step="0.01" required="" id="id_price">
                         <span style="position: absolute; left: 180px;">฿</span></p>
                     </div>
                 </div>
                 <div class="col-md-12 input-column">
                     <div class="col-sm-3"><p class="head">Amount</p></div>
-                    <div class="col-sm-9"><p class="normal">{{form.amount}}</p></div>
+                    <div class="col-sm-9"><p class="normal">
+                        <input type="number" name="amount" min="1" value="1" required="" id="id_amount">
+                    </p></div>
                 </div>
                 <div class="col-md-12 input-column">
                     <div class="col-sm-3"><p class="head">Tag</p></div>
