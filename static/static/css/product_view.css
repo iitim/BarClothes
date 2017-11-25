@@ -35,6 +35,10 @@
     word-break: break-all;
 }
 
+.myproduct{
+    text-align: center;
+}
+
 .normal-detail{
     margin: 0 40px;
     text-align: left;

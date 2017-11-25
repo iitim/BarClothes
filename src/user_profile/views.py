@@ -145,6 +145,10 @@ def orderpage_selected(request, num):
             fixform.status = 'suc'
             fixform.sent_date = datetime.now()
             form.save()
+            product = get_object_or_404(Product, pk=target.product.id)
+            product.reserved -= target.amount
+            product.sold += target.amount
+            product.save()
             TransactionLog.from_transaction(target).save()
             target.delete()
             return redirect('/profiles/shopstatus/order')

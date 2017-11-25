@@ -30,6 +30,7 @@
                                 <a class="col-sm-12 mycart-cancel" href="{% url 'user_profile:mycart:delete' transaction.id %}">X </a>
                             </h2>
                             <p class="col-sm-12 mycart-head">{{ transaction.product.name }}</p>
+                            <p class="col-sm-12 mycart-head">Seller : {{ transaction.product.seller }}</p>
                             <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
                             <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
                             <p class="col-sm-12 mycart-head">Please pay before : </p>
@@ -70,6 +71,7 @@
                                 <a class="col-sm-12 mycart-cancel" href="{% url 'user_profile:mycart:delete' transaction.id %}">X </a>
                             </h2>
                             <p class="col-sm-12 mycart-head">{{ transaction.product.name }}</p>
+                            <p class="col-sm-12 mycart-head">Seller : {{ transaction.product.seller }}</p>
                             <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
                             <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
                             <p class="col-sm-12 mycart-head">Please pay before : </p>
@@ -105,6 +107,7 @@
                     <img class="col-md-6 picture-preview" src="/media/{{ transaction.product.picture_path }}" >
                     <div class="col-md-6">
                         <p class="col-sm-12 mycart-head"  style="margin-top:20px">{{ transaction.product.name }}</p>
+                        <p class="col-sm-12 mycart-head">Seller : {{ transaction.product.seller }}</p>
                         <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
                         <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
                     </div>
@@ -123,6 +126,7 @@
                     <img class="col-md-6 picture-preview" src="/media/{{ transaction.product.picture_path }}" >
                     <div class="col-md-6">
                         <p class="col-sm-12 mycart-head" style="margin-top:20px">{{ transaction.product.name }}</p>
+                        <p class="col-sm-12 mycart-head">Seller : {{ transaction.product.seller }}</p>
                         <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
                         <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
                     </div>
@@ -170,7 +174,6 @@
                 <b>Amount :</b> {{ log.amount }}  
                 <b>TotalPrice :</b> {{ log.total_price }} ฿
                 <b>Seller :</b> {{ log.seller }}
-                <!-- <b>ExpireDate :</b> {{ log.expire_date|date:"d-M-Y" }} -->
             {% endfor %}
         </ul>
     {% endif %}
