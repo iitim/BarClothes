@@ -83,8 +83,8 @@ def delete(request, num):
                 product.save()
                 transaction.status = 'ccl'
                 transaction.save()
-                new_transectionLog = TransactionLog.from_transaction(transaction)
-                new_transectionLog.save()
+                new_transactionLog = TransactionLog.from_transaction(transaction)
+                new_transactionLog.save()
                 Transaction.objects.filter(pk=num).delete()
             return redirect('user_profile:mycart:mycart')
 
@@ -98,6 +98,6 @@ def updateExpire(request, user):
             product.save()
             transaction.status = 'cnp'
             transaction.save()
-            new_transectionLog = TransactionLog.from_transaction(transaction)
-            new_transectionLog.save()
+            new_transactionLog = TransactionLog.from_transaction(transaction)
+            new_transactionLog.save()
             Transaction.objects.filter(pk=transaction.id).delete()

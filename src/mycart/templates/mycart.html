@@ -36,11 +36,9 @@
                             <p class="col-sm-12 mycart-head">Please pay before : </p>
                             <p class="col-sm-12 mycart-head">{{ transaction.expire_date|date:"d-M-Y h:m" }}</p>
                             
-                            <!-- {{  transaction.slips }} -->
                             <input type="hidden" name="pk" value={{transaction.pk}} id="id_pk">
                             <div class="upload-image btn btn-warning">
                                 <span>Send payment</span>
-                                <!-- <input class="upload-image-input" type="file"> -->
                                 <input class="upload-image-input" type="file" name="payment_picture" id="id_payment_picture">
                             </div>
                               
@@ -48,7 +46,6 @@
                                 <input class="upload-image-cancel btn" type="reset" value="Cancel">
                                 <input class="upload-image-submit btn btn-warning" type="submit" value="Update">
                             </div>
-                            <!-- <input type="submit" class="btn btn-warning" value="Update slips" /> -->
                         </div>
                     </div>
                 </form>
@@ -77,11 +74,9 @@
                             <p class="col-sm-12 mycart-head">Please pay before : </p>
                             <p class="col-sm-12 mycart-head">{{ transaction.expire_date|date:"d-M-Y h:m" }}</p>
                             
-                            <!-- {{  transaction.slips }} -->
                             <input type="hidden" name="pk" value={{transaction.pk}} id="id_pk">
                             <div class="upload-image btn btn-warning">
                                 <span>Send payment</span>
-                                <!-- <input class="upload-image-input" type="file"> -->
                                 <input class="upload-image-input" type="file" name="payment_picture" id="id_payment_picture">
                             </div>
                               
@@ -89,7 +84,6 @@
                                 <input class="upload-image-cancel btn" type="reset" value="Cancel">
                                 <input class="upload-image-submit btn btn-warning" type="submit" value="Update">
                             </div>
-                            <!-- <input type="submit" class="btn btn-warning" value="Update slips" /> -->
                         </div>
                     </div>
                 </form>

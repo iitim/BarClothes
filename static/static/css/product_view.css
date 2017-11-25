@@ -91,6 +91,7 @@ input[name=buy]{
 }
 
 pre {
+    word-break: normal;
     font-family: 'Glacial Indifference';
     color: #ffffff;
     background-color: #282626;
