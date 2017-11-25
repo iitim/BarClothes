@@ -11,7 +11,7 @@ def product_new(request):
     else:
         seller = get_object_or_404(UserExtendData, user=request.user)
         if seller.can_sell() == False:
-            return redirect('home')
+            return redirect('activate_store')
         else:
             if request.method == 'POST':
                 form = ProductForm(request.POST, request.FILES)
