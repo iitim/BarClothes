@@ -89,3 +89,10 @@ input[name=buy]{
     position: relative;
     margin: 0 10px;
 }
+
+pre {
+    font-family: 'Glacial Indifference';
+    color: #ffffff;
+    background-color: #282626;
+    border: none;
+}
