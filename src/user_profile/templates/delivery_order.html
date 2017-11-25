@@ -26,7 +26,9 @@
               <p class="text1-delivery-order" >{{ trans|length }} Orders </p>
               <p class="textN-delivery-order" style="margin-right: 20px;" >ProductName </p>
               <p class="textN-delivery-order" style="margin-right: 50px;">Customer </p>
+              {% if trans.0.product.name == target.product.name %}
               <p class="textN-delivery-order" style="margin-right: 30px; margin-bottom: 80px;">Tracking No.</p>
+              {% endif %}
             </div>
           </a>
         </div>
