@@ -32,12 +32,18 @@ def signup(request):
 
 
 def setcontext(lastform) :
-    context = { 'last_username':lastform.data.get('username'),
-                'last_first_name': lastform.data.get('first_name'),
-                'last_last_name': lastform.data.get('last_name'),
-                'last_email': lastform.data.get('email'),
-                'last_id_num': lastform.data.get('id_num'),
-                'last_phone_num': lastform.data.get('phone_num'),
+    context = { 'last_username': set_or_space(lastform.data.get('username')),
+                'last_first_name': set_or_space(lastform.data.get('first_name')),
+                'last_last_name': set_or_space(lastform.data.get('last_name')),
+                'last_email': set_or_space(lastform.data.get('email')),
+                'last_id_num': set_or_space(lastform.data.get('id_num')),
+                'last_phone_num': set_or_space(lastform.data.get('phone_num')),
                 'form': lastform,
                 }
     return  context
+
+def set_or_space(value) :
+    print(value)
+    if (value == None) :
+        return ''
+    return value
