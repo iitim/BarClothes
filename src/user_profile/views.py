@@ -11,7 +11,7 @@ from collections import defaultdict
 from datetime import datetime
 
 from .forms import EditProfileForm, TransactionUpdateForm
-from main.models import UserExtendData , Transaction, PRODUCT_TYPE_CHOICES
+from main.models import UserExtendData , Transaction, PRODUCT_TYPE_CHOICES, TransactionLog
 
 
 def view_profile(request, pk=None):
@@ -140,13 +140,13 @@ def orderpage_selected(request, num):
     form = TransactionUpdateForm(instance=target)
     if request.POST:
         form = TransactionUpdateForm(request.POST, request.FILES, instance=target)
-        print ("form")
         if form.is_valid():
-            print ("1")
             fixform = form.save(commit=False)
             fixform.status = 'suc'
             fixform.sent_date = datetime.now()
             form.save()
+            TransactionLog.from_transaction(target).save()
+            target.delete()
             return redirect('/profiles/shopstatus/order')
 
     context = {

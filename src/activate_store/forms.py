@@ -9,12 +9,18 @@ class upload_img_form(ModelForm):
 		fields = ('slip_pic', 'price')
 		widgets = {
             'price': TextInput(attrs={
-                'class': 'form-price'
+				'type' : 'number',
+				'step' : "1000",
+				'class': 'form-price',
             }),
         }
 
 	def __init__(self, *args, **kwargs):
 		super(upload_img_form, self).__init__(*args, **kwargs)
 		self.fields['price'] = forms.IntegerField(
-			min_value = 1
+			min_value = 1000,
+			required=True,
+		)
+		self.fields['slip_pic'] = forms.ImageField(
+			required=True,
 		)
