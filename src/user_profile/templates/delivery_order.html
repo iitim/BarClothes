@@ -18,6 +18,12 @@
     {% if transaction|length == 0 %}
       <p class="no-element-label">You don't have any order to delivery now.</p>
     {% else %}
+      {% if target %}
+        <h4>Customer Name</h4>
+        <h5 style="margin-bottom: 10px; color: #FFBC49;">{{target.customer.user.first_name}}  {{target.customer.user.last_name}}</h5>
+        <h4>Customer Address</h4>
+        <h5 style="margin-bottom: 50px; color: #FFBC49;">{{target.customer.address}}</h5>
+      {% endif %}
       {% for trans in transaction %}
         <div class="each-order-group">
           <a href="{% url 'myproduct:update' trans.0.product.id %}"> 
