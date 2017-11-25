@@ -43,6 +43,12 @@ def activate_store(request):
                 return render(request, template, context)
         else:
             print('expired')
+            try:
+                top_ups = list(TopUp.objects.filter(user_id=user.pk))
+                if len(top_ups) > 0:
+                    return redirect('/activate_store/topup_transaction')
+            except:
+                pass
             template = 'my_store_expired.html'
             return render(request, template, context)
 

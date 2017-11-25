@@ -103,6 +103,7 @@ def view_myshop(request):
     store_extend = get_object_or_404(UserExtendData, user=request.user)
     if not store_extend.can_sell():
         return redirect('activate_store') #top up
+
     store = store_extend.user
     type = PRODUCT_TYPE_CHOICES
     products = store_extend.product_set.all()
