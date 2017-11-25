@@ -12,12 +12,6 @@ from main.models import UserExtendData, TopUp, TOPUP_STATUS_CHOICES
 from .forms import upload_img_form
 
 @login_required
-def wait_page(request):
-    context = locals()
-    template = 'wait.html'
-    return render(request, template, context)
-
-@login_required
 def activate_store(request):
     user = request.user
     user_extend = UserExtendData.objects.get(user_id=user.pk)
@@ -28,26 +22,13 @@ def activate_store(request):
         return render(request, template, context)
     else:
         if user_extend.can_sell():
-            try:
-                print('shopstatus')
-                top_up = TopUp(user=user)
-                if top_up.status == 'S':
-                    return redirect('/profiles/shopstatus/')
-                else:
-                    print('wait1')
-                    template = 'wait.html'
-                    return render(request, template, context)
-            except:
-                print('wait2')
-                template = 'wait.html'
-                return render(request, template, context)
+            return redirect('/profiles/shopstatus/')
         else:
-            print('expired')
             try:
                 top_ups = list(TopUp.objects.filter(user_id=user.pk))
-                if len(top_ups) > 0:
-                    return redirect('/activate_store/wait_page')
-            except:
+                if top_ups[0].status == 'w':
+                    return render(request, 'wait.html')
+                except:
                 pass
             template = 'my_store_expired.html'
             return render(request, template, context)
@@ -65,7 +46,7 @@ def top_up(request):
             top_up.status = 'w'
             top_up.save()
             print(top_up_form)
-            return redirect('/activate_store/wait_page')
+            return render(request, 'wait.html')
     else:
         top_up_form = upload_img_form(instance=top_up)
     return render(request, 'top_up.html', {'form': top_up_form})
