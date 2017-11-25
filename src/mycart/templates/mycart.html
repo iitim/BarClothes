@@ -18,7 +18,7 @@
             {% endif %}
             {% if transactions_error %}
                 <div class="col-md-12">
-                    <h3 style="text-align: left">Error : please sent payment again</h3>
+                    <h3 style="text-align: left">Error : please send payment again</h3>
                 </div>
                 {% for transaction in transactions_error %}
                 <form action="{% url 'user_profile:mycart:mycart' %}" method="post" enctype="multipart/form-data">
@@ -56,7 +56,7 @@
         <div class ="mycart-section">
             {% if transactions_cart %}
                 <div class="col-md-12">
-                    <h3 style="text-align: left">Please sent payment</h3>
+                    <h3 style="text-align: left">Please send payment</h3>
                 </div>
                 {% for transaction in transactions_cart %}
                 <form action="{% url 'user_profile:mycart:mycart' %}" method="post" enctype="multipart/form-data">

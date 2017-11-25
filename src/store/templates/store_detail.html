@@ -22,24 +22,25 @@ $( document ).ready(setSort("late"));
 function setSort(val) {
     if (val == "late"){
         {% with products_latest as products %}
-        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="/product/{{product.id}}"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endfor %}';
+        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}{% if product.remain > 0 %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="/product/{{product.id}}"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endif %}{% endfor %}';
         {% endwith %}
     } else if (val == "old") {
         {% with products_oldest as products %}
-        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="/product/{{product.id}}"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endfor %}';
+        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}{% if product.remain > 0 %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="/product/{{product.id}}"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endif %}{% endfor %}';
         {% endwith %}
     } else if (val == "low") {
         {% with products_lowest_price as products %}
-        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="/product/{{product.id}}"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endfor %}';
+        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}{% if product.remain > 0 %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="/product/{{product.id}}"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endif %}{% endfor %}';
         {% endwith %}
     } else {
         {% with products_highest_price as products %}
-        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="/product/{{product.id}}"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endfor %}';
+        document.getElementById("storedetail-productcatalog").innerHTML = '{% for product in products %}{% if product.remain > 0 %}<div class="col-md-4 storedetail-productblock"><div class="storedetail-productpicblock"><a href="/product/{{product.id}}"><img class="storedetail-productpic" src="/media/{{product.picture_path}}"></a></div><div class="text"><p>{{product.name}}</p><h5>{{product.price}} ฿</h5></div></div>{% endif %}{% endfor %}';
         {% endwith %}
     }
 }
 </script>
 
+{% if store_extend.can_sell %}
 <div>
     <div class="storedetail-search">
         <label for="sort">Sort by : </label>
@@ -52,6 +53,7 @@ function setSort(val) {
     </div>
     <div id="storedetail-productcatalog">
         {% for product in products_latest %}
+        {% if product.remain > 0 %}
         <div class="col-md-4 storedetail-productblock">
             <div class="storedetail-productpicblock">
                 <a href="{% url 'product:view' product.id %}">
@@ -63,9 +65,15 @@ function setSort(val) {
                 <h5>{{product.price}} ฿</h5>
             </div>
         </div>
+        {% endif %}
     {% endfor %}
     </div>
 </div>
+{% else %}
+<div>
+    <h4>This store is expire.</h4>
+</div>
+{% endif %}
 {% endblock %}
 
 {% block no_title_content2 %}{% endblock %}
