@@ -46,7 +46,7 @@ def activate_store(request):
             try:
                 top_ups = list(TopUp.objects.filter(user_id=user.pk))
                 if len(top_ups) > 0:
-                    return redirect('/activate_store/topup_transaction')
+                    return redirect('/activate_store/wait_page')
             except:
                 pass
             template = 'my_store_expired.html'
@@ -85,7 +85,7 @@ def topup_transaction(request):
     user = request.user
     top_up = list(TopUp.objects.filter(user_id=user.pk))
     if len(top_up) == 0:
-        return redirect('/activate_store/top_up')
+        return render(request, 'empty_transaction.html')
     context = {
         'topups': init_topuptrans_context(top_up),
     }

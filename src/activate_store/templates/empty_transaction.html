@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/activate_store.css'%}">
+<!-- CSS paste here-->
+{% endblock %}
+
+{% block no_title_content %}
+{% block no_title_content2 %}
+{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="normal_font" align="center">
+  <h3>You don't have any TopUp Transaction</h3>
+  <div>
+    <h2><u><a href="/activate_store/top_up" class="link-topup">Go to Top Up </a></u></h2>
+  </div>
+</div>
+{% csrf_token %}
+{% endblock %}
