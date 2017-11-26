@@ -55,6 +55,7 @@ def store_detail(request, num):
 
     context = {
         'store': store,
+        'store_extend' : store_extend,
         'products_latest': products_latest,
         'products_oldest': products_oldest,
         'products_lowest_price': products_lowest_price,

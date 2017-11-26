@@ -16,13 +16,12 @@
                 <input name="buy" type="submit" class="btn get-it" color="#FFBC49" value="Update"/>
             </a></div>
         {% else %}
-        <!-- user can not sell >>> can not update product so >>> top-up -->
-            <div class="col-md-12"><a href="{% url 'user_profile:profile' %}" class="buy">
+            <div class="col-md-12"><a href="{% url 'activate_store' %}" class="buy">
                 <input name="buy" type="submit" class="btn get-it" color="#FFBC49" value="Update"/>
             </a></div>
         {% endif %}
     {% else %}
-        {% if product.remain > 0 %}
+        {% if product.remain > 0 and product.seller.can_sell %}
             <form action="{% url 'product:view' product.id %}" method="post">
                 {% csrf_token %}
                 <div class="col-md-12">
@@ -90,7 +89,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <p class="head-detail">Detail</p>
-                <p class="normal-detail">{{product.detail}}</p>
+                <pre class="normal-detail">{{product.detail}}</pre>
             </div>
         </div>
     </div>

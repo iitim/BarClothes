@@ -36,7 +36,7 @@
                 <div class="col-md-12 input-column">
                     <div class="col-sm-3"><p class="head">Type</p></div>
                     <div class="col-sm-9">
-                        <p class="normal">
+                        <p class="normal myproduct">
                             <select class="js-example-basic-single" id="id_type" name="type">
                                 {% for type in form.type %}
                                     {{type}}
@@ -47,21 +47,33 @@
                 </div>
                 <div class="col-md-12 input-column">
                     <div class="col-sm-3"><p class="head">Price</p></div>
-                    <div class="col-md-9"><p class="normal">
+                    <div class="col-md-9"><p class="normal myproduct">
                         <input type="number" name="price" min="0" value={{product.price}} step="0.01" required="" id="id_price">
                         <span style="position: absolute; left: 180px;">฿</span></p>
                     </p></div>
                 </div>
                 <div class="col-md-12 input-column">
                     <div class="col-sm-3"><p class="head">Amount</p></div>
-                    <div class="col-sm-9"><p class="normal">
+                    <div class="col-sm-9"><p class="normal myproduct">
                         <input type="number" name="amount" min={{product.reserved|add:product.sold}} value={{product.amount}} required="" id="id_amount">    
+                    </p></div>
+                </div>
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Reserved</p></div>
+                    <div class="col-sm-9"><p class="normal myproduct">
+                        {{product.reserved}}    
+                    </p></div>
+                </div>
+                <div class="col-md-12 input-column">
+                    <div class="col-sm-3"><p class="head">Sold</p></div>
+                    <div class="col-sm-9"><p class="normal myproduct">
+                        {{product.sold}}    
                     </p></div>
                 </div>
                 <div class="col-md-12 input-column">
                     <div class="col-sm-3"><p class="head">Tag</p></div>
                     <div class="col-sm-9">
-                        <p class="normal"> 
+                        <p class="normal myproduct"> 
                             <select class="js-example-basic-multiple" id="id_tags" name="tags" multiple="multiple">
                                 {% for tag in form.tags %}
                                     {{tag}}
@@ -75,7 +87,9 @@
         <div class="col-md-12">
             <div class="col-sm-12" style="margin-bottom: 10px"></div>
                 <p class="head-detail">Detail</p>
-                <p class="normal-detail">{{form.detail}}</p>
+                <p class="normal-detail">
+                    {{form.detail}}
+                </p>
             </div>
         </div>
 </form>

@@ -148,3 +148,23 @@ footer{
     text-overflow: ellipsis;
     display: inline-flex;
 }
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: rgba(0, 0, 0, 0);
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #555;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 8px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0);
+	background-color: #ffbc49;
+}

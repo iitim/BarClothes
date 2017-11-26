@@ -18,7 +18,7 @@
             {% endif %}
             {% if transactions_error %}
                 <div class="col-md-12">
-                    <h3 style="text-align: left">Error : please sent payment again</h3>
+                    <h3 style="text-align: left">Error : please send payment again</h3>
                 </div>
                 {% for transaction in transactions_error %}
                 <form action="{% url 'user_profile:mycart:mycart' %}" method="post" enctype="multipart/form-data">
@@ -30,24 +30,22 @@
                                 <a class="col-sm-12 mycart-cancel" href="{% url 'user_profile:mycart:delete' transaction.id %}">X </a>
                             </h2>
                             <p class="col-sm-12 mycart-head">{{ transaction.product.name }}</p>
+                            <p class="col-sm-12 mycart-head">Seller : {{ transaction.product.seller }}</p>
                             <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
                             <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
                             <p class="col-sm-12 mycart-head">Please pay before : </p>
                             <p class="col-sm-12 mycart-head">{{ transaction.expire_date|date:"d-M-Y h:m" }}</p>
                             
-                            <!-- {{  transaction.slips }} -->
                             <input type="hidden" name="pk" value={{transaction.pk}} id="id_pk">
                             <div class="upload-image btn btn-warning">
-                                <span>Sent payment</span>
-                                <input class="upload-image-input" type="file">
-                                <!-- <input class="upload-image-input" type="file" name="payment_picture" id="id_payment_picture"> -->
+                                <span>Send payment</span>
+                                <input class="upload-image-input" type="file" name="payment_picture" id="id_payment_picture">
                             </div>
                               
                             <div class="upload-image-confirmation">
                                 <input class="upload-image-cancel btn" type="reset" value="Cancel">
                                 <input class="upload-image-submit btn btn-warning" type="submit" value="Update">
                             </div>
-                            <!-- <input type="submit" class="btn btn-warning" value="Update slips" /> -->
                         </div>
                     </div>
                 </form>
@@ -58,7 +56,7 @@
         <div class ="mycart-section">
             {% if transactions_cart %}
                 <div class="col-md-12">
-                    <h3 style="text-align: left">Please sent payment</h3>
+                    <h3 style="text-align: left">Please send payment</h3>
                 </div>
                 {% for transaction in transactions_cart %}
                 <form action="{% url 'user_profile:mycart:mycart' %}" method="post" enctype="multipart/form-data">
@@ -70,24 +68,22 @@
                                 <a class="col-sm-12 mycart-cancel" href="{% url 'user_profile:mycart:delete' transaction.id %}">X </a>
                             </h2>
                             <p class="col-sm-12 mycart-head">{{ transaction.product.name }}</p>
+                            <p class="col-sm-12 mycart-head">Seller : {{ transaction.product.seller }}</p>
                             <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
                             <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
                             <p class="col-sm-12 mycart-head">Please pay before : </p>
                             <p class="col-sm-12 mycart-head">{{ transaction.expire_date|date:"d-M-Y h:m" }}</p>
                             
-                            <!-- {{  transaction.slips }} -->
                             <input type="hidden" name="pk" value={{transaction.pk}} id="id_pk">
                             <div class="upload-image btn btn-warning">
-                                <span>Sent payment</span>
-                                <input class="upload-image-input" type="file">
-                                <!-- <input class="upload-image-input" type="file" name="payment_picture" id="id_payment_picture"> -->
+                                <span>Send payment</span>
+                                <input class="upload-image-input" type="file" name="payment_picture" id="id_payment_picture">
                             </div>
                               
                             <div class="upload-image-confirmation">
                                 <input class="upload-image-cancel btn" type="reset" value="Cancel">
                                 <input class="upload-image-submit btn btn-warning" type="submit" value="Update">
                             </div>
-                            <!-- <input type="submit" class="btn btn-warning" value="Update slips" /> -->
                         </div>
                     </div>
                 </form>
@@ -105,6 +101,7 @@
                     <img class="col-md-6 picture-preview" src="/media/{{ transaction.product.picture_path }}" >
                     <div class="col-md-6">
                         <p class="col-sm-12 mycart-head"  style="margin-top:20px">{{ transaction.product.name }}</p>
+                        <p class="col-sm-12 mycart-head">Seller : {{ transaction.product.seller }}</p>
                         <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
                         <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
                     </div>
@@ -123,6 +120,7 @@
                     <img class="col-md-6 picture-preview" src="/media/{{ transaction.product.picture_path }}" >
                     <div class="col-md-6">
                         <p class="col-sm-12 mycart-head" style="margin-top:20px">{{ transaction.product.name }}</p>
+                        <p class="col-sm-12 mycart-head">Seller : {{ transaction.product.seller }}</p>
                         <p class="col-sm-12 mycart-head">Amount : {{ transaction.amount }}</p>
                         <p class="col-sm-12 mycart-head">TotalPrice : {{ transaction.total_price}} ฿</p>
                     </div>
@@ -170,7 +168,6 @@
                 <b>Amount :</b> {{ log.amount }}  
                 <b>TotalPrice :</b> {{ log.total_price }} ฿
                 <b>Seller :</b> {{ log.seller }}
-                <!-- <b>ExpireDate :</b> {{ log.expire_date|date:"d-M-Y" }} -->
             {% endfor %}
         </ul>
     {% endif %}

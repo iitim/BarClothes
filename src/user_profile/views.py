@@ -98,9 +98,12 @@ def cancel(request):
     return redirect('/accounts/profile')
 
 def view_myshop(request):
+    if not request.user.is_authenticated:
+        return redirect('%s' % ('login'))
     store_extend = get_object_or_404(UserExtendData, user=request.user)
     if not store_extend.can_sell():
         return redirect('activate_store') #top up
+
     store = store_extend.user
     type = PRODUCT_TYPE_CHOICES
     products = store_extend.product_set.all()
@@ -114,7 +117,11 @@ def view_myshop(request):
    
 
 def orderpage(request):
+    if not request.user.is_authenticated:
+        return redirect('%s' % ('login'))
     store_extend = get_object_or_404(UserExtendData, user=request.user)
+    if not store_extend.can_sell():
+        return redirect('activate_store')
     transaction = Transaction.objects.filter(product__seller=store_extend, status='wss')
     groups = defaultdict(list)
     for obj in transaction:
@@ -127,7 +134,11 @@ def orderpage(request):
     return render(request, template, context)
 
 def orderpage_selected(request, num):
+    if not request.user.is_authenticated:
+        return redirect('%s' % ('login'))
     store_extend = get_object_or_404(UserExtendData, user=request.user)
+    if not store_extend.can_sell():
+        return redirect('activate_store')
     transaction = Transaction.objects.filter(product__seller=store_extend, status='wss')
     groups = defaultdict(list)
     for obj in transaction:
@@ -145,6 +156,10 @@ def orderpage_selected(request, num):
             fixform.status = 'suc'
             fixform.sent_date = datetime.now()
             form.save()
+            product = get_object_or_404(Product, pk=target.product.id)
+            product.reserved -= target.amount
+            product.sold += target.amount
+            product.save()
             TransactionLog.from_transaction(target).save()
             target.delete()
             return redirect('/profiles/shopstatus/order')

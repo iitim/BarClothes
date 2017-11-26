@@ -35,6 +35,10 @@
     word-break: break-all;
 }
 
+.myproduct{
+    text-align: center;
+}
+
 .normal-detail{
     margin: 0 40px;
     text-align: left;
@@ -84,4 +88,12 @@ input[name=buy]{
     bottom: 100px;
     position: relative;
     margin: 0 10px;
+}
+
+pre {
+    word-break: normal;
+    font-family: 'Glacial Indifference';
+    color: #ffffff;
+    background-color: #282626;
+    border: none;
 }

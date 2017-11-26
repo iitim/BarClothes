@@ -60,7 +60,7 @@ def updateslipForm(request, num):
         form = UpdateSlipForm(request.POST, request.FILES, instance=transaction, initial={'pk':transaction._get_pk_val()})
         if form.is_valid():
             # print(form.data)
-            transaction.payment_picture = form.cleaned_data.get('payment_picture')
+            transaction.payment_picture = request.FILES['payment_picture']
             transaction.status = 'wac'
             print(transaction.id)
             print(transaction)
@@ -78,10 +78,13 @@ def delete(request, num):
             return redirect('user_profile:mycart:mycart')
         else:
             if transaction.status == 'cpe' or transaction.status == 'wpy':
+                product = get_object_or_404(Product, pk=transaction.product.id)
+                product.reserved -= transaction.amount
+                product.save()
                 transaction.status = 'ccl'
                 transaction.save()
-                new_transectionLog = TransactionLog.from_transaction(transaction)
-                new_transectionLog.save()
+                new_transactionLog = TransactionLog.from_transaction(transaction)
+                new_transactionLog.save()
                 Transaction.objects.filter(pk=num).delete()
             return redirect('user_profile:mycart:mycart')
 
@@ -90,8 +93,11 @@ def updateExpire(request, user):
     now = timezone.now()
     for transaction in transactions:
         if transaction.expire_date < now and (transaction.status == 'wpy' or transaction.status == 'cpe'):
+            product = get_object_or_404(Product, pk=transaction.product.id)
+            product.reserved -= transaction.amount
+            product.save()
             transaction.status = 'cnp'
             transaction.save()
-            new_transectionLog = TransactionLog.from_transaction(transaction)
-            new_transectionLog.save()
+            new_transactionLog = TransactionLog.from_transaction(transaction)
+            new_transactionLog.save()
             Transaction.objects.filter(pk=transaction.id).delete()
