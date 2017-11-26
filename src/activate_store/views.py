@@ -28,7 +28,7 @@ def activate_store(request):
                 top_ups = list(TopUp.objects.filter(user_id=user.pk))
                 if top_ups[0].status == 'w':
                     return render(request, 'wait.html')
-                except:
+            except:
                 pass
             template = 'my_store_expired.html'
             return render(request, template, context)
