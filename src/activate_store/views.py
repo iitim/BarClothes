@@ -46,7 +46,7 @@ def top_up(request):
             top_up.status = 'w'
             top_up.save()
             print(top_up_form)
-            return render(request, 'wait.html')
+            return redirect('/activate_store/topup_transaction')
     else:
         top_up_form = upload_img_form(instance=top_up)
     return render(request, 'top_up.html', {'form': top_up_form})
